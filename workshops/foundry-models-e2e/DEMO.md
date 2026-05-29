@@ -1,21 +1,29 @@
 # Speaker Demo Guide — Right Model, Right Job
 
 <!--
-PROMPT TO RECREATE:
-Look at the speaker demos flows description - I need to record three 4-5 minute demos using this worksop that will fit that spec. Create a DEMO.md file under workshops/foundry- subfolder and write up a transcript I can use for doing this demo. Assume that I can do some setup ahead of time and can have the Foundry project open in one browser tab and my Codespaces open in another (with the Copilot run visible). Write up guidance so anyone can reproduce this - and write up the speaker transcript so it fits the time and lands the message
+PURPOSE:
+This file is the speaker + recording guide for the three demo segments
+that accompany the foundry-models-e2e workshop. It is meant to be used
+*while running the workshop end-to-end* against the WWI Concierge
+scenario — you run each workshop step, verify it works, and capture
+the relevant demo segment as a short video at the points called out
+below. There is no automation skill driving the demos; pacing and
+framing live in this file.
 -->
 
 
-> Three live demos, ~4 / 4 / 5 minutes each.  
-> Source material: [README.md](./README.md) · Workshop steps 2–8.  
+> Three short demo videos to capture while running the workshop
+> end-to-end. Target lengths: **~4 / 4 / 5 minutes**.
+> Source material: [README.md](./README.md) · Workshop steps 2–8.
 > Scenario: **WWI Concierge** — Carmen needs to book a business trip to Berlin.
 
 ---
 
 ## Table of Contents
 
-- [Setup checklist (do this before you go on stage)](#setup-checklist)
-- [Browser layout](#browser-layout)
+- [How to use this guide](#how-to-use-this-guide)
+- [Setup checklist (do this before you record)](#setup-checklist)
+- [Recording workflow](#recording-workflow)
 - [Demo 1 — Select the right model (~4 min)](#demo-1--select-the-right-model-4-min)
 - [Demo 2 — Validate with evidence (~4 min)](#demo-2--validate-with-evidence-4-min)
 - [Demo 3 — Optimize cost and performance (~5 min)](#demo-3--optimize-cost-and-performance-5-min)
@@ -23,9 +31,35 @@ Look at the speaker demos flows description - I need to record three 4-5 minute 
 
 ---
 
+## How to use this guide
+
+The workflow this file assumes:
+
+1. **Run the workshop end-to-end first.** Walk through
+   [`00-setup.md`](./00-setup.md) through [`08-portal-review.md`](./08-portal-review.md)
+   on the WWI brand and confirm every step works for you in isolation.
+   The setup checklist below is the *exit state* of that run.
+2. **Pre-stage the eval runs** so the v1 / v2 / v3 scorecards are real
+   numbers from your environment, not placeholders.
+3. **Record each demo as a separate video** — do not try to capture all
+   three in one take. Each demo is anchored to specific workshop steps
+   (called out in its header) so you can re-run just that slice to
+   capture clean footage.
+4. **Use the transcript as a narration script, not a teleprompter.** The
+   cue-sheet table under each demo is the timing contract; aim for the
+   time markers, not the exact wording.
+
+If a demo segment goes long, trim from the narrative scaffolding
+("a lot of teams skip this step…") before trimming the technical beats.
+The technical beats are the proof; the narrative is the wrapper.
+
+---
+
 ## Setup checklist
 
-Complete all of the following **before** recording or presenting. Everything here maps to workshop Steps 0–7 — run the full workshop end-to-end at least once, then use these steps to get back to the right state.
+The items here are the exit state of a full workshop run. If anything
+below is not true, go back to the corresponding workshop step and
+finish it before recording. Treat this as the recording-day pre-flight.
 
 ### Environment
 
@@ -107,20 +141,30 @@ Open these in VS Code tabs before recording:
 
 ---
 
-## Browser layout
+## Recording workflow
 
-```
-┌─────────────────────────────────┐  ┌──────────────────────────────────┐
-│  BROWSER (Foundry Portal)       │  │  CODESPACE (VS Code / terminal)  │
-│                                 │  │                                  │
-│  Tab 1: Models + endpoints      │  │  Editor: s02_config.py           │
-│  Tab 2: Evaluation              │  │  Editor: s05_multi_model_agent   │
-│  Tab 3: Evaluation compare      │  │  Terminal: code/ directory       │
-│                                 │  │  Copilot Chat panel visible      │
-└─────────────────────────────────┘  └──────────────────────────────────┘
-```
+Each demo maps to a small slice of the workshop you have already run.
+Capture them in workshop order so the Foundry project state moves
+forward naturally between takes.
 
-Keep both windows visible side by side if your recording resolution allows (1920×1080 or wider). Otherwise, switch cleanly between the two at the cue points marked **[SWITCH →]** in the transcripts below.
+| Demo | Capture after running… | What you re-do on camera | Suggested take length |
+|---|---|---|---|
+| **Demo 1** | [Step 3 — Model selection](./03-model-selection.md) | Re-run the Copilot prompt against the model catalog; show the five deployments already in `Succeeded`. | ~4 min |
+| **Demo 2** | [Step 5 — Evaluations](./05-evaluations.md) (after v1 + v2 eval rows exist) | Re-show the v1 vs v2 scorecard in the terminal, then the Evaluation tab in the portal. | ~4 min |
+| **Demo 3** | [Step 7 — Multi-model agent](./07-multi-model-agent.md) + [Step 8 — Portal review](./08-portal-review.md) (after v3 eval row exists) | Re-run Carmen's trace end-to-end, then the v1 / v2 / v3 compare view in the portal. | ~5 min |
+
+Capture tips:
+
+- **Record at 1920×1080 minimum** so both the portal tab and the
+  Codespace are legible side-by-side. If your display is narrower,
+  record them as separate clips and rely on the **[SWITCH →]** cues in
+  each transcript to mark the cut.
+- **Pre-clear terminal history** (`clear`) before each take so the only
+  output on screen is the one you're narrating.
+- **Hide secrets.** Double-check `.env` is not visible in any file
+  tab; close any browser tabs with subscription IDs in the URL.
+- **Run each demo once unrecorded** as a dry run — the transcripts
+  assume you know where each click lands.
 
 ---
 
@@ -378,7 +422,9 @@ And everything you saw here — the evals, the versions, the routing, the fine-t
 
 ## Recovery notes
 
-Use these if something goes wrong mid-demo.
+Use these if a take goes sideways. With recording you can always cut
+and retry, but these are the in-place fallbacks if you want to keep a
+take rolling.
 
 ### Deployment not found / API error (any demo)
 
