@@ -26,3 +26,4 @@ cluttering the learner-facing files.
 |---|---|
 | [`foundry-models-e2e-plan.md`](./foundry-models-e2e-plan.md) | [`../workshops/foundry-models-e2e/`](../workshops/foundry-models-e2e/) |
 | [`model-router-demystified-plan.md`](./model-router-demystified-plan.md) | [`../workshops/model-router-demystified/`](../workshops/model-router-demystified/) |
+| [`demo-skills-plan.md`](./demo-skills-plan.md) | `../.agents/skills/add-demo/` + `../.agents/skills/run-demo/` (proposed) |
