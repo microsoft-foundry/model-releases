@@ -36,7 +36,7 @@ from s02_config import (
 _aoai_match = re.match(r"https://([^.]+)\.services\.ai\.azure\.com", PROJECT_ENDPOINT)
 _AOAI_ENDPOINT = f"https://{_aoai_match.group(1)}.openai.azure.com/"
 
-USE_FT_POLICY = True   # fine-tuned policy-mini-ft deployed (Step 6)
+USE_FT_POLICY = True  # v3: route policy QA through the Step-6 fine-tune (policy-mini-ft).
 
 _project = AIProjectClient(
     endpoint=PROJECT_ENDPOINT, credential=DefaultAzureCredential())

@@ -90,7 +90,9 @@ python s05_run_eval.py --agent s05_multi_model_agent \
 # → quality ≈ 0.28  (policy-mini-base without fine-tuning; this is the gap we're closing)
 ```
 
-Make a note. We need this *before* number for the on-stage chart.
+Make a note. We need this *before* number for the on-stage chart. The next run
+(`policy-ft`) will pass `--baseline policy-base` so the Δ column shows the
+fine-tune lift inline.
 
 ## 6.4 — Kick off the fine-tune via SDK
 
@@ -154,11 +156,13 @@ Once the job reports `succeeded` with a `fine_tuned_model` id, deploy it. The Fo
 ```
 Deploy fine-tuned model <fine_tuned_model id from job> to project
 wwi-concierge-demo in region swedencentral,
-deployment name = policy-mini-ft, sku=Standard, tpm=10000.
+deployment name = policy-mini-ft, sku=Developer, tpm=10000.
 Verify status=Succeeded and return the endpoint.
 ```
 
-Or in the portal: **Fine-tuning** → click your job → **Deploy** → name it `policy-mini-ft`.
+Or in the portal: **Fine-tuning** → click your job → **Deploy** → name it `policy-mini-ft` → **Deployment type: Developer**.
+
+> **Always use the Developer SKU for workshop / test fine-tune deployments.** It has no hourly hosting fee — you pay per-token only — so a fine-tune you only hit during evals costs cents instead of dollars/day. Switch to Standard or Provisioned only when the deployment is serving real production traffic.
 
 ## 6.6 — Flip the agent to use the fine-tune
 
@@ -177,8 +181,9 @@ That's the entire app change. **One boolean.** Because we named deployments by j
 ```bash
 python s05_run_eval.py --agent s05_multi_model_agent \
                    --eval ../sample-data/eval-policy-only.jsonl \
-                   --label "policy-ft"
-# → quality ≈ 0.94
+                   --label "policy-ft" \
+                   --baseline "policy-base"
+# → quality ≈ 0.94, rendered with ▲ green delta vs the policy-base run
 ```
 
 Cost per policy answer:
