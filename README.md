@@ -34,9 +34,9 @@ The three decisions that drove every improvement:
 **Carmen** is a WWI employee travelling to Berlin for a client meeting. She submits a trip request with a parking receipt photo and asks the concierge to book flights, a hotel near Alexanderplatz, and confirm everything is within WWI policy.
 
 <p>
-  <img src="workshops/foundry-models-e2e/assets/00-receipt.png" width="360" alt="Carmen's parking receipt — the starting artifact for every eval row" />
+  <img src="workshops/foundry-models-e2e/assets/00-receipt.png" height="360" alt="Carmen's parking receipt — the starting artifact for every eval row" />
   &nbsp;
-  <img src="workshops/foundry-models-e2e/assets/00-policy.png" width="360" alt="WWI travel policy handbook — the grounding document for every policy answer" />
+  <img src="workshops/foundry-models-e2e/assets/00-policy.png" height="360" alt="WWI travel policy handbook — the grounding document for every policy answer" />
 </p>
 
 > *This one receipt, one policy doc, and one trip itinerary is the seed for 170 evaluation rows across 3 intents and 12 policy axes. Every number in this document was measured against that dataset. See [`workshops/foundry-models-e2e/sample-data/README.md`](workshops/foundry-models-e2e/sample-data/README.md) for the full asset map.*
