@@ -1256,7 +1256,7 @@ section.split h1, section.split h2 { grid-column: 1 / -1; }
    ───────────────────────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap')
 ;" data-marpit-pagination-total="33" data-size="16:9">
-<h1 id="the-scenario-zava-travel-concierge">The scenario: Zava Travel Concierge</h1>
+<h1 id="the-scenario-wwi-concierge">The scenario: WWI Concierge</h1>
 <div class="stat-row">
 <div class="stat">
 <div class="label">Workload</div>
@@ -2027,8 +2027,8 @@ section.split h1, section.split h2 { grid-column: 1 / -1; }
 <div>
 <p><strong>Verify both endpoints</strong></p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">az ai project create \
-  --name <span class="hljs-string">&quot;zava-model-router&quot;</span> \
-  --resource-group <span class="hljs-string">&quot;rg-zava-travel&quot;</span> \
+  --name <span class="hljs-string">&quot;wwi-model-router&quot;</span> \
+  --resource-group <span class="hljs-string">&quot;rg-wwi&quot;</span> \
   --location <span class="hljs-string">&quot;swedencentral&quot;</span>
 
 <span class="hljs-comment"># Then deploy model-router via portal or CLI</span>
@@ -4089,7 +4089,7 @@ section.split h1, section.split h2 { grid-column: 1 / -1; }
 <blockquote>
 <p>&quot;Which backing models did the router actually pick — and how often?&quot;</p>
 </blockquote>
-<p>This is the most revealing artifact of the entire workshop. For Zava Travel on Balanced mode you'll typically see:</p>
+<p>This is the most revealing artifact of the entire workshop. For WWI on Balanced mode you'll typically see:</p>
 <ul>
 <li>~40% of prompts to a small/fast model (<code>gpt-5-mini</code> class)</li>
 <li>~35% to a mid-tier model</li>
@@ -8408,13 +8408,13 @@ section.split h1, section.split h2 { grid-column: 1 / -1; }
   ~35 slides · ~45 min · ~1 min/slide
 ═══════════════════════════════════════════════════════════════════════</p><p>Opener. Frame the deck: this isn't a marketing pitch for Model Router,
 it's an empirical workshop. We're going to *measure* whether the router
-holds up on a real workload (Zava Travel Concierge), and learn how to
+holds up on a real workload (WWI Concierge), and learn how to
 optimize it with config alone.</p></div><div class="bespoke-marp-note" data-index="1" tabindex="0"><p>The motivating problem. Most teams default to &quot;one frontier model for
 everything&quot; because they don't want to maintain a custom routing layer.
 That's exactly the gap Model Router fills.</p></div><div class="bespoke-marp-note" data-index="2" tabindex="0"><p>Four-corner overview. Each tile becomes a deeper slide later, so keep
 this short. Emphasis: Model Router *is* the router — you don't build
 one on top of it.</p></div><div class="bespoke-marp-note" data-index="3" tabindex="0"><p>The 7 learning objectives from README.md, condensed into action verbs.
-This is the contract for the next 45 minutes.</p></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>Anchor the workshop in a concrete scenario. The same Zava Travel domain
+This is the contract for the next 45 minutes.</p></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>Anchor the workshop in a concrete scenario. The same WWI domain
 is reused from foundry-models-e2e, so learners crossing over already
 know the policy. The before/after numbers come from README.md.</p></div><div class="bespoke-marp-note" data-index="5" tabindex="0"><p>This is the spine of the workshop. Each lab moves one row. By the end
 we want the audience to internalize: &quot;Same quality. ~68% less cost.
@@ -8438,7 +8438,7 @@ smaller models. Boundary precision is the killer one — &quot;reimbursable
 vs. needs approval&quot; hinges on $25.</p></div><div class="bespoke-marp-note" data-index="18" tabindex="0"><p>The rubric shifts weight based on the *kind* of question. Edge cases
 penalize hallucination harder; budget questions penalize wrong
 numbers harder. This is what makes the evaluator usable beyond a toy.</p></div><div class="bespoke-marp-note" data-index="20" tabindex="0"><p>Three runs, three data points. The lesson: don't pick a mode by name,
-pick it by what the scorecard says about *your* workload. For Zava
+pick it by what the scorecard says about *your* workload. For WWI
 Travel, Balanced wins. For a tier-2 chatbot, Cost might.</p></div><div class="bespoke-marp-note" data-index="21" tabindex="0"><p>This is where compliance, predictability, and caching all converge.
 &quot;Always include ≥2 models in your subset&quot; is the one operational rule
 to repeat twice.</p></div><div class="bespoke-marp-note" data-index="22" tabindex="0"><p>Caching is automatic on supported models — you don't configure it,

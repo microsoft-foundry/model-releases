@@ -103,7 +103,7 @@ def run(user_message: str, image_url: str | None = None) -> dict:
             model=policy_model,
             temperature=0,
             messages=[
-                {"role": "system", "content": "You answer Zava travel policy questions. Concise."},
+                {"role": "system", "content": "You answer WWI policy questions. Concise."},
                 {"role": "user",   "content": user_message},
             ],
         )
@@ -113,7 +113,7 @@ def run(user_message: str, image_url: str | None = None) -> dict:
         pol = _client.responses.create(
             model=policy_model,
             temperature=0,
-            instructions="You answer Zava travel policy questions. Concise.",
+            instructions="You answer WWI policy questions. Concise.",
             input=user_message,
         )
         _bump(usage, policy_model, pol)
@@ -121,7 +121,7 @@ def run(user_message: str, image_url: str | None = None) -> dict:
 
     # 4. Planner with tools — frontier model orchestrates the booking turn(s)
     planner_instructions = (
-        "You are Zava Travel planner. Use tools. Respect policy. "
+        "You are WWI planner. Use tools. Respect policy. "
         f"Pre-resolved policy: {policy_note}. "
         f"Receipt facts: {vision_facts}. "
         "Return final JSON with keys: flight, hotel, policy_notes, "

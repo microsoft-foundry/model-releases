@@ -8,7 +8,7 @@ Look at the speaker demos flows description - I need to record three 4-5 minute 
 
 > Three live demos, ~4 / 4 / 5 minutes each.  
 > Source material: [README.md](./README.md) · Workshop steps 2–8.  
-> Scenario: **Zava Travel Concierge** — Carmen needs to book a business trip to Berlin.
+> Scenario: **WWI Concierge** — Carmen needs to book a business trip to Berlin.
 
 ---
 
@@ -36,7 +36,7 @@ Complete all of the following **before** recording or presenting. Everything her
 
 ### Foundry project
 
-- [ ] Project `zava-travel-demo` exists in **Sweden Central**.
+- [ ] Project `wwi-concierge-demo` exists in **Sweden Central**.
 - [ ] All five deployments show `Succeeded` in the portal:
   - `planner-gpt41` (gpt-4.1)
   - `router-nano` (gpt-4.1-nano)
@@ -89,7 +89,7 @@ Have these pages open and **logged in** before you start:
 
 | Tab | URL path | Used in |
 |---|---|---|
-| **Tab 1** | Foundry Portal → project `zava-travel-demo` → **Models + endpoints** | Demo 1 |
+| **Tab 1** | Foundry Portal → project `wwi-concierge-demo` → **Models + endpoints** | Demo 1 |
 | **Tab 2** | Foundry Portal → same project → **Evaluation** | Demo 2 |
 | **Tab 3** | Foundry Portal → same project → **Evaluation → Compare** (v1 vs v3) | Demo 3 |
 | **Tab 4** | Codespace — terminal open in `workshops/foundry-models-e2e/code/` | All demos |
@@ -144,7 +144,7 @@ Keep both windows visible side by side if your recording resolution allows (1920
 
 "Let me show you where this all starts — and it's not in code.
 
-Zava has an AI travel concierge that books trips for employees. The first version was simple: one prompt, one model — `gpt-4.1` for everything. Sounds fine. Costs about eleven cents per completed trip.
+WWI has an AI travel concierge that books trips for employees. The first version was simple: one prompt, one model — `gpt-4.1` for everything. Sounds fine. Costs about eleven cents per completed trip.
 
 The question we're going to answer is: **do you actually need a frontier model for every part of this?**
 
@@ -170,7 +170,7 @@ with one-sentence justification and deployment names.
 
 *(Let the response stream in — don't rush it)*
 
-Look at what comes back. Routing: **nano** — sub-300ms, plenty capable for a three-class classifier. Receipt and translation: **mini** — vision support, no need for the frontier. Policy QA: **mini** — we'll fine-tune it on Zava's specific policy in Demo 3. Planning with tools: **gpt-4.1** — that's where frontier-level reasoning actually earns its keep.
+Look at what comes back. Routing: **nano** — sub-300ms, plenty capable for a three-class classifier. Receipt and translation: **mini** — vision support, no need for the frontier. Policy QA: **mini** — we'll fine-tune it on WWI's specific policy in Demo 3. Planning with tools: **gpt-4.1** — that's where frontier-level reasoning actually earns its keep.
 
 Four of five jobs routed away from the most expensive model. The skill also generated deployment names like `router-nano`, `mini-vision`, `planner-gpt41`. Notice what those names *don't* contain — model version numbers. They describe the **job**, not the model underneath.
 
@@ -218,7 +218,7 @@ This single decision — decomposing the workload and routing each job to the sm
 
 "A lot of teams skip this step — or they do it once, at the start, with someone else's benchmark. That's the part that bites them in production.
 
-Here's what an honest starting point looks like. This is v1 of the Zava concierge — `gpt-4.1` doing everything — measured against twenty representative traveler requests we wrote by hand. Policy questions, budget constraints, vision edge cases, translation.
+Here's what an honest starting point looks like. This is v1 of the WWI Concierge — `gpt-4.1` doing everything — measured against twenty representative traveler requests we wrote by hand. Policy questions, budget constraints, vision edge cases, translation.
 
 ```
 v1-baseline:  quality 0.61  ·  $0.108/task  ·  12.3s p50

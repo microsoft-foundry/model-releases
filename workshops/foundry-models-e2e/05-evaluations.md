@@ -198,7 +198,7 @@ def run(user_message: str, image_url: str | None = None) -> dict:
     policy_model = DEPLOY_POLICY_FT if USE_FT_POLICY else DEPLOY_POLICY_BASE
     pol = _client.responses.create(
         model=policy_model, temperature=0,
-        instructions="You answer Zava travel policy questions. Concise.",
+        instructions="You answer WWI policy questions. Concise.",
         input=user_message,
     )
     _bump(policy_model, pol)
@@ -206,7 +206,7 @@ def run(user_message: str, image_url: str | None = None) -> dict:
 
     # 4. Planner with tool calls — gets pre-resolved policy + vision facts
     planner_instructions = (
-        "You are Zava Travel planner. Use tools. Respect policy. "
+        "You are WWI planner. Use tools. Respect policy. "
         f"Pre-resolved policy: {policy_note}. "
         f"Receipt facts: {vision_facts}. "
         "Return final JSON: flight, hotel, policy_notes, "

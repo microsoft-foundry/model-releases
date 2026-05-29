@@ -40,18 +40,18 @@ Request 3:  system_prompt (2,000 tokens) + user_message_C (40 tokens)
 
 ### 6.1 — Design a cache-friendly system prompt
 
-The Zava Travel policy document is the perfect cache candidate — it's long, stable, and sent with every request:
+The WWI policy document is the perfect cache candidate — it's long, stable, and sent with every request:
 
 ```python
 # Load the full policy as the system prompt
 with open("sample-data/travel-policy.md") as f:
     POLICY_DOCUMENT = f.read()
 
-SYSTEM_PROMPT = f"""You are the Zava Travel Concierge. Answer questions about travel policy accurately.
+SYSTEM_PROMPT = f"""You are the WWI Concierge. Answer questions about travel policy accurately.
 Always cite the specific section number from the policy when applicable.
 If something is not covered by the policy, say so explicitly.
 
-## Zava Travel Policy (reference document):
+## WWI Policy (reference document):
 {POLICY_DOCUMENT}
 """
 
@@ -119,7 +119,7 @@ Total savings: $0.028 → $0.008 = 71% reduction
 Combine all optimizations learned in Labs 3–6:
 
 ```yaml
-# Final recommended config for Zava Travel
+# Final recommended config for WWI
 deployment:
   model: model-router
   version: "2025-11-18"

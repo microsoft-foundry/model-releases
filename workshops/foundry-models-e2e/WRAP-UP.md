@@ -1,6 +1,6 @@
 # Workshop Wrap-Up — Right Model, Right Job
 
-> Final hill-climb run · 2026-05-27 · Zava Travel Concierge
+> Final hill-climb run · 2026-05-27 · WWI Concierge
 
 This is the honest summary of the last three eval runs and what they tell us through the **Select → Evaluate → Optimize → Operate** lens.
 

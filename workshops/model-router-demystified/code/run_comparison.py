@@ -21,7 +21,7 @@ from config import (
     calculate_cost,
 )
 
-SYSTEM_PROMPT = """You are the Zava Travel Concierge. Answer questions about travel policy 
+SYSTEM_PROMPT = """You are the WWI Concierge. Answer questions about travel policy 
 accurately, citing specific section numbers. If something is not covered by the policy, 
 say so explicitly. Be concise and precise with dollar amounts and thresholds."""
 

@@ -122,7 +122,7 @@ Model Router supports prompt caching automatically. When the router selects a mo
 
 ```python
 # Same system prompt sent repeatedly = cache hits
-system_prompt = "You are the Zava Travel assistant. [full policy document here...]"
+system_prompt = "You are the WWI assistant. [full policy document here...]"
 
 # First call: full price
 # Subsequent calls with same prefix to same model: cached token pricing

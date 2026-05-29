@@ -52,7 +52,7 @@ Don't fine-tune when:
 - Your eval doesn't isolate the task you're trying to fix.
 - The base model already hits your target.
 
-For Zava policy QA: ✅ on all three.
+For WWI policy QA: ✅ on all three.
 
 ## 6.2 — Prepare the training data
 
@@ -64,8 +64,8 @@ The training set is **already split** into chat-format JSONL files you can use d
 Each row looks like:
 
 ```json
-{"messages":[{"role":"system","content":"You answer Zava travel policy questions. Concise."},{"role":"user","content":"Can I expense airport parking at SAN for a business trip?"},{"role":"assistant","content":"Yes — airport parking is reimbursable up to $25/day under Section 4.2. Submit the receipt within 30 days."}]}
-{"messages":[{"role":"system","content":"You answer Zava travel policy questions. Concise."},{"role":"user","content":"Am I allowed to fly business class on a 4-hour flight?"},{"role":"assistant","content":"No. Business class is only approved for flights over 6 hours (Section 7.1)."}]}
+{"messages":[{"role":"system","content":"You answer WWI policy questions. Concise."},{"role":"user","content":"Can I expense airport parking at SAN for a business trip?"},{"role":"assistant","content":"Yes — airport parking is reimbursable up to $25/day under Section 4.2. Submit the receipt within 30 days."}]}
+{"messages":[{"role":"system","content":"You answer WWI policy questions. Concise."},{"role":"user","content":"Am I allowed to fly business class on a 4-hour flight?"},{"role":"assistant","content":"No. Business class is only approved for flights over 6 hours (Section 7.1)."}]}
 ```
 
 Keep them in `.foundry/datasets/` so the portal can show lineage.
@@ -125,7 +125,7 @@ job = client.fine_tuning.jobs.create(
     training_file=train.id, validation_file=val.id,
     model=BASE_MODEL,
     hyperparameters={"n_epochs": 3},
-    suffix="zava-policy-v1")
+    suffix="wwi-policy-v1")
 print("job:", job.id, "status:", job.status)
 
 while True:
@@ -153,7 +153,7 @@ Once the job reports `succeeded` with a `fine_tuned_model` id, deploy it. The Fo
 
 ```
 Deploy fine-tuned model <fine_tuned_model id from job> to project
-zava-travel-demo in region swedencentral,
+wwi-concierge-demo in region swedencentral,
 deployment name = policy-mini-ft, sku=Standard, tpm=10000.
 Verify status=Succeeded and return the endpoint.
 ```

@@ -38,7 +38,7 @@ Before picking models, name the jobs:
 |---|---|---|
 | 1 | **Route** the incoming request to the right path | Fast classifier; cheap; no creativity |
 | 2 | **Read the parking receipt** image and extract fields | Vision + structured output |
-| 3 | **Answer policy questions** ("can I expense parking at SAN?") | Knowledge of *Zava's* policy specifically — base models don't have this |
+| 3 | **Answer policy questions** ("can I expense parking at SAN?") | Knowledge of *WWI's* policy specifically — base models don't have this |
 | 4 | **Plan the multi-step itinerary** and orchestrate tools | Strong reasoning, longer context |
 | 5 | **Translate** the German hotel confirmation email | Multilingual, simple |
 
@@ -79,7 +79,7 @@ The skill will respond with a table like:
 **With the Foundry Skill:**
 
 ```
-Deploy these models in project zava-travel-demo, region swedencentral:
+Deploy these models in project wwi-concierge-demo, region swedencentral:
 
   - name=router-nano, model=gpt-4.1-nano, sku=Standard, tpm=10000
   - name=mini-vision, model=gpt-4.1-mini, sku=Standard, tpm=20000

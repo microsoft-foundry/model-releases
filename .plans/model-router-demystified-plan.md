@@ -7,7 +7,7 @@
 | **Format** | 45–60 minute hands-on workshop · lab-based, progressive |
 | **Audience** | Developers/architects familiar with LLMs who want to understand and adopt Model Router for cost/quality optimization |
 | **Goal** | Teach how to deploy, evaluate, and optimize the Foundry Model Router — making the "better, cheaper, faster" case empirically |
-| **Scenario** | Zava Travel Concierge — same toy scenario as `foundry-models-e2e`, extended with additional prompt types |
+| **Scenario** | WWI Concierge — same toy scenario as `foundry-models-e2e`, extended with additional prompt types |
 | **Platform** | Microsoft Foundry (portal + SDK + CLI) |
 | **Region** | **Sweden Central** |
 | **Model Router version** | `2025-11-18` (latest) |
@@ -21,12 +21,12 @@
 
 This workshop **builds on** artifacts from the original workshop:
 
-- Reuses `sample-data/travel-policy.md` (the Zava policy document)
+- Reuses `sample-data/travel-policy.md` (the WWI policy document)
 - Reuses `sample-data/eval-seed.jsonl` as a starting point for representative prompts
 - Extends the prompt set with new categories (simple FAQ, complex reasoning, edge cases)
 - References the scorecard concept (quality/cost/latency)
 
-> **⚠️ Sync notice:** If artifacts in `foundry-models-e2e/sample-data/` are refreshed (policy updates, eval seed changes), the corresponding files in this workshop should be refreshed too. Both workshops share the Zava Travel canon.
+> **⚠️ Sync notice:** If artifacts in `foundry-models-e2e/sample-data/` are refreshed (policy updates, eval seed changes), the corresponding files in this workshop should be refreshed too. Both workshops share the WWI canon.
 
 ---
 
@@ -97,7 +97,7 @@ v4  Router Quality   4.4 (+2%)     $0.025      3.0s         ← Lab 5
 
 ### Lab 1 — Build the Representative Prompt Set
 
-**What:** Create a diverse prompt dataset that exercises the full range of Zava Travel tasks.
+**What:** Create a diverse prompt dataset that exercises the full range of WWI tasks.
 
 **Key concepts introduced:**
 - Why prompt diversity matters for router evaluation
@@ -154,7 +154,7 @@ v4  Router Quality   4.4 (+2%)     $0.025      3.0s         ← Lab 5
 - Value & efficiency composites (quality-per-dollar, quality-per-second)
 
 **Approach:**
-1. Configure the auto-eval pipeline with Zava Travel prompts
+1. Configure the auto-eval pipeline with WWI prompts
 2. Run: frontier baseline (all prompts → `gpt-5`)
 3. Run: Model Router Balanced (all prompts → router decides)
 4. Generate dashboard — compare side-by-side
@@ -187,8 +187,8 @@ v4  Router Quality   4.4 (+2%)     $0.025      3.0s         ← Lab 5
 **The Policy-Adherence Evaluator:**
 
 ```yaml
-name: "zava_policy_adherence_eval"
-description: "Evaluates whether AI responses correctly apply Zava Travel policy rules."
+name: "wwi_policy_adherence_eval"
+description: "Evaluates whether AI responses correctly apply WWI policy rules."
 version: 1.0
 
 criteria:
@@ -242,7 +242,7 @@ scoring:
 **The Judge Prompt (prompt-based evaluator):**
 
 ```
-You are evaluating an AI travel assistant's response against Zava Travel's official policy.
+You are evaluating an AI travel assistant's response against WWI's official policy.
 
 ## Policy Document (ground truth):
 {{ground_truth}}
@@ -331,7 +331,7 @@ Output Format (JSON):
 2. Run eval with router in **Quality** mode → measure quality gain vs. cost increase
 3. Run eval with a **custom model subset** (e.g., exclude reasoning models, or limit to gpt-4.1 family only)
 4. Compare all three runs side-by-side with the auto-eval compare tool
-5. Make the decision: "For Zava Travel, which mode gives the best trade-off?"
+5. Make the decision: "For WWI, which mode gives the best trade-off?"
 
 **The "aha" moment:**
 - Balanced mode delivers ~60% of the cost savings with <2% quality loss
@@ -357,7 +357,7 @@ Output Format (JSON):
 - Combined optimization: mode + subset + caching = compounding savings
 
 **Hands-on:**
-1. Design a cacheable system prompt for Zava Travel (policy document as prefix)
+1. Design a cacheable system prompt for WWI (policy document as prefix)
 2. Send repeated policy questions → measure cache hit rate and latency reduction
 3. Compare: cached vs. non-cached runs on the same prompts
 4. Calculate compound savings: routing savings × caching savings

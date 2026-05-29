@@ -293,7 +293,7 @@ style: |
 <br>
 
 **Naomi** — Developer    ·    **Yina** — Decision Maker
-Zava Travel Concierge
+WWI Concierge
 
 <!--
 Yina opens. Warm welcome. Two co-instructors, two perspectives.
@@ -419,7 +419,7 @@ One sentence from Carmen. Five jobs hiding inside it.
 
 ![bg right:40%](https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=900&q=80)
 
-**Senior engineer** · Zava San Diego office
+**Senior engineer** · WWI San Diego office
 
 Needs to be in **Berlin Tuesday morning** for an offsite that runs through Thursday. She messages the agent at 11 PM:
 
@@ -439,7 +439,7 @@ If image doesn't load (offline), the slide still works. Replace URL with a local
 |---|---|---|
 | 1 | **Route** the intent | Fast classifier · cheap · no creativity |
 | 2 | **Read** the receipt image | Vision · structured extraction |
-| 3 | **Answer** policy: *"expense parking?"* | Knowledge of *Zava* policy specifically |
+| 3 | **Answer** policy: *"expense parking?"* | Knowledge of *WWI* policy specifically |
 | 4 | **Plan** the trip + call tools | Strong reasoning · longer context · tool use |
 | 5 | **Translate** the German confirm email | Multilingual · short form |
 
@@ -883,7 +883,7 @@ Fine-tune the cheap model. Beat the frontier.
 
 <br>
 
-**Zava policy QA: ✅ on all four.**
+**WWI policy QA: ✅ on all four.**
 
 <!--
 Yina: "Fine-tune is a commitment. Make it on purpose."
@@ -899,7 +899,7 @@ job = client.fine_tuning.jobs.create(
     validation_file=val.id,
     model="gpt-4.1",
     hyperparameters={"n_epochs": 3},
-    suffix="zava-policy-v1",
+    suffix="wwi-policy-v1",
 )
 ```
 

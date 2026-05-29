@@ -1,6 +1,6 @@
 # Lab 4 — Custom Evaluator: Policy-Adherence with Adaptive Eval Rubric
 
-> **Surface:** SDK · **Time:** ~25 min · **Outcome:** A domain-specific evaluator that scores responses against Zava Travel policy using the Adaptive Evals framework
+> **Surface:** SDK · **Time:** ~25 min · **Outcome:** A domain-specific evaluator that scores responses against WWI policy using the Adaptive Evals framework
 
 ## What you'll do
 
@@ -67,7 +67,7 @@ adaptive_rules:
 The prompt-based evaluator sends the full rubric to a judge LLM. See `code/policy_adherence_evaluator.py` for the complete prompt, but the key structure is:
 
 ```
-You are evaluating an AI travel assistant's response against Zava Travel's official policy.
+You are evaluating an AI travel assistant's response against WWI's official policy.
 
 ## Policy Document (ground truth):
 {{ground_truth}}

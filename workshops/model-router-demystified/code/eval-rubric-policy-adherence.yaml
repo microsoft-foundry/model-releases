@@ -1,6 +1,6 @@
-# Zava Travel Policy-Adherence Eval Rubric (Adaptive Evals)
+# WWI Policy-Adherence Eval Rubric (Adaptive Evals)
 #
-# This rubric evaluates whether AI responses correctly apply Zava Travel
+# This rubric evaluates whether AI responses correctly apply WWI
 # policy rules. Adaptive rules shift scoring emphasis based on the type
 # of question being asked — budget questions demand exact numbers, edge
 # cases demand hallucination detection, etc.
@@ -10,8 +10,8 @@
 #   - The evaluator reads this file and applies adaptive weight adjustments
 #   - Register in Foundry via the SDK (see Lab 4 instructions)
 
-name: "zava_policy_adherence_eval"
-description: "Evaluates whether AI responses correctly apply Zava Travel policy rules with context-adaptive scoring."
+name: "wwi_policy_adherence_eval"
+description: "Evaluates whether AI responses correctly apply WWI policy rules with context-adaptive scoring."
 version: 1.0
 
 criteria:

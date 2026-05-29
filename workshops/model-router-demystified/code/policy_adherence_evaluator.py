@@ -1,5 +1,5 @@
 # =============================================================================
-# policy_adherence_evaluator.py — Adaptive eval-rubric evaluator for Zava Travel
+# policy_adherence_evaluator.py — Adaptive eval-rubric evaluator for WWI
 # =============================================================================
 # Implements the Policy-Adherence evaluator using Foundry's Adaptive Evals
 # framework. Loads the eval-rubric YAML, applies adaptive weight rules based
@@ -21,7 +21,7 @@ RUBRIC_PATH = Path(__file__).parent / "eval-rubric-policy-adherence.yaml"
 POLICY_PATH = Path(__file__).parent.parent / "sample-data" / "travel-policy.md"
 
 # The judge prompt template — instructs an LLM to score each response
-JUDGE_PROMPT_TEMPLATE = """You are evaluating an AI travel assistant's response against Zava Travel's official policy.
+JUDGE_PROMPT_TEMPLATE = """You are evaluating an AI travel assistant's response against WWI's official policy.
 
 ## Policy Document (ground truth):
 {ground_truth}
@@ -81,7 +81,7 @@ def load_rubric() -> dict:
 
 
 def load_policy() -> str:
-    """Load the Zava Travel policy document."""
+    """Load the WWI policy document."""
     with open(POLICY_PATH) as f:
         return f.read()
 
@@ -204,11 +204,11 @@ def create_evaluator_in_foundry(rubric: dict):
     prompt_text = prompt_text.replace("{response}", "{{response}}")
 
     evaluator = client.beta.evaluators.create_version(
-        name="zava_policy_adherence",
+        name="wwi_policy_adherence",
         evaluator_version={
-            "name": "zava_policy_adherence",
+            "name": "wwi_policy_adherence",
             "categories": ["quality"],
-            "display_name": "Zava Policy Adherence (Adaptive Rubric)",
+            "display_name": "WWI Policy Adherence (Adaptive Rubric)",
             "description": rubric["description"],
             "definition": {
                 "type": "prompt",

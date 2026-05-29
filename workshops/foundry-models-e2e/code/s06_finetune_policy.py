@@ -4,7 +4,7 @@
 # NARRATIVE ROLE
 # Step 5's eval reveals that the policy_question slice is the quality
 # laggard — the base mini model scores ~0.47 on policy rows.  This script
-# fine-tunes gpt-4.1-mini on 24 hand-authored Zava policy Q&A pairs,
+# fine-tunes gpt-4.1-mini on 24 hand-authored WWI policy Q&A pairs,
 # targeting a post-FT quality of ~0.94 on that slice.
 #
 # WHY FINE-TUNE HERE (AND NOT EARLIER)
@@ -75,7 +75,7 @@ def main():
         validation_file=val.id,
         model=BASE_MODEL,
         hyperparameters={"n_epochs": 3},
-        suffix="zava-policy-v1",
+        suffix="wwi-policy-v1",
     )
     print("job:", job.id, "status:", job.status)
     print(f"\n*** SAVE THIS JOB ID (needed if your session is interrupted): {job.id} ***\n")

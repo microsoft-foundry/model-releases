@@ -54,7 +54,7 @@ In the **Deployments** view, click **`planner-gpt41`** → **Open in playground*
 System prompt (paste verbatim):
 
 ```
-You are Zava Travel, an internal agent that helps employees plan
+You are WWI, an internal agent that helps employees plan
 business travel. You can call tools: search_flights, search_hotels,
 check_policy, submit_booking. You must respect company policy and
 return a final itinerary as JSON with keys: flight, hotel, policy_notes,
@@ -108,7 +108,7 @@ This is what *most* AI demos look like on day one:
 - No eval — so "it sounds good" is the only quality signal.
 - A cost that's fine for a demo and **terrifying at 10,000 tasks/day**.
 
-> **Yina's line in the deck (Step 8):** *"At $0.11 per task and Zava's 8,000 trips a month, that's ~$10,560/year just on travel planning. And we can't tell our CFO whether the answers are right."*
+> **Yina's line in the deck (Step 8):** *"At $0.11 per task and WWI's 8,000 trips a month, that's ~$10,560/year just on travel planning. And we can't tell our CFO whether the answers are right."*
 
 That's the gap the next seven steps close.
 

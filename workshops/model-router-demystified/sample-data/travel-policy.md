@@ -1,10 +1,10 @@
-# Zava Travel Policy (Sample — Toy Demo, 2 Pages)
+# WWI Policy (Sample — Toy Demo, 2 Pages)
 
 > **This is a sample policy for the training demo only.** It deliberately contains the rules and edge cases the evaluation set tests. It is not a real corporate policy.
 
 ## Section 1 — Scope
 
-This policy covers business travel booked through the Zava Travel agent for all full-time employees. Contractors must use the contractor-travel workflow (not covered here).
+This policy covers business travel booked through the WWI agent for all full-time employees. Contractors must use the contractor-travel workflow (not covered here).
 
 ## Section 2 — Booking window
 
@@ -40,7 +40,7 @@ In-flight Wi-Fi on flights ≥2 hours is reimbursable. Hotel Wi-Fi is reimbursab
 ## Section 5 — Non-reimbursable
 
 - Personal entertainment (movies, minibar, spa).
-- Travel insurance purchased independently (Zava provides this).
+- Travel insurance purchased independently (WWI provides this).
 - Upgrades paid in cash (mileage upgrades are fine).
 - Pet boarding, childcare, or personal errands.
 

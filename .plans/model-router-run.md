@@ -1,7 +1,7 @@
 # Model Router — Comparison Run Plan
 
 > Companion plan for the **`foundry-models-e2e`** workshop.
-> Goal: deploy Azure OpenAI **`model-router`** into the same Foundry project as v1/v2/v3, run it against the synthetic + adversarial Zava prompt set, then read the portal monitor metrics to see which underlying model the router picked per task — and produce a comparable scorecard.
+> Goal: deploy Azure OpenAI **`model-router`** into the same Foundry project as v1/v2/v3, run it against the synthetic + adversarial WWI prompt set, then read the portal monitor metrics to see which underlying model the router picked per task — and produce a comparable scorecard.
 
 ---
 

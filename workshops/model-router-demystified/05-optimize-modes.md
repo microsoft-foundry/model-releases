@@ -4,7 +4,7 @@
 
 ## What you'll do
 
-Run evaluations across all three routing modes and a custom model subset. Compare results side-by-side to find the optimal configuration for Zava Travel.
+Run evaluations across all three routing modes and a custom model subset. Compare results side-by-side to find the optimal configuration for WWI.
 
 ## Key concepts
 
@@ -152,7 +152,7 @@ Quality mode distribution:
 - [ ] Ran at least one model-subset-constrained evaluation
 - [ ] Generated comparison report across all runs
 - [ ] Built a decision matrix (which mode for which task type)
-- [ ] Identified optimal configuration for Zava Travel (likely: Balanced + subset)
+- [ ] Identified optimal configuration for WWI (likely: Balanced + subset)
 - [ ] Understand the model distribution differences between modes
 
 ---

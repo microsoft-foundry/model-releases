@@ -38,8 +38,8 @@ Otherwise, create a new project:
 ```bash
 # Via Azure CLI
 az ai project create \
-  --name "zava-model-router" \
-  --resource-group "rg-zava-travel" \
+  --name "wwi-model-router" \
+  --resource-group "rg-wwi" \
   --location "swedencentral"
 ```
 
@@ -64,7 +64,7 @@ Or use the Foundry portal: [https://ai.azure.com](https://ai.azure.com) → New 
 ```bash
 az cognitiveservices account deployment create \
   --name "your-foundry-resource" \
-  --resource-group "rg-zava-travel" \
+  --resource-group "rg-wwi" \
   --deployment-name "model-router" \
   --model-name "model-router" \
   --model-version "2025-11-18" \
@@ -80,7 +80,7 @@ Deploy your comparison model (e.g., `gpt-5`):
 ```bash
 az cognitiveservices account deployment create \
   --name "your-foundry-resource" \
-  --resource-group "rg-zava-travel" \
+  --resource-group "rg-wwi" \
   --deployment-name "gpt-5-baseline" \
   --model-name "gpt-5" \
   --model-version "2025-08-07" \

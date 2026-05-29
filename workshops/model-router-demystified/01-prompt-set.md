@@ -4,7 +4,7 @@
 
 ## What you'll do
 
-Design a diverse prompt dataset that exercises the full range of Zava Travel tasks — from trivial FAQ to complex multi-step reasoning. This dataset is the foundation for every evaluation in the workshop.
+Design a diverse prompt dataset that exercises the full range of WWI tasks — from trivial FAQ to complex multi-step reasoning. This dataset is the foundation for every evaluation in the workshop.
 
 ## Why this matters
 
@@ -21,9 +21,9 @@ Model Router's value depends on your workload mix. If every prompt is equally co
 
 ## Step-by-step
 
-### 1.1 — Understand the Zava Travel task categories
+### 1.1 — Understand the WWI task categories
 
-The Zava Travel Concierge handles six types of requests:
+The WWI Concierge handles six types of requests:
 
 | Category | Example | Expected difficulty |
 |---|---|---|

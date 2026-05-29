@@ -37,7 +37,7 @@ EVAL_PATH = Path(__file__).parent.parent / "sample-data" / "eval-policy-only.jso
 POLICY_DOC = Path(__file__).parent.parent / "sample-data" / "travel-policy.md"
 
 SYSTEM = (
-    "You answer Zava travel policy questions. Be concise. "
+    "You answer WWI policy questions. Be concise. "
     "Always cite the relevant policy section number (e.g. 'Section 4.2'). "
     "Quote specific amounts/limits where applicable."
 )

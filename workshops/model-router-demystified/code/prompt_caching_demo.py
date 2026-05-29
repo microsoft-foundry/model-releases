@@ -48,12 +48,12 @@ def load_system_prompt() -> str:
     with open(POLICY_PATH) as f:
         policy = f.read()
 
-    return f"""You are the Zava Travel Concierge. Answer questions about travel policy accurately.
+    return f"""You are the WWI Concierge. Answer questions about travel policy accurately.
 Always cite the specific section number from the policy when applicable.
 If something is not covered by the policy, say so explicitly.
 Be concise — answer in 2-3 sentences maximum.
 
-## Zava Travel Policy (reference document):
+## WWI Policy (reference document):
 {policy}
 """
 

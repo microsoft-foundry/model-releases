@@ -267,7 +267,7 @@ style: |
 <!--
 Opener. Frame the deck: this isn't a marketing pitch for Model Router,
 it's an empirical workshop. We're going to *measure* whether the router
-holds up on a real workload (Zava Travel Concierge), and learn how to
+holds up on a real workload (WWI Concierge), and learn how to
 optimize it with config alone.
 -->
 
@@ -334,7 +334,7 @@ This is the contract for the next 45 minutes.
 
 ---
 
-# The scenario: Zava Travel Concierge
+# The scenario: WWI Concierge
 
 <div class="stat-row">
 <div class="stat">
@@ -356,7 +356,7 @@ This is the contract for the next 45 minutes.
 <p class="note">One frontier model is handling every request — from "what's the per-diem?" to "compare 2 hops vs. 1 international flight". The mix is exactly what Model Router was built for.</p>
 
 <!--
-Anchor the workshop in a concrete scenario. The same Zava Travel domain
+Anchor the workshop in a concrete scenario. The same WWI domain
 is reused from foundry-models-e2e, so learners crossing over already
 know the policy. The before/after numbers come from README.md.
 -->
@@ -422,8 +422,8 @@ Operate loop. We're entering Select.
 
 ```bash
 az ai project create \
-  --name "zava-model-router" \
-  --resource-group "rg-zava-travel" \
+  --name "wwi-model-router" \
+  --resource-group "rg-wwi" \
   --location "swedencentral"
 
 # Then deploy model-router via portal or CLI
@@ -604,7 +604,7 @@ catch the domain-specific failures that generic scoring misses.
 
 > "Which backing models did the router actually pick — and how often?"
 
-This is the most revealing artifact of the entire workshop. For Zava Travel on Balanced mode you'll typically see:
+This is the most revealing artifact of the entire workshop. For WWI on Balanced mode you'll typically see:
 
 - ~40% of prompts to a small/fast model (`gpt-5-mini` class)
 - ~35% to a mid-tier model
@@ -719,7 +719,7 @@ v4  Router Quality             4.4       $0.025      3.0s   ← like baseline
 
 <!--
 Three runs, three data points. The lesson: don't pick a mode by name,
-pick it by what the scorecard says about *your* workload. For Zava
+pick it by what the scorecard says about *your* workload. For WWI
 Travel, Balanced wins. For a tier-2 chatbot, Cost might.
 -->
 

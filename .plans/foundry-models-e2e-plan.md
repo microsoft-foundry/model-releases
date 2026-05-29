@@ -7,7 +7,7 @@
 | **Format** | 45‑minute training session · 2 co‑instructors (a developer, **Naomi**, and a technical decision maker, **Yina**) |
 | **Audience** | Professionals familiar with AI development (have built or shipped LLM‑backed features) but **new to Microsoft Foundry** |
 | **Goal** | Teach how to use Foundry to select, customize, evaluate, and optimize models so that a real workload meets quality, cost, and latency targets |
-| **Scenario** | Zava Travel Concierge — a **toy demo** with sample data: one enterprise app concept, seven jobs, one recurring traveler (Carmen in San Diego) |
+| **Scenario** | WWI Concierge — a **toy demo** with sample data: one enterprise app concept, seven jobs, one recurring traveler (Carmen in San Diego) |
 | **Platform** | Microsoft Foundry (portal + SDK + CLI) |
 | **Region** | **East US 2** |
 | **Model family** | **Azure Direct** only — Azure OpenAI first‑party deployments (no Models‑as‑a‑Service / partner‑hosted) |
@@ -89,13 +89,13 @@ Neither instructor monologues more than ~60 seconds. We pause for understanding 
 
 ---
 
-## 4. The running example — "Zava Travel Concierge" (toy demo)
+## 4. The running example — "WWI Concierge" (toy demo)
 
-We'll teach this whole session using one example application. It's an enterprise travel concierge for Zava employees — *as a toy demo, with sample data we wrote ourselves.* That's deliberate: it keeps the build inside a 7‑day window and keeps the focus on the Foundry capabilities, not on real data wrangling.
+We'll teach this whole session using one example application. It's an enterprise travel concierge for WWI employees — *as a toy demo, with sample data we wrote ourselves.* That's deliberate: it keeps the build inside a 7‑day window and keeps the focus on the Foundry capabilities, not on real data wrangling.
 
 **What "toy" means in concrete terms:**
 
-- The "Zava travel policy" is a **2‑page sample document** we author for the demo (per‑diem caps, fare class rules, advance‑booking rules, blackout dates).
+- The "WWI policy" is a **2‑page sample document** we author for the demo (per‑diem caps, fare class rules, advance‑booking rules, blackout dates).
 - All tools (flight search, hotel search, booking, expense submission) are **mocked** — canned responses living in the repo. No real APIs.
 - Evaluation datasets are small and hand‑curated (20 rows curated, ~200 synthetic). See §9.3.
 - We deploy the **minimum viable set** of models on Foundry (5 deployments, not 8). Voice and embedding are *discussed and shown in slides* but not deployed. See §9.2.
@@ -202,7 +202,7 @@ This scorecard stays visible on the side of the screen for the whole session. Ea
 
 ### 0:04 — The seven jobs (Naomi)
 
-*Slide: Zava Travel Concierge — one product, seven jobs.*
+*Slide: WWI Concierge — one product, seven jobs.*
 
 **Naomi:** Let me make the example concrete. **Carmen** works in our San Diego office. She's a senior engineer. On a Friday afternoon she finds out she needs to be in Berlin on Tuesday morning for an offsite. She's walking to her car. She opens our app and says — *(reading from the slide)* — "I need to be in Berlin Tuesday morning for the offsite, flying from San Diego, business class if policy allows, vegetarian meal, and I'll expense the airport parking."
 
@@ -392,7 +392,7 @@ This section is for the instructors and any production team running the session.
 
 ### 9.1 Environments
 
-- **Single Foundry project** `zava-travel-demo` in **East US 2**. No backup project — at toy scale the cost of standing up a second region isn't worth it within a 7‑day build. The mitigation for an outage is the recorded fallback videos.
+- **Single Foundry project** `wwi-concierge-demo` in **East US 2**. No backup project — at toy scale the cost of standing up a second region isn't worth it within a 7‑day build. The mitigation for an outage is the recorded fallback videos.
 - **Repo** with three branches or tags: `v1-baseline`, `v2-rightsized`, `v3-customized`. The repo contains the 2‑page sample policy, the 20‑row curated eval, the ~200‑row synthetic set, the agent code, and the mock tools.
 - **Fallback videos** for every live action, stored on the instructor laptop and on a USB stick at the AV booth.
 
@@ -500,7 +500,7 @@ Built backwards from session day (T‑0). One person can build this in 7 days; t
 1. Title + instructors + the problem statement quote.
 2. Learning objectives for the session.
 3. Foundry concepts primer table (the glossary, compressed onto one slide).
-4. The seven jobs of Zava Travel — meet Carmen.
+4. The seven jobs of WWI — meet Carmen.
 5. Q/C/L scorecard, empty.
 6. Iteration 1 architecture (one `gpt-5.4`, seven arrows) + iteration 1 scorecard reveal — the per‑task breakdown is the teaching moment.
 7. Foundry evaluations: dataset hierarchy + evaluator anatomy + custom evaluator code.

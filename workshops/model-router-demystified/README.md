@@ -2,12 +2,14 @@
 
 > Workshop slug: `model-router-demystified` · Workshop 1 (the Model Router narrative)
 
+> **World Wide Importers (WWI)** is the fictitious enterprise used throughout this workshop — a mid-size global trading company whose employees travel constantly. The application we build for them is **WWI Concierge**, an internal AI travel assistant. This workshop reuses the WWI scenario, travel policy, and eval seed data introduced in [`foundry-models-e2e`](../foundry-models-e2e/).
+
 This is the **hands-on companion** to [`model-router-demystified-plan.md`](../../.plans/model-router-demystified-plan.md) (the original PLAN). Follow it end-to-end and you'll deploy, evaluate, and optimize the Foundry Model Router — proving the "better, cheaper, faster" story empirically with zero routing code.
 
 > **Audience:** developers/architects who know LLMs but are new to Model Router.
 > **Region:** Sweden Central. **Deployment type:** Global Standard.
 > **Model Router version:** `2025-11-18` (latest, actively updated).
-> **Builds on:** [`foundry-models-e2e`](../foundry-models-e2e/) artifacts (Zava Travel scenario, travel policy, eval seed data).
+> **Builds on:** [`foundry-models-e2e`](../foundry-models-e2e/) artifacts (WWI scenario, travel policy, eval seed data).
 
 ## Learning objectives
 
@@ -114,7 +116,7 @@ workshops/model-router-demystified/
 ├── sample-data/
 │   ├── router-eval-prompts.jsonl       ← 50+ tagged prompts
 │   ├── policy-eval-dataset.jsonl       ← 20 policy questions + ground truth
-│   └── travel-policy.md                ← Zava Travel policy (shared with foundry-models-e2e)
+│   └── travel-policy.md                ← WWI policy (shared with foundry-models-e2e)
 ├── code/
 │   ├── requirements.txt
 │   ├── config.py                       ← endpoints, deployment names, pricing
@@ -128,7 +130,7 @@ workshops/model-router-demystified/
 
 ## Artifact sync notice
 
-> ⚠️ This workshop shares the Zava Travel scenario and policy document with [`foundry-models-e2e`](../foundry-models-e2e/). If `sample-data/travel-policy.md` or `eval-seed.jsonl` is updated in either workshop, refresh the other to maintain consistency.
+> ⚠️ This workshop shares the WWI scenario and policy document with [`foundry-models-e2e`](../foundry-models-e2e/). If `sample-data/travel-policy.md` or `eval-seed.jsonl` is updated in either workshop, refresh the other to maintain consistency.
 
 ---
 

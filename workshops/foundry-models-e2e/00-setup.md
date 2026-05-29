@@ -40,8 +40,8 @@ The portal appears only in §0.5 as a *verification* surface, not a creation sur
 ## 0.1 — Clone the workshop repo and sign in
 
 ```bash
-git clone <this-repo-url> zava-travel-demo
-cd zava-travel-demo/workshops/foundry-models-e2e
+git clone <this-repo-url> wwi-concierge-demo
+cd wwi-concierge-demo/workshops/foundry-models-e2e
 python -m venv .venv && source .venv/bin/activate
 pip install -r code/requirements.txt
 
@@ -71,7 +71,7 @@ The script provisions the resource group, Foundry account, project, and four mod
 You'll be prompted for two things (defaults shown in brackets):
 
 ```
-Project name [zava-travel-demo]:
+Project name [wwi-concierge-demo]:
 Azure region [swedencentral]:
 ```
 
@@ -79,10 +79,10 @@ Everything else is derived from the project name:
 
 | Resource | Naming pattern | Default |
 |---|---|---|
-| Resource group | `rg-<project>` | `rg-zava-travel-demo` |
-| Foundry (AIServices) account | `<project>-foundry` | `zava-travel-demo-foundry` |
-| Custom subdomain | same as account | `zava-travel-demo-foundry` |
-| Project | `<project>` | `zava-travel-demo` |
+| Resource group | `rg-<project>` | `rg-wwi-concierge-demo` |
+| Foundry (AIServices) account | `<project>-foundry` | `wwi-concierge-demo-foundry` |
+| Custom subdomain | same as account | `wwi-concierge-demo-foundry` |
+| Project | `<project>` | `wwi-concierge-demo` |
 | Deployment `planner-gpt41` | job-shaped name → `gpt-4.1` 2025-04-14 | GlobalStandard · 10 TPM |
 | Deployment `router-nano` | job-shaped name → `gpt-4.1-nano` 2025-04-14 | GlobalStandard · 10 TPM |
 | Deployment `mini-vision` | job-shaped name → `gpt-4.1-mini` 2025-04-14 | GlobalStandard · 10 TPM |
@@ -104,7 +104,7 @@ Skip to **§0.4 (verify in the portal)**.
 If you want to see exactly what the script does, run these in order. Set variables once at the top:
 
 ```bash
-PROJECT=zava-travel-demo
+PROJECT=wwi-concierge-demo
 LOCATION=swedencentral
 RG="rg-${PROJECT}"
 FOUNDRY="${PROJECT}-foundry"
@@ -176,7 +176,7 @@ This is the **only** time we use the portal in Step 0 — to visually confirm th
 
 1. Open <https://ai.azure.com>.
 2. Top-right region picker → **Sweden Central**.
-3. Open your project (sidebar → **All projects** → `zava-travel-demo`).
+3. Open your project (sidebar → **All projects** → `wwi-concierge-demo`).
 4. Left nav → **Models + endpoints**. You should see four rows, each `Succeeded`:
    - `planner-gpt41` (gpt-4.1 · 2025-04-14)
    - `router-nano` (gpt-4.1-nano · 2025-04-14)
@@ -190,8 +190,8 @@ This is the **only** time we use the portal in Step 0 — to visually confirm th
 
 ```bash
 az cognitiveservices account deployment list \
-  -n "${FOUNDRY:-zava-travel-demo-foundry}" \
-  -g "${RG:-rg-zava-travel-demo}" \
+  -n "${FOUNDRY:-wwi-concierge-demo-foundry}" \
+  -g "${RG:-rg-wwi-concierge-demo}" \
   --query "[].{name:name, state:properties.provisioningState, model:properties.model.name, version:properties.model.version}" \
   -o table
 ```

@@ -86,7 +86,7 @@ TOOL_SCHEMAS = [
       "required": ["city", "checkin", "checkout"]}}},
   {"type": "function", "function": {
     "name": "check_policy",
-    "description": "Ask a question against Zava travel policy.",
+    "description": "Ask a question against WWI policy.",
     "parameters": {"type": "object", "properties": {
         "question": {"type": "string"}}, "required": ["question"]}}},
   {"type": "function", "function": {
@@ -144,7 +144,7 @@ from azure.ai.projects import AIProjectClient
 from s02_tools_mock import TOOL_SCHEMAS, DISPATCH
 from s02_config import PROJECT_ENDPOINT, DEPLOY_PLANNER
 
-INSTRUCTIONS = """You are Zava Travel. Use tools to plan and book travel.
+INSTRUCTIONS = """You are WWI. Use tools to plan and book travel.
 Always check policy before booking. Return a final JSON itinerary with keys:
 flight, hotel, policy_notes, total_estimated_cost_usd, booking_status."""
 

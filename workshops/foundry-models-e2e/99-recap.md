@@ -1,6 +1,6 @@
 # 99 — Recap
 
-> Workshop: Right Model, Right Job — Zava Travel Concierge (`foundry-models-e2e`)
+> Workshop: Right Model, Right Job — WWI Concierge (`foundry-models-e2e`)
 
 ## What you built
 
@@ -41,13 +41,13 @@ Latency   ███░░░░░░░  7.6s  ✅  (target ≤ 8s p50)
 ```bash
 # Drop the fine-tuned deployment if you no longer need it.
 az ai deployment delete --name policy-mini-ft \
-    --project zava-travel-demo --resource-group rg-zava-travel-demo
+    --project wwi-concierge-demo --resource-group rg-wwi-concierge-demo
 ```
 
 For the full project, delete the resource group:
 
 ```bash
-az group delete --name rg-zava-travel-demo --yes
+az group delete --name rg-wwi-concierge-demo --yes
 ```
 
 ## How this maps to the original plan

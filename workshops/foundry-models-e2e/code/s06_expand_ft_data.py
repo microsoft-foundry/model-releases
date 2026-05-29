@@ -49,7 +49,7 @@ SEED_VAL      = os.environ.get("FT_SEED_VAL",   "../sample-data/policy-ft-seeds-
 # Outputs — always overwritten fresh on each run.
 TRAIN_OUT     = "../sample-data/policy-ft-train.jsonl"
 VAL_OUT       = "../sample-data/policy-ft-val.jsonl"
-SYSTEM_PROMPT = "You answer Zava travel policy questions. Concise."
+SYSTEM_PROMPT = "You answer WWI policy questions. Concise."
 
 # Safety guard: refuse to clobber seed files if someone misconfigures paths.
 assert os.path.realpath(SEED_TRAIN) != os.path.realpath(TRAIN_OUT), \

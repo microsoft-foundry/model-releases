@@ -1,4 +1,4 @@
-# Right Model, Right Job — Zava Travel Concierge
+# Right Model, Right Job — WWI Concierge
 ### A live end-to-end run on Microsoft Foundry · gpt-4.1 model family · Sweden Central
 
 ---
@@ -29,11 +29,17 @@ The three decisions that drove every improvement:
 
 ## The Scenario
 
-**Carmen** is a Zava employee travelling to Berlin for a client meeting. She submits a trip request with a parking receipt photo and asks the concierge to book flights, a hotel near Alexanderplatz, and confirm everything is within Zava travel policy.
+> **World Wide Importers (WWI)** is the fictitious enterprise used throughout this workshop — a mid-size global trading company whose employees travel constantly. The application we build for them is **WWI Concierge**, an internal AI travel assistant. Every persona, policy excerpt, evaluation row, and demo in this repo is set in the WWI universe.
 
-<img src="workshops/foundry-models-e2e/assets/00-receipt.png" width="420" alt="Carmen's parking receipt — the starting artifact for every eval row" />
+**Carmen** is a WWI employee travelling to Berlin for a client meeting. She submits a trip request with a parking receipt photo and asks the concierge to book flights, a hotel near Alexanderplatz, and confirm everything is within WWI policy.
 
-> *This one receipt, one policy doc, and one trip itinerary is the seed for 170 evaluation rows across 3 intents and 12 policy axes. Every number in this document was measured against that dataset.*
+<p>
+  <img src="workshops/foundry-models-e2e/assets/00-receipt.png" width="360" alt="Carmen's parking receipt — the starting artifact for every eval row" />
+  &nbsp;
+  <img src="workshops/foundry-models-e2e/assets/00-policy.png" width="360" alt="WWI travel policy handbook — the grounding document for every policy answer" />
+</p>
+
+> *This one receipt, one policy doc, and one trip itinerary is the seed for 170 evaluation rows across 3 intents and 12 policy axes. Every number in this document was measured against that dataset. See [`workshops/foundry-models-e2e/sample-data/README.md`](workshops/foundry-models-e2e/sample-data/README.md) for the full asset map.*
 
 ---
 
@@ -141,7 +147,7 @@ Each stage is a gate — you only proceed when the scorecard justifies it. The l
 
 ## Stage 3 — Knowledge Distillation
 
-**What we did:** The policy slice (35 rows, `intent=policy_question`) scored 0.47 with the base mini model — strong, but the model improvises on edge cases instead of citing the exact policy section. We applied knowledge distillation: `gpt-4.1` (teacher) read the Zava travel policy and generated 84 grounded Q&A pairs across 12 policy axes. `gpt-4.1-mini` (student) was fine-tuned on those labels.
+**What we did:** The policy slice (35 rows, `intent=policy_question`) scored 0.47 with the base mini model — strong, but the model improvises on edge cases instead of citing the exact policy section. We applied knowledge distillation: `gpt-4.1` (teacher) read the WWI policy and generated 84 grounded Q&A pairs across 12 policy axes. `gpt-4.1-mini` (student) was fine-tuned on those labels.
 
 <img src="workshops/foundry-models-e2e/assets/03-finetuning.png" width="680" alt="Foundry portal — fine-tuning job metrics showing training and validation loss" />
 

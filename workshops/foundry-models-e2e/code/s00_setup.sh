@@ -86,8 +86,8 @@ step_done
 # ─── 3. inputs & naming ───────────────────────────────────────────────────
 step "Naming"
 echo "  Project name controls every derived resource name."
-read -r -p "  Project name [zava-travel-demo]: " PROJECT
-PROJECT=${PROJECT:-zava-travel-demo}
+read -r -p "  Project name [wwi-concierge-demo]: " PROJECT
+PROJECT=${PROJECT:-wwi-concierge-demo}
 read -r -p "  Azure region [swedencentral]: " LOCATION
 LOCATION=${LOCATION:-swedencentral}
 RG="rg-${PROJECT}"
