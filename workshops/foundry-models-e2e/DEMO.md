@@ -99,6 +99,16 @@ python s05_run_eval.py --agent s05_multi_model_agent \
     --eval ../sample-data/eval-full.jsonl --label "v3-final"
 ```
 
+> [!NOTE]
+> **All scorecard numbers in this file are placeholders.** The bars,
+> quality scores, cost figures, latency values, and percentage deltas
+> were drafted before the workshop was run end-to-end on the WWI brand.
+> Replace them with the real output from your own eval runs as you
+> work through Steps 2, 5, and 7. Look for the *Placeholder — replace*
+> marker above each scorecard block.
+
+*Placeholder — replace with the actual scorecard from your `v1-baseline` / `v2-batch` / `v3-final` runs.*
+
 Expected terminal output to have visible during Demo 2:
 ```
 === v1-baseline scorecard ===
@@ -264,6 +274,8 @@ This single decision — decomposing the workload and routing each job to the sm
 
 Here's what an honest starting point looks like. This is v1 of the WWI Concierge — `gpt-4.1` doing everything — measured against twenty representative traveler requests we wrote by hand. Policy questions, budget constraints, vision edge cases, translation.
 
+*Placeholder — replace with the one-line summary your `v1-baseline` run actually prints.*
+
 ```
 v1-baseline:  quality 0.61  ·  $0.108/task  ·  12.3s p50
 ```
@@ -281,6 +293,8 @@ These numbers are in `s02_config.py`. Every subsequent eval checks against them.
 *(Scroll down in terminal to show v2 output)*
 
 After Step 3 — model selection, routing each job to a smaller model — here's v2:
+
+*Placeholder — replace with the one-line summary your `v2-batch` run actually prints.*
 
 ```
 v2-batch:     quality 0.78  ·  $0.063/task  ·  9.4s p50
@@ -371,6 +385,8 @@ There it is. Flight under $1500, hotel near Alexanderplatz under $600 total, pol
 Now let's run the full eval over the whole dataset and see the actual numbers:
 
 *(In terminal — run pre-staged result or re-run live if time allows)*
+
+*Placeholder — replace with the actual scorecard from your `v3-final` run.*
 
 ```
 === v3-final scorecard ===
