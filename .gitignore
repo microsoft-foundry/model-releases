@@ -444,10 +444,3 @@ workshops/*/progress.*.json
 **/.foundry/
 __pycache__/
 *.pyc
-
-# Per-demo runtime state written by `run-demo`. Source of truth for "where
-# in the beat list am I"; not for git. Recordings (mp4/mov) are binary
-# captures; never commit.
-demos/*/.state.json
-demos/**/recordings/*.mp4
-demos/**/recordings/*.mov

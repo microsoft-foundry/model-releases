@@ -21,13 +21,9 @@ The skills come in three **author → driver pairs**:
 |---|---|---|
 | Models | [`add-model`](./add-model/SKILL.md) | [`explore-model`](./explore-model/SKILL.md) |
 | Workshops | [`add-workshop`](./add-workshop/SKILL.md) | [`run-workshop`](./run-workshop/SKILL.md) |
-| Demos | [`add-demo`](./add-demo/SKILL.md) | [`run-demo`](./run-demo/SKILL.md) |
 
 The model + workshop driver skills share the same five subskills:
 `setup`, `complete-step`, `check-status`, `troubleshoot`, `learn-more`.
-The demo driver has its own beat-oriented subskills:
-`start`, `next-beat`, `prev-beat`, `show-scorecard`, `pause`, `resume`,
-`recap`, `troubleshoot`.
 
 | Skill | Purpose | When to invoke |
 |---|---|---|
@@ -35,8 +31,6 @@ The demo driver has its own beat-oriented subskills:
 | [`explore-model`](./explore-model/SKILL.md) | Guide a learner through a model entry one step at a time. Dispatches to `setup`, `complete-step`, `check-status`, `troubleshoot`, `learn-more`. | "Explore the X model with me", "help me try the next step". |
 | [`add-workshop`](./add-workshop/SKILL.md) | Scaffold a new entry under `workshops/<slug>/` with numbered step files. | "Create a workshop", "start a new tutorial". |
 | [`run-workshop`](./run-workshop/SKILL.md) | Guide a learner through a workshop one step at a time. Dispatches to `setup`, `complete-step`, `check-status`, `troubleshoot`, `learn-more`. | "Run the X workshop with me", "help me do the next step". |
-| [`add-demo`](./add-demo/SKILL.md) | Scaffold or refresh a demo under `demos/<id>/` from a workshop, producing a single-source-of-truth `demo.md` spec. | "Create a demo from workshop X", "refresh demo D3". |
-| [`run-demo`](./run-demo/SKILL.md) | Drive a demo beat-by-beat in `live` or `record` mode with reveal-only-the-current-beat discipline. Dispatches to `start`, `next-beat`, `prev-beat`, `show-scorecard`, `pause`, `resume`, `recap`, `troubleshoot`. | "Run demo D3 for me", "I'm going live in 5 minutes". |
 
 ## Authoring conventions
 
