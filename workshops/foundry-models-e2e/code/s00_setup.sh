@@ -3,6 +3,29 @@
 #
 # Reference: Quickstart — Setup Microsoft Foundry Resources
 #   https://learn.microsoft.com/azure/ai-foundry/quickstarts/setup-resources
+#
+# ─── OPTIONAL: model-router deployment for the Step 8 stretch demo ──────────
+# The Step 8 "managed routing" comparison (code/s09_router_agent.py) needs a
+# `model-router` deployment in the same project, named exactly `auto-router`.
+# It is NOT required for the core 8-step narrative — v1, v2, v3 all use our
+# hand-rolled router-nano. Skip if you don't plan to show the stretch demo.
+#
+# TPM sizing: 100K is recommended.
+#   - eval-demo.jsonl (50 rows) needs ~30K peak
+#   - eval-full.jsonl (173 rows) needs ~120K peak
+#   - 100K covers the demo comfortably and is usually within default quota for
+#     model-router (a meta-deployment that bills at the chosen sub-model rate).
+#
+# To enable, in the Foundry portal:
+#   Build → Models → Deployments → + Deploy → search "model-router"
+#   → Deployment name: auto-router → TPM: 100 → Create
+# Or via CLI after this script completes:
+#   az cognitiveservices account deployment create \
+#     -g "$AZURE_RESOURCE_GROUP" -n "$FOUNDRY_ACCOUNT_NAME" \
+#     --deployment-name auto-router \
+#     --model-name model-router --model-version 2025-05-19 \
+#     --model-format OpenAI --sku-name Standard --sku-capacity 100
+# ────────────────────────────────────────────────────────────────────────────
 
 set -euo pipefail
 

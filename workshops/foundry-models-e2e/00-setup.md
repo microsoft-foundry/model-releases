@@ -24,6 +24,8 @@ Latency   ░░░░░░░░░░  —
 
 > 📘 **Canonical reference:** [Quickstart: Setup Microsoft Foundry Resources](https://learn.microsoft.com/azure/ai-foundry/quickstarts/setup-resources). This workshop's `s00_setup.sh` is a thin wrapper around the exact `az` commands documented there, with workshop-specific defaults pre-filled.
 
+> 🎯 **Optional stretch deployment — `model-router`.** The Step 8 "managed routing" comparison (`code/s09_router_agent.py`) compares our hand-rolled `router-nano` against Foundry's managed multi-model router. If you plan to show that stretch demo, deploy a **`model-router`** in this same project with the **deployment name exactly `auto-router`** (Build → Models → Deployments → + Deploy → search "model-router" → name `auto-router` → **TPM `100`**). The 100K capacity covers the 50-row demo set (~30K peak) and the 173-row offline set (~120K peak) with headroom; model-router quota is usually generous since it's a meta-deployment that bills at the chosen sub-model's rate. It is **not required** for the core v1/v2/v3 narrative — skip if you're sticking to the 8-step path.
+
 ## Steps
 
 There are two paths. **Pick one.**

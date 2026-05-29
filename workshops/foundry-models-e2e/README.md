@@ -47,6 +47,14 @@ Foundry isn't a one-shot picker; it's a **continuous loop**. Each step below tag
 
 > *Steps 0–2 are the prerequisite baseline (setup, v1 in the playground, v1 in code) — the lifecycle proper begins at Step 3.*
 
+> **🎯 Plan before you build: evaluation-driven *development*, scorecard-driven *optimization*.**
+> Before you write the agent, do two things in order:
+>
+> 1. **Define the optimization targets.** Pick a quality bar, a cost ceiling, and a latency budget — three concrete numbers your stakeholder would sign off on. These become `QUALITY_TARGET`, `COST_TARGET`, `LATENCY_TARGET` in [`code/s02_scorecard.py`](./code/s02_scorecard.py). No targets, no hill to climb.
+> 2. **Identify the evaluators that will measure progress against each target.** A schema/constraint evaluator covers structural correctness, an LLM-as-judge covers generic semantic correctness, and a **custom prompt-based evaluator** covers the dimension your workload actually pays the bill for (here: **Policy Adherence** — does the answer stay inside the four corners of [`travel-policy.md`](./sample-data/travel-policy.md)?). All three are wired from Step 5 onward and run on every subsequent eval — so v1, v2, v3 are all measured against the same yardsticks. See [`code/s05_policy_adherence_evaluator.py`](./code/s05_policy_adherence_evaluator.py) and the rubric in [`sample-data/README.md`](./sample-data/README.md#evaluating-policy-adherence).
+>
+> Then — and only then — pick models and start changing things. Every architectural decision in Steps 3–7 is justified by what these evaluators say *before* the change, not after. Step 8 closes the loop by promoting the hand-rolled custom evaluator into a managed **adaptive Eval Rubric** that updates itself from production traces, so the *next* hill climb doesn't depend on a human noticing a gap.
+
 ## Same scenario. Same quality. Dramatically lower cost.
 
 > *Numbers below are **representative, not measured** — they illustrate the shape of the win you'll reproduce at toy scale in the workshop. Imagine WWI has rolled the concierge to production: **~30,000 traveler interactions per day** across the customer base, three model roles (planner · policy · inline summarizer).*
@@ -81,7 +89,7 @@ The talk is structured as three short live demos (~4 / 4 / 5 minutes) that mirro
 
 | # | Demo beat | Workshop landing spot |
 |---|---|---|
-| 01 | **Set criteria** — define quality bar, latency budget, cost ceiling for this task | Step 2 — *scorecard* (`QUALITY_TARGET=0.92`, `COST_TARGET=$0.03`, `LATENCY_TARGET=8.0s`) referenced by every subsequent step |
+| 01 | **Set criteria + identify evaluators** — define quality bar, latency budget, cost ceiling; pick the evaluators that will measure each one (including a custom evaluator for the dimension generic judges can't see) | Step 2 — *scorecard targets* (`QUALITY_TARGET=0.92`, `COST_TARGET=$0.03`, `LATENCY_TARGET=8.0s`) + Step 5 — *three evaluators registered together*: schema · generic LLM-judge · custom **Policy Adherence** rubric ([`s05_policy_adherence_evaluator.py`](./code/s05_policy_adherence_evaluator.py)) |
 | 02 | **Load prompts** — a representative set of real production inputs | Step 4 — *synthetic eval set* (`eval-seed.jsonl`) + Step 5 — *5.3 The driver* loads it |
 | 03 | **Run comparison** — execute the prompt set against Model A and Model B in parallel | Step 5 — *5.3* (v1 baseline) and *5.4 Build v2* (router + per-task models) over the same eval set |
 | 04 | **Review results** — side-by-side outputs, scores, latency, cost — then decide | Step 5 — *5.5 Check it in the portal* (Foundry evaluations UI, side-by-side run compare) |
@@ -240,4 +248,96 @@ Full details, file provenance, parallel-terminal recipes, and troubleshooting ar
 - **`code/generated/`** — every eval result, trace dump, and intermediate artifact lands here. The folder is `.gitignore`d so nothing committed gets dirty. Wipe with `rm -rf code/generated` for a full reset.
 - **Timestamped result files** — the replay script names outputs `eval_results_<label>-<UTC-timestamp>.json` so prior runs are never clobbered and runs can be diffed.
 - **`s06_expand_ft_data.py` is now idempotent.** Earlier versions read and wrote the same `policy-ft-{train,val}.jsonl` paths, which silently *doubled* the dataset on every re-run. The fixed version reads optional seeds from `policy-ft-seeds-{train,val}.jsonl` and always overwrites outputs fresh. Safe to re-run any number of times. See header of [`code/s06_expand_ft_data.py`](./code/s06_expand_ft_data.py).
+
+---
+
+## Best Practices
+
+Hard-won lessons captured live as we ran this workshop on stage. Each one is a small lever that pays back many times over a recorded demo, a sales call, or an attendee's first hands-on. Apply these before you hit "go".
+
+### Right-size the evaluation dataset for the venue
+
+The same agent deserves different eval datasets at different moments. Don't run the 173-row `eval-full.jsonl` during a stage demo — it's noisy, slow, and the audience can't read the JSON anyway. Match dataset size to purpose:
+
+| File | Rows | Purpose | Wall-clock (concurrency=10) | TPM needed |
+|---|---|---|---|---|
+| `eval-seed.jsonl` | 20 | Inner-loop smoke test while you iterate on a prompt | <30 s | planner ≤ 50K, others ≤ 10K |
+| `eval-demo.jsonl` | **50** ⭐ | Stage default for v1 vs v2 vs v3 scorecard comparisons | ~60–90 s | planner ≤ 125K, others ≤ 30K |
+| `eval-full.jsonl` | 173 | Offline / CI / overnight thoroughness | 3–5 min | planner ≥ 300K, others ≥ 100K |
+
+**Why 50 is the sweet spot for a demo:**
+- Detects a ~15% quality delta at 95% CI (enough to separate v1 / v2 / v3 cleanly)
+- 5–8 examples per intent bucket → failure modes are *legible* when you open the JSON on stage
+- Completes in under 90 s so the audience doesn't tab away
+- Rerun variance is low enough that two consecutive runs won't swap your winners
+
+`eval-demo.jsonl` is built deterministically (seed=42) from `eval-full.jsonl` — 20 seed rows verbatim plus 10/10/10 across plan_trip / policy_question / receipt_expense.
+
+### Provision deployment TPM for parallel evaluation
+
+The `azure-ai-evaluation` SDK runs ~10 evaluator workers concurrently, and the v2/v3 agents fan each row to up to four deployments with planner loops of 2–6 calls. If any deployment is provisioned at the default 10K TPM, you will see **every row return identical 30 s latency, $0.000 cost, and ~0.25 quality** — the OpenAI SDK silently absorbs the 429s with backoff and returns an empty `output_text`. That is a poisoned signal, not a model verdict.
+
+Minimums for `eval-demo.jsonl` (50 rows, concurrency 10):
+
+| Deployment | Minimum | Recommended for live demo |
+|---|---|---|
+| `planner-gpt41` | 125K | 200K (covers parallel v1+v2 runs + judge phase) |
+| `router-nano` | 30K | 50K |
+| `mini-vision` | 30K | 50K |
+| `policy-mini-base` | 30K | 50K |
+| `auto-router` *(optional, Step 8 stretch)* | 50K | 100K (also covers 173-row offline run) |
+
+`s00_setup.sh` provisions everything at 10K by default — bump in the portal under **Build → Models → Deployments → Edit → Tokens per minute rate limit** before Step 5.
+
+**Smoke-test for throttling** after any eval run:
+```bash
+jq -r '.rows[] | ."outputs.latency_s"' generated/eval_results_<label>.json \
+  | sort -n | awk 'BEGIN{c=0} {a[c++]=$1; s+=$1}
+                   END{print "p50="a[int(c*0.5)], "p90="a[int(c*0.9)], "max="a[c-1]}'
+```
+Healthy run: `p50 ≠ p90 ≠ max`. Throttle artifact: pathologically flat (e.g. `p50=30 p90=30 max=30`).
+
+### Trust the local JSON as your inner-loop signal
+
+Every `s05_run_eval.py` run prints a `📊 Portal:` URL. That URL is a stakeholder artifact — it appears in the portal after a delay and is the right view for **Step 8**'s version-compare narrative. It is **not** your dev inner loop.
+
+The dev inner loop is the 40 KB file written next to the script: `code/generated/eval_results_<label>.json`. Three `jq` recipes get you everything you need without leaving VS Code:
+
+```bash
+# Headline
+jq .metrics generated/eval_results_v1-curated.json
+
+# What broke (schema failures)
+jq -r '.rows[] | select(."outputs.schema.schema_score" < 1) | "\(."inputs.id") \(."inputs.intent")"' \
+  generated/eval_results_v1-curated.json
+
+# Why (judge reasoning on low scorers)
+jq -r '.rows[] | select(."outputs.judge.judge_score" <= 0.4) | ."outputs.judge.reason"' \
+  generated/eval_results_v1-curated.json
+```
+
+In our live run, the third recipe surfaced "every `policy_question` row failed for the same reason" in under five seconds — the exact motivation for Step 6's fine-tune, derived from local artifacts, no portal round-trip needed.
+
+### Name deployments by job, not by model
+
+`planner-gpt41`, `router-nano`, `mini-vision`, `policy-mini-base` — not `gpt-4.1-deployment-3`. When a new model lands in the catalog, swapping it in becomes a one-line config change (`DEPLOY_PLANNER = "planner-gpt45"`) and your code, evals, and traces all keep working. This is the operational backbone of Challenge #5 ("the landscape keeps changing") and the reason Step 6's fine-tune swap is `USE_FT_POLICY = True`, not a refactor.
+
+### Pre-warm the Operate dashboards with realistic load
+
+The portal monitoring tabs are uninteresting with no traffic. Set up a hosted **Prompt Agent** once and then drive it with the load tester an hour before the Step 8 walk-through:
+
+```bash
+# one-time: create the concierge-loadtest Prompt Agent in the project
+../.venv/bin/python code/s08_agent_setup.py \
+  --name concierge-loadtest --model planner-gpt41 --temperature 0.2
+
+# 2 h continuous load against the hosted agent (attach App Insights first)
+nohup ../.venv/bin/python -u code/s08_loadtest_agent.py \
+  --duration 2h --base-rpm 5 --spikes 4 --lulls 2 --workers 4 \
+  --label monitor-demo \
+  > code/generated/loadtest_agent_monitor-demo.out 2>&1 &
+```
+
+The loadtester invokes the hosted agent through the Responses API (`agent_reference`) and wires `AIProjectInstrumentor` + Azure Monitor exporter, stamping every span with WWI custom dimensions (`wwi.prompt.class`, `wwi.prompt.kind`, `wwi.expected.is_policy`, `wwi.expected.is_adversarial`, `wwi.run.*`). By the time you're in [`08-portal-review.md`](./08-portal-review.md), **Agents → concierge-loadtest → Tracing** (and the attached App Insights Logs) has thousands of real spans to filter on — content-filter blocks, latency outliers, intent-distribution shifts — that motivate the closing "hand-rolled → managed Eval Rubric" narrative.
+
 

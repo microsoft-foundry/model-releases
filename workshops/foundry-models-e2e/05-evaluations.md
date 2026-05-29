@@ -45,8 +45,10 @@ This step builds curated + batch. Online is shown in the portal in Step 8.
 We use three:
 
 1. **Schema/constraint evaluator** (deterministic): does the JSON parse, do `expected_keys` appear, is `total_estimated_cost_usd ≤ max_total`?
-2. **LLM-as-judge** (uses `gpt-4.1`): semantic correctness of policy answers and translation accuracy. Scored 1–5, normalized to 0–1.
-3. **Safety/groundedness** (built-in `azure-ai-evaluation`): no hallucinated bookings, no PII leakage.
+2. **LLM-as-judge — generic correctness** (uses `gpt-4.1`): scores semantic correctness 1–5, normalized to 0–1. Folded into the headline Quality score.
+3. **LLM-as-judge — Policy Adherence** ⭐ *custom prompt-based evaluator*. Implements the five-axis rubric defined in [`sample-data/README.md`](./sample-data/README.md#evaluating-policy-adherence): Grounding (0.30) · Citation correctness (0.20) · Value & threshold accuracy (0.20) · Approval-path correctness (0.15) · Scope discipline (0.15). Code lives in [`code/s05_policy_adherence_evaluator.py`](./code/s05_policy_adherence_evaluator.py). Only fires for `intent == "policy_question"` rows so the slice metric reflects the gap fine-tuning is supposed to close.
+
+> **Why a third evaluator?** Schema can't tell whether `"approval_required": "VP"` is the right approver. The generic judge gives polite credit for plausible-sounding answers — exactly the failure mode we're trying to catch on policy questions. The custom rubric is what lets v1 → v2 → v3 actually *show* the policy quality climb in a way the stakeholder cares about. We come back to this in **Step 8 (Operate)** when we discuss promoting it from a hand-rolled prompt into a managed **Foundry Eval Rubric** that auto-updates from production traces.
 
 ## 5.3 — The driver
 
@@ -246,8 +248,13 @@ Run v2:
 ```bash
 python s05_run_eval.py --agent s05_multi_model_agent \
                    --eval ../sample-data/eval-full.jsonl \
-                   --label "v2-batch"
+                   --label "v2-batch" \
+                   --baseline "v1-batch"
 ```
+
+> Passing `--baseline v1-batch` renders a colored Δ column next to each metric
+> (▼ green when cost/latency drop, ▲ green when quality climbs), so the
+> v1 → v2 delta is visible immediately, not just at the wrap-up.
 
 Expected:
 ```

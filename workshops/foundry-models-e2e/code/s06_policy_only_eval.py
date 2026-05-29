@@ -124,7 +124,10 @@ def main() -> None:
 
     print("\n" + "=" * 60)
     print_scorecard(DEPLOY_POLICY_BASE, base["quality"], base["cost"], base["latency_p50"])
-    print_scorecard(DEPLOY_POLICY_FT,   ft["quality"],   ft["cost"],   ft["latency_p50"])
+    print_scorecard(DEPLOY_POLICY_FT,   ft["quality"],   ft["cost"],   ft["latency_p50"],
+                    baseline={"quality":  base["quality"],
+                              "cost":     base["cost"],
+                              "latency":  base["latency_p50"]})
 
     delta = ft["quality"] - base["quality"]
     rel   = (delta / base["quality"] * 100) if base["quality"] else float("inf")

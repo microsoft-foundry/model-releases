@@ -31,7 +31,8 @@ from azure.ai.projects import AIProjectClient
 from azure.ai.evaluation import evaluate
 
 from s02_config import PROJECT_ENDPOINT, DEPLOY_PLANNER
-from s02_scorecard import print_scorecard, cost_of
+from s02_scorecard import print_scorecard, cost_of, load_baseline
+from s05_policy_adherence_evaluator import PolicyAdherenceEvaluator
 
 # All generated artifacts land here so a single .gitignore entry covers them.
 GENERATED_DIR = Path(__file__).parent / "generated"
@@ -103,7 +104,8 @@ class JudgeEvaluator:
 
 # ── driver ────────────────────────────────────────────────────────────────
 
-def run_eval(agent_module: str, eval_path: str, label: str) -> dict:
+def run_eval(agent_module: str, eval_path: str, label: str,
+             baseline_label: str | None = None) -> dict:
     mod = importlib.import_module(agent_module)
     rows = [json.loads(line) for line in open(eval_path)]
     n = len(rows)
@@ -147,6 +149,7 @@ def run_eval(agent_module: str, eval_path: str, label: str) -> dict:
         evaluators={
             "schema": SchemaEvaluator(),
             "judge":  JudgeEvaluator(judge_client),
+            "policy": PolicyAdherenceEvaluator(judge_client),
         },
         evaluation_name=f"foundry-e2e-{label}",
         output_path=str(GENERATED_DIR / f"eval_results_{label}.json"),
@@ -172,9 +175,61 @@ def run_eval(agent_module: str, eval_path: str, label: str) -> dict:
     quality = 0.5 * mean(schema_scores) + 0.5 * mean(judge_scores)
     cost    = cost_of(usage_accumulator) / max(1, n)
     latency = sorted(latencies)[len(latencies) // 2] if latencies else 0.0
-    print_scorecard(label, quality, cost, latency)
+    baseline = load_baseline(baseline_label) if baseline_label else None
+    if baseline_label and baseline is None:
+        print(f"  ⚠ baseline '{baseline_label}' not found; rendering without Δ")
+    print_scorecard(label, quality, cost, latency, baseline=baseline)
+
+    # ── Policy-Adherence slice metric (custom evaluator) ─────────────────
+    import math
+    pol_scores = [r.get("outputs.policy.policy_adherence_score")
+                  for r in rows_out]
+    pol_scores = [s for s in pol_scores
+                  if isinstance(s, (int, float)) and not math.isnan(float(s))]
+    if pol_scores:
+        verdicts = [r.get("outputs.policy.verdict", "") for r in rows_out
+                    if isinstance(r.get("outputs.policy.policy_adherence_score"),
+                                  (int, float))
+                    and not math.isnan(float(r.get("outputs.policy.policy_adherence_score")))]
+        pol_mean = mean(pol_scores)
+        n_pass = sum(1 for v in verdicts if v == "pass")
+        n_caveat = sum(1 for v in verdicts if v == "ship-with-caveats")
+        n_fail = sum(1 for v in verdicts if v == "fail")
+        bar_w = int(round(pol_mean * 10))
+        bar = "█" * bar_w + "░" * (10 - bar_w)
+        gate = "✅" if pol_mean >= 0.85 else ("⚠" if pol_mean >= 0.70 else "❌")
+        print(f"\n  📜 Policy Adherence  {bar}  {pol_mean:.2f}  {gate}")
+        print(f"     ({len(pol_scores)} policy_question rows: "
+              f"{n_pass} pass · {n_caveat} caveats · {n_fail} fail)")
+        if baseline_label:
+            base_pol = _baseline_policy_score(baseline_label)
+            if base_pol is not None:
+                diff = pol_mean - base_pol
+                arrow = "▲" if diff > 0 else ("▼" if diff < 0 else "─")
+                pct = (diff / base_pol * 100) if base_pol else 0.0
+                color = "\033[32m" if diff > 0 else ("\033[31m" if diff < 0 else "")
+                print(f"     Δ vs {baseline_label}: {color}{arrow} "
+                      f"{diff:+.2f} ({pct:+.0f}%)\033[0m")
+
     return {"quality": quality, "cost": cost, "latency": latency,
+            "policy_adherence": mean(pol_scores) if pol_scores else None,
             "n": n, "label": label}
+
+
+def _baseline_policy_score(label: str) -> float | None:
+    import math
+    path = GENERATED_DIR / f"eval_results_{label}.json"
+    if not path.exists():
+        return None
+    try:
+        data = json.loads(path.read_text())
+        vals = [r.get("outputs.policy.policy_adherence_score")
+                for r in data.get("rows", [])]
+        vals = [v for v in vals
+                if isinstance(v, (int, float)) and not math.isnan(float(v))]
+        return mean(vals) if vals else None
+    except Exception:
+        return None
 
 
 if __name__ == "__main__":
@@ -183,5 +238,7 @@ if __name__ == "__main__":
                     help="module name: s02_baseline_agent | s05_multi_model_agent")
     ap.add_argument("--eval",  default="../sample-data/eval-full.jsonl")
     ap.add_argument("--label", required=True)
+    ap.add_argument("--baseline", default=None,
+                    help="label of a prior run (e.g. v1-demo) to render Δ against")
     args = ap.parse_args()
-    run_eval(args.agent, args.eval, args.label)
+    run_eval(args.agent, args.eval, args.label, baseline_label=args.baseline)
