@@ -11,4 +11,8 @@ kebab-case.
 
 | Demo | Session name | Surface | Last used |
 |---|---|---|---|
-| _(empty — populated by `run-demo/start`)_ | | | |
+| [`d1`](./d1/) — Baseline with one frontier model | | | |
+| [`d2`](./d2/) — Foundry model catalog, leaderboard, and benchmarks | | | |
+| [`d3`](./d3/) — Multi-model decomposition | | | |
+| [`d4`](./d4/) — Adaptive evaluation with a rubric (LLM-as-judge) | | | |
+| [`d5`](./d5/) — Distillation, fine-tune, and after-scorecard | | | |
