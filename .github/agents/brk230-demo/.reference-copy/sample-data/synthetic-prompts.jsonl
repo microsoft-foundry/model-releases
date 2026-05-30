@@ -1,0 +1,34 @@
+# Synthetic prompt seeds for Step 4 (axes to vary)
+
+These are starter prompts for the synthetic generator in `code/s04_generate_synthetic.py`. The generator uses these to scaffold ~180 additional eval rows across the listed axes.
+
+## Axes and seed prompts
+
+### intent_balance
+- "How much can I spend on dinner in Berlin?"
+- "Book ORD to LAX next Friday, return Sunday."
+- "Receipt from a cab in London, GBP 42."
+
+### geography
+- "FRA to Singapore, 4 nights."
+- "MEX to YYZ, 2 nights."
+- "BOM to SYD, 5 nights."
+
+### budget_edge
+- "Trip total comes to $2,499 — am I within cap?"
+- "Trip is $2,501 — what approval do I need?"
+- "Trip is $2,875 (15% over $2,500) — VP or CFO?"
+
+### language
+- "Reservierungsbestätigung für mein Hotel in Berlin — können Sie das ins Englische übersetzen?"
+- "¿Puedo expensar el parking en el aeropuerto?"
+
+### receipt_category
+- "Parking receipt $42/day for 2 days at SFO."
+- "Hotel laundry $35."
+- "Conference Wi-Fi $15."
+
+### policy_trap
+- "I want business class — it's only $200 more than economy."
+- "Can I book the trip on Tuesday for travel on Thursday? (4 days out, domestic)"
+- "I'll book my own travel insurance for peace of mind."

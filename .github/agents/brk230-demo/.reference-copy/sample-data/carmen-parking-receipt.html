@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SAN Parking Receipt</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+
+    body {
+      background: #d0d0d0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+      font-family: 'Courier Prime', 'Courier New', monospace;
+    }
+
+    .receipt {
+      background: #fffdf5;
+      width: 320px;
+      padding: 24px 28px 32px;
+      box-shadow: 2px 4px 12px rgba(0,0,0,0.25);
+      border-top: 6px solid #003087;
+      position: relative;
+    }
+
+    /* Torn top edge effect */
+    .receipt::before {
+      content: '';
+      display: block;
+      height: 10px;
+      background: repeating-linear-gradient(
+        90deg,
+        #fffdf5 0px, #fffdf5 8px,
+        #d0d0d0 8px, #d0d0d0 10px
+      );
+      margin: -24px -28px 16px;
+    }
+
+    .logo-row {
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .logo-row .airport {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      color: #003087;
+    }
+
+    .logo-row .tagline {
+      font-size: 9px;
+      color: #555;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px dashed #aaa;
+      margin: 10px 0;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #222;
+      margin-bottom: 2px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 10px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #333;
+      margin: 3px 0;
+    }
+
+    .row .label { color: #666; }
+    .row .value { font-weight: 700; text-align: right; }
+
+    .section-head {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #003087;
+      margin: 10px 0 4px;
+    }
+
+    .total-box {
+      background: #003087;
+      color: #fff;
+      padding: 10px 12px;
+      margin: 12px -4px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .total-box .total-label {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .total-box .total-amount {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .payment-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      margin: 6px 0 2px;
+      color: #333;
+    }
+
+    .card-chip {
+      display: inline-block;
+      background: #c8a84b;
+      color: #000;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 2px;
+      letter-spacing: 1px;
+      margin-right: 4px;
+    }
+
+    .barcode {
+      text-align: center;
+      margin: 14px 0 6px;
+      font-size: 36px;
+      letter-spacing: -1px;
+      color: #111;
+      line-height: 1;
+    }
+
+    .barcode-num {
+      text-align: center;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #555;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 9px;
+      color: #888;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    .thank-you {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #003087;
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="receipt">
+
+    <div class="logo-row">
+      <div class="airport">SAN</div>
+      <div class="tagline">San Diego International Airport</div>
+      <div class="tagline">Terminal 2 — Economy Parking</div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="title">Parking Receipt</div>
+    <div class="subtitle">KEEP FOR YOUR RECORDS</div>
+
+    <div class="section-head">Transaction</div>
+    <div class="row"><span class="label">Receipt #</span><span class="value">PKG-20260521-4471</span></div>
+    <div class="row"><span class="label">Date In</span><span class="value">05/21/2026  07:14 AM</span></div>
+    <div class="row"><span class="label">Date Out</span><span class="value">05/21/2026  06:58 PM</span></div>
+    <div class="row"><span class="label">Duration</span><span class="value">11 hrs 44 min</span></div>
+    <div class="row"><span class="label">Lot / Space</span><span class="value">T2-ECO / 3B-218</span></div>
+    <div class="row"><span class="label">License Plate</span><span class="value">7TRV412 (CA)</span></div>
+
+    <hr class="divider" />
+
+    <div class="section-head">Charges</div>
+    <div class="row"><span class="label">Base rate (first 2 hrs)</span><span class="value">$6.00</span></div>
+    <div class="row"><span class="label">Additional hours (×9)</span><span class="value">$18.00</span></div>
+    <div class="row"><span class="label">Airport facilities fee</span><span class="value">$2.50</span></div>
+    <div class="row"><span class="label">CA state surcharge</span><span class="value">$0.75</span></div>
+
+    <div class="total-box">
+      <span class="total-label">Total Charged</span>
+      <span class="total-amount">$27.25</span>
+    </div>
+
+    <div class="section-head" style="margin-top:14px">Payment</div>
+    <div class="payment-row">
+      <span><span class="card-chip">VISA</span> ····&nbsp;····&nbsp;····&nbsp;3847</span>
+      <span>APPROVED</span>
+    </div>
+    <div class="row"><span class="label">Auth code</span><span class="value">TXN-9928-A</span></div>
+    <div class="row"><span class="label">Cardholder</span><span class="value">C. REYES</span></div>
+
+    <hr class="divider" />
+
+    <div class="barcode">||||| |||| ||||| ||| |||| |||||</div>
+    <div class="barcode-num">PKG 2026 0521 4471 SAN</div>
+
+    <div class="thank-you">Thank you for flying from SAN!</div>
+    <div class="footer">
+      San Diego County Regional Airport Authority<br />
+      parkinginfo@san.org · (619) 400-2404<br />
+      This receipt is required for expense reimbursement.<br />
+      Questions? Visit san.org/parking
+    </div>
+
+  </div>
+</body>
+</html>

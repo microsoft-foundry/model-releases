@@ -3,6 +3,22 @@
 > *A retrospective + a reusable playbook, distilled from 6h 40m of live build
 > time on May 29, 2026. Every pattern below has scars to prove it.*
 
+> **📝 About these numbers.** The headline cells in the meta-table below
+> and the scorecards the BRK230 demo agent renders are derived from
+> [`.github/agents/brk230-demo/generated/narrative.json`](../../.github/agents/brk230-demo/generated/narrative.json),
+> which in turn comes from the four `eval_results_*.json` files captured
+> at the end of our May 29 run. **Two of those runs (`v1-demo` and
+> `v2-demo`) are mildly throttled** — latency sits in the high-20s/low-30s
+> instead of the sub-10s we measured pre-bump. We kept them anyway,
+> because the smoking gun for **Pattern 4 — *Pre-warm provisioning*** is
+> only visible if the audience can open the actual file and see
+> `p50 ≈ p90 ≈ max`. *That's the lesson.*
+>
+> If you re-run the workshop and want the playbook to reflect *your*
+> numbers, run [`code/s99_rebuild_playbook.sh`](./code/s99_rebuild_playbook.sh)
+> — it regenerates the meta-table and the Hills Are Alive block from
+> whatever `generated/narrative.json` currently says.
+
 ---
 
 ## Meta Moment: We Hill-Climbed Building This Demo!
@@ -22,9 +38,9 @@ ship until the number moves.**
 | **🩹 v1 curated**   | 08:48           | 20-row eval → 0.49 Q, 13.0s | **All 6 policy rows failed identically** | One drill-down beats a thousand vibes. |
 | **🔥 Throttle crash** | 08:55 *(discarded)* | 173-row v2 eval at 10K TPM defaults | 162× 429s → Q=0.26, $0.000 (poisoned) | "Pre-warm provisioning — TPM is the silent dependency." |
 | **⚖️ Right-size**    | 08:55           | `eval-demo.jsonl` (50 rows, balanced) + TPM bump | Cost / time per eval ÷4 | Match the eval set to the *cadence* you want, not the *ambition*. |
-| **✅ v1-demo**       | 08:52           | 50-row clean run | Q 0.42 · $0.010 ✅ · 9.1s | A clean number unlocks the next move. |
+| **✅ v1-demo**       | 08:52           | 50-row clean run — *but TPM still tight* | Q **0.644** · $0.010 ✅ · **29.1s** 🚨 (throttled — see Pattern 4) | A clean *signal* unlocks the next move — even when one dial is still red. |
 | **🐛 v2 zero bug**   | 08:54 *(discarded)* | `USE_FT_POLICY=True` before FT existed | All 50 rows empty — 404 DeploymentNotFound | "Flag defaults should match the *current* deployment reality." |
-| **🪜 v2-demo**       | 08:57           | Multi-model split, FT off | Q 0.43 · **$0.005 ✅** · 6.9s | Cost wins before quality wins. |
+| **🪶 v2-demo**       | 08:57           | Multi-model split, FT off | Q **0.768** · **$0.0055** ✅ · **30.2s** 🚨 · 📜 0.28 🚨 | Cost halves and quality climbs — but the custom evaluator says policy *regressed*. |
 | **🎨 Scorecard polish** | 09:18 → 09:28  | Δ column, baseline flag, helper extracted | v2's cost cut visibly half a bar in green | Pretty deltas are *operational*, not cosmetic. |
 | **📜 Custom evaluator** | 09:38       | `s05_policy_adherence_evaluator.py` (5-axis rubric) | A new line appeared on every card | "If you can't see the failure, you can't fix it." |
 | **🛠️ Fine-tune**     | 09:40 → 10:30  | 24 rows × 3 epochs on `gpt-4.1-mini` | `succeeded · trained_tokens=22962` | The model is the cheap part. The data is the work. |
@@ -32,7 +48,7 @@ ship until the number moves.**
 | **🌊 2 h loadtester** | 11:00 →        | Sinusoidal · spikes · lulls vs `concierge-loadtest` | 405 ok / 1 err / 39 content_filtered at t+54m | Real dashboards need real traffic. |
 | **💸 Developer SKU** | 11:46           | `06-finetune.md` §6.5 default flipped | Idle FT cost: $/day → ¢/day | "Default to the cheap tier in dev. Always." |
 | **🚢 FT deployed**   | 14:35           | `policy-mini-ft` · DeveloperTier · 100 cap | Status: Succeeded | The whole story was waiting on one deployment. |
-| **🎯 v3-demo**       | 14:42           | `USE_FT_POLICY=True` (one boolean) | **📜 Policy 0.28 → 0.82 (+190%)** · $0.005 · 6.7s | "One flag flip is the whole point of `right-model-right-job`." |
+| **🎯 v3-demo**       | 14:42           | `USE_FT_POLICY=True` (one boolean) · TPM bumped between v2 and v3 | **📜 Policy 0.28 → 0.82 (+190%)** · Q 0.83 · $0.005 · **11.2s** (latency still > 8s target) | One flag flip clears policy + cost; latency is the *next* hill. |
 | **🏁 Three-up card** | 14:44           | `render_scorecards.py v1 v2 v3` | The audience's eyes go to the green checks | Ship the *picture*, not the spreadsheet. |
 
 > **The meta-punchline:** even *this README* hill-climbed. v1 was a script
@@ -249,16 +265,17 @@ flipping a boolean and re-running the eval. **That is the goal.**
 
 ```
                         🏔️  v3-demo
-                      ╱  ┃  📜 0.82
-                    ╱    ┃  $0.005 ✅
-                  ╱      ┃  6.7s   ✅
-            🏔️ v2-demo   ┃
-         ╱  ┃  📜 0.28   ┃   ← one boolean flip
-       ╱    ┃  $0.006 ✅ ┃     gets you from
-   🏔️ v1   ┃  19.9s     ┃     here to the
-   ┃ Q .47  ┃            ┃     summit. 🚩
-   ┃ $.010  ┃            ┃
-   ┃ 14.2s  ┃            ┃
+                      ╱  ┃  🎯 Q 0.83
+                    ╱    ┃  📜 0.82  ✅
+                  ╱      ┃  💸 $0.005 ✅
+            🏔️ v2-demo   ┃  ⚡ 11.2s  (next hill)
+         ╱  ┃  🎯 Q 0.77   ┃
+       ╱    ┃  📜 0.28 🚨 ┃   ← one boolean flip
+   🏔️ v1   ┃  💸 $0.006 ✅┃     fixed policy + held cost,
+   ┃ Q 0.64  ┃  ⚡ 30.2s 🚨 ┃     and a TPM bump cleared
+   ┃ 📜 0.36  ┃            ┃     half the latency hill.
+   ┃ $0.010  ┃            ┃
+   ┃ 29.1s 🚨┃            ┃
 ```
 
 > *Climb every hill·climb every dial,*

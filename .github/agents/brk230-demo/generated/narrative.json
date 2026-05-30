@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "data_dir": "/workspaces/model-releases-FORK/.github/agents/brk230-demo/generated",
+  "content_hash": "4d4454904bb7e77a414843e134efd44b4a9f3f63d9b9c0e08ef45d46a84bc7c7",
+  "targets": {
+    "quality": 0.8,
+    "cost": 0.008,
+    "latency": 15.0,
+    "policy": 0.8
+  },
+  "price_table": {
+    "planner-gpt41": {
+      "in": 0.005,
+      "out": 0.015
+    },
+    "router-nano": {
+      "in": 0.0002,
+      "out": 0.0006
+    },
+    "mini-vision": {
+      "in": 0.0008,
+      "out": 0.0024
+    },
+    "policy-mini-base": {
+      "in": 0.0008,
+      "out": 0.0024
+    },
+    "policy-mini-ft": {
+      "in": 0.001,
+      "out": 0.003
+    },
+    "auto-router": {
+      "in": 0.0008,
+      "out": 0.0024
+    }
+  },
+  "runs": {
+    "v1-curated": {
+      "source_file": "eval_results_v1-curated.json",
+      "n_rows": 20,
+      "judge_score": 0.5900000000000001,
+      "schema_score": 0.4,
+      "quality": 0.5900000000000001,
+      "latency_s": 13.197206044197083,
+      "cost_usd": 0.01045475,
+      "policy_score": null,
+      "policy_applicable_frac": null,
+      "studio_url": "https://ai.azure.com/resource/build/evaluation/1d40c172-52cd-4a91-87ee-43f7e803827e?wsid=/subscriptions/7a880728-70d3-49d0-adde-4250716cfd94/resourceGroups/rg-wwi-concierge-demo/providers/Microsoft.CognitiveServices/accounts/wwi-concierge-demo-foundry/projects/wwi-concierge-demo&tid=edca8f7b-3369-43a4-9770-f990bb37ffa8",
+      "delta_vs_v1": {
+        "quality": {
+          "abs": -0.05399999999999994,
+          "pct": -8.385093167701854
+        },
+        "cost": {
+          "abs": 3.065000000000012e-05,
+          "pct": 0.29403018006350784
+        },
+        "latency": {
+          "abs": -15.947575273513793,
+          "pct": -54.718459197436744
+        },
+        "policy": null
+      },
+      "target_status": {
+        "quality": "red",
+        "cost": "red",
+        "latency": "green",
+        "policy": "na"
+      }
+    },
+    "v1-demo": {
+      "source_file": "eval_results_v1-demo.json",
+      "n_rows": 50,
+      "judge_score": 0.644,
+      "schema_score": 0.3,
+      "quality": 0.644,
+      "latency_s": 29.144781317710876,
+      "cost_usd": 0.0104241,
+      "policy_score": 0.361764705882353,
+      "policy_applicable_frac": 0.34,
+      "studio_url": "https://ai.azure.com/resource/build/evaluation/3820183c-32a1-4d8d-bad6-5c2b65f6aa92?wsid=/subscriptions/7a880728-70d3-49d0-adde-4250716cfd94/resourceGroups/rg-wwi-concierge-demo/providers/Microsoft.CognitiveServices/accounts/wwi-concierge-demo-foundry/projects/wwi-concierge-demo&tid=edca8f7b-3369-43a4-9770-f990bb37ffa8",
+      "delta_vs_v1": null,
+      "target_status": {
+        "quality": "red",
+        "cost": "red",
+        "latency": "red",
+        "policy": "red"
+      }
+    },
+    "v2-demo": {
+      "source_file": "eval_results_v2-demo.json",
+      "n_rows": 50,
+      "judge_score": 0.7680000000000001,
+      "schema_score": 0.08,
+      "quality": 0.7680000000000001,
+      "latency_s": 30.23598720550537,
+      "cost_usd": 0.005548735999999999,
+      "policy_score": 0.2817647058823529,
+      "policy_applicable_frac": 0.34,
+      "studio_url": "https://ai.azure.com/resource/build/evaluation/ae5ed359-3421-407e-8b18-08ede4d5e1da?wsid=/subscriptions/7a880728-70d3-49d0-adde-4250716cfd94/resourceGroups/rg-wwi-concierge-demo/providers/Microsoft.CognitiveServices/accounts/wwi-concierge-demo-foundry/projects/wwi-concierge-demo&tid=edca8f7b-3369-43a4-9770-f990bb37ffa8",
+      "delta_vs_v1": {
+        "quality": {
+          "abs": 0.12400000000000011,
+          "pct": 19.254658385093183
+        },
+        "cost": {
+          "abs": -0.004875364000000001,
+          "pct": -46.77011924290827
+        },
+        "latency": {
+          "abs": 1.0912058877944943,
+          "pct": 3.7440867231053256
+        },
+        "policy": {
+          "abs": -0.08000000000000007,
+          "pct": -22.1138211382114
+        }
+      },
+      "target_status": {
+        "quality": "amber",
+        "cost": "green",
+        "latency": "red",
+        "policy": "red"
+      }
+    },
+    "v3-demo": {
+      "source_file": "eval_results_v3-demo.json",
+      "n_rows": 50,
+      "judge_score": 0.8280000000000001,
+      "schema_score": 0.12,
+      "quality": 0.8280000000000001,
+      "latency_s": 11.22566243648529,
+      "cost_usd": 0.005178080000000001,
+      "policy_score": 0.8182352941176471,
+      "policy_applicable_frac": 0.34,
+      "studio_url": "https://ai.azure.com/resource/build/evaluation/1ea753ce-c606-41c5-9a5f-0aee1fe5a15b?wsid=/subscriptions/7a880728-70d3-49d0-adde-4250716cfd94/resourceGroups/rg-wwi-concierge-demo/providers/Microsoft.CognitiveServices/accounts/wwi-concierge-demo-foundry/projects/wwi-concierge-demo&tid=edca8f7b-3369-43a4-9770-f990bb37ffa8",
+      "delta_vs_v1": {
+        "quality": {
+          "abs": 0.18400000000000005,
+          "pct": 28.57142857142858
+        },
+        "cost": {
+          "abs": -0.00524602,
+          "pct": -50.325879452422754
+        },
+        "latency": {
+          "abs": -17.919118881225586,
+          "pct": -61.483113171744364
+        },
+        "policy": {
+          "abs": 0.4564705882352941,
+          "pct": 126.17886178861785
+        }
+      },
+      "target_status": {
+        "quality": "green",
+        "cost": "green",
+        "latency": "green",
+        "policy": "green"
+      }
+    }
+  }
+}

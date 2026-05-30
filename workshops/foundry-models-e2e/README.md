@@ -65,7 +65,7 @@ Foundry isn't a one-shot picker; it's a **continuous loop**. Each step below tag
 | **Routing** | None. Every request hits the frontier model. | Foundry **Model Router** picks per task type (`route_intent → planner / policy / inline`). |
 | **Caching** | None. Full processing every time. | System-prompt cache + semantic cache on policy Q&A (~35% hit rate). |
 | **Outputs** | Free text, parsed manually downstream. | **Schema-validated JSON** — no parsing overhead, fewer retries. |
-| **Customization** | Prompt-only. Policy answers drift on edge cases. | **Fine-tuned `gpt-4.1`** on WWI refund / baggage / visa policy. |
+| **Customization** | Prompt-only. Policy answers drift on edge cases. | **Fine-tuned `gpt-4.1-mini`** on WWI refund / baggage / visa policy (knowledge-distilled from a `gpt-4.1` teacher). |
 | **Deploy** | Serverless for all traffic — no headroom plan. | Serverless baseline **+ PTU + automatic spillover + priority processing** on the planner. |
 | **Observability** | Print statements. | Built-in tracing, **online evaluations**, red team scans, version compare in the portal. |
 | **Cost / month** | <span style="color:#d33">**~$14,000**</span> | <span style="color:#0a0">**~$3,200  (−77%)**</span> |
@@ -223,7 +223,7 @@ workshops/foundry-models-e2e/
     ├── s06_finetune_policy.py    ← fine-tune gpt-4.1-mini on policy QA
     ├── s06_expand_ft_data.py     ← distillation pipeline: gpt-4.1 teacher generates training labels
     ├── s06_policy_only_eval.py   ← isolated base-vs-FT scorecard (deterministic, no LLM judge)
-    ├── s99_replay_demo.sh        ← interactive demo-replay driver (see RERUN.md)
+    ├── s99_replay_demo.sh        ← interactive demo-replay driver (see DEMO.md)
     └── generated/                 ← all eval_results_*.json + traces (gitignored)
 ```
 
@@ -233,7 +233,40 @@ Start with **[Step 0 — Prereqs & project](./00-setup.md)**. When you finish St
 
 ## Re-running for a clean recorded demo
 
-Once you've completed the workshop once (resources provisioned, FT model deployed, datasets generated), you can replay the **code-only path** in ~20 minutes to regenerate clean scorecards for a recording — no setup, no fine-tuning, no portal clicks.
+Both replay paths below ultimately read **real eval JSON from real Azure
+runs** — they differ only in *which* run, and how reproducible it is:
+
+- **`session/`** — a frozen cache of the **original BRK230 session run**,
+  hand-promoted into the agent tree. The BRK230 agent's *session*
+  mode reads from here so rehearsals and recordings stay bit-for-bit
+  reproducible forever. **Do not modify these files** — that's the
+  reference build you'll always be able to fall back to.
+- **`generated/`** — the run *you* want the agent to walk through. It
+  starts out as a copy of the BRK230 run too, but **you're encouraged to
+  replace it with your own numbers** any time you re-run the workshop.
+  Nothing automatic touches this folder — you copy your eval JSONs in
+  when *you* decide they're a good run, and they stay there until you
+  choose to overwrite them.
+
+### Option A — BRK230 demo replay (recommended for recordings)
+
+A custom Copilot agent (**`@BRK230 Demo Replay`**) replays the entire
+5-demo BRK230 flow end-to-end in chat, off whichever set of eval JSONs
+you point it at — no Azure calls, no waiting on fine-tunes during the
+recording itself. This is what we use for rehearsals and the recorded
+session.
+
+See **[DEMO.md](./DEMO.md)** for the full guide: how to invoke the agent,
+the two modes (session vs live), how `narrative.json` drives every
+scorecard, and how to refresh the live numbers from a fresh workshop
+run.
+
+### Option B — Re-run the code path against real Azure
+
+Once you've completed the workshop once (resources provisioned, FT model
+deployed, datasets generated), you can replay the **code-only path** in
+~20 minutes against your live deployments to regenerate clean scorecards
+— no setup, no fine-tuning, no portal clicks.
 
 ```bash
 cd workshops/foundry-models-e2e/code
@@ -241,7 +274,40 @@ source ../.venv/bin/activate
 ./s99_replay_demo.sh           # interactive: ENTER to run each stage, s=skip, q=quit
 ```
 
-Full details, file provenance, parallel-terminal recipes, and troubleshooting are in **[RERUN.md](./RERUN.md)**.
+This writes fresh `eval_results_*.json` files into
+[code/generated/](./code/) (gitignored). To make those numbers visible
+to the BRK230 demo agent, **manually copy them** over the matching files
+in `.github/agents/brk230-demo/generated/`:
+
+```bash
+cp code/generated/eval_results_v1-curated.json \
+   ../../.github/agents/brk230-demo/generated/
+# ...repeat for v1-demo, v2-demo, v3-demo
+```
+
+The next time the agent loads in *live* mode it'll notice the new files,
+rebuild `narrative.json`, and start citing your numbers instead. **The
+`session/` folder is never touched** — it remains the original BRK230
+cache for reproducible replays.
+
+> **Set targets that match *your* SLA.** The four `targets` in
+> `generated/narrative.json` (quality, cost, latency, policy) drive every
+> ✅ / 🚨 in the scorecards. Defaults are tuned for the BRK230 demo
+> (Quality ≥ 0.80 · Cost ≤ $0.008 · Latency ≤ 15.0s · Policy ≥ 0.80) so
+> v1 lights up red across the board and v3 clears all four. Edit them in
+> `generated/narrative.json` to match the SLA your stakeholders would
+> sign off on — the scorecards re-render against your numbers on the
+> next agent load. **`session/narrative.json` is locked** and should not
+> be edited; it preserves the original BRK230 session targets so the
+> recorded replay never drifts.
+
+> **Regenerate the playbook from your run.** [PLAYBOOK.md](./PLAYBOOK.md)'s
+> meta-table and headline numbers are derived from the same
+> `generated/narrative.json` the agent reads. After you copy your eval
+> JSONs into `generated/`, run
+> [`code/s99_rebuild_playbook.sh`](./code/s99_rebuild_playbook.sh) and
+> splice its output into PLAYBOOK — so the playbook always tells *your*
+> story, not ours.
 
 ### Conventions used by the replay tooling
 

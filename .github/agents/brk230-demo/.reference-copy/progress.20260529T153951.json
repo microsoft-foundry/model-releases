@@ -1,0 +1,19 @@
+{
+  "workshop_slug": "foundry-models-e2e",
+  "mode": "instructor",
+  "started_at": "2026-05-29T15:39:51Z",
+  "current_step": "1.1",
+  "completed_steps": [
+    {
+      "step": "0.5",
+      "title": "Reuse existing project + deployments",
+      "outcome": "ai-team sub; .env + .venv intact from morning; all deployments Succeeded — skipped s00_setup.sh",
+      "completed_at": "2026-05-29T15:42:00Z"
+    }
+  ],
+  "feedback_files": [],
+  "notes": [
+    "Fresh-from-scratch narrative, but Azure provisioning reused from morning session (archived progress at .do-not-commit/archived-progress/progress.20260529T080403.json)."
+  ],
+  "ended_at": null
+}

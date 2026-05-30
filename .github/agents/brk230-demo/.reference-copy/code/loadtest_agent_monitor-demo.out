@@ -1,0 +1,79 @@
+nohup: ignoring input
+app insights connection: InstrumentationKey=d9f4bc65-e5fa-4ca5-b8e3-c9f6ceff70a9…
+AIProjectInstrumentor wired up + Azure Monitor exporter (NonRecordingSpan patch applied)
+warming up instrumentation pipeline (1 priming call)...
+warmup ok
+
+loaded 61 prompts from loadtest-prompts.jsonl
+  classes: ['adversarial', 'edge', 'normal']
+
+LOAD PLAN
+  agent      : concierge-loadtest  (version=1)
+  endpoint   : https://wwi-concierge-demo-foundry.services.ai.azure.com/api/projects/wwi-concierge-demo
+  duration   : 7200s  (≈ 2.00h)
+  base rate  : 5.0 req/min  (envelope 0.25× .. 1.5×)
+  spikes     : 4  (5× rate, 2-4 min each)
+        1.3–   4.1 min
+       50.3–  52.8 min
+       76.6–  79.3 min
+       91.1–  93.7 min
+  lulls      : 2  (silent, 3-8 min each)
+       27.4–  32.4 min
+       74.9–  81.7 min
+  workers    : 4
+  output csv : generated/loadtest_agent_monitor-demo.csv
+
+[t+   1.0m]  total=    5  +  5/min  ok=5  err=0  rate=  5.1/min  (normal=5)
+[t+   2.0m]  total=   19  + 14/min  ok=19  err=0  rate= 26.3/min 🔥SPIKE  (adversarial=4 edge=3 normal=12)
+[t+   3.0m]  total=   37  + 18/min  ok=37  err=0  rate= 27.0/min 🔥SPIKE  (adversarial=10 edge=11 normal=16)
+[t+   4.0m]  total=   45  +  8/min  ok=45  err=0  rate= 27.6/min 🔥SPIKE  (adversarial=14 edge=12 normal=19)
+[t+   5.0m]  total=   76  + 31/min  ok=76  err=0  rate=  5.7/min  (adversarial=23 edge=21 normal=32)
+[t+   6.0m]  total=   82  +  6/min  ok=82  err=0  rate=  5.8/min  (adversarial=26 edge=24 normal=32)
+[t+   7.0m]  total=   93  + 11/min  ok=93  err=0  rate=  5.9/min  (adversarial=28 edge=28 normal=37)
+[t+   8.0m]  total=   96  +  3/min  ok=96  err=0  rate=  6.0/min  (adversarial=30 edge=28 normal=38)
+[t+   9.0m]  total=  108  + 12/min  ok=108  err=0  rate=  6.1/min  (adversarial=33 edge=30 normal=45)
+[t+  10.0m]  total=  118  + 10/min  ok=118  err=0  rate=  6.3/min  (adversarial=33 edge=35 normal=50)
+[t+  11.1m]  total=  123  +  5/min  ok=123  err=0  rate=  6.4/min  (adversarial=33 edge=36 normal=54)
+[t+  12.1m]  total=  126  +  3/min  ok=126  err=0  rate=  6.5/min  (adversarial=33 edge=36 normal=57)
+[t+  13.1m]  total=  133  +  7/min  ok=133  err=0  rate=  6.6/min  (adversarial=33 edge=37 normal=63)
+[t+  14.1m]  total=  135  +  2/min  ok=135  err=0  rate=  6.7/min  (adversarial=34 edge=37 normal=64)
+[t+  15.1m]  total=  142  +  7/min  ok=142  err=0  rate=  6.8/min  (adversarial=34 edge=40 normal=68)
+[t+  16.1m]  total=  147  +  5/min  ok=147  err=0  rate=  6.9/min  (adversarial=34 edge=41 normal=72)
+[t+  17.1m]  total=  153  +  6/min  ok=153  err=0  rate=  6.9/min  (adversarial=36 edge=41 normal=76)
+[t+  18.1m]  total=  163  + 10/min  ok=163  err=0  rate=  7.0/min  (adversarial=38 edge=43 normal=82)
+[t+  19.1m]  total=  165  +  2/min  ok=165  err=0  rate=  7.1/min  (adversarial=38 edge=43 normal=84)
+[t+  20.1m]  total=  186  + 21/min  ok=186  err=0  rate=  7.2/min  (adversarial=41 edge=51 normal=94)
+[t+  21.1m]  total=  195  +  9/min  ok=195  err=0  rate=  7.2/min  (adversarial=44 edge=51 normal=100)
+[t+  22.1m]  total=  202  +  7/min  ok=202  err=0  rate=  7.3/min  (adversarial=45 edge=53 normal=104)
+[t+  23.1m]  total=  209  +  7/min  ok=209  err=0  rate=  7.3/min  (adversarial=46 edge=54 normal=109)
+[t+  24.1m]  total=  214  +  5/min  ok=213  err=1  rate=  7.4/min  (adversarial=47 edge=55 normal=112)
+[t+  25.1m]  total=  219  +  5/min  ok=218  err=1  rate=  7.4/min  (adversarial=48 edge=57 normal=114)
+[t+  26.1m]  total=  221  +  2/min  ok=220  err=1  rate=  7.4/min  (adversarial=49 edge=57 normal=115)
+[t+  27.1m]  total=  225  +  4/min  ok=224  err=1  rate=  7.5/min  (adversarial=49 edge=58 normal=118)
+[t+  28.1m]  total=  232  +  7/min  ok=231  err=1  rate=  0.0/min 🌙LULL  (adversarial=49 edge=59 normal=124)
+[t+  29.1m]  total=  232  +  0/min  ok=231  err=1  rate=  0.0/min 🌙LULL  (adversarial=49 edge=59 normal=124)
+[t+  30.1m]  total=  232  +  0/min  ok=231  err=1  rate=  0.0/min 🌙LULL  (adversarial=49 edge=59 normal=124)
+[t+  31.1m]  total=  232  +  0/min  ok=231  err=1  rate=  0.0/min 🌙LULL  (adversarial=49 edge=59 normal=124)
+[t+  32.1m]  total=  232  +  0/min  ok=231  err=1  rate=  0.0/min 🌙LULL  (adversarial=49 edge=59 normal=124)
+[t+  33.1m]  total=  235  +  3/min  ok=234  err=1  rate=  7.5/min  (adversarial=49 edge=61 normal=125)
+[t+  34.1m]  total=  241  +  6/min  ok=240  err=1  rate=  7.4/min  (adversarial=50 edge=62 normal=129)
+[t+  35.1m]  total=  249  +  8/min  ok=248  err=1  rate=  7.4/min  (adversarial=51 edge=66 normal=132)
+[t+  36.1m]  total=  253  +  4/min  ok=252  err=1  rate=  7.4/min  (adversarial=51 edge=69 normal=133)
+[t+  37.1m]  total=  265  + 12/min  ok=264  err=1  rate=  7.3/min  (adversarial=53 edge=69 normal=143)
+[t+  38.1m]  total=  268  +  3/min  ok=267  err=1  rate=  7.3/min  (adversarial=54 edge=70 normal=144)
+[t+  39.2m]  total=  273  +  5/min  ok=272  err=1  rate=  7.2/min  (adversarial=54 edge=70 normal=149)
+[t+  40.2m]  total=  281  +  8/min  ok=280  err=1  rate=  7.2/min  (adversarial=55 edge=71 normal=155)
+[t+  41.2m]  total=  289  +  8/min  ok=288  err=1  rate=  7.1/min  (adversarial=55 edge=73 normal=161)
+[t+  42.2m]  total=  298  +  9/min  ok=297  err=1  rate=  7.0/min  (adversarial=57 edge=75 normal=166)
+[t+  43.2m]  total=  301  +  3/min  ok=300  err=1  rate=  6.9/min  (adversarial=58 edge=76 normal=167)
+[t+  44.2m]  total=  311  + 10/min  ok=310  err=1  rate=  6.8/min  (adversarial=58 edge=83 normal=170)
+[t+  45.2m]  total=  318  +  7/min  ok=317  err=1  rate=  6.8/min  (adversarial=61 edge=85 normal=172)
+[t+  46.2m]  total=  327  +  9/min  ok=326  err=1  rate=  6.7/min  (adversarial=63 edge=88 normal=176)
+[t+  47.2m]  total=  327  +  0/min  ok=326  err=1  rate=  6.6/min  (adversarial=63 edge=88 normal=176)
+[t+  48.2m]  total=  344  + 17/min  ok=343  err=1  rate=  6.4/min  (adversarial=63 edge=94 normal=187)
+[t+  49.2m]  total=  348  +  4/min  ok=347  err=1  rate=  6.3/min  (adversarial=63 edge=96 normal=189)
+[t+  50.2m]  total=  355  +  7/min  ok=354  err=1  rate=  6.2/min  (adversarial=65 edge=97 normal=193)
+[t+  51.2m]  total=  361  +  6/min  ok=360  err=1  rate= 30.6/min 🔥SPIKE  (adversarial=67 edge=99 normal=195)
+[t+  52.2m]  total=  366  +  5/min  ok=365  err=1  rate= 30.0/min 🔥SPIKE  (adversarial=68 edge=100 normal=198)
+[t+  53.2m]  total=  384  + 18/min  ok=383  err=1  rate=  5.9/min  (adversarial=76 edge=107 normal=201)
+[t+  54.2m]  total=  400  + 16/min  ok=399  err=1  rate=  5.7/min  (adversarial=83 edge=113 normal=204)
