@@ -68,8 +68,7 @@ flowchart LR
 ## Start here
 
 1. **[`models/quickstart/`](models/quickstart/)** — set up a Foundry project,
-   deploy models, and configure `.env` **once**. Every capsule notebook
-   verifies your env before running any code.
+   deploy models, and configure `.env` **once**.
 2. Browse a family below, pick a release, open its capsule.
 3. New to a capability? Read the matching [primer](docs/) first.
 
