@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/microsoft-foundry/model-releases/schemas/skill.schema.json",
+  "title": "Skill",
+  "description": "Frontmatter contract for a Copilot custom skill (SKILL.md).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "name", "description", "inputs", "produces"],
+  "properties": {
+    "kind": { "const": "skill" },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Skill slug — matches the folder name under .github/skills/."
+    },
+    "description": {
+      "type": "string",
+      "description": "One-line description of what invoking the skill does."
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "description"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "enum": ["string", "date", "url", "enum", "array", "boolean"] },
+          "description": { "type": "string" },
+          "required": { "type": "boolean" },
+          "enum": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "produces": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "Repo paths this skill creates or updates (globs allowed)."
+    },
+    "validates_against": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Schema files this skill's output must satisfy."
+    },
+    "depends_on": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Other skills invoked as part of this skill's flow."
+    }
+  }
+}

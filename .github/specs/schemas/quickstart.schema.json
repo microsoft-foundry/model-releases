@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/microsoft-foundry/model-releases/schemas/quickstart.schema.json",
+  "title": "Quickstart",
+  "description": "Frontmatter contract for the shared Foundry quickstart README.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "required_env"],
+  "properties": {
+    "kind": { "const": "quickstart" },
+    "required_env": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "Env vars every capsule notebook precheck cell must see set."
+    },
+    "sample_env": {
+      "type": "string",
+      "description": "Path to the sample env file (repo-relative)."
+    },
+    "setup_script": {
+      "type": "string",
+      "description": "Path to the bootstrap script (repo-relative)."
+    },
+    "learn_more": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "url"],
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

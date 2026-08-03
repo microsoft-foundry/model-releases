@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/microsoft-foundry/model-releases/schemas/script.schema.json",
+  "title": "Script",
+  "description": "Frontmatter contract for a script sidecar under scripts/.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "script", "purpose"],
+  "properties": {
+    "kind": { "const": "script" },
+    "script": {
+      "type": "string",
+      "description": "Repo-relative path to the script file the spec describes."
+    },
+    "purpose": {
+      "type": "string",
+      "description": "One-line description of what the script does."
+    },
+    "prereqs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "usage": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Example command lines."
+    },
+    "learn_ref": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "Microsoft Learn URL the script is grounded in."
+    },
+    "idempotent": {
+      "type": "boolean",
+      "description": "True if re-running the script is safe."
+    }
+  }
+}

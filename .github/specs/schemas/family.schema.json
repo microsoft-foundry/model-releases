@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/microsoft-foundry/model-releases/schemas/family.schema.json",
+  "title": "Family",
+  "description": "Frontmatter contract for a model-family README.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "name", "slug", "one_line"],
+  "properties": {
+    "kind": { "const": "family" },
+    "name": {
+      "type": "string",
+      "description": "Human-readable family name (e.g. 'Azure OpenAI')."
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Kebab-case folder slug under models/."
+    },
+    "one_line": {
+      "type": "string",
+      "description": "Short pitch used in the repo README family table."
+    },
+    "provider": {
+      "type": ["string", "null"],
+      "description": "Underlying provider or vendor."
+    },
+    "related_primers": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Slugs of primers most relevant to this family (docs/primers/<slug>.md)."
+    }
+  }
+}

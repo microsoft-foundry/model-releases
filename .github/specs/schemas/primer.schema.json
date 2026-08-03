@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/microsoft-foundry/model-releases/schemas/primer.schema.json",
+  "title": "Primer",
+  "description": "Frontmatter contract for a capability primer under docs/primers/.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "capability", "slug", "one_line", "learn_more"],
+  "properties": {
+    "kind": { "const": "primer" },
+    "capability": {
+      "enum": [
+        "chat-completion", "reasoning", "multimodal", "vision",
+        "image-generation", "embeddings", "audio-speech",
+        "function-calling", "model-router", "fine-tuning", "long-context"
+      ]
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "one_line": {
+      "type": "string",
+      "description": "Short pitch used in the repo README taxonomy table."
+    },
+    "learn_more": {
+      "type": "array",
+      "maxItems": 3,
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["title", "url"],
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        },
+        "additionalProperties": false
+      },
+      "description": "At most 3 curated resources. Prefer learn.microsoft.com URLs."
+    }
+  }
+}

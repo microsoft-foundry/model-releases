@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/microsoft-foundry/model-releases/schemas/agent.schema.json",
+  "title": "Agent",
+  "description": "Frontmatter contract for a Copilot custom agent.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "name", "description", "orchestrates"],
+  "properties": {
+    "kind": { "const": "agent" },
+    "name": { "type": "string" },
+    "description": {
+      "type": "string",
+      "description": "One-line description of the agent's job."
+    },
+    "orchestrates": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "Skill names this agent invokes."
+    },
+    "persona_target": {
+      "type": "array",
+      "items": {
+        "enum": ["capsule-creator", "ai-developer"]
+      },
+      "description": "Which repo persona this agent primarily serves."
+    }
+  }
+}
