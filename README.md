@@ -18,7 +18,8 @@ known. Expiry dates are **bolded** when the model retires in the next
 <!-- BEGIN:RECENTLY-ADDED -->
 | Model | Release date | Expires | Pricing |
 |---|---|---|---|
-| _No capsules yet — the most recent releases show up here as they're authored._ | — | — | — |
+| **MAI-Image-2.5 Pro** _(image generation, Microsoft Foundry)_ | [2026-07-23](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-image-2-5-pro-and-mai-voice-2-flash-in-microsoft-foundry/4539446) | — | $5 / 1M text-input tokens · $106 / 1M image-output tokens |
+| **MAI-Voice-2 Flash** _(low-latency TTS, Azure AI Speech, 15+ languages)_ | [2026-07-23](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-image-2-5-pro-and-mai-voice-2-flash-in-microsoft-foundry/4539446) | — | $15 / 1M characters |
 <!-- END:RECENTLY-ADDED -->
 
 ---
