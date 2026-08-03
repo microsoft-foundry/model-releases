@@ -12,7 +12,8 @@ The [Microsoft Foundry Model Catalog](https://ai.azure.com/catalog) has 11K+ mod
 ## Recently added
 
 Recent release announcements, with expiry date and pricing links when
-known.
+known. Expiry dates are **bolded** when the model retires in the next
+60 days — time to look at a successor.
 
 <!-- BEGIN:RECENTLY-ADDED -->
 | Model | Release date | Expires | Pricing |
