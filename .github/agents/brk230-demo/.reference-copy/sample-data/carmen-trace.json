@@ -1,5 +1,0 @@
-{
-  "user_message": "Hi, I'm Carmen from the San Diego office. I need to be in Berlin Tuesday morning for an offsite that runs through Thursday evening. Please book my flights and a hotel near Alexanderplatz. Keep it under $2,500. Also \u2014 here's a parking receipt from SAN three days ago, can you expense it?",
-  "image_url": null,
-  "_note": "image_url is None so the vision OCR step is skipped. To test vision, replace with a public URL or base64 data URI of a parking receipt image."
-}
