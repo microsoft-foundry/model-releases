@@ -53,6 +53,7 @@
     "pricing": {
       "type": ["object", "null"],
       "properties": {
+        "url": { "type": ["string", "null"], "format": "uri", "description": "Official pricing page — surfaced in the Recently added table." },
         "input_per_1k": { "type": ["string", "number", "null"] },
         "output_per_1k": { "type": ["string", "number", "null"] },
         "notes": { "type": ["string", "null"] }

@@ -30,6 +30,7 @@ Columns produced, one row per capsule (most recent first, top 5 by
 | Model | Capsule frontmatter `model` | Capsule README |
 | Release date | Capsule folder date | Capsule frontmatter `announcement` (blog post) — falls back to `model_card` if `announcement` is empty |
 | Expires | Capsule frontmatter `expires` (cross-checked against family README member row) | Bolded with ⚠️ when the date is within `window_days` (default 60); em-dash when unknown |
+| Pricing | Capsule frontmatter `pricing.url` (or `pricing.notes` when there is no URL) | Official pricing page; em-dash when unknown |
 
 Idempotent — safe to run any time. Called automatically at the end of
 [`add-capsule`](../add-capsule/), and recommended on a monthly cadence

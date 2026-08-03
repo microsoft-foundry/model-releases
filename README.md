@@ -11,18 +11,14 @@ The [Microsoft Foundry Model Catalog](https://ai.azure.com/catalog) has 11K+ mod
 
 ## Recently added
 
+Recent release announcements, with expiry date and pricing links when
+known.
+
 <!-- BEGIN:RECENTLY-ADDED -->
-| Model | Release date | Expires |
-|---|---|---|
-| _No capsules yet — the most recent releases show up here as they're authored._ | — | — |
+| Model | Release date | Expires | Pricing |
+|---|---|---|---|
+| _No capsules yet — the most recent releases show up here as they're authored._ | — | — | — |
 <!-- END:RECENTLY-ADDED -->
-
-- **Model** links to the capsule.
-- **Release date** links to the official announcement / blog post.
-- **Expires** is bolded ⚠️ when the model retires in the next 60 days —
-  time to look at a successor.
-
-Refreshed after every new capsule lands, and on a monthly cadence.
 
 ---
 
