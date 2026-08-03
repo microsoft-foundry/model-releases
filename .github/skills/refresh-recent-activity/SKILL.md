@@ -22,15 +22,20 @@ README:
 <!-- BEGIN:RECENTLY-ADDED --> … <!-- END:RECENTLY-ADDED -->
 ```
 
-Columns produced, one row per capsule (most recent first, top 5 by
+Columns produced, one row per capsule (most recent first, top 3 by
 `YYYY-MM-DD` folder name):
 
 | Column | Source | Link target |
 |---|---|---|
-| Model | Capsule frontmatter `model` | Capsule README |
 | Release date | Capsule folder date | Capsule frontmatter `announcement` (blog post) — falls back to `model_card` if `announcement` is empty |
+| Model | Capsule frontmatter `model` | Capsule README |
+| Description | Capsule frontmatter `summary` (or first sentence of capsule README) | plain text — no link |
 | Expires | Capsule frontmatter `expires` (cross-checked against family README member row) | Bolded with ⚠️ when the date is within `window_days` (default 60); em-dash when unknown |
-| Pricing | Capsule frontmatter `pricing.url` (or `pricing.notes` when there is no URL) | Official pricing page; em-dash when unknown |
+
+Pricing is intentionally **not** shown in the README — pricing data
+lives in `CHANGELOG.md` (with a verifiable source link). The caption
+under the README table points readers there for the full history and
+pricing.
 
 Idempotent — safe to run any time. Called automatically at the end of
 [`add-capsule`](../add-capsule/), and recommended on a monthly cadence

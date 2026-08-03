@@ -138,6 +138,18 @@ Column shape:
 The Date cell is a **markdown link to the announcement/blog post** — no
 separate Announcement column (saves horizontal space).
 
+**Verifiable pricing rule.** The Pricing cell is also a markdown link
+whenever a price is stated. The link target is the source the reader
+can use to verify that figure:
+
+- If an **official pricing page** (Azure pricing calculator, provider
+  pricing page, Foundry pricing docs) states the price → link to it.
+- Otherwise, if the price was extracted from the **announcement blog
+  post**, link to that blog post.
+- If pricing is unknown, the cell is `_—_` (no link).
+
+The same rule applies to the README Recently added table.
+
 `add-capsule` skill prepends a row automatically, or updates an
 existing announcement-only row in place when the Date + Model match.
 
