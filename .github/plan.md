@@ -131,12 +131,14 @@ with the capsule link.
 
 Column shape:
 
-| Date | Family | Model | Capabilities | Model card | Pricing | Capsule |
-|---|---|---|---|---|---|---|
-| [YYYY-MM-DD](announcement URL) | … | … | Tag · Tag | ↗ card (or "—") | pricing summary (or "—") | ↗ capsule (or "—") |
+| Date | Family | Model | Capabilities | Pricing | Capsule |
+|---|---|---|---|---|---|
+| [YYYY-MM-DD](announcement URL) | … | [Model](model-card URL) (or plain text) | Tag · Tag | pricing summary (or "—") | ↗ capsule (or "—") |
 
 The Date cell is a **markdown link to the announcement/blog post** — no
-separate Announcement column (saves horizontal space).
+separate Announcement column (saves horizontal space). The **Model
+cell links to the model card** when known — no separate Model card
+column either.
 
 **Verifiable pricing rule.** The Pricing cell is also a markdown link
 whenever a price is stated. The link target is the source the reader

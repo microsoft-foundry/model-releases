@@ -263,7 +263,7 @@ def draft_row(post: BlogPost) -> str:
     # Model card / Pricing before merging.
     return (
         f"| [{dstr}]({post.url}) | _review_ | _review_ (blog title: "
-        f"\"{post.title}\") | _review_ | _—_ | _—_ | _—_ |"
+        f"\"{post.title}\") | _review_ | _—_ | _—_ |"
     )
 
 
@@ -312,13 +312,13 @@ def parse_changelog_top(
             if not line.strip().startswith("|"):
                 break
             cells = [c.strip() for c in line.strip().strip("|").split("|")]
-            if len(cells) >= 7:
+            if len(cells) >= 6:
                 rows.append(cells)
             if len(rows) >= n:
                 break
     keys = [
         "date", "family", "model", "capabilities",
-        "model_card", "pricing", "capsule",
+        "pricing", "capsule",
     ]
     return [dict(zip(keys, r)) for r in rows]
 
