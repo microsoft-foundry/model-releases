@@ -1,0 +1,39 @@
+name: Validate contribution
+
+# Runs on every PR and push to main. Blocks merge when either the
+# schema validator or the crosslink validator finds a problem — so
+# manual contributions can't accidentally miss the CHANGELOG row,
+# forget a primer, leave a `_review_` placeholder, or drift README
+# out of sync with CHANGELOG.
+
+on:
+  pull_request:
+    branches: ["**"]
+  push:
+    branches:
+      - main
+      - "nitya-*"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install dev deps
+        run: pip install -r requirements-dev.txt
+
+      - name: Schemas
+        run: python scripts/validate-specs.py
+
+      - name: Crosslinks
+        run: python scripts/validate-crosslinks.py

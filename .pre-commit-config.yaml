@@ -1,0 +1,38 @@
+# Local pre-commit hooks for model-releases.
+#
+# Install once with:
+#     pip install pre-commit && pre-commit install
+#
+# Then every `git commit` runs the schema + crosslink validators before
+# the commit is created, catching structural problems locally instead
+# of in CI.
+
+repos:
+  - repo: local
+    hooks:
+      - id: validate-specs
+        name: Validate spec frontmatter
+        entry: python scripts/validate-specs.py
+        language: system
+        pass_filenames: false
+        # Run when any authoring file or schema changes.
+        files: |
+          (?x)^(
+            .github/(specs|skills|agents)/.*\.(md|json)|
+            models/.*README\.md|
+            docs/.*\.md|
+            scripts/.*\.spec\.md
+          )$
+
+      - id: validate-crosslinks
+        name: Validate cross-links (CHANGELOG ↔ README ↔ capsules)
+        entry: python scripts/validate-crosslinks.py
+        language: system
+        pass_filenames: false
+        files: |
+          (?x)^(
+            CHANGELOG\.md|
+            README\.md|
+            models/.*|
+            docs/.*
+          )$

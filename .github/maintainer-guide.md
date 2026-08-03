@@ -369,9 +369,60 @@ frontmatter.
 | Agent | [`.github/agents/CapsuleCreatorAgent.md`](./agents/CapsuleCreatorAgent.md) |
 | Skills | [`.github/skills/*/SKILL.md`](./skills/) |
 | Validator | [`scripts/validate-specs.py`](../scripts/validate-specs.py) |
+| Crosslink validator | [`scripts/validate-crosslinks.py`](../scripts/validate-crosslinks.py) |
 | Env bootstrap | [`scripts/setenv.sh`](../scripts/setenv.sh), [`scripts/sample.env`](../scripts/sample.env) |
 | Repo README | [`README.md`](../README.md) |
 | Changelog | [`CHANGELOG.md`](../CHANGELOG.md) |
 | Glossary | [`docs/GLOSSARY.md`](../docs/GLOSSARY.md) |
 | Primers | [`docs/primers/`](../docs/primers/) |
 | Quickstart | [`models/quickstart/README.md`](../models/quickstart/README.md) |
+
+---
+
+## 8. Reviewing a manual (non-agent) contribution
+
+Contributors can hand-author capsules and CHANGELOG entries without
+going through the agent. Two safety nets catch most mistakes for you:
+
+- **CI** — the `Validate contribution` workflow runs
+  [`validate-specs.py`](../scripts/validate-specs.py) (JSON-Schema
+  frontmatter) **and**
+  [`validate-crosslinks.py`](../scripts/validate-crosslinks.py) on
+  every PR. Between them they enforce:
+  - Frontmatter matches the schema for its kind
+  - Every capsule has a matching `CHANGELOG.md` row (date + model)
+  - Every capsule is listed in its family README
+  - Every capability tag has a matching `docs/primers/<slug>.md`
+  - `README.md` Recently added top 3 = `CHANGELOG.md` top 3
+  - No `_review_` placeholders remain in learner-facing files
+- **PR template** — [`.github/pull_request_template.md`](./pull_request_template.md)
+  gives contributors a checklist per change type (capsule, family,
+  primer, glossary, CHANGELOG-only). Anything unchecked in a section
+  the PR touches is a signal for the reviewer.
+
+That leaves you to eyeball the things machines can't check:
+
+- **Pedagogy.** Action-focused voice ("You'll deploy…"), 1–3 concepts
+  per notebook, alternating markdown ↔ code, and mandatory `Your Turn
+  to Explore` / `Summary` / `References` cells at the end.
+- **Tone.** No hype words ("revolutionary", "game-changing"…), no
+  marketing adjectives, and always **Microsoft Foundry** (never "Azure
+  AI Foundry").
+- **Grounding.** Learner-facing links point to `learn.microsoft.com`
+  when a canonical Learn page exists; provider docs are a fallback.
+- **Pricing verifiability.** The Pricing cell in the CHANGELOG row
+  links to an official pricing page when one exists, otherwise to the
+  blog post the figure came from.
+
+Contributors can run both validators locally before pushing:
+
+```bash
+python scripts/validate-specs.py
+python scripts/validate-crosslinks.py
+```
+
+or install the pre-commit hooks to have them run on every commit:
+
+```bash
+pip install pre-commit && pre-commit install
+```
