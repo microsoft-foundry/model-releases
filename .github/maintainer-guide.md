@@ -62,7 +62,7 @@ Pick the smallest thing that exercises the flow, then work up:
 | A **glossary term** you noticed missing | [`add-to-glossary`](./skills/add-to-glossary/SKILL.md) | Entry in `docs/GLOSSARY.md` under the right letter section |
 | A **new model family** | [`add-family`](./skills/add-family/SKILL.md) | `models/<slug>/README.md` |
 | A **model** in an existing family (no capsule yet) | [`add-model`](./skills/add-model/SKILL.md) | Row in `models/<family>/README.md` |
-| A **full release capsule** | [`CapsuleCreatorAgent`](./agents/CapsuleCreatorAgent.md) → [`add-capsule`](./skills/add-capsule/SKILL.md) | Capsule folder + 1–N notebooks + CHANGELOG row + Recent activity refresh |
+| A **full release capsule** | [`CapsuleCreatorAgent`](./agents/CapsuleCreatorAgent.md) → [`add-capsule`](./skills/add-capsule/SKILL.md) | Capsule folder + 1–N notebooks + CHANGELOG row + Recently added refresh |
 | A **new capability** in the taxonomy | [`add-capability-doc`](./skills/add-capability-doc/SKILL.md) | Primer under `docs/primers/` + row in repo README taxonomy |
 
 **Suggested first exercise (5 minutes):** run `add-to-glossary` to add
@@ -135,7 +135,8 @@ upgrade path to GitHub Spec Kit later.
 ### 3.2 A model is retiring
 
 Nothing manual — the `expires` field in the family README's members
-table + the capsule frontmatter drives the **Expiring soon** section.
+table + the capsule frontmatter drives the ⚠️ marker in the
+**Recently added** table.
 Just make sure `expires:` is populated. Run:
 
 ```bash
@@ -148,8 +149,8 @@ The section warns when anything expires in the next 60 days.
 ### 3.3 Monthly refresh
 
 Run `refresh-recent-activity` once a month (or wire it up via a
-scheduled GitHub Action) to keep the "Recent activity" and "Expiring
-soon" marker blocks current even if no capsule shipped that month.
+scheduled GitHub Action) to keep the "Recently added" table current
+even if no capsule shipped that month.
 
 ### 3.4 A new term shows up
 
@@ -208,10 +209,9 @@ seconds.
 
 Grep-based invariants that keep the repo internally consistent:
 
-- **Marker blocks present in repo README:**
+- **Marker block present in repo README:**
   ```bash
-  grep -q "BEGIN:RECENT-ACTIVITY"  README.md
-  grep -q "BEGIN:EXPIRING-SOON"    README.md
+  grep -q "BEGIN:RECENTLY-ADDED"  README.md
   ```
 - **Every capsule README ends with `## References`:**
   ```bash

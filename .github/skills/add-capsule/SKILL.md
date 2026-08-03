@@ -106,5 +106,5 @@ Produces a complete release capsule:
 4. Prepends a row to `CHANGELOG.md`.
 5. Adds a members-table row to `models/<family>/README.md`.
 6. Invokes [`refresh-recent-activity`](../refresh-recent-activity/) so the
-   repo README's **Recent activity** and **Expiring soon** sections stay
-   current.
+   repo README's **Recently added** table (Model / Release date /
+   Expires) stays current.

@@ -9,25 +9,20 @@ The [Microsoft Foundry Model Catalog](https://ai.azure.com/catalog) has 11K+ mod
 
 ---
 
-## Recent activity
+## Recently added
 
-<!-- BEGIN:RECENT-ACTIVITY -->
-_No capsules yet. The 3 most recent release capsules show up here as soon
-as they're authored._
-<!-- END:RECENT-ACTIVITY -->
+<!-- BEGIN:RECENTLY-ADDED -->
+| Model | Release date | Expires |
+|---|---|---|
+| _No capsules yet — the most recent releases show up here as they're authored._ | — | — |
+<!-- END:RECENTLY-ADDED -->
 
-## Expiring soon
+- **Model** links to the capsule.
+- **Release date** links to the official announcement / blog post.
+- **Expires** is bolded ⚠️ when the model retires in the next 60 days —
+  time to look at a successor.
 
-> ⚠️ **Migration heads-up.** Models retiring in the **next 60 days** are
-> listed here so developers can start moving to the successor capsule
-> before their deployment goes cold.
-
-<!-- BEGIN:EXPIRING-SOON -->
-_No models flagged for retirement in the next 60 days._
-<!-- END:EXPIRING-SOON -->
-
-Both sections are refreshed after each new capsule lands, and on a
-monthly cadence to catch upcoming expirations.
+Refreshed after every new capsule lands, and on a monthly cadence.
 
 ---
 
@@ -80,7 +75,7 @@ back to the shared quickstart, docs, and glossary.
 
 Every capsule is tagged with one or more of these. Names are defined
 **once here** and reused everywhere (family READMEs, capsule badges,
-CHANGELOG, Recent activity).
+CHANGELOG, Recently added).
 
 | Tag | What it means | Primer |
 |---|---|---|

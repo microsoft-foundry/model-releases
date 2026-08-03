@@ -16,7 +16,7 @@ persona_target: [capsule-creator]
 
 > **Job:** turn a Microsoft Foundry model release into a full content
 > capsule — folder, README, notebook skeleton, family table row,
-> CHANGELOG entry, and Recent activity refresh — by walking the author
+> CHANGELOG entry, and Recently added refresh — by walking the author
 > through a spec-driven flow.
 
 ## When to invoke
@@ -57,7 +57,7 @@ Say something like:
    - A prepended row in `CHANGELOG.md`.
 5. **Propose 2–3 interesting use cases** grounded in the chosen domains —
    deliberately beyond the default model-card samples. The author picks.
-6. **Refresh Recent activity + Expiring soon** via
+6. **Refresh the Recently added table** via
    [`refresh-recent-activity`](../skills/refresh-recent-activity/).
 7. **Offer follow-ups** — if new terminology showed up, offer
    [`add-to-glossary`](../skills/add-to-glossary/); if a new capability
