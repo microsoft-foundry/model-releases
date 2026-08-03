@@ -29,6 +29,10 @@ _Top 3 most recent — see [`CHANGELOG.md`](CHANGELOG.md) for the full history a
 
 ## How this repo is organized
 
+Think of the repo as a set of nested folders that get more specific as
+you go deeper — each layer exists so you don't have to re-learn the
+things above it.
+
 ```mermaid
 flowchart LR
     R[Repo README<br/>index + taxonomy] --> D[docs/<br/>GLOSSARY + primers]
@@ -39,8 +43,25 @@ flowchart LR
     Q -.env precheck.-> C
 ```
 
-Every capsule lives at `models/<family>/<model>/<YYYY-MM-DD>/` and points
-back to the shared quickstart, docs, and glossary.
+- **`docs/`** is where we keep the shared vocabulary — a glossary and
+  short primers on capabilities like "reasoning" or "function calling"
+  — so a capsule can say "this model does X" without re-explaining X
+  every time.
+- **`models/quickstart/`** is the one place you set up Foundry, deploy
+  a model, and drop your keys into `.env`. Every capsule notebook runs
+  a quick env check first, so if quickstart is done, everything else
+  just works.
+- **`models/<family>/`** groups models by who ships them (Azure OpenAI,
+  Anthropic, Mistral, …). Family READMEs cover the stuff that's true
+  for every model in the family — auth, deployment quirks, common
+  gotchas — so individual capsules can stay focused on what's new.
+- **`models/<family>/<model>/`** is the home for a specific model
+  across its lifetime. Capabilities and quirks that persist across
+  releases live here.
+- **`models/<family>/<model>/<YYYY-MM-DD>/`** is a **capsule**: a
+  single, self-contained lesson about one release on the date it
+  landed. That's why the date is in the path — you can come back a
+  year later and still know exactly which version you learned against.
 
 ---
 
