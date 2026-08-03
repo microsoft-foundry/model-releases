@@ -23,24 +23,12 @@ as they're authored._
 _No models flagged for retirement in the next 60 days._
 <!-- END:EXPIRING-SOON -->
 
-Both sections are maintained by the
-[`refresh-recent-activity`](.github/skills/refresh-recent-activity/) skill —
-run it after adding a capsule, and on a monthly cadence to catch upcoming
-expirations.
+Both sections are refreshed after each new capsule lands, and on a
+monthly cadence to catch upcoming expirations.
 
 ---
 
 ## How this repo is organized
-
-```mermaid
-flowchart LR
-    R[Repo README<br/>index + taxonomy] --> D[docs/<br/>GLOSSARY + primers]
-    R --> Q[models/quickstart/<br/>shared setup]
-    R --> F[models/&lt;family&gt;/<br/>family README]
-    F --> M[models/&lt;family&gt;/&lt;model&gt;/]
-    M --> C[&lt;YYYY-MM-DD&gt;/<br/>capsule: README + notebooks]
-    Q -.env precheck.-> C
-```
 
 Every capsule lives at `models/<family>/<model>/<YYYY-MM-DD>/` and points
 back to the shared quickstart, docs, and glossary.
@@ -106,21 +94,24 @@ model card link, and capsule link (if one exists).
 
 ---
 
-## Contribute a capsule
+## For contributors
 
-Authoring a capsule is agent-driven. Ask GitHub Copilot:
+Adding a new capsule, family, capability, or glossary term? This repo is
+spec-driven: authoring is Copilot-agent-driven, and every artifact is
+validated against a JSON Schema.
+
+```mermaid
+flowchart LR
+    A[CapsuleCreatorAgent<br/>Copilot custom agent] --> S[6 skills<br/>add-family, add-model,<br/>add-capsule, add-to-glossary,<br/>add-capability-doc,<br/>refresh-recent-activity]
+    S --> M[Markdown + YAML<br/>frontmatter artifacts]
+    M --> V[scripts/validate-specs.py]
+    V --> X[.github/specs/schemas/<br/>7 JSON Schemas]
+```
+
+**Start with the [maintainer guide](.github/maintainer-guide.md)** — it
+covers setup validation, how to add your first capsule/family/term, and
+the testing strategy.
+
+Quick agent invocation:
 
 > _"Use the **CapsuleCreatorAgent** to add a capsule for &lt;family&gt; / &lt;model&gt; released on &lt;date&gt;."_
-
-The agent orchestrates these skills under `.github/skills/`:
-
-- [`add-family`](.github/skills/add-family/) — register a new family
-- [`add-model`](.github/skills/add-model/) — register a new model under a family
-- [`add-capsule`](.github/skills/add-capsule/) — scaffold a release capsule
-- [`add-to-glossary`](.github/skills/add-to-glossary/) — define a new term
-- [`add-capability-doc`](.github/skills/add-capability-doc/) — add a capability primer
-- [`refresh-recent-activity`](.github/skills/refresh-recent-activity/) — update the README section above
-
-The living plan for this repo is in [`.github/plan.md`](.github/plan.md).
-Maintainers: start with the [maintainer guide](.github/maintainer-guide.md)
-for setup validation, routine tasks, and the testing strategy.
