@@ -96,13 +96,6 @@ Unsure what a term means? Check the [glossary](docs/GLOSSARY.md).
 
 ---
 
-## Changelog
-
-Every release lands in [`CHANGELOG.md`](CHANGELOG.md) — announcement link,
-model card link, and capsule link (if one exists).
-
----
-
 ## For contributors
 
 Adding a new capsule, family, capability, or glossary term? This repo is

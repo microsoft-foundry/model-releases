@@ -1,0 +1,106 @@
+name: Scan Foundry blog for new model releases
+
+# Runs weekly (Mondays 14:00 UTC) or on demand. Fetches the Microsoft
+# Foundry blog index, diffs post URLs against CHANGELOG.md, and opens
+# a pull request with draft rows for any new model-announcement posts.
+# The PR also refreshes the README Recently added top 3.
+#
+# Draft rows use `_review_` placeholders for Family / Model /
+# Capabilities / Model card / Pricing so the maintainer can complete
+# the details before merging. The Date cell is a working link to the
+# blog post.
+
+on:
+  schedule:
+    # Every Monday at 14:00 UTC
+    - cron: "0 14 * * 1"
+  workflow_dispatch:
+    inputs:
+      max_pages:
+        description: "Blog index pages to scan"
+        required: false
+        default: "3"
+      dry_run:
+        description: "Only report findings; do not open a PR"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scan Foundry blog
+        id: scan
+        run: |
+          python scripts/scan_foundry_blog.py \
+            --max-pages "${{ inputs.max_pages || '3' }}" \
+            ${{ inputs.dry_run == 'true' && '--dry-run' || '' }} \
+            | tee scan-output.txt
+
+      - name: Detect file changes
+        id: diff
+        run: |
+          if git diff --quiet -- CHANGELOG.md README.md; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish scan summary
+        if: always()
+        run: |
+          {
+            echo "## Foundry blog scan"
+            echo
+            echo '```'
+            cat scan-output.txt || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open pull request
+        if: >-
+          steps.diff.outputs.changed == 'true'
+          && inputs.dry_run != 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: bot/scan-foundry-blog
+          delete-branch: true
+          commit-message: "chore(scan): draft CHANGELOG rows from Foundry blog"
+          title: "Foundry blog scan: draft CHANGELOG + README updates"
+          body: |
+            Automated scan of the [Microsoft Foundry blog](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/).
+
+            **What this PR does**
+
+            - Prepends one draft row to `CHANGELOG.md` per new model-announcement
+              blog post that isn't already referenced.
+            - Refreshes the `README.md` **Recently added** block to reflect the
+              top 3 CHANGELOG rows.
+
+            **Before merging**
+
+            Every new row is a draft with `_review_` placeholders for Family,
+            Model, Capabilities, Model card, and Pricing. Please complete those
+            cells from the linked blog post (the Date cell is already a working
+            link) so the row is verifiable. Pricing cells should link to an
+            official pricing page when one exists, otherwise to the blog post
+            the figure was extracted from.
+
+            See the workflow run summary for the full scanner output.
+          labels: |
+            release-scan
+            needs-review
