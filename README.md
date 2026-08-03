@@ -18,9 +18,9 @@ known. Expiry dates are **bolded** when the model retires in the next
 <!-- BEGIN:RECENTLY-ADDED -->
 | Model | Release date | Expires | Pricing |
 |---|---|---|---|
+| **GPT-transcribe** _(async speech-to-text, high accuracy, Azure OpenAI)_ | [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | — | $0.27 / audio hour _(Global Standard)_ |
+| **GPT-live-transcribe** _(low-latency streaming ASR via Realtime API)_ | [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | — | $1.02 / audio hour _(Global Standard)_ |
 | **Kimi K3** _(open-weight, 2.8T params, 1M-token context — via Fireworks AI)_ | [2026-07-28](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-kimi-k3-through-fireworks-ai-on-microsoft-foundry/4540187) | — | $3.30 / 1M input · $16.50 / 1M output · $0.33 / 1M cached input _(Data Zone)_ |
-| **Claude Opus 5** _(Anthropic's most advanced Opus; long-running agents, vision, coding)_ | [2026-07-24](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/claude-opus-5-is-available-today-in-microsoft-foundry/4535068) | — | — |
-| **MAI-Image-2.5 Pro** _(image generation, Microsoft Foundry)_ | [2026-07-23](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-image-2-5-pro-and-mai-voice-2-flash-in-microsoft-foundry/4539446) | — | $5 / 1M text-input tokens · $106 / 1M image-output tokens |
 
 _Top 3 most recent — see [`CHANGELOG.md`](CHANGELOG.md) for the full history._
 <!-- END:RECENTLY-ADDED -->

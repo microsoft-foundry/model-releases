@@ -124,13 +124,22 @@ Top-to-bottom outline of `README.md`:
 
 ## 4. CHANGELOG.md
 
-One row per release, newest first:
+One row per release, newest first. **Rows may be added before a
+capsule exists** — the announcement and any known pricing/card links
+are enough. A later `add-capsule` run updates the same row in place
+with the capsule link.
 
-| Date | Family | Model | Announcement | Model card | Capsule |
-|---|---|---|---|---|---|
-| YYYY-MM-DD | … | … | ↗ official post | ↗ card | ↗ capsule (or "—") |
+Column shape:
 
-`add-capsule` skill prepends a row automatically.
+| Date | Family | Model | Capabilities | Model card | Pricing | Capsule |
+|---|---|---|---|---|---|---|
+| [YYYY-MM-DD](announcement URL) | … | … | Tag · Tag | ↗ card (or "—") | pricing summary (or "—") | ↗ capsule (or "—") |
+
+The Date cell is a **markdown link to the announcement/blog post** — no
+separate Announcement column (saves horizontal space).
+
+`add-capsule` skill prepends a row automatically, or updates an
+existing announcement-only row in place when the Date + Model match.
 
 ---
 
