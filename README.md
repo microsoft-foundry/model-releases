@@ -1,5 +1,8 @@
 # Microsoft Foundry Model Releases
 
+The [Microsoft Foundry Model Catalog](https://ai.azure.com/catalog) has 11K+ models and continues to grow with new model families and versions being released regularly. This repository supports new releases with _content capsules_ that g
+
+
 > **Content capsules for every Foundry model release.** Small, self-contained
 > learning units that take you from *"a model dropped"* to *"I've run it and
 > I know when to use it"* — fast.
@@ -29,6 +32,16 @@ monthly cadence to catch upcoming expirations.
 ---
 
 ## How this repo is organized
+
+```mermaid
+flowchart LR
+    R[Repo README<br/>index + taxonomy] --> D[docs/<br/>GLOSSARY + primers]
+    R --> Q[models/quickstart/<br/>shared setup]
+    R --> F[models/&lt;family&gt;/<br/>family README]
+    F --> M[models/&lt;family&gt;/&lt;model&gt;/]
+    M --> C[&lt;YYYY-MM-DD&gt;/<br/>capsule: README + notebooks]
+    Q -.env precheck.-> C
+```
 
 Every capsule lives at `models/<family>/<model>/<YYYY-MM-DD>/` and points
 back to the shared quickstart, docs, and glossary.
