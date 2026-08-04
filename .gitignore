@@ -10,6 +10,7 @@
 *.userosscache
 *.sln.docstates
 *.env
+!scripts/sample.env
 
 # Local planning/scratch folder - do not commit
 .do-not-commit/

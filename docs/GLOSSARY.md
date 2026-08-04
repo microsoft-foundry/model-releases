@@ -86,7 +86,16 @@ _No entries yet._
 
 ## M
 
-_No entries yet._
+### Model Optimization
+
+A continuous improvement loop that iteratively moves an application toward
+its cost, quality, and latency goals by pulling on a set of levers —
+model selection, prompt optimization, context engineering, evaluation,
+fine-tuning, quantization, and distillation — rather than a one-time
+configuration step. Each iteration measures progress against target metrics
+and feeds results back into the next round of adjustments.
+
+**Reference:** [A Developer's Guide to Managing Models, Cost and Quality in Microsoft Foundry](https://devblogs.microsoft.com/foundry/build-2026-foundry-models/)
 
 ## N
 

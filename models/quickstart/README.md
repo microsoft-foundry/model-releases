@@ -14,16 +14,14 @@ learn_more:
     url: https://learn.microsoft.com/en-us/azure/foundry/how-to/create-projects
 ---
 
-# Foundry Quickstart
+# Model Releases Quickstart
 
-> **Do this once.** Every capsule notebook in this repo assumes you've
-> completed the four steps below. When a notebook can't find a required
-> env var, it will point you back here.
+> **Do this once.** Every capsule notebook in this repo assumes you've completed the four steps below. When a notebook can't find a required env var, it will point you back here.
 
 **Grounded in Microsoft Learn:**
-[Foundry quickstart docs](https://learn.microsoft.com/en-us/azure/foundry/quickstarts/get-started-code) ·
-[Foundry Models overview](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview) ·
-[Model catalog](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
+- [Quickstart: Get started with Microsoft Foundry SDK](https://learn.microsoft.com/en-us/azure/foundry/quickstarts/get-started-code) 
+- [Overview of Microsoft Foundry Models](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview) 
+- [Explore the Microsoft Foundry model catalog](https://ai.azure.com/catalog)
 
 ---
 
@@ -50,43 +48,64 @@ flowchart LR
 
 ## 2. Create a Foundry project
 
-Portal path:
-[Create a project in the Foundry portal](https://learn.microsoft.com/en-us/azure/foundry/how-to/create-projects).
+1. Go to [ai.azure.com](https://ai.azure.com) and sign in with your Azure account.
+2. Slide the **New Foundry** toggle (top-right) to **on**.
+3. When prompted, complete the **Create project** wizard. Alternatively, click the project drop-down and select **Create project** to trigger the flow manually.
+4. If prompted to create a resource group in the Azure Portal, complete that step before continuing.
+5. Note the **resource group name** and **project name** — you need them in Step 4.
+6. Wait for creation to complete.
 
-CLI path (helper coming to [`scripts/`](../../scripts/)):
+Full walkthrough: [Create a project in the Foundry portal](https://learn.microsoft.com/en-us/azure/foundry/how-to/create-projects).
 
-```bash
-# scripts/create-foundry-project.sh <project-name> <region>
-# Placeholder — see scripts/README.md for the current inventory.
-```
-
-**Region tip.** Not every model is available in every region. Check the
-[model catalog](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
-for the model you plan to deploy and pick a region that hosts it.
+> **Other ways to create a project** (Azure CLI, Foundry Toolkit) will be documented here in a future update.
 
 ## 3. Deploy the models a capsule needs
 
 Each release capsule lists the exact deployments it expects in its
-**Before You Begin** section. Deploy them by:
+**Before You Begin** section. To deploy a model:
 
-1. Opening your project → **Model catalog**.
-2. Selecting the model → **Deploy**.
-3. Naming the deployment **by the job it does**, not the raw model name
-   (e.g. `router-nano`, `policy-mini`, `planner-gpt41`). This makes it
-   trivial to swap models later without touching notebooks.
+1. In your project, open **Model catalog**.
+2. Select the model → **Deploy**.
+3. Name the deployment **by the job it does**, not the raw model name
+   (e.g. `router-nano`, `policy-mini`, `planner-gpt41`) — this makes it easy
+   to swap models later without touching notebooks.
 
-See [Deploy models to Foundry](https://learn.microsoft.com/en-us/azure/foundry/how-to/deploy-models-openai).
+Full reference: [Deploy models in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/how-to/deploy-models-openai).
+
+> **Other deployment paths** (Azure CLI, Foundry Toolkit) will be documented here in a future update.
 
 ## 4. Configure `.env`
 
-Copy the template and fill it in:
+**Step 1 — Authenticate with Azure**
 
 ```bash
-./scripts/setenv.sh                          # copy template only
-./scripts/setenv.sh <resource-group> <project-name>   # + populate via Azure CLI
+az login
 ```
 
-Details in [`scripts/setenv.spec.md`](../../scripts/setenv.spec.md).
+**Step 2 — Run the setup script**
+
+From the repo root, substituting your resource group and project name from Step 2.
+If you get a permission error, make the scripts executable first:
+
+```bash
+chmod a+x scripts/*.sh
+```
+
+```bash
+./scripts/setenv.sh --use <resource-group> <project-name>
+```
+
+The script copies [`scripts/sample.env`](../../scripts/sample.env) to `.env`, then reads
+the endpoint and API key from the project and fills them in automatically.
+Pass `--force` to overwrite an existing `.env`.
+
+To load the variables into your current terminal session:
+
+```bash
+source .env
+```
+
+Full reference: [`scripts/setenv.spec.md`](../../scripts/setenv.spec.md).
 
 Then set at minimum:
 
