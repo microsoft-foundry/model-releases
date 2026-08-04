@@ -22,12 +22,11 @@ The [CHANGELOG](./CHANGELOG.md) tracks the model releases with a link to the ori
 The table below shows the top 3 most recent announcements from that list, for convenience.
 
 <!-- BEGIN:RECENTLY-ADDED -->
-| Release date | Model | Description | 
-|---|---|---|
-| [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | **GPT-transcribe** | Async speech-to-text, high accuracy, Azure OpenAI | 
-| [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | **GPT-live-transcribe** | Low-latency streaming ASR via the Realtime API | 
-| [2026-07-28](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-kimi-k3-through-fireworks-ai-on-microsoft-foundry/4540187) | **Kimi K3** | Open-weight, 2.8T params, 1M-token context — via Fireworks AI | 
-| | | |
+| Release date | Model | Description | Expires |
+|---|---|---|---|
+| [2026-07-23](https://microsoft.ai/news/introducing-mai-image-2-5-pro-and-mai-voice-2-flash/) | [**MAI-Image-2.5-Pro**](models/microsoft-ai/mai-image-2.5-pro/2026-07-23/README.md) | Extends MAI-Image-2.5 with higher portrait quality, accurate text rendering, and spatial reasoning | — |
+| [2026-06-02](https://microsoft.ai/news/microsoft-build-2026-mai-keynote-transcript/) | [**MAI-Image-2.5**](models/microsoft-ai/mai-image-2.5/2026-06-02/README.md) | Baseline diffusion model for text-to-image generation and precise image-to-image editing | — |
+| [2026-06-02](https://microsoft.ai/news/microsoft-build-2026-mai-keynote-transcript/) | [**MAI-Image-2.5-Flash**](models/microsoft-ai/mai-image-2.5-flash/2026-06-02/README.md) | Production-efficiency variant of MAI-Image-2.5, optimised for throughput at scale | — |
 
 <!-- END:RECENTLY-ADDED -->
 

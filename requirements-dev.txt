@@ -8,3 +8,5 @@ pyyaml
 jsonschema>=4.18
 
 # ............. Capsule dependencies
+# MAI-Image-2.5 / Flash / Pro — REST calls to /mai/v1/images/* endpoints
+requests
