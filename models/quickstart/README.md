@@ -1,8 +1,8 @@
 ---
 kind: quickstart
 required_env:
-  - AZURE_FOUNDRY_ENDPOINT
-  - AZURE_FOUNDRY_API_KEY
+  - MICROSOFT_FOUNDRY_ENDPOINT
+  - MICROSOFT_FOUNDRY_API_KEY
 sample_env: scripts/sample.env
 setup_script: scripts/setenv.sh
 learn_more:
@@ -111,9 +111,9 @@ Then set at minimum:
 
 | Variable | What it is |
 |---|---|
-| `AZURE_FOUNDRY_ENDPOINT` | Your project's inference endpoint URL |
-| `AZURE_FOUNDRY_API_KEY` | Project API key (or use `azure-identity`) |
-| `AZURE_FOUNDRY_REGION` | Region you deployed into (e.g. `swedencentral`) |
+| `MICROSOFT_FOUNDRY_ENDPOINT` | Your project's inference endpoint URL |
+| `MICROSOFT_FOUNDRY_API_KEY` | Project API key (or use `azure-identity`) |
+| `MICROSOFT_FOUNDRY_REGION` | Region you deployed into (e.g. `swedencentral`) |
 | `<JOB>_DEPLOYMENT` | One per deployment used by the capsule you're running |
 
 Capsules add capsule-specific vars in their **Before You Begin**. The
@@ -127,7 +127,7 @@ You can also run this one-liner from the repo root:
 
 ```bash
 python -c "import os,dotenv; dotenv.load_dotenv(); \
-required=['AZURE_FOUNDRY_ENDPOINT','AZURE_FOUNDRY_API_KEY']; \
+required=['MICROSOFT_FOUNDRY_ENDPOINT','MICROSOFT_FOUNDRY_API_KEY']; \
 missing=[v for v in required if not os.getenv(v)]; \
 print('✅ base env OK' if not missing else f'⚠️ missing: {missing}')"
 ```
