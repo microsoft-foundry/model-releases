@@ -10,3 +10,11 @@ jsonschema>=4.18
 # ............. Capsule dependencies
 # MAI-Image-2.5 / Flash / Pro — REST calls to /mai/v1/images/* endpoints
 requests
+
+# MAI-Transcribe-1.5 — LLM Speech API transcription
+azure-ai-transcription
+azure-identity
+# MAI-Transcribe-1.5 noise benchmark — audio mixing, WER scoring, plotting
+soundfile
+jiwer
+matplotlib

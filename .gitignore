@@ -10,10 +10,14 @@
 *.userosscache
 *.sln.docstates
 *.env
+venv
 !scripts/sample.env
 
 # Local planning/scratch folder - do not commit
 .do-not-commit/
+
+# Capsule notebook artifacts (generated audio, plots, CSVs)
+models/**/output/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
