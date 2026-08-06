@@ -121,15 +121,18 @@ Model selection and options live in the `definition` payload:
 
 ```json
 {
-  "locales": ["en"],
-  "phraseList": { "phrases": ["Contoso", "Jessie", "Rehaan"] },
+  "locales": ["en-US"],
+  "phraseList": { "phrases": ["Microsoft Foundry", "AI", "DevOps"] },
   "enhancedMode": {
-    "enabled": true,
     "model": "mai-transcribe-1.5",
-    "transcribeStyle": "verbatim"
   }
 }
 ```
+
+Two gotchas the docs don't call out: `locales` needs full BCP-47 tags (`en-US`,
+not `en`), and sending `"enabled": true` alongside `model` fails with
+`(InvalidRequest) Enhanced mode with model is currently not supported yet` —
+naming the model is enough to turn enhanced mode on.
 
 ## References
 
