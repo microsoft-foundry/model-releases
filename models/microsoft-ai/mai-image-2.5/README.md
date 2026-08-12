@@ -2,7 +2,9 @@
 kind: capsule
 family: microsoft-ai
 model: mai-image-2.5
+summary: "Generate and edit images from text prompts with MAI-Image-2.5 on Microsoft Foundry."
 release_date: "2026-06-02"
+last_updated: "2026-08-11"
 capabilities: [image-generation]
 model_card: https://ai.azure.com/catalog/models/MAI-Image-2.5
 announcement: https://microsoft.ai/news/microsoft-build-2026-mai-keynote-transcript/
@@ -18,19 +20,6 @@ notebooks:
       - text-to-image generation
       - image dimensions and aspect ratios
       - image-to-image editing
-references:
-  - title: "Deploy and use MAI image models in Microsoft Foundry"
-    url: "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai-image?tabs=python"
-    kind: docs
-    note: "Official how-to covering the generations and edits APIs, authentication, and rate limits."
-  - title: "MAI-Image-2.5 model page"
-    url: "https://microsoft.ai/models/mai-image-2-5/"
-    kind: blog
-    note: "Model overview, capability comparison, and arena benchmarks."
-  - title: "Build 2026 MAI keynote transcript"
-    url: "https://microsoft.ai/news/microsoft-build-2026-mai-keynote-transcript/"
-    kind: blog
-    note: "Keynote introducing the full MAI model family."
 ---
 
 # MAI-Image-2.5 — Release Capsule

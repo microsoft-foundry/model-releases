@@ -1,6 +1,7 @@
 ---
 kind: primer
 capability: audio-speech
+label: "Audio / Speech"
 slug: audio-speech
 one_line: STT, TTS, or realtime voice.
 learn_more:

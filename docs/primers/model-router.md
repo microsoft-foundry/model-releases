@@ -1,6 +1,7 @@
 ---
 kind: primer
 capability: model-router
+label: "Model Router"
 slug: model-router
 one_line: One endpoint that routes requests across models.
 learn_more:

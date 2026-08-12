@@ -1,4 +1,4 @@
-# Reference Guide
+# Microsoft Foundry Model Releases — Reference Guide
 
 Background material for the [Microsoft Foundry Model Releases](../README.md) repo — how it's organized, what the model families and capability tags mean, and how to add content of your own.
 
@@ -6,20 +6,22 @@ Background material for the [Microsoft Foundry Model Releases](../README.md) rep
 - [Learn About: Model families](#learn-about-model-families)
 - [Learn About: Model capabilities](#learn-about-model-capabilities)
 - [Contributing: How can I add new content?](#contributing-how-can-i-add-new-content)
+- [Using this repo from an agent](#using-this-repo-from-an-agent)
 
 <br/>
 
 ## Repository: What resources can I find here?
 
 The repository is meant to be a self-contained resource where you can:
-1. Learn about the latest model release announcements (via CHANGELOG)
-1. Get hands-on experience with model releases (via `models/` release capsules)
+1. Learn about the latest model release announcements (via [CHANGELOG](../CHANGELOG.md))
+1. Get hands-on experience with model releases (via the [CAPSULE-TOC](../CAPSULE-TOC.md) and `models/` release capsules)
 1. Fill gaps in model knowledge with supporting glossary & primers (in `docs/`)
 
 Here is a visual representation of the repository structure for reference:
 - the `docs/` folder has a glossary and primers to build familiarity with terminology
 - the `models/` folder contains the model release capsules, organized by provider/family.
 - the `models/quickstart` folder contains guidance to get started with development.
+- a `multi-model-scenarios/` folder under a family holds walkthroughs that span two or more releases.
 
 ```mermaid
 flowchart LR
@@ -27,6 +29,7 @@ flowchart LR
     R --> Q[models/quickstart/<br/>shared setup]
     R --> F[models/&lt;family&gt;/<br/>family README]
     F --> C[models/&lt;family&gt;/&lt;release&gt;/<br/>capsule: README + notebook]
+    F --> S[models/&lt;family&gt;/multi-model-scenarios/&lt;slug&gt;/<br/>scenario: README + notebook]
     Q -.env precheck.-> C
 ```
 
@@ -55,23 +58,29 @@ Models are typically associated with a provider (the organization that created a
 
 ## Learn About: Model capabilities
 
-Every capsule is tagged with one or more of these. Names are defined
-**once here** and reused everywhere (family READMEs, capsule badges,
-CHANGELOG, Recently added).
+Every capsule is tagged with one or more of these. The table below is
+generated from the `label` and `aliases` fields in `docs/primers/`, so
+each primer defines its own display name once and every other surface
+(family READMEs, capsule badges, CHANGELOG, `CAPSULE-TOC.md`,
+`catalog.json`) reuses it. A tag is only valid if some primer declares
+it - as its `capability` or in its `aliases` - which is what
+`validate-crosslinks.py` enforces.
 
-| Tag | What it means | Primer |
-|---|---|---|
-| **Chat Completion** | General instruction-following and dialogue. | [chat-completion](primers/chat-completion.md) |
-| **Reasoning** | Extended-thinking / chain-of-thought optimized models. | [reasoning-models](primers/reasoning-models.md) |
-| **Multimodal** | Accepts image (and/or audio) input alongside text. | [multimodal-models](primers/multimodal-models.md) |
-| **Vision** | Image understanding as a primary capability. | [multimodal-models](primers/multimodal-models.md) |
-| **Image Generation** | Text → image output. | [image-generation](primers/image-generation.md) |
-| **Embeddings** | Vector representations for retrieval / similarity. | [embeddings](primers/embeddings.md) |
-| **Audio / Speech** | STT, TTS, or realtime voice. | [audio-speech](primers/audio-speech.md) |
-| **Function Calling** | Structured tool invocation. | [function-calling](primers/function-calling.md) |
-| **Model Router** | One endpoint that routes requests across models. | [model-router](primers/model-router.md) |
-| **Fine-tuning Ready** | Supports customization / distillation. | [fine-tuning](primers/fine-tuning.md) |
-| **Long Context** | 200k+ token context window. | [long-context](primers/long-context.md) |
+<!-- BEGIN:CAPABILITY-TAXONOMY -->
+| Tag | Capability | What it means | Primer |
+| --- | --- | --- | --- |
+| `audio-speech` | Audio / Speech | STT, TTS, or realtime voice. | [audio-speech](primers/audio-speech.md) |
+| `chat-completion` | Chat Completion | General instruction-following and dialogue. | [chat-completion](primers/chat-completion.md) |
+| `embeddings` | Embeddings | Vector representations for retrieval / similarity. | [embeddings](primers/embeddings.md) |
+| `fine-tuning` | Fine-tuning Ready | Supports customization / distillation. | [fine-tuning](primers/fine-tuning.md) |
+| `function-calling` | Function Calling | Structured tool invocation. | [function-calling](primers/function-calling.md) |
+| `image-generation` | Image Generation | Text → image output. | [image-generation](primers/image-generation.md) |
+| `long-context` | Long Context | 200k+ token context window. | [long-context](primers/long-context.md) |
+| `model-router` | Model Router | One endpoint that routes requests across models. | [model-router](primers/model-router.md) |
+| `multimodal` | Multimodal | Accepts image (and/or audio) input alongside text. | [multimodal-models](primers/multimodal-models.md) |
+| `reasoning` | Reasoning | Extended-thinking / chain-of-thought optimized models. | [reasoning-models](primers/reasoning-models.md) |
+| `vision` | Vision | Image understanding as a primary capability. | [multimodal-models](primers/multimodal-models.md) |
+<!-- END:CAPABILITY-TAXONOMY -->
 
 Unsure what a term means? Check the [glossary](GLOSSARY.md).
 
@@ -86,8 +95,12 @@ flowchart LR
     A[CapsuleCreatorAgent<br/>Copilot custom agent] --> S[6 skills<br/>add-family, add-model,<br/>add-capsule, add-to-glossary,<br/>add-capability-doc,<br/>refresh-recent-activity]
     S --> M[Markdown + YAML<br/>frontmatter artifacts]
     M --> V[scripts/validate-specs.py]
-    V --> X[.github/specs/schemas/<br/>7 JSON Schemas]
+    V --> X[.github/specs/schemas/<br/>8 JSON Schemas]
+    M --> G[scripts/generate-catalog.py]
+    G --> J[catalog.json + llms.txt]
 ```
+
+Schemas live centrally in [`.github/specs/schemas/`](../.github/specs/schemas/); each artifact carries only its own data. The rule for what goes where: **frontmatter holds facts a machine needs to index the page, everything a human reads goes in the body.** If a field would only be rendered back out as prose, write the prose instead - that's why references are markdown bullets in `## References` rather than a YAML array.
 
 1. **Start with the [maintainer guide](../.github/maintainer-guide.md)** — it
 covers setup validation, how to add your first capsule/family/term, and
@@ -97,3 +110,20 @@ the testing strategy.
     ```text
     Use the CapsuleCreatorAgent to add a capsule for the (model) released on (date)
     ```
+
+<br/>
+
+## Using this repo from an agent
+
+Two generated files let a tool understand the whole catalog in one request, instead of crawling the tree:
+
+| File | Use it for |
+|---|---|
+| [`catalog.json`](../catalog.json) | Every capsule, scenario, family, and primer as structured data - models, capabilities, pricing, notebook paths |
+| [`llms.txt`](../llms.txt) | A link-dense markdown map of the repo, per the [/llms.txt convention](https://llmstxt.org/) |
+
+Both are generated by [`scripts/generate-catalog.py`](../scripts/generate-catalog.py) from artifact frontmatter, and CI fails if they drift. Never edit them by hand - change the frontmatter and regenerate:
+
+```bash
+python scripts/generate-catalog.py
+```

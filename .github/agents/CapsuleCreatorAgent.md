@@ -35,10 +35,10 @@ Say something like:
 2. **Gather references** — asks the creator: *"What references
    (model card, official docs, sample repos, blog posts, papers) should
    I use as best-practice sources and cite at the end of the capsule?"*
-   Requires at least one entry; each entry captures `title`, `url`, and
-   optionally `kind` + `note`. These flow into the capsule frontmatter's
-   `references` array and are rendered as the final **References**
-   section of the notebook and capsule README.
+   Requires at least one entry; each entry captures a title, URL, and
+   an optional note. These are written as markdown bullets in the final
+   **References** section of the notebook and capsule README — body
+   content, not frontmatter.
 3. **Ensure the family exists** — if not, invokes
    [`add-family`](../skills/add-family/).
 3. **Register the model** — invokes [`add-model`](../skills/add-model/)

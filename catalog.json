@@ -1,0 +1,443 @@
+{
+  "name": "Microsoft Foundry Model Releases",
+  "description": "Release capsules for Microsoft Foundry model announcements — each pairs a model release with a runnable notebook.",
+  "url": "https://github.com/microsoft-foundry/model-releases",
+  "capabilities": [
+    {
+      "capability": "audio-speech",
+      "label": "Audio / Speech",
+      "description": "STT, TTS, or realtime voice.",
+      "primer": "audio-speech",
+      "primer_path": "docs/primers/audio-speech.md"
+    },
+    {
+      "capability": "chat-completion",
+      "label": "Chat Completion",
+      "description": "General instruction-following and dialogue.",
+      "primer": "chat-completion",
+      "primer_path": "docs/primers/chat-completion.md"
+    },
+    {
+      "capability": "embeddings",
+      "label": "Embeddings",
+      "description": "Vector representations for retrieval / similarity.",
+      "primer": "embeddings",
+      "primer_path": "docs/primers/embeddings.md"
+    },
+    {
+      "capability": "fine-tuning",
+      "label": "Fine-tuning Ready",
+      "description": "Supports customization / distillation.",
+      "primer": "fine-tuning",
+      "primer_path": "docs/primers/fine-tuning.md"
+    },
+    {
+      "capability": "function-calling",
+      "label": "Function Calling",
+      "description": "Structured tool invocation.",
+      "primer": "function-calling",
+      "primer_path": "docs/primers/function-calling.md"
+    },
+    {
+      "capability": "image-generation",
+      "label": "Image Generation",
+      "description": "Text → image output.",
+      "primer": "image-generation",
+      "primer_path": "docs/primers/image-generation.md"
+    },
+    {
+      "capability": "long-context",
+      "label": "Long Context",
+      "description": "200k+ token context window.",
+      "primer": "long-context",
+      "primer_path": "docs/primers/long-context.md"
+    },
+    {
+      "capability": "model-router",
+      "label": "Model Router",
+      "description": "One endpoint that routes requests across models.",
+      "primer": "model-router",
+      "primer_path": "docs/primers/model-router.md"
+    },
+    {
+      "capability": "multimodal",
+      "label": "Multimodal",
+      "description": "Accepts image (and/or audio) input alongside text.",
+      "primer": "multimodal-models",
+      "primer_path": "docs/primers/multimodal-models.md"
+    },
+    {
+      "capability": "reasoning",
+      "label": "Reasoning",
+      "description": "Extended-thinking / chain-of-thought optimized models.",
+      "primer": "reasoning-models",
+      "primer_path": "docs/primers/reasoning-models.md"
+    },
+    {
+      "capability": "vision",
+      "label": "Vision",
+      "description": "Image understanding as a primary capability.",
+      "primer": "multimodal-models",
+      "primer_path": "docs/primers/multimodal-models.md"
+    }
+  ],
+  "counts": {
+    "capsules": 4,
+    "scenarios": 1,
+    "families": 12,
+    "primers": 10
+  },
+  "capsules": [
+    {
+      "model": "mai-image-2.5-pro",
+      "name": "MAI-Image-2.5-Pro",
+      "family": "microsoft-ai",
+      "summary": "Render portraits, in-image text, and complex scenes with MAI-Image-2.5-Pro on Microsoft Foundry.",
+      "release_date": "2026-07-23",
+      "last_updated": "2026-08-04",
+      "capabilities": [
+        "image-generation"
+      ],
+      "model_card": "https://ai.azure.com/catalog/models/MAI-Image-2.5-Pro",
+      "announcement": "https://microsoft.ai/news/introducing-mai-image-2-5-pro-and-mai-voice-2-flash/",
+      "pricing": {
+        "notes": "$5 / 1M text tokens in · $106 / 1M image tokens out",
+        "source": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-image-2-5-pro-and-mai-voice-2-flash-in-microsoft-foundry/4539446"
+      },
+      "domains": [
+        "brand-identity",
+        "editorial-photography",
+        "marketing"
+      ],
+      "path": "models/microsoft-ai/mai-image-2.5-pro",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-image-2.5-pro",
+      "notebooks": [
+        {
+          "path": "models/microsoft-ai/mai-image-2.5-pro/mai-image-2.5-pro.ipynb",
+          "title": "Portraits, text rendering, and visual reasoning with MAI-Image-2.5-Pro",
+          "concepts": [
+            "high-fidelity portrait generation",
+            "accurate text rendering in images",
+            "visual reasoning across complex scenes"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "mai-transcribe-1.5",
+      "name": "MAI-Transcribe-1.5",
+      "family": "microsoft-ai",
+      "summary": "Transcribe multilingual audio with keyword biasing using MAI-Transcribe-1.5 on Microsoft Foundry.",
+      "release_date": "2026-06-02",
+      "last_updated": "2026-08-07",
+      "capabilities": [
+        "audio-speech"
+      ],
+      "model_card": "https://ai.azure.com/catalog/models/MAI-Transcribe-1.5",
+      "announcement": "https://microsoft.ai/news/mai-transcribe-1-5more-accurate-context-aware-and-built-for-production/",
+      "pricing": {
+        "notes": "$0.36 per hour of audio",
+        "source": "https://microsoft.ai/models/mai-transcribe-1-5/"
+      },
+      "domains": [
+        "contact-center",
+        "healthcare",
+        "media-captioning",
+        "meetings"
+      ],
+      "path": "models/microsoft-ai/mai-transcribe-1.5",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-transcribe-1.5",
+      "notebooks": [
+        {
+          "path": "models/microsoft-ai/mai-transcribe-1.5/mai-transcribe-1.5.ipynb",
+          "title": "Multilingual transcription, transcribe styles, and keyword biasing with MAI-Transcribe-1.5",
+          "concepts": [
+            "multilingual transcription with automatic language detection",
+            "readability vs. verbatim transcribe styles",
+            "keyword biasing for domain-specific vocabulary"
+          ]
+        },
+        {
+          "path": "models/microsoft-ai/mai-transcribe-1.5/mai-transcribe-1.5-noise-benchmark.ipynb",
+          "title": "Benchmarking MAI-Transcribe-1.5 accuracy against background noise",
+          "concepts": [
+            "mixing speech with noise at controlled SNR levels",
+            "scoring transcripts with word and character error rate",
+            "plotting accuracy degradation against signal-to-noise ratio"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "mai-image-2.5-flash",
+      "name": "MAI-Image-2.5-Flash",
+      "family": "microsoft-ai",
+      "summary": "Generate images faster and cheaper with MAI-Image-2.5-Flash on Microsoft Foundry.",
+      "release_date": "2026-06-02",
+      "last_updated": "2026-08-04",
+      "capabilities": [
+        "image-generation"
+      ],
+      "model_card": "https://ai.azure.com/catalog/models/MAI-Image-2.5-Flash",
+      "announcement": "https://microsoft.ai/news/microsoft-build-2026-mai-keynote-transcript/",
+      "pricing": {
+        "notes": "lower than MAI-Image-2.5 base — see model page for current rate",
+        "source": "https://microsoft.ai/models/mai-image-2-5/"
+      },
+      "domains": [
+        "e-commerce",
+        "product-photography",
+        "high-volume-content"
+      ],
+      "path": "models/microsoft-ai/mai-image-2.5-flash",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-image-2.5-flash",
+      "notebooks": [
+        {
+          "path": "models/microsoft-ai/mai-image-2.5-flash/mai-image-2.5-flash.ipynb",
+          "title": "Production-scale image generation with MAI-Image-2.5-Flash",
+          "concepts": [
+            "batch image generation",
+            "throughput measurement and cost estimation",
+            "concurrent requests for high-volume workflows"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "mai-image-2.5",
+      "name": "MAI-Image-2.5",
+      "family": "microsoft-ai",
+      "summary": "Generate and edit images from text prompts with MAI-Image-2.5 on Microsoft Foundry.",
+      "release_date": "2026-06-02",
+      "last_updated": "2026-08-11",
+      "capabilities": [
+        "image-generation"
+      ],
+      "model_card": "https://ai.azure.com/catalog/models/MAI-Image-2.5",
+      "announcement": "https://microsoft.ai/news/microsoft-build-2026-mai-keynote-transcript/",
+      "pricing": {
+        "notes": "$0.05 / image",
+        "source": "https://microsoft.ai/models/mai-image-2-5/"
+      },
+      "domains": [
+        "e-commerce",
+        "marketing",
+        "creative-media"
+      ],
+      "path": "models/microsoft-ai/mai-image-2.5",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-image-2.5",
+      "notebooks": [
+        {
+          "path": "models/microsoft-ai/mai-image-2.5/mai-image-2.5.ipynb",
+          "title": "Generate and edit images with MAI-Image-2.5",
+          "concepts": [
+            "text-to-image generation",
+            "image dimensions and aspect ratios",
+            "image-to-image editing"
+          ]
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "slug": "mai-image-family-walkthrough",
+      "title": "MAI-Image-2.5 family walkthrough",
+      "summary": "Compare MAI-Image-2.5, Flash, and Pro on identical prompts to pick the right variant.",
+      "last_updated": "2026-08-12",
+      "scope": "family",
+      "family": "microsoft-ai",
+      "models": [
+        {
+          "family": "microsoft-ai",
+          "model": "mai-image-2.5-flash",
+          "role": "Fast concurrent generation — resale listing backgrounds and mood boards"
+        },
+        {
+          "family": "microsoft-ai",
+          "model": "mai-image-2.5",
+          "role": "Image editing and before/after comparisons"
+        },
+        {
+          "family": "microsoft-ai",
+          "model": "mai-image-2.5-pro",
+          "role": "Text-to-image and character-consistency evaluation"
+        }
+      ],
+      "capabilities": [
+        "image-generation"
+      ],
+      "path": "models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough",
+      "notebooks": [
+        {
+          "path": "models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough/mai-image-family-walkthrough.ipynb",
+          "title": "Compare MAI-Image-2.5, Flash, and Pro side by side",
+          "concepts": [
+            "choosing between family variants for a task",
+            "concurrent generation with shared helpers",
+            "editing and character consistency"
+          ]
+        }
+      ]
+    }
+  ],
+  "families": [
+    {
+      "slug": "anthropic",
+      "name": "Anthropic",
+      "provider": "Anthropic",
+      "one_line": "Claude family",
+      "path": "models/anthropic"
+    },
+    {
+      "slug": "azure-openai",
+      "name": "Azure OpenAI",
+      "provider": "Azure OpenAI",
+      "one_line": "GPT-family models on Microsoft Foundry",
+      "path": "models/azure-openai"
+    },
+    {
+      "slug": "black-forest-labs",
+      "name": "Black Forest Labs",
+      "provider": "Black Forest Labs",
+      "one_line": "FLUX image-generation models",
+      "path": "models/black-forest-labs"
+    },
+    {
+      "slug": "cohere",
+      "name": "Cohere",
+      "provider": "Cohere",
+      "one_line": "Command chat + Embed embedding models",
+      "path": "models/cohere"
+    },
+    {
+      "slug": "deepseek",
+      "name": "DeepSeek",
+      "provider": "DeepSeek",
+      "one_line": "DeepSeek reasoning + chat models",
+      "path": "models/deepseek"
+    },
+    {
+      "slug": "fireworks",
+      "name": "Fireworks",
+      "provider": "Fireworks",
+      "one_line": "Fast OSS-model inference",
+      "path": "models/fireworks"
+    },
+    {
+      "slug": "hugging-face",
+      "name": "Hugging Face",
+      "provider": "Hugging Face",
+      "one_line": "Open-source model catalog on Foundry",
+      "path": "models/hugging-face"
+    },
+    {
+      "slug": "microsoft-ai",
+      "name": "Microsoft AI",
+      "provider": "Microsoft",
+      "one_line": "MAI model family — image, voice, transcription, reasoning, and coding.",
+      "path": "models/microsoft-ai"
+    },
+    {
+      "slug": "mistral",
+      "name": "Mistral",
+      "provider": "Mistral",
+      "one_line": "Mistral / Mixtral / Ministral (incl. MoE)",
+      "path": "models/mistral"
+    },
+    {
+      "slug": "model-router",
+      "name": "Model Router",
+      "provider": "Microsoft",
+      "one_line": "One endpoint, best-fit model per request",
+      "path": "models/model-router"
+    },
+    {
+      "slug": "nvidia",
+      "name": "NVIDIA",
+      "provider": "NVIDIA",
+      "one_line": "NIM microservices for language, vision, biology, and earth science",
+      "path": "models/nvidia"
+    },
+    {
+      "slug": "xai",
+      "name": "xAI",
+      "provider": "xAI",
+      "one_line": "Grok family",
+      "path": "models/xai"
+    }
+  ],
+  "primers": [
+    {
+      "capability": "audio-speech",
+      "label": "Audio / Speech",
+      "slug": "audio-speech",
+      "one_line": "STT, TTS, or realtime voice.",
+      "path": "docs/primers/audio-speech.md"
+    },
+    {
+      "capability": "chat-completion",
+      "label": "Chat Completion",
+      "slug": "chat-completion",
+      "one_line": "General instruction-following and dialogue.",
+      "path": "docs/primers/chat-completion.md"
+    },
+    {
+      "capability": "embeddings",
+      "label": "Embeddings",
+      "slug": "embeddings",
+      "one_line": "Vector representations for retrieval / similarity.",
+      "path": "docs/primers/embeddings.md"
+    },
+    {
+      "capability": "fine-tuning",
+      "label": "Fine-tuning Ready",
+      "slug": "fine-tuning",
+      "one_line": "Supports customization / distillation.",
+      "path": "docs/primers/fine-tuning.md"
+    },
+    {
+      "capability": "function-calling",
+      "label": "Function Calling",
+      "slug": "function-calling",
+      "one_line": "Structured tool invocation.",
+      "path": "docs/primers/function-calling.md"
+    },
+    {
+      "capability": "image-generation",
+      "label": "Image Generation",
+      "slug": "image-generation",
+      "one_line": "Text → image output.",
+      "path": "docs/primers/image-generation.md"
+    },
+    {
+      "capability": "long-context",
+      "label": "Long Context",
+      "slug": "long-context",
+      "one_line": "200k+ token context window.",
+      "path": "docs/primers/long-context.md"
+    },
+    {
+      "capability": "model-router",
+      "label": "Model Router",
+      "slug": "model-router",
+      "one_line": "One endpoint that routes requests across models.",
+      "path": "docs/primers/model-router.md"
+    },
+    {
+      "capability": "multimodal",
+      "label": "Multimodal",
+      "slug": "multimodal-models",
+      "one_line": "Accepts image (and/or audio) input alongside text.",
+      "path": "docs/primers/multimodal-models.md"
+    },
+    {
+      "capability": "reasoning",
+      "label": "Reasoning",
+      "slug": "reasoning-models",
+      "one_line": "Extended-thinking / chain-of-thought optimized models.",
+      "path": "docs/primers/reasoning-models.md"
+    }
+  ]
+}

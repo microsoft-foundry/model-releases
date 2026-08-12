@@ -1,6 +1,7 @@
 ---
 kind: primer
 capability: fine-tuning
+label: "Fine-tuning Ready"
 slug: fine-tuning
 one_line: Supports customization / distillation.
 learn_more:

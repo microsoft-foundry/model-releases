@@ -7,7 +7,7 @@ provider: Fireworks
 related_primers: [chat-completion]
 ---
 
-# Fireworks
+# Fireworks Models on Microsoft Foundry
 
 > **Fast inference for open-source models on Microsoft Foundry.**
 > Fireworks-hosted models optimized for throughput and low latency.

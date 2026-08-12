@@ -7,7 +7,7 @@ provider: Azure OpenAI
 related_primers: [chat-completion, reasoning-models, multimodal-models, function-calling, fine-tuning]
 ---
 
-# Azure OpenAI
+# Azure OpenAI Models on Microsoft Foundry
 
 > **GPT-family models hosted on Microsoft Foundry.** The workhorse family
 > for chat, reasoning, vision, function calling, and fine-tuning across

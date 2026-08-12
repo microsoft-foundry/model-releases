@@ -11,11 +11,14 @@ what a human reviewer would otherwise have to eyeball:
 2. Every capsule appears in its family README's members list (loose
    grep — the model slug must be mentioned somewhere in the family
    README).
-3. Every capability tag used by a capsule has a matching primer file
-   in `docs/primers/<slug>.md`.
-4. `README.md` "Recently added" top 3 rows match the top 3 rows of
+3. Every capability tag used by a capsule or scenario has a matching
+   primer file in `docs/primers/<slug>.md`.
+4. Every notebook declared in frontmatter exists on disk, and every
+   `.ipynb` under `models/` is claimed by exactly one artifact.
+5. Every model a scenario references resolves to a real capsule.
+6. `README.md` "Recently added" top 3 rows match the top 3 rows of
    `CHANGELOG.md` by (date, model).
-5. No unresolved `_review_` placeholder tokens remain in the repo.
+7. No unresolved `_review_` placeholder tokens remain in the repo.
 
 Exit 0 if all invariants hold, 1 otherwise (per-issue messages
 printed).
@@ -121,17 +124,21 @@ def parse_changelog_rows() -> list[dict[str, str]]:
             in_table = False
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) < 6:
+        if len(cells) < 5:
             continue
         # Date cell may be `[YYYY-MM-DD](url)` or plain.
         m = re.search(r"\d{4}-\d{2}-\d{2}", cells[0])
         date = m.group(0) if m else cells[0]
+        # Family cell is plain text, but tolerate a link if one is
+        # ever added.
+        m = re.match(r"\[([^\]]+)\]", cells[1])
+        family = m.group(1) if m else cells[1]
         # Model cell may be `[Model](url)` or plain.
         m = re.match(r"\[([^\]]+)\]", cells[2])
         model = m.group(1) if m else cells[2]
         rows.append({
             "date": date,
-            "family": cells[1],
+            "family": family.strip(),
             "model": model.strip(),
         })
     return rows
@@ -232,10 +239,23 @@ def check_capsule_in_family_readme(capsules: list[Path]) -> list[str]:
 
 
 def check_capabilities_have_primers(capsules: list[Path]) -> list[str]:
+    """Every capability tag must resolve to a primer.
+
+    Resolution is by the primer's `capability` field (plus any
+    `aliases`), not by filename: `reasoning` is documented in
+    `reasoning-models.md`, and `vision` is covered by
+    `multimodal-models.md`.
+    """
     errs: list[str] = []
-    known_primers = {
-        p.stem for p in PRIMERS_DIR.glob("*.md")
-    } if PRIMERS_DIR.exists() else set()
+    known: set[str] = set()
+    if PRIMERS_DIR.exists():
+        for p in PRIMERS_DIR.glob("*.md"):
+            fm = read_frontmatter(p)
+            if fm.get("capability"):
+                known.add(str(fm["capability"]).strip().lower())
+            for alias in fm.get("aliases") or []:
+                if isinstance(alias, dict) and alias.get("capability"):
+                    known.add(str(alias["capability"]).strip().lower())
     for cap in capsules:
         fm = read_frontmatter(cap)
         tags = fm.get("capabilities") or fm.get("tags") or []
@@ -245,12 +265,12 @@ def check_capabilities_have_primers(capsules: list[Path]) -> list[str]:
             slug = str(tag).strip().lower()
             if not slug:
                 continue
-            if slug not in known_primers:
+            if slug not in known:
                 errs.append(
                     f"[crosslink] capsule "
                     f"{cap.relative_to(REPO_ROOT)} uses capability "
-                    f"tag {slug!r} but no primer exists at "
-                    f"docs/primers/{slug}.md"
+                    f"tag {slug!r} but no primer in docs/primers/ "
+                    f"declares it (as `capability:` or in `aliases:`)"
                 )
     return errs
 
@@ -316,8 +336,73 @@ def check_no_placeholders() -> list[str]:
     return errs
 
 
+def check_notebooks_exist(artifacts: list[Path]) -> list[str]:
+    """Every notebook declared in frontmatter must exist on disk."""
+    errs: list[str] = []
+    for art in artifacts:
+        fm = read_frontmatter(art)
+        for nb in fm.get("notebooks") or []:
+            if not isinstance(nb, dict):
+                continue
+            rel_nb = str(nb.get("path") or "").strip()
+            if not rel_nb:
+                continue
+            if not (art.parent / rel_nb).exists():
+                errs.append(
+                    f"[crosslink] {art.relative_to(REPO_ROOT)} declares "
+                    f"notebook {rel_nb!r} but no such file exists. "
+                    "Notebooks live at the artifact folder root."
+                )
+    return errs
+
+
+def check_no_orphan_notebooks(artifacts: list[Path]) -> list[str]:
+    """No .ipynb under models/ may go unclaimed by an artifact."""
+    declared = set()
+    for art in artifacts:
+        for nb in read_frontmatter(art).get("notebooks") or []:
+            if isinstance(nb, dict) and nb.get("path"):
+                declared.add((art.parent / str(nb["path"])).resolve())
+    errs: list[str] = []
+    for nb_path in FAMILY_ROOT.rglob("*.ipynb"):
+        if ".ipynb_checkpoints" in nb_path.parts:
+            continue
+        if nb_path.resolve() not in declared:
+            errs.append(
+                f"[crosslink] notebook "
+                f"{nb_path.relative_to(REPO_ROOT)} is not declared in "
+                "any capsule, scenario, or quickstart `notebooks:` "
+                "list — every notebook needs an owning artifact"
+            )
+    return errs
+
+
+def check_scenario_models_exist(scenarios: list[Path]) -> list[str]:
+    """Each model a scenario references must be a real capsule."""
+    errs: list[str] = []
+    for scen in scenarios:
+        rel = scen.relative_to(REPO_ROOT)
+        fm = read_frontmatter(scen)
+        for entry in fm.get("models") or []:
+            if not isinstance(entry, dict):
+                continue
+            family = str(entry.get("family") or "").strip()
+            model = str(entry.get("model") or "").strip()
+            target = FAMILY_ROOT / family / model / "README.md"
+            if not target.exists():
+                errs.append(
+                    f"[crosslink] scenario {rel} references "
+                    f"{family}/{model} but no capsule exists at "
+                    f"models/{family}/{model}/README.md"
+                )
+    return errs
+
+
 def main() -> int:
     capsules = find_capsules()
+    scenarios = find_scenarios()
+    quickstart = [p for p in [FAMILY_ROOT / "quickstart" / "README.md"]
+                  if p.exists()]
     changelog = parse_changelog_rows()
     readme_rows = parse_readme_recent()
 
@@ -325,6 +410,12 @@ def main() -> int:
     all_errs += check_capsule_in_changelog(capsules, changelog)
     all_errs += check_capsule_in_family_readme(capsules)
     all_errs += check_capabilities_have_primers(capsules)
+    all_errs += check_capabilities_have_primers(scenarios)
+    all_errs += check_scenario_models_exist(scenarios)
+    all_errs += check_notebooks_exist(capsules + scenarios + quickstart)
+    all_errs += check_no_orphan_notebooks(
+        capsules + scenarios + quickstart
+    )
     all_errs += check_readme_matches_changelog(readme_rows, changelog)
     all_errs += check_no_placeholders()
 
@@ -335,6 +426,7 @@ def main() -> int:
         return 1
     print(
         f"Crosslinks OK — {len(capsules)} capsule(s), "
+        f"{len(scenarios)} scenario(s), "
         f"{len(changelog)} CHANGELOG row(s), "
         f"{len(readme_rows)} README row(s)."
     )

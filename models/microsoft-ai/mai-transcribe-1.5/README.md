@@ -2,7 +2,9 @@
 kind: capsule
 family: microsoft-ai
 model: mai-transcribe-1.5
+summary: "Transcribe multilingual audio with keyword biasing using MAI-Transcribe-1.5 on Microsoft Foundry."
 release_date: "2026-06-02"
+last_updated: "2026-08-07"
 capabilities: [audio-speech]
 model_card: https://ai.azure.com/catalog/models/MAI-Transcribe-1.5
 announcement: https://microsoft.ai/news/mai-transcribe-1-5more-accurate-context-aware-and-built-for-production/
@@ -24,27 +26,6 @@ notebooks:
       - mixing speech with noise at controlled SNR levels
       - scoring transcripts with word and character error rate
       - plotting accuracy degradation against signal-to-noise ratio
-references:
-  - title: "MAI-Transcribe in Azure Speech (preview)"
-    url: "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-transcribe?context=%2Fazure%2Ffoundry%2Fcontext%2Fcontext&pivots=ai-foundry"
-    kind: docs
-    note: "Official how-to covering enhancedMode, transcribeStyle, phraseList, language support, and limitations."
-  - title: "LLM Speech for speech transcription and translation"
-    url: "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-python"
-    kind: docs
-    note: "Quickstart for the LLM Speech API that MAI-Transcribe runs on — auth, the azure-ai-transcription SDK, and the response shape."
-  - title: "Introducing MAI-Transcribe-1.5"
-    url: "https://microsoft.ai/news/mai-transcribe-1-5more-accurate-context-aware-and-built-for-production/"
-    kind: blog
-    note: "Release announcement — 43-language coverage, throughput, and keyword-biasing results."
-  - title: "MAI-Transcribe-1.5 model page"
-    url: "https://microsoft.ai/models/mai-transcribe-1-5/"
-    kind: blog
-    note: "Benchmark comparison against MAI-Transcribe-1 and pricing per audio hour."
-  - title: "MAI-Transcribe-1.5 model card (PDF)"
-    url: "https://microsoft.ai/pdf/MAI-Transcribe-1.5-Model-Card.PDF"
-    kind: model-card
-    note: "Intended uses, evaluation methodology, and responsible-AI considerations."
 ---
 
 # MAI-Transcribe-1.5 — Release Capsule

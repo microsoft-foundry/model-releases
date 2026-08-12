@@ -215,13 +215,13 @@ Grep-based invariants that keep the repo internally consistent:
   ```
 - **Every capsule README ends with `## References`:**
   ```bash
-  for f in models/*/*/*/README.md; do
+  for f in models/*/*/README.md; do
     grep -q "^## References" "$f" || echo "MISSING References: $f"
   done
   ```
 - **Every notebook has a `Your Turn to Explore` cell:**
   ```bash
-  for nb in models/*/*/*/notebooks/*.ipynb; do
+  for nb in models/*/*/*.ipynb; do
     grep -q "Your Turn to Explore" "$nb" || echo "MISSING YTTE: $nb"
   done
   ```

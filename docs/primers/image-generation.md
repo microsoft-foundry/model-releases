@@ -1,6 +1,7 @@
 ---
 kind: primer
 capability: image-generation
+label: "Image Generation"
 slug: image-generation
 one_line: Text → image output.
 learn_more:

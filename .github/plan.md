@@ -126,17 +126,17 @@ Top-to-bottom outline of `README.md`:
 
 One row per release, newest first, grouped into a table per month.
 **Rows may be added before a capsule exists** — the announcement and
-any known pricing/card links are enough. A later `add-capsule` run
-updates the same row in place with the capsule link.
+any known pricing/card links are enough. Capsules are tracked
+separately in `CAPSULE-TOC.md`.
 
 Rows are grouped into one table per month, newest month first:
 
 ```markdown
 ## July 2026
 
-| Date | Family | Model | Capabilities | Pricing | Capsule |
-|---|---|---|---|---|---|
-| [YYYY-MM-DD](announcement URL) | … | [Model](model-card URL) (or plain text) | Tag · Tag | pricing summary (or "—") | ↗ capsule (or "—") |
+| Date | Family | Model | Capabilities | Pricing |
+|---|---|---|---|---|
+| [YYYY-MM-DD](announcement URL) | Family | [Model](model-card URL) (or plain text) | Tag · Tag | pricing summary (or "—") |
 ```
 
 Add a new `## <Month> <Year>` heading and table header when a release
@@ -426,7 +426,8 @@ without rewriting existing artifacts.
 
 | `kind` | Location | Purpose |
 |---|---|---|
-| `capsule` | `models/<family>/<model>/<date>/README.md` | A single release capsule |
+| `capsule` | `models/<family>/<release>/README.md` | A single release capsule |
+| `scenario` | `models/<family>/multi-model-scenarios/<slug>/README.md` | A walkthrough spanning 2+ releases |
 | `family` | `models/<family>/README.md` | Model-family overview |
 | `primer` | `docs/primers/<slug>.md` | Capability primer |
 | `quickstart` | `models/quickstart/README.md` | Shared Foundry setup |
@@ -506,9 +507,9 @@ the Jupyter Outline reads like a tutorial table of contents:
    links to the relevant primer(s) and glossary terms.
 10. `## N+2. References` — **required, final.** Markdown: bulleted list
     of the author-supplied references (model card, docs, samples, blogs,
-    papers) from the capsule frontmatter's `references` array. The
-    `add-capsule` skill prompts the creator for these up front — the
-    section must not ship empty.
+    papers), written as markdown links in the body. The `add-capsule`
+    skill prompts the creator for these up front — the section must not
+    ship empty.
 
 Section headings use `##` (level 2) so they populate the Outline;
 sub-steps within a section can use `###`.
@@ -521,11 +522,12 @@ sub-steps within a section can use `###`.
 - The notebook scaffold produced by `add-capsule` already contains the
   `Your Turn to Explore`, `Summary`, and `References` cells — do not
   remove them when authoring.
-- The `references` array in the capsule frontmatter is **required** and
-  must have at least one entry; the agent asks the creator for
-  best-practice references (model card, official docs, sample repos,
-  blog posts, papers) up front and renders them into the final
-  References section.
+- The `## References` section is **required** and must have at least
+  one entry; the agent asks the creator for best-practice references
+  (model card, official docs, sample repos, blog posts, papers) up
+  front and writes them into that section as markdown links. They live
+  in the body rather than frontmatter so that crawlers and agents
+  follow them as real links.
 - Reviewers should reject PRs that reintroduce banned marketing phrases
   or drop any of the three required trailing sections.
 

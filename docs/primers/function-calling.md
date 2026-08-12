@@ -1,6 +1,7 @@
 ---
 kind: primer
 capability: function-calling
+label: "Function Calling"
 slug: function-calling
 one_line: Structured tool invocation.
 learn_more:

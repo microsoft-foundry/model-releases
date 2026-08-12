@@ -7,7 +7,7 @@ provider: NVIDIA
 related_primers: [chat-completion, reasoning-models, multimodal-models, embeddings]
 ---
 
-# NVIDIA
+# NVIDIA Models on Microsoft Foundry
 
 > **NVIDIA NIM microservices on Microsoft Foundry.** Optimized inference
 > endpoints spanning language, vision-language, document parsing, content

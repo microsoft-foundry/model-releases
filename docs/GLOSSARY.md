@@ -1,4 +1,4 @@
-# Glossary
+# Microsoft Foundry Model Glossary
 
 Short, linkable explainers for terminology used across capsules,
 notebooks, and primers. Every term is a level-3 heading so it produces

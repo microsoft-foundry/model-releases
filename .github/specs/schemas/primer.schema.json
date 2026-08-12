@@ -5,15 +5,60 @@
   "description": "Frontmatter contract for a capability primer under docs/primers/.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["kind", "capability", "slug", "one_line", "learn_more"],
+  "required": [
+    "kind",
+    "capability",
+    "slug",
+    "one_line",
+    "learn_more",
+    "label"
+  ],
   "properties": {
-    "kind": { "const": "primer" },
+    "kind": {
+      "const": "primer"
+    },
     "capability": {
       "enum": [
-        "chat-completion", "reasoning", "multimodal", "vision",
-        "image-generation", "embeddings", "audio-speech",
-        "function-calling", "model-router", "fine-tuning", "long-context"
+        "chat-completion",
+        "reasoning",
+        "multimodal",
+        "vision",
+        "image-generation",
+        "embeddings",
+        "audio-speech",
+        "function-calling",
+        "model-router",
+        "fine-tuning",
+        "long-context"
       ]
+    },
+    "label": {
+      "type": "string",
+      "description": "Display label for this capability tag (e.g. 'Image Generation'). Single source of truth for the taxonomy table and every generated index."
+    },
+    "aliases": {
+      "type": "array",
+      "description": "Other capability tags this primer covers. Lets one primer serve several enum values (e.g. multimodal-models covers 'vision').",
+      "items": {
+        "type": "object",
+        "required": [
+          "capability",
+          "label"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "capability": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "description": "What this alias tag means, when it differs from the primer's own one_line. Defaults to the primer's."
+          }
+        }
+      }
     },
     "slug": {
       "type": "string",
@@ -29,10 +74,18 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["title", "url"],
+        "required": [
+          "title",
+          "url"
+        ],
         "properties": {
-          "title": { "type": "string" },
-          "url": { "type": "string", "format": "uri" }
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
         },
         "additionalProperties": false
       },

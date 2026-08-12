@@ -7,7 +7,7 @@ provider: Hugging Face
 related_primers: [chat-completion, embeddings]
 ---
 
-# Hugging Face
+# Hugging Face Models on Microsoft Foundry
 
 > **Open-source model catalog on Microsoft Foundry.** A large, curated
 > selection of Hugging Face community models deployable directly into

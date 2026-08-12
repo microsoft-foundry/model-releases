@@ -37,3 +37,6 @@ jobs:
 
       - name: Crosslinks
         run: python scripts/validate-crosslinks.py
+
+      - name: Generated catalog is current
+        run: python scripts/generate-catalog.py --check

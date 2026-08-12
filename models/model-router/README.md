@@ -7,7 +7,7 @@ provider: Microsoft
 related_primers: [model-router]
 ---
 
-# Model Router
+# Model Router on Microsoft Foundry
 
 > **One endpoint, best-fit model per request.** The Microsoft Foundry
 > model router is itself a deployable model — send everything to

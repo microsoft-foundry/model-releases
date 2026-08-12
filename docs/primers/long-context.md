@@ -1,6 +1,7 @@
 ---
 kind: primer
 capability: long-context
+label: "Long Context"
 slug: long-context
 one_line: 200k+ token context window.
 learn_more:

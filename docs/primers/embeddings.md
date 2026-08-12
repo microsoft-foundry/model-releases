@@ -1,6 +1,7 @@
 ---
 kind: primer
 capability: embeddings
+label: "Embeddings"
 slug: embeddings
 one_line: Vector representations for retrieval / similarity.
 learn_more:

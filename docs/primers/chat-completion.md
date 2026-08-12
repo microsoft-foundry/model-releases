@@ -1,6 +1,7 @@
 ---
 kind: primer
 capability: chat-completion
+label: "Chat Completion"
 slug: chat-completion
 one_line: General instruction-following and dialogue.
 learn_more:

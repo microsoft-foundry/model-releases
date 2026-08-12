@@ -2,7 +2,9 @@
 kind: capsule
 family: microsoft-ai
 model: mai-image-2.5-flash
+summary: "Generate images faster and cheaper with MAI-Image-2.5-Flash on Microsoft Foundry."
 release_date: "2026-06-02"
+last_updated: "2026-08-04"
 capabilities: [image-generation]
 model_card: https://ai.azure.com/catalog/models/MAI-Image-2.5-Flash
 announcement: https://microsoft.ai/news/microsoft-build-2026-mai-keynote-transcript/
@@ -18,19 +20,6 @@ notebooks:
       - batch image generation
       - throughput measurement and cost estimation
       - concurrent requests for high-volume workflows
-references:
-  - title: "Deploy and use MAI image models in Microsoft Foundry"
-    url: "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai-image?tabs=python"
-    kind: docs
-    note: "Official how-to covering the generations and edits APIs, authentication, and rate limits."
-  - title: "Build 2026 MAI keynote transcript"
-    url: "https://microsoft.ai/news/microsoft-build-2026-mai-keynote-transcript/"
-    kind: blog
-    note: "Keynote introducing the full MAI model family including Flash."
-  - title: "MAI-Image-2.5 model page"
-    url: "https://microsoft.ai/models/mai-image-2-5/"
-    kind: blog
-    note: "Model overview, capability comparison, and arena benchmarks."
 ---
 
 # MAI-Image-2.5-Flash — Release Capsule

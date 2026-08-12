@@ -1,0 +1,36 @@
+# Microsoft Foundry Model Releases
+
+> Release capsules for Microsoft Foundry model announcements — each pairs a model release with a runnable notebook. A capsule is a folder holding a README and a Jupyter notebook you can run against your own Foundry project.
+
+Announcements are tracked in CHANGELOG.md, newest first, grouped by month. Capsules are indexed in CAPSULE-TOC.md, grouped by provider. catalog.json holds this same index in structured form.
+
+## Capsules
+
+- [MAI-Image-2.5-Pro](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-image-2.5-pro): Render portraits, in-image text, and complex scenes with MAI-Image-2.5-Pro on Microsoft Foundry. Family: microsoft-ai. Capabilities: image-generation. Released 2026-07-23.
+- [MAI-Transcribe-1.5](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-transcribe-1.5): Transcribe multilingual audio with keyword biasing using MAI-Transcribe-1.5 on Microsoft Foundry. Family: microsoft-ai. Capabilities: audio-speech. Released 2026-06-02.
+- [MAI-Image-2.5-Flash](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-image-2.5-flash): Generate images faster and cheaper with MAI-Image-2.5-Flash on Microsoft Foundry. Family: microsoft-ai. Capabilities: image-generation. Released 2026-06-02.
+- [MAI-Image-2.5](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-image-2.5): Generate and edit images from text prompts with MAI-Image-2.5 on Microsoft Foundry. Family: microsoft-ai. Capabilities: image-generation. Released 2026-06-02.
+
+## Multi-model scenarios
+
+- [MAI-Image-2.5 family walkthrough](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough): Compare MAI-Image-2.5, Flash, and Pro on identical prompts to pick the right variant. Compares: mai-image-2.5-flash, mai-image-2.5, mai-image-2.5-pro.
+
+## Capability primers
+
+- [audio-speech](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/audio-speech.md): STT, TTS, or realtime voice.
+- [chat-completion](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/chat-completion.md): General instruction-following and dialogue.
+- [embeddings](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/embeddings.md): Vector representations for retrieval / similarity.
+- [fine-tuning](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/fine-tuning.md): Supports customization / distillation.
+- [function-calling](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/function-calling.md): Structured tool invocation.
+- [image-generation](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/image-generation.md): Text → image output.
+- [long-context](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/long-context.md): 200k+ token context window.
+- [model-router](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/model-router.md): One endpoint that routes requests across models.
+- [multimodal](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/multimodal-models.md): Accepts image (and/or audio) input alongside text.
+- [reasoning](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/reasoning-models.md): Extended-thinking / chain-of-thought optimized models.
+
+## Optional
+
+- [CHANGELOG](https://github.com/microsoft-foundry/model-releases/blob/main/CHANGELOG.md): every Foundry model release announcement with pricing
+- [CAPSULE-TOC](https://github.com/microsoft-foundry/model-releases/blob/main/CAPSULE-TOC.md): capsule index grouped by provider
+- [Glossary](https://github.com/microsoft-foundry/model-releases/blob/main/docs/GLOSSARY.md): terminology used across capsules
+- [Quickstart](https://github.com/microsoft-foundry/model-releases/tree/main/models/quickstart): one-time Foundry project and .env setup

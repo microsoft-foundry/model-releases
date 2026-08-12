@@ -7,7 +7,7 @@ provider: Anthropic
 related_primers: [reasoning-models, long-context, function-calling]
 ---
 
-# Anthropic
+# Anthropic Models on Microsoft Foundry
 
 > **The Claude family on Microsoft Foundry.** Long-context, tool-using
 > assistants known for careful, well-formatted responses.

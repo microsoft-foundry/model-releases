@@ -7,7 +7,7 @@ provider: Mistral
 related_primers: [chat-completion, reasoning-models]
 ---
 
-# Mistral
+# Mistral Models on Microsoft Foundry
 
 > **Mistral, Mixtral, and Ministral models on Microsoft Foundry.**
 > Efficient open-weight and commercial models — including several

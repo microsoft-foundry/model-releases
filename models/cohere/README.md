@@ -7,7 +7,7 @@ provider: Cohere
 related_primers: [chat-completion, embeddings]
 ---
 
-# Cohere
+# Cohere Models on Microsoft Foundry
 
 > **Command chat models and Embed embedding models.** Enterprise-focused
 > models with strong retrieval and multilingual coverage on Microsoft

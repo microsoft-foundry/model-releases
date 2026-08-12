@@ -1,13 +1,14 @@
 # Microsoft Foundry Model Releases
 
-The [Microsoft Foundry catalog](https://ai.azure.com/catalog) has thousands of models from Anthropic, Microsoft, OpenAI, xAI, Hugging Face, Meta, Mistral, Cohere, and NVIDIA - and new releases land almost daily. Keeping up is one thing. Knowing what a release actually does _differently_, and whether it's the right pick for your agent, is another.
+The [Microsoft Foundry catalog](https://ai.azure.com/catalog) has thousands of models from Anthropic, Microsoft, OpenAI, xAI, Hugging Face, Meta, Mistral, Cohere, and NVIDIA - and new releases land almost daily. Keeping up is one thing. Knowing what a release actually does *differently*, and whether it's the right pick for your agent, is another.
 
 That's what this repo is for:
 
 1. **Catching up?** The [CHANGELOG](./CHANGELOG.md) has every announcement in one place.
-2. **Want to try one?** Browse [models/](./models/) for a release _capsule_ - a runnable notebook that shows you what it does.
+2. **Want to try one?** Browse [models/](./models/) for a release *capsule* - a runnable notebook that shows you what it does.
 3. **Can't find the one you need?** [Open an issue](https://github.com/microsoft-foundry/model-releases/issues/new) and we'll backfill it.
 
+<br/>
 
 ## Changelog: What's New In Foundry Models?
 
@@ -21,8 +22,9 @@ Every new model release announcement gets a row here, with a link back to the or
 | [2026-07-28](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-kimi-k3-through-fireworks-ai-on-microsoft-foundry/4540187) | **Kimi K3** | Chat completion and long-context model from Fireworks |
 <!-- END:RECENTLY-ADDED -->
 
-_See the full [CHANGELOG](./CHANGELOG.md) for everything else._
+*See the full* [*CHANGELOG*](./CHANGELOG.md) *for everything else.*
 
+<br/>
 
 ## Capsule: What Can I Do With This Release?
 
@@ -36,13 +38,14 @@ Start with the [Quickstart](#quickstart-explore-model-releases-hands-on), then p
 <!-- BEGIN:RECENT-CAPSULES -->
 | Capsule | Last updated | Description |
 | --- | --- | --- |
-| [MAI-Image-2.5-Pro](models/microsoft-ai/mai-image-2.5-pro/) | 2026-08-04 | Portraits, text rendering, visual reasoning |
-| [MAI-Image-2.5](models/microsoft-ai/mai-image-2.5/) | 2026-08-11 | Text-to-image generation and editing |
-| [MAI-Transcribe-1.5](models/microsoft-ai/mai-transcribe-1.5/) | 2026-08-07 | Multilingual transcription and keyword biasing |
+| [MAI-Image-2.5](models/microsoft-ai/mai-image-2.5/) | 2026-08-11 | Generate and edit images from text prompts with MAI-Image-2.5 on Microsoft Foundry. |
+| [MAI-Transcribe-1.5](models/microsoft-ai/mai-transcribe-1.5/) | 2026-08-07 | Transcribe multilingual audio with keyword biasing using MAI-Transcribe-1.5 on Microsoft Foundry. |
+| [MAI-Image-2.5-Pro](models/microsoft-ai/mai-image-2.5-pro/) | 2026-08-04 | Render portraits, in-image text, and complex scenes with MAI-Image-2.5-Pro on Microsoft Foundry. |
 <!-- END:RECENT-CAPSULES -->
 
-_Browse [models/](./models/) for the rest._
+*See the full* [*CAPSULE-TOC*](./CAPSULE-TOC.md) *for everything else.*
 
+<br/>
 
 ## Quickstart: Explore Model Releases Hands-on
 
@@ -55,6 +58,7 @@ Want to run a capsule notebook? Four steps, and the first two are one-time setup
 
 Each notebook is yours to break - change the prompts, swap the inputs, and try it against your own scenario.
 
+<br/>
 
 ## Reference: Where do I learn more?
 
@@ -66,5 +70,6 @@ Want the background - how this repo is organized, what the model families and ca
 | [Model families](./docs/README.md#learn-about-model-families) | Every provider and family we track, with links |
 | [Model capabilities](./docs/README.md#learn-about-model-capabilities) | What each capability tag means, plus a primer for each |
 | [Contributing](./docs/README.md#contributing-how-can-i-add-new-content) | Add a capsule, family, capability, or glossary term |
+| [Using this repo from an agent](./docs/README.md#using-this-repo-from-an-agent) | `catalog.json` and `llms.txt` — the whole catalog in one fetch |
 
 New to the terminology? Start with the [glossary](./docs/GLOSSARY.md).

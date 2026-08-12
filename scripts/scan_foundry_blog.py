@@ -272,13 +272,13 @@ def draft_row(post: BlogPost) -> str:
     # Model card / Pricing before merging.
     return (
         f"| [{dstr}]({post.url}) | _review_ | _review_ (blog title: "
-        f"\"{post.title}\") | _review_ | _—_ | _—_ |"
+        f"\"{post.title}\") | _review_ | _—_ |"
     )
 
 
 MONTH_HEADING_RE = re.compile(r"^## \w+ \d{4}\s*$")
-TABLE_HEADER = "| Date | Family | Model | Capabilities | Pricing | Capsule |"
-TABLE_SEP = "|---|---|---|---|---|---|"
+TABLE_HEADER = "| Date | Family | Model | Capabilities | Pricing |"
+TABLE_SEP = "|---|---|---|---|---|"
 
 
 def month_heading(date_str: str) -> str:
@@ -356,13 +356,12 @@ def parse_changelog_top(
             in_table = False
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) >= 6:
+        if len(cells) >= 5:
             rows.append(cells)
         if len(rows) >= n:
             break
     keys = [
-        "date", "family", "model", "capabilities",
-        "pricing", "capsule",
+        "date", "family", "model", "capabilities", "pricing",
     ]
     return [dict(zip(keys, r)) for r in rows]
 
@@ -370,7 +369,7 @@ def parse_changelog_top(
 def render_readme_block(rows: list[dict[str, str]]) -> str:
     header = (
         "| Release date | Model | Description |\n"
-        "|---|---|---|"
+        "| --- | --- | --- |"
     )
     body_lines: list[str] = []
     for r in rows:
@@ -382,15 +381,12 @@ def render_readme_block(rows: list[dict[str, str]]) -> str:
         body_lines.append(
             f"| {r.get('date', '_review_')} | **{model}** | {description} |"
         )
-    caption = (
-        "\n\n_Top 3 most recent — see [`CHANGELOG.md`](CHANGELOG.md) "
-        "for the full history and pricing._"
-    )
+    # No caption here — the "See the full CHANGELOG" line lives outside
+    # the markers in README.md so regeneration doesn't duplicate it.
     return (
         f"{README_MARK_BEGIN}\n"
         f"{header}\n"
         + "\n".join(body_lines)
-        + caption
         + f"\n{README_MARK_END}"
     )
 

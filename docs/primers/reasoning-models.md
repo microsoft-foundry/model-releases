@@ -1,6 +1,7 @@
 ---
 kind: primer
 capability: reasoning
+label: "Reasoning"
 slug: reasoning-models
 one_line: Extended-thinking / chain-of-thought optimized models.
 learn_more:

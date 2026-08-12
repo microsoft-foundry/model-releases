@@ -5,45 +5,75 @@
   "description": "Frontmatter contract for a multi-model scenario README. A scenario combines two or more model releases in one walkthrough, so it cannot live in a single capsule. Family-scoped scenarios live at models/<family>/multi-model-scenarios/<slug>/; cross-family scenarios live at models/multi-model-scenarios/<slug>/.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["kind", "slug", "title", "scope", "models", "capabilities"],
+  "required": [
+    "kind",
+    "slug",
+    "title",
+    "scope",
+    "models",
+    "capabilities",
+    "summary"
+  ],
   "properties": {
-    "kind": { "const": "scenario" },
+    "kind": {
+      "const": "scenario"
+    },
     "slug": {
       "type": "string",
       "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
-      "description": "Kebab-case folder slug — matches the scenario folder name."
+      "description": "Kebab-case folder slug \u2014 matches the scenario folder name."
     },
     "title": {
       "type": "string",
       "description": "Human-readable scenario title."
     },
+    "summary": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 160,
+      "description": "One-sentence description of what this release lets you do. Doubles as the SEO/AIO meta description: it is the text used in the repo README table, CAPSULE-TOC.md, catalog.json, and llms.txt, so write it to stand alone out of context."
+    },
+    "last_updated": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "Date this artifact was added or last meaningfully revised (ISO). Drives the ordering and the 'Last updated' column in CAPSULE-TOC.md. Defaults to release_date for capsules when omitted. Kept in frontmatter rather than read from git so a shallow CI checkout produces identical output."
+    },
     "scope": {
-      "enum": ["family", "cross-family"],
+      "enum": [
+        "family",
+        "cross-family"
+      ],
       "description": "'family' when every model belongs to one family (models/<family>/multi-model-scenarios/<slug>/); 'cross-family' when the scenario spans families (models/multi-model-scenarios/<slug>/)."
     },
     "family": {
-      "type": ["string", "null"],
+      "type": [
+        "string",
+        "null"
+      ],
       "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
       "description": "Family slug. Required when scope is 'family'; omit for cross-family scenarios."
     },
     "models": {
       "type": "array",
       "minItems": 2,
-      "description": "The releases this scenario combines. Two or more — a single-model walkthrough belongs in that model's capsule instead.",
+      "description": "The releases this scenario combines. Two or more \u2014 a single-model walkthrough belongs in that model's capsule instead.",
       "items": {
         "type": "object",
-        "required": ["family", "model"],
+        "required": [
+          "family",
+          "model"
+        ],
         "additionalProperties": false,
         "properties": {
           "family": {
             "type": "string",
             "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
-            "description": "Family slug — must match a folder under models/."
+            "description": "Family slug \u2014 must match a folder under models/."
           },
           "model": {
             "type": "string",
             "pattern": "^[a-z0-9]+([-.][a-z0-9]+)*$",
-            "description": "Model slug — must match a capsule folder under models/<family>/."
+            "description": "Model slug \u2014 must match a capsule folder under models/<family>/."
           },
           "role": {
             "type": "string",
@@ -56,36 +86,57 @@
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
-      "description": "Capability tags exercised by the scenario. Same enum as capsules — every tag needs a docs/primers/<slug>.md.",
+      "description": "Capability tags exercised by the scenario. Same enum as capsules \u2014 every tag needs a docs/primers/<slug>.md.",
       "items": {
         "enum": [
-          "chat-completion", "reasoning", "multimodal", "vision",
-          "image-generation", "embeddings", "audio-speech",
-          "function-calling", "model-router", "fine-tuning", "long-context"
+          "chat-completion",
+          "reasoning",
+          "multimodal",
+          "vision",
+          "image-generation",
+          "embeddings",
+          "audio-speech",
+          "function-calling",
+          "model-router",
+          "fine-tuning",
+          "long-context"
         ]
       }
     },
     "dependencies": {
       "type": "array",
       "description": "Scenario-specific Python deps appended to requirements-dev.txt.",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "notebooks": {
       "type": "array",
       "minItems": 1,
-      "description": "Notebooks shipped with this scenario (paths relative to the scenario folder, at folder root). Each notebook covers 1–3 concepts; split rather than grow one.",
+      "description": "Notebooks shipped with this scenario (paths relative to the scenario folder, at folder root). Each notebook covers 1\u20133 concepts; split rather than grow one.",
       "items": {
         "type": "object",
-        "required": ["path", "title", "concepts"],
+        "required": [
+          "path",
+          "title",
+          "concepts"
+        ],
         "additionalProperties": false,
         "properties": {
-          "path": { "type": "string", "description": "Relative path, e.g. mai-image-family-walkthrough.ipynb" },
-          "title": { "type": "string" },
+          "path": {
+            "type": "string",
+            "description": "Relative path, e.g. mai-image-family-walkthrough.ipynb"
+          },
+          "title": {
+            "type": "string"
+          },
           "concepts": {
             "type": "array",
             "minItems": 1,
             "maxItems": 3,
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           }
         }
       }
@@ -93,30 +144,28 @@
     "domains": {
       "type": "array",
       "description": "Real-world domains the scenario explores.",
-      "items": { "type": "string" }
-    },
-    "references": {
-      "type": "array",
-      "description": "Author-supplied references surfaced at the end of the scenario README.",
       "items": {
-        "type": "object",
-        "required": ["title", "url"],
-        "additionalProperties": false,
-        "properties": {
-          "title": { "type": "string" },
-          "url": { "type": "string", "format": "uri" },
-          "kind": {
-            "enum": ["model-card", "docs", "sample", "blog", "paper", "video", "other"]
-          },
-          "note": { "type": "string" }
-        }
+        "type": "string"
       }
     }
   },
   "allOf": [
     {
-      "if": { "properties": { "scope": { "const": "family" } }, "required": ["scope"] },
-      "then": { "required": ["family"] }
+      "if": {
+        "properties": {
+          "scope": {
+            "const": "family"
+          }
+        },
+        "required": [
+          "scope"
+        ]
+      },
+      "then": {
+        "required": [
+          "family"
+        ]
+      }
     }
   ]
 }

@@ -7,7 +7,7 @@ provider: Microsoft
 related_primers: [image-generation, audio-speech, reasoning-models, chat-completion]
 ---
 
-# Microsoft AI
+# Microsoft AI Models on Microsoft Foundry
 
 > **MAI models** are Microsoft's first-party model family, announced at Microsoft Build 2026.
 > The family spans image generation and editing, speech synthesis, audio transcription,
@@ -42,6 +42,14 @@ All models are available on Microsoft Foundry and support fine-tuning via
 | MAI-Transcribe-1 | Audio / Speech | _—_ | _—_ | 2026-08-20 | _—_ |
 | MAI-Thinking-1 | Reasoning · Chat Completion | [Foundry catalog](https://ai.azure.com/catalog/models/MAI-Thinking-1) | 2026-06-02 | — | _—_ |
 | MAI-Code-1-Flash | Chat Completion | [Foundry catalog](https://ai.azure.com/catalog/models/MAI-Code-1-Flash) | 2026-06-02 | — | _—_ |
+
+## Multi-model scenarios
+
+Walkthroughs that span more than one release in this family, so they can't live in any single capsule.
+
+| Scenario | Models | Description |
+|---|---|---|
+| [MAI-Image family walkthrough](multi-model-scenarios/mai-image-family-walkthrough/) | MAI-Image-2.5 · Flash · Pro | Compare all three variants on the same prompts |
 
 ## Learn more
 

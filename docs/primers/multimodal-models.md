@@ -1,6 +1,11 @@
 ---
 kind: primer
 capability: multimodal
+label: "Multimodal"
+aliases:
+  - capability: vision
+    label: "Vision"
+    description: "Image understanding as a primary capability."
 slug: multimodal-models
 one_line: Accepts image (and/or audio) input alongside text.
 learn_more:

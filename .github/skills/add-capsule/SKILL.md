@@ -43,18 +43,25 @@ inputs:
     type: array
     description: Domains for the interesting use cases (e.g. travel, healthcare).
     required: false
+  - name: summary
+    type: string
+    description: One sentence (20-160 chars) naming the model, what you can do with it, and Microsoft Foundry. Stored in frontmatter and reused as the meta description in catalog.json, llms.txt, CAPSULE-TOC.md, and the repo README - so it must read standalone, out of context.
+    required: true
   - name: references
     type: array
-    description: Author-supplied best-practice references (model card, docs, sample repos, blog posts). The agent MUST prompt the creator for these before scaffolding. Rendered at the end of the capsule README and in the notebook's final References section.
+    description: Author-supplied best-practice references (model card, docs, sample repos, blog posts). The agent MUST prompt the creator for these before scaffolding. Written as markdown bullets in the `## References` section of the capsule README and the notebook's final References cell - NOT as frontmatter, so crawlers and agents follow them as real links.
     required: true
   - name: concepts
     type: array
     description: Ordered list of teaching concepts for this release. Each concept becomes its own notebook (1–3 concepts per notebook max). Provide {slug, title, concepts_covered[]} so the skill can name and scaffold each notebook file.
     required: true
 produces:
-  - models/<family>/<model>/<release_date>/README.md
-  - models/<family>/<model>/<release_date>/notebooks/01-quickstart.ipynb
+  - models/<family>/<release>/README.md
+  - models/<family>/<release>/<release>.ipynb
   - CHANGELOG.md
+  - CAPSULE-TOC.md
+  - catalog.json
+  - llms.txt
   - models/<family>/README.md
   - requirements-dev.txt
 validates_against:
@@ -95,30 +102,37 @@ Produces a complete release capsule:
      required. Suggests 2–3 concrete directions without solutions.
    - `## N. Summary` (markdown) — required. What was covered, when to
      reach for this model, links to primers and glossary terms.
-   - `## N+1. References` (markdown) — required. Renders every entry
-     from the capsule frontmatter's `references` array as a bulleted
-     list (title → URL, with kind + note when present). If the author
-     supplied no references, the scaffold prints a TODO reminder rather
-     than silently omitting the section.
+   - `## N+1. References` (markdown) — required. A bulleted list of
+     the author-supplied references, written directly as markdown
+     (`- [title](url) — note`). References are body content, not
+     frontmatter. If the author supplied none, the scaffold prints a
+     TODO reminder rather than silently omitting the section.
    - **Voice**: action-focused, no hype/marketing language.
 3. Appends any capsule-specific `dependencies` under the
    `# Capsule dependencies` section of `requirements-dev.txt`.
 4. Prepends (or updates in place) a row in `CHANGELOG.md`, in the
    table under the `## <Month> <Year>` heading for its release date —
    creating that heading and a table header when the month is new.
-   Column shape: `Date | Family | Model | Capabilities | Pricing |
-   Capsule`. The Date cell is a markdown link to the announcement URL
+   Column shape: `Date | Family | Model | Capabilities | Pricing`.
+   The Date cell is a markdown link to the announcement URL
    (there is no separate Announcement column). The Model cell is a
    markdown link to the model card when known — no separate Model card
    column either. **The Pricing cell is also a markdown link when a
    price is stated** — target it at an official pricing page if one
    exists, otherwise at the blog post the figure was extracted from,
-   so every price is verifiable. Use `_—_` when pricing is unknown or
-   no capsule exists yet.
+   so every price is verifiable. Use `_—_` when pricing is unknown.
+   The Family cell is plain text — capsules are tracked separately in
+   `CAPSULE-TOC.md`.
    If an announcement-only row already exists for the same Date +
-   Model, the skill updates it in place — adding the capsule link and
-   any newly known fields — instead of duplicating.
+   Model, the skill updates it in place — adding any newly known
+   fields — instead of duplicating.
 5. Adds a members-table row to `models/<family>/README.md`.
-6. Invokes [`refresh-recent-activity`](../refresh-recent-activity/) so the
+6. Regenerates `CAPSULE-TOC.md`, `catalog.json`, `llms.txt`, and the
+   repo README capsule block by running
+   `python scripts/generate-catalog.py`. These are generated from
+   frontmatter - never hand-edit them. The capsule's row appears under
+   its family's `## <Provider>` heading automatically; the generator
+   creates that heading when the family has no capsules yet.
+7. Invokes [`refresh-recent-activity`](../refresh-recent-activity/) so the
    repo README's **Recently added** table (Release date / Model /
    Description) stays current.
