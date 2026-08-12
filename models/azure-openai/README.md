@@ -27,7 +27,7 @@ drive the patterns other families follow.
 | _—_ | _—_ | _—_ | _—_ | _—_ | _—_ |
 
 <!-- Row template (added by add-model / add-capsule):
-| gpt-4.1 | Chat · Reasoning · Vision · Function Calling | [card](https://learn.microsoft.com/...) | YYYY-MM-DD | YYYY-MM-DD | [capsule](gpt-4.1/YYYY-MM-DD/) |
+| gpt-4.1 | Chat · Reasoning · Vision · Function Calling | [card](https://learn.microsoft.com/...) | YYYY-MM-DD | YYYY-MM-DD | [capsule](gpt-4.1/) |
 -->
 
 ## Learn more

@@ -35,7 +35,7 @@ references:
 
 # MAI-Image-2.5 — Release Capsule
 
-**Released:** 2026-06-02 · **Family:** [Microsoft AI](../../README.md) · **Capability:** Image Generation
+**Released:** 2026-06-02 · **Family:** [Microsoft AI](../README.md) · **Capability:** Image Generation
 
 ## Before You Begin
 
@@ -47,7 +47,7 @@ references:
 | Release date | 2026-06-02 |
 | Deployment regions | West Central US · East US · West US · West Europe · Sweden Central · South India · UAE North |
 
-See [models/quickstart/](../../../quickstart/README.md) for first-time Foundry project setup.
+See [models/quickstart/](../../quickstart/README.md) for first-time Foundry project setup.
 
 **Required env variables:**
 
@@ -68,8 +68,8 @@ to produce visually coherent images from text prompts and supports precise, surg
 images — changing specific elements while preserving layout and composition. The Flash and Pro variants
 build on this foundation; start here if you are new to the family.
 
-- [MAI-Image-2.5-Flash capsule](../../mai-image-2.5-flash/2026-06-02/) — same release, optimised for production throughput
-- [MAI-Image-2.5-Pro capsule](../../mai-image-2.5-pro/2026-07-23/) — portrait quality, text rendering, visual reasoning (released 2026-07-23)
+- [MAI-Image-2.5-Flash capsule](../mai-image-2.5-flash/) — same release, optimised for production throughput
+- [MAI-Image-2.5-Pro capsule](../mai-image-2.5-pro/) — portrait quality, text rendering, visual reasoning (released 2026-07-23)
 
 ## API endpoints
 

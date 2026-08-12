@@ -16,7 +16,7 @@ persona_target: [capsule-creator]
 
 > **Job:** turn a Microsoft Foundry model release into a full content
 > capsule — folder, README, notebook skeleton, family table row,
-> CHANGELOG entry, and Recently added refresh — by walking the author
+> CHANGELOG row, and Recently added refresh — by walking the author
 > through a spec-driven flow.
 
 ## When to invoke
@@ -54,7 +54,7 @@ Say something like:
      so it runs independently.
    - Any capsule-specific deps appended to `requirements-dev.txt`
      under the `# Capsule dependencies` section.
-   - A prepended row in `CHANGELOG.md`.
+   - A prepended row in `CHANGELOG.md`, under its month heading.
 5. **Propose 2–3 interesting use cases** grounded in the chosen domains —
    deliberately beyond the default model-card samples. The author picks.
 6. **Refresh the Recently added table** via

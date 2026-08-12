@@ -6,8 +6,8 @@ manual (non-agent) contribution together.
 Schema validity is checked by `validate-specs.py`; this script covers
 what a human reviewer would otherwise have to eyeball:
 
-1. Every capsule folder `models/<family>/<model>/<YYYY-MM-DD>/` has a
-   matching row in `CHANGELOG.md`.
+1. Every capsule folder `models/<family>/<model>/` has a matching
+   row in `CHANGELOG.md`.
 2. Every capsule appears in its family README's members list (loose
    grep — the model slug must be mentioned somewhere in the family
    README).
@@ -43,8 +43,11 @@ FAMILY_ROOT = REPO_ROOT / "models"
 PRIMERS_DIR = REPO_ROOT / "docs" / "primers"
 
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
-CAPSULE_GLOB = "models/*/*/*/README.md"
-DATE_DIR_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+CAPSULE_GLOB = "models/*/*/README.md"
+SCENARIO_GLOBS = ("models/multi-model-scenarios/*/README.md",
+                  "models/*/multi-model-scenarios/*/README.md")
+SCENARIO_DIR = "multi-model-scenarios"
+RESERVED_DIRS = {"quickstart", SCENARIO_DIR}
 
 README_MARK_BEGIN = "<!-- BEGIN:RECENTLY-ADDED -->"
 README_MARK_END = "<!-- END:RECENTLY-ADDED -->"
@@ -62,48 +65,75 @@ def read_frontmatter(path: Path) -> dict:
 
 
 def find_capsules() -> list[Path]:
+    """Capsule READMEs at models/<family>/<model>/README.md.
+
+    The release date lives in frontmatter, not the path, so a folder is
+    a capsule when it sits one level under a family and is not one of
+    the reserved folder names.
+    """
     caps: list[Path] = []
     for p in REPO_ROOT.glob(CAPSULE_GLOB):
-        # Skip the shared quickstart, which lives at
-        # models/quickstart/README.md — depth check handles that.
-        rel = p.relative_to(REPO_ROOT)
-        parts = rel.parts
-        # Expect ["models", family, model, date, "README.md"]
-        if len(parts) == 5 and DATE_DIR_RE.match(parts[3]):
+        parts = p.relative_to(REPO_ROOT).parts
+        # Expect ["models", family, model, "README.md"]
+        if len(parts) == 4 and parts[2] not in RESERVED_DIRS \
+                and parts[1] not in RESERVED_DIRS:
             caps.append(p)
     return caps
 
 
+def find_scenarios() -> list[Path]:
+    """Scenario READMEs — multi-model walkthroughs.
+
+    Family-scoped: models/<family>/multi-model-scenarios/<slug>/README.md
+    Cross-family:  models/multi-model-scenarios/<slug>/README.md
+    """
+    scen: list[Path] = []
+    for glob in SCENARIO_GLOBS:
+        scen.extend(REPO_ROOT.glob(glob))
+    return sorted(set(scen))
+
+
 def parse_changelog_rows() -> list[dict[str, str]]:
+    """Parse CHANGELOG rows, newest first.
+
+    Rows live in one table per `## <Month> <Year>` section, so this
+    walks every table in the file rather than stopping at the first
+    blank line after the header.
+    """
     if not CHANGELOG.exists():
         return []
+    text = CHANGELOG.read_text(encoding="utf-8")
+    # Drop the trailing HTML-comment template so its placeholder row
+    # is never parsed as a real release.
+    text = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)
     rows: list[dict[str, str]] = []
     in_table = False
-    for line in CHANGELOG.read_text(encoding="utf-8").splitlines():
+    for line in text.splitlines():
         if line.startswith("| Date |"):
             in_table = True
             continue
-        if in_table and re.match(r"^\|\s*---", line):
+        if not in_table:
             continue
-        if in_table:
-            if not line.strip().startswith("|"):
-                break
-            cells = [c.strip() for c in line.strip().strip("|").split("|")]
-            if len(cells) < 6:
-                continue
-            # Date cell may be `[YYYY-MM-DD](url)` or plain.
-            date_cell = cells[0]
-            m = re.search(r"\d{4}-\d{2}-\d{2}", date_cell)
-            date = m.group(0) if m else date_cell
-            # Model cell may be `[Model](url)` or plain.
-            model_cell = cells[2]
-            m = re.match(r"\[([^\]]+)\]", model_cell)
-            model = m.group(1) if m else model_cell
-            rows.append({
-                "date": date,
-                "family": cells[1],
-                "model": model.strip(),
-            })
+        if re.match(r"^\|\s*---", line):
+            continue
+        if not line.strip().startswith("|"):
+            # End of this month's table; keep looking for the next one.
+            in_table = False
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 6:
+            continue
+        # Date cell may be `[YYYY-MM-DD](url)` or plain.
+        m = re.search(r"\d{4}-\d{2}-\d{2}", cells[0])
+        date = m.group(0) if m else cells[0]
+        # Model cell may be `[Model](url)` or plain.
+        m = re.match(r"\[([^\]]+)\]", cells[2])
+        model = m.group(1) if m else cells[2]
+        rows.append({
+            "date": date,
+            "family": cells[1],
+            "model": model.strip(),
+        })
     return rows
 
 
@@ -130,7 +160,7 @@ def parse_readme_recent() -> list[dict[str, str]]:
             if not line.strip().startswith("|"):
                 break
             cells = [c.strip() for c in line.strip().strip("|").split("|")]
-            if len(cells) < 4:
+            if len(cells) < 3:
                 continue
             date_cell = cells[0]
             m2 = re.search(r"\d{4}-\d{2}-\d{2}", date_cell)
@@ -149,8 +179,23 @@ def check_capsule_in_changelog(
     idx = {(r["date"], r["model"].lower()) for r in changelog}
     for cap in capsules:
         rel = cap.relative_to(REPO_ROOT)
-        _, family, model_slug, date, _ = rel.parts
+        _, family, model_slug, _ = rel.parts
         fm = read_frontmatter(cap)
+        date = str(fm.get("release_date") or "").strip()
+        if not date:
+            errs.append(
+                f"[crosslink] capsule {rel} has no `release_date` in "
+                "frontmatter — it is the only source of the release date "
+                "now that the folder no longer carries it"
+            )
+            continue
+        if model_slug != str(fm.get("model") or "").strip():
+            errs.append(
+                f"[crosslink] capsule {rel} — folder name {model_slug!r} "
+                f"does not match frontmatter model {fm.get('model')!r}. "
+                "When one model has two releases, give the second folder "
+                "a clarifying suffix and match `model:` to it."
+            )
         model_name = str(fm.get("model") or model_slug).strip()
         key = (date, model_name.lower())
         # Also accept match on model slug (some manual authors put slug
@@ -168,7 +213,7 @@ def check_capsule_in_family_readme(capsules: list[Path]) -> list[str]:
     errs: list[str] = []
     for cap in capsules:
         rel = cap.relative_to(REPO_ROOT)
-        _, family, model_slug, _date, _ = rel.parts
+        _, family, model_slug, _ = rel.parts
         family_readme = FAMILY_ROOT / family / "README.md"
         if not family_readme.exists():
             errs.append(

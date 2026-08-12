@@ -103,19 +103,22 @@ Produces a complete release capsule:
    - **Voice**: action-focused, no hype/marketing language.
 3. Appends any capsule-specific `dependencies` under the
    `# Capsule dependencies` section of `requirements-dev.txt`.
-4. Prepends (or updates in place) a row in `CHANGELOG.md`. Column
-   shape: `Date | Family | Model | Capabilities | Pricing | Capsule`.
-   The Date cell is a markdown link to the announcement URL (there is
-   no separate Announcement column). The Model cell is a markdown link
-   to the model card when known — no separate Model card column
-   either. **The Pricing cell is also a markdown link when a price is
-   stated** — target it at an official pricing page if one exists,
-   otherwise at the blog post the figure was extracted from, so every
-   price is verifiable. Use `_—_` (no link) when pricing is unknown.
+4. Prepends (or updates in place) a row in `CHANGELOG.md`, in the
+   table under the `## <Month> <Year>` heading for its release date —
+   creating that heading and a table header when the month is new.
+   Column shape: `Date | Family | Model | Capabilities | Pricing |
+   Capsule`. The Date cell is a markdown link to the announcement URL
+   (there is no separate Announcement column). The Model cell is a
+   markdown link to the model card when known — no separate Model card
+   column either. **The Pricing cell is also a markdown link when a
+   price is stated** — target it at an official pricing page if one
+   exists, otherwise at the blog post the figure was extracted from,
+   so every price is verifiable. Use `_—_` when pricing is unknown or
+   no capsule exists yet.
    If an announcement-only row already exists for the same Date +
    Model, the skill updates it in place — adding the capsule link and
    any newly known fields — instead of duplicating.
 5. Adds a members-table row to `models/<family>/README.md`.
 6. Invokes [`refresh-recent-activity`](../refresh-recent-activity/) so the
-   repo README's **Recently added** table (Model / Release date /
-   Expires) stays current.
+   repo README's **Recently added** table (Release date / Model /
+   Description) stays current.

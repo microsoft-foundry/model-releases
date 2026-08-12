@@ -1,168 +1,70 @@
 # Microsoft Foundry Model Releases
 
-Microsoft Foundry has a [comprehensive model catalog](https://ai.azure.com/catalog) with thousands of cutting-edge models from leading organizations including Anthropic, Microsoft, OpenAI, x.AI, Hugging Face, Meta, Mistral, Cohere, NVIDIA. 
+The [Microsoft Foundry catalog](https://ai.azure.com/catalog) has thousands of models from Anthropic, Microsoft, OpenAI, xAI, Hugging Face, Meta, Mistral, Cohere, and NVIDIA - and new releases land almost daily. Keeping up is one thing. Knowing what a release actually does _differently_, and whether it's the right pick for your agent, is another.
 
-With new model releases dropping almost daily, it can be hard to keep up with the announcements and get an actionable understanding of what each model release does _differently_ - so you can make an informed decision on model selection for your agentic AI solutions.
+That's what this repo is for:
 
-This repository is meant to help you address that challenge.
+1. **Catching up?** The [CHANGELOG](./CHANGELOG.md) has every announcement in one place.
+2. **Want to try one?** Browse [models/](./models/) for a release _capsule_ - a runnable notebook that shows you what it does.
+3. **Can't find the one you need?** [Open an issue](https://github.com/microsoft-foundry/model-releases/issues/new) and we'll backfill it.
 
-1. Want to know what model releases happened recently? Track the [CHANGELOG](./CHANGELOG.md) and get links to all the announcements in one place.
-1. Want to get hands-on experience with a specific model release? Browse the [models/](./models/) tree to find the _model release capsule_ for that announcement - and explore the notebooks to build intuition.
-1. Have a specific release you want to learn more about - but can't find the announcement or release capsule? [Post an issue](https://github.com/microsoft-foundry/model-releases/issues/new) and let us know so we can backfill content based on demand.
-
-
-Get a better understanding of model capabilities and build a model optimization playbook for your needs - helping you identify the right model for the job to meet your desired quality, cost, and latency targets.
-
-
-<br/>
 
 ## Changelog: What's New In Foundry Models?
 
-The [CHANGELOG](./CHANGELOG.md) tracks the model releases with a link to the original announcement, and a glanceable view of the model name, family, capabilities and pricing.
-The table below shows the top 3 most recent announcements from that list, for convenience.
+Every new model release announcement gets a row here, with a link back to the original post plus the family, capabilities, and pricing at a glance. The three most recent:
 
 <!-- BEGIN:RECENTLY-ADDED -->
-| Release date | Model | Description | Expires |
-|---|---|---|---|
-| [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | **GPT-transcribe** | Real-time speech-to-text transcription via Azure OpenAI | — |
-| [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | **GPT-live-transcribe** | Live streaming speech-to-text transcription via Azure OpenAI | — |
-| [2026-07-28](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-kimi-k3-through-fireworks-ai-on-microsoft-foundry/4540187) | **Kimi K3** | Chat completion and long-context model from Fireworks | — |
-
+| Release date | Model | Description |
+| --- | --- | --- |
+| [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | **GPT-transcribe** | Real-time speech-to-text transcription via Azure OpenAI |
+| [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | **GPT-live-transcribe** | Live streaming speech-to-text transcription via Azure OpenAI |
+| [2026-07-28](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-kimi-k3-through-fireworks-ai-on-microsoft-foundry/4540187) | **Kimi K3** | Chat completion and long-context model from Fireworks |
 <!-- END:RECENTLY-ADDED -->
 
-<br/>
+_See the full [CHANGELOG](./CHANGELOG.md) for everything else._
 
-## Release Capsule: What does the model do?
 
-The _model release capsule_ refers to a folder that has the following components:
-1. A Python notebook - providing a hands-on sample showcasing new features.
-1. An optional blog - that provides additional insights or resource links.
-1. An optional video - that provides a walkthrough of the above two resources.
+## Capsule: What Can I Do With This Release?
 
-The capsule gives you an applied understanding of the new model release - helping you answer questions like:
- - What does this release do _differently_ from previous releases in that family?
- - What kinds of _tasks_ should I be considering this model for?
- - What are the _tradeoffs_ (cost, quality, latency) for model optimization?
+An announcement tells you a model exists. It doesn't tell you what it's like to use. So each capsule pairs the release with a notebook you can run - practical use cases, code-first - to show you:
+- What *tasks* the family is good at
+- What *new features* this release brings
+- What *tradeoffs* it makes on cost, quality, and latency
 
-To get the most value from this, follow the guidance in the [Quickstart](#how-do-i-get-started) section below.
+Start with the [Quickstart](#quickstart-explore-model-releases-hands-on), then pick one:
 
-<br/>
+<!-- BEGIN:RECENT-CAPSULES -->
+| Capsule | Last updated | Description |
+| --- | --- | --- |
+| [MAI-Image-2.5-Pro](models/microsoft-ai/mai-image-2.5-pro/) | 2026-08-04 | Portraits, text rendering, visual reasoning |
+| [MAI-Image-2.5](models/microsoft-ai/mai-image-2.5/) | 2026-08-11 | Text-to-image generation and editing |
+| [MAI-Transcribe-1.5](models/microsoft-ai/mai-transcribe-1.5/) | 2026-08-07 | Multilingual transcription and keyword biasing |
+<!-- END:RECENT-CAPSULES -->
 
-## Repository: What resources can I find here?
+_Browse [models/](./models/) for the rest._
 
-The repository is meant to be a self-contained resource where you can:
-1. Learn about the latest model release announcements (via CHANGELOG)
-1. Get hands-on experience with model releases (via `models/` release capsules)
-1. Fill gaps in model knowledge with supporting glossary & primers (in `docs/`)
-
-Here is a visual representation of the repository structure for reference:
-- the `docs/` folder has a glossary and primers to build familiarity with terminology
-- the `models/` folder contains the model release capsules, organized by provider/family.
-- the `models/quickstart` folder contains guidance to get started with development.
-
-```mermaid
-flowchart LR
-    R[Repo README<br/>index + taxonomy] --> D[docs/<br/>GLOSSARY + primers]
-    R --> Q[models/quickstart/<br/>shared setup]
-    R --> F[models/&lt;family&gt;/<br/>family README]
-    F --> M[models/&lt;family&gt;/&lt;model&gt;/]
-    M --> C[&lt;YYYY-MM-DD&gt;/<br/>capsule: README + notebooks]
-    Q -.env precheck.-> C
-```
-
-<br/>
 
 ## Quickstart: Explore Model Releases Hands-on
 
-The `models/` folder is organized by _providers_ (first level) and then by model families within that provider. Want to play with the latest model release for a specific model family? Follow these steps for the fastest start:
+Want to run a capsule notebook? Four steps, and the first two are one-time setup:
 
-1. Launch GitHub Codespaces to get a runtime environment to execute notebooks.
-1. Complete the `docs/quickstart` section to setup a Foundry project and local `.env`
-1. Locate the `models/` subfolder for the desired model provider. Ex: _models/anthropic_.
-1. Locate the folder for the desired model in that family. Ex: _models/anthropic/claude_sonnet_.
-1. Look for a _model release capsule_ subfolder - named for the specific release.
-1. Open the notebook in VS Code - select the kernel and follow instructions to run it.
+1. **Open in GitHub Codespaces** - you get a ready-to-run environment, no local install.
+2. **Do the [quickstart](./models/quickstart/)** once, to set up a Foundry project and your `.env`.
+3. **Pick a capsule** - `models/` is organized by provider, then release. Ex: `models/microsoft-ai/mai-image-2.5/`.
+4. **Open its notebook in VS Code**, select the kernel, and run.
 
-You can run these notebooks to get familiar with key capabilities by example - then customize the notebooks to explore your own application requirements or scenarios.
-
-<details>
-
-<summary>
-<b>🚧 COMING SOON → Use GitHub Copilot with Foundry Skills</b> 
-</summary>
-
-<br>
-The repository is configured with Azure CLI (`az`), Azure Developer CLI (`azd`) and GitHub Copilot CLI (`copilot`) support by default. This means we can use GitHub Copilot and command-line tools to create, manage, and evolve, our Microsoft Foundry projects - with the power of prompts.
-Look for future guidance to support this approach and reduce your development effort even further.
+Each notebook is yours to break - change the prompts, swap the inputs, and try it against your own scenario.
 
 
-</details>
+## Reference: Where do I learn more?
 
-<br/>
+Want the background - how this repo is organized, what the model families and capability tags mean, or how to contribute a capsule of your own? It's all in the [reference guide](./docs/README.md).
 
-## Learn About: Model families
+| Topic | What you'll find |
+| --- | --- |
+| [Repository structure](./docs/README.md#repository-what-resources-can-i-find-here) | How `docs/`, `models/`, and the capsules fit together |
+| [Model families](./docs/README.md#learn-about-model-families) | Every provider and family we track, with links |
+| [Model capabilities](./docs/README.md#learn-about-model-capabilities) | What each capability tag means, plus a primer for each |
+| [Contributing](./docs/README.md#contributing-how-can-i-add-new-content) | Add a capsule, family, capability, or glossary term |
 
-Models are typically associated with a provider (the organization that created and maintains the model) and belong to a specific _family_ within that scope. Each new release in that family can now describe the advances made (e.g., new features, improved costs or performance) that can help you make a model selection or migration decision. Here are the main model families we will track:
-
-| Family | What it's for | README |
-|---|---|---|
-| Azure OpenAI | GPT-family models via Foundry | [`models/azure-openai/`](models/azure-openai/) |
-| Microsoft AI | Microsoft-built models (Phi, MAI, …) | [`models/microsoft-ai/`](models/microsoft-ai/) |
-| Anthropic | Claude family | [`models/anthropic/`](models/anthropic/) |
-| Cohere | Command + Embed models | [`models/cohere/`](models/cohere/) |
-| Mistral | Mistral / Mixtral / Ministral | [`models/mistral/`](models/mistral/) |
-| Model Router | One endpoint, routed to best-fit model | [`models/model-router/`](models/model-router/) |
-| Hugging Face | Open-source model catalog | [`models/hugging-face/`](models/hugging-face/) |
-| Fireworks | Fast OSS-model inference | [`models/fireworks/`](models/fireworks/) |
-| DeepSeek | DeepSeek reasoning + chat models | [`models/deepseek/`](models/deepseek/) |
-| xAI | Grok family | [`models/xai/`](models/xai/) |
-| Black Forest Labs | FLUX image-generation models | [`models/black-forest-labs/`](models/black-forest-labs/) |
-| NVIDIA | NIM microservices for language, vision, biology, and earth science | [`models/nvidia/`](models/nvidia/) |
-
-<br/>
-
-## Learn About: Model Capabilities 
-
-Every capsule is tagged with one or more of these. Names are defined
-**once here** and reused everywhere (family READMEs, capsule badges,
-CHANGELOG, Recently added).
-
-| Tag | What it means | Primer |
-|---|---|---|
-| **Chat Completion** | General instruction-following and dialogue. | [chat-completion](docs/primers/chat-completion.md) |
-| **Reasoning** | Extended-thinking / chain-of-thought optimized models. | [reasoning-models](docs/primers/reasoning-models.md) |
-| **Multimodal** | Accepts image (and/or audio) input alongside text. | [multimodal-models](docs/primers/multimodal-models.md) |
-| **Vision** | Image understanding as a primary capability. | [multimodal-models](docs/primers/multimodal-models.md) |
-| **Image Generation** | Text → image output. | [image-generation](docs/primers/image-generation.md) |
-| **Embeddings** | Vector representations for retrieval / similarity. | [embeddings](docs/primers/embeddings.md) |
-| **Audio / Speech** | STT, TTS, or realtime voice. | [audio-speech](docs/primers/audio-speech.md) |
-| **Function Calling** | Structured tool invocation. | [function-calling](docs/primers/function-calling.md) |
-| **Model Router** | One endpoint that routes requests across models. | [model-router](docs/primers/model-router.md) |
-| **Fine-tuning Ready** | Supports customization / distillation. | [fine-tuning](docs/primers/fine-tuning.md) |
-| **Long Context** | 200k+ token context window. | [long-context](docs/primers/long-context.md) |
-
-Unsure what a term means? Check the [glossary](docs/GLOSSARY.md).
-
-<br/>
-
-## Contributing: How can I add new content?
-
-Want to add a new capsule, or model family, or model capability or glossary term? The repo is spec-driven - so the easiest way is to use GitHub Copilot and activate the relevant skills with a prompt. This ensures content is validated against the schema and referenced consistently across documents.
-
-
-```mermaid
-flowchart LR
-    A[CapsuleCreatorAgent<br/>Copilot custom agent] --> S[6 skills<br/>add-family, add-model,<br/>add-capsule, add-to-glossary,<br/>add-capability-doc,<br/>refresh-recent-activity]
-    S --> M[Markdown + YAML<br/>frontmatter artifacts]
-    M --> V[scripts/validate-specs.py]
-    V --> X[.github/specs/schemas/<br/>7 JSON Schemas]
-```
-
-1. **Start with the [maintainer guide](.github/maintainer-guide.md)** — it
-covers setup validation, how to add your first capsule/family/term, and
-the testing strategy.
-1. **Activate the CapsuleCreatorAgent** to get a guided experience for content creation. Try this prompt with GitHub Copilot (or switch to the custom agent in GitHub Copilot Chat)
-
-    ```text
-    Use the CapsuleCreatorAgent to add a capsule for the (model) released on (date)
-    ```
+New to the terminology? Start with the [glossary](./docs/GLOSSARY.md).

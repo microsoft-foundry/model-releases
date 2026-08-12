@@ -49,7 +49,7 @@ references:
 
 # MAI-Transcribe-1.5 — Release Capsule
 
-**Released:** 2026-06-02 · **Family:** [Microsoft AI](../../README.md) · **Capability:** Audio / Speech
+**Released:** 2026-06-02 · **Family:** [Microsoft AI](../README.md) · **Capability:** Audio / Speech
 
 > **Public preview.** MAI-Transcribe runs on the LLM Speech API, which is in public preview — no SLA, not recommended for production workloads.
 
@@ -63,7 +63,7 @@ references:
 | Release date | 2026-06-02 |
 | Deployment regions | See [Speech service regions](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/regions?tabs=llmspeech) — LLM Speech is available in a subset of Speech regions |
 
-See [models/quickstart/](../../../quickstart/README.md) for first-time Foundry project setup.
+See [models/quickstart/](../../quickstart/README.md) for first-time Foundry project setup.
 
 **Required env variables:**
 
@@ -141,4 +141,4 @@ naming the model is enough to turn enhanced mode on.
 - [Introducing MAI-Transcribe-1.5](https://microsoft.ai/news/mai-transcribe-1-5more-accurate-context-aware-and-built-for-production/) — release announcement: 43-language coverage, throughput, and keyword-biasing results.
 - [MAI-Transcribe-1.5 model page](https://microsoft.ai/models/mai-transcribe-1-5/) — benchmark comparison against MAI-Transcribe-1 and pricing per audio hour.
 - [MAI-Transcribe-1.5 model card (PDF)](https://microsoft.ai/pdf/MAI-Transcribe-1.5-Model-Card.PDF) — intended uses, evaluation methodology, and responsible-AI considerations.
-- [Audio / Speech primer](../../../../docs/primers/audio-speech.md) — background on transcription and speech capabilities on Foundry.
+- [Audio / Speech primer](../../../docs/primers/audio-speech.md) — background on transcription and speech capabilities on Foundry.

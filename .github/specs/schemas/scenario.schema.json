@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/microsoft-foundry/model-releases/schemas/scenario.schema.json",
+  "title": "Scenario",
+  "description": "Frontmatter contract for a multi-model scenario README. A scenario combines two or more model releases in one walkthrough, so it cannot live in a single capsule. Family-scoped scenarios live at models/<family>/multi-model-scenarios/<slug>/; cross-family scenarios live at models/multi-model-scenarios/<slug>/.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "slug", "title", "scope", "models", "capabilities"],
+  "properties": {
+    "kind": { "const": "scenario" },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Kebab-case folder slug — matches the scenario folder name."
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable scenario title."
+    },
+    "scope": {
+      "enum": ["family", "cross-family"],
+      "description": "'family' when every model belongs to one family (models/<family>/multi-model-scenarios/<slug>/); 'cross-family' when the scenario spans families (models/multi-model-scenarios/<slug>/)."
+    },
+    "family": {
+      "type": ["string", "null"],
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Family slug. Required when scope is 'family'; omit for cross-family scenarios."
+    },
+    "models": {
+      "type": "array",
+      "minItems": 2,
+      "description": "The releases this scenario combines. Two or more — a single-model walkthrough belongs in that model's capsule instead.",
+      "items": {
+        "type": "object",
+        "required": ["family", "model"],
+        "additionalProperties": false,
+        "properties": {
+          "family": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "description": "Family slug — must match a folder under models/."
+          },
+          "model": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+([-.][a-z0-9]+)*$",
+            "description": "Model slug — must match a capsule folder under models/<family>/."
+          },
+          "role": {
+            "type": "string",
+            "description": "What this model contributes to the scenario."
+          }
+        }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Capability tags exercised by the scenario. Same enum as capsules — every tag needs a docs/primers/<slug>.md.",
+      "items": {
+        "enum": [
+          "chat-completion", "reasoning", "multimodal", "vision",
+          "image-generation", "embeddings", "audio-speech",
+          "function-calling", "model-router", "fine-tuning", "long-context"
+        ]
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Scenario-specific Python deps appended to requirements-dev.txt.",
+      "items": { "type": "string" }
+    },
+    "notebooks": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Notebooks shipped with this scenario (paths relative to the scenario folder, at folder root). Each notebook covers 1–3 concepts; split rather than grow one.",
+      "items": {
+        "type": "object",
+        "required": ["path", "title", "concepts"],
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string", "description": "Relative path, e.g. mai-image-family-walkthrough.ipynb" },
+          "title": { "type": "string" },
+          "concepts": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "domains": {
+      "type": "array",
+      "description": "Real-world domains the scenario explores.",
+      "items": { "type": "string" }
+    },
+    "references": {
+      "type": "array",
+      "description": "Author-supplied references surfaced at the end of the scenario README.",
+      "items": {
+        "type": "object",
+        "required": ["title", "url"],
+        "additionalProperties": false,
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "kind": {
+            "enum": ["model-card", "docs", "sample", "blog", "paper", "video", "other"]
+          },
+          "note": { "type": "string" }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "scope": { "const": "family" } }, "required": ["scope"] },
+      "then": { "required": ["family"] }
+    }
+  ]
+}

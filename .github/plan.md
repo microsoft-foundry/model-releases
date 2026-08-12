@@ -124,16 +124,23 @@ Top-to-bottom outline of `README.md`:
 
 ## 4. CHANGELOG.md
 
-One row per release, newest first. **Rows may be added before a
-capsule exists** — the announcement and any known pricing/card links
-are enough. A later `add-capsule` run updates the same row in place
-with the capsule link.
+One row per release, newest first, grouped into a table per month.
+**Rows may be added before a capsule exists** — the announcement and
+any known pricing/card links are enough. A later `add-capsule` run
+updates the same row in place with the capsule link.
 
-Column shape:
+Rows are grouped into one table per month, newest month first:
+
+```markdown
+## July 2026
 
 | Date | Family | Model | Capabilities | Pricing | Capsule |
 |---|---|---|---|---|---|
 | [YYYY-MM-DD](announcement URL) | … | [Model](model-card URL) (or plain text) | Tag · Tag | pricing summary (or "—") | ↗ capsule (or "—") |
+```
+
+Add a new `## <Month> <Year>` heading and table header when a release
+opens a new month. Grouping keeps the list scannable as it grows.
 
 The Date cell is a **markdown link to the announcement/blog post** — no
 separate Announcement column (saves horizontal space). The **Model

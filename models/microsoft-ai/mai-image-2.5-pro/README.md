@@ -35,7 +35,7 @@ references:
 
 # MAI-Image-2.5-Pro — Release Capsule
 
-**Released:** 2026-07-23 · **Family:** [Microsoft AI](../../README.md) · **Capability:** Image Generation
+**Released:** 2026-07-23 · **Family:** [Microsoft AI](../README.md) · **Capability:** Image Generation
 
 ## Before You Begin
 
@@ -47,7 +47,7 @@ references:
 | Release date | 2026-07-23 |
 | Deployment regions | West Central US · East US · West US · West Europe · Sweden Central · South India · UAE North |
 
-See [models/quickstart/](../../../quickstart/README.md) for first-time Foundry project setup.
+See [models/quickstart/](../../quickstart/README.md) for first-time Foundry project setup.
 
 **Required env variables:**
 
@@ -70,7 +70,7 @@ AZURE_MAI_IMAGE_25_PRO_DEPLOYMENT   # your MAI-Image-2.5-Pro deployment name
 - **Visual reasoning** — coherent spatial relationships, object consistency, and material accuracy
 - **Character consistency** — same person recognisable across poses, angles, and lighting conditions
 
-If you are new to the family, start with [MAI-Image-2.5](../../mai-image-2.5/2026-06-02/) to understand the baseline generation and editing APIs.
+If you are new to the family, start with [MAI-Image-2.5](../mai-image-2.5/) to understand the baseline generation and editing APIs.
 
 ## API endpoints
 

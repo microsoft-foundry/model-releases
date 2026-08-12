@@ -11,10 +11,12 @@ Behavior:
 3. Filter to plausible model announcements (title heuristic: mentions
    a model family, "introducing", "available", "now in Foundry", etc).
 4. Diff against blog URLs already referenced in CHANGELOG.md.
-5. For each new post, prepend a draft row to CHANGELOG.md with the
-   Date linking to the blog post. Family / Model / Capabilities /
-   Model card / Pricing cells are filled with `_review_` placeholders
-   so the maintainer knows what to complete before merging.
+5. For each new post, add a draft row to CHANGELOG.md under its
+   `## <Month> <Year>` heading (creating the heading and table header
+   if the month is new), with the Date linking to the blog post.
+   Family / Model / Capabilities / Pricing cells are filled with
+   `_review_` / `_—_` placeholders so the maintainer knows what to
+   complete before merging.
 6. Regenerate the README `<!-- BEGIN:RECENTLY-ADDED -->` block from
    the top 3 CHANGELOG rows.
 7. Print a short summary to stdout so the workflow can surface it in
@@ -27,7 +29,7 @@ Design notes:
 - The blog listing HTML shape may drift; parsing is intentionally
   forgiving. When a field can't be extracted we fall back to
   `_review_` and let the maintainer fix it in the PR.
-- The script never edits existing CHANGELOG rows — it only prepends.
+- The script never edits existing CHANGELOG rows — it only adds.
   Manual/curated rows added by hand keep their fidelity.
 - A row is considered "already present" if its Date-cell markdown link
   points at the same blog URL (path-normalized, ignoring trailing /).
@@ -243,6 +245,13 @@ CHANGELOG_URL_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Hardcoded rather than strftime("%B") so month headings don't change
+# with the runner's locale.
+MONTH_NAMES = (
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+)
+
 
 def existing_changelog_urls(changelog_text: str) -> set[str]:
     urls: set[str] = set()
@@ -267,28 +276,60 @@ def draft_row(post: BlogPost) -> str:
     )
 
 
-TABLE_ROW_RE = re.compile(r"^\|.*\|\s*$")
+MONTH_HEADING_RE = re.compile(r"^## \w+ \d{4}\s*$")
+TABLE_HEADER = "| Date | Family | Model | Capabilities | Pricing | Capsule |"
+TABLE_SEP = "|---|---|---|---|---|---|"
+
+
+def month_heading(date_str: str) -> str:
+    """`2026-07-29` -> `## July 2026`."""
+    d = date.fromisoformat(date_str)
+    return f"## {MONTH_NAMES[d.month - 1]} {d.year}"
 
 
 def insert_rows_into_changelog(
-    changelog_text: str, new_rows: list[str]
+    changelog_text: str, new_rows: list[tuple[str, str]]
 ) -> str:
-    """Insert new_rows immediately after the header separator row."""
+    """Insert new rows under their month's table, newest first.
+
+    `new_rows` is a list of `(date_str, row_text)`. A month heading
+    and table header are created if the month isn't present yet.
+    """
     if not new_rows:
         return changelog_text
+    trailing_nl = changelog_text.endswith("\n")
     lines = changelog_text.splitlines()
-    # Find the header row + separator.
-    for i, line in enumerate(lines):
-        if line.startswith("| Date |") and i + 1 < len(lines):
-            sep = lines[i + 1]
-            if re.match(r"^\|\s*---", sep):
-                insert_at = i + 2
-                new_block = list(new_rows)
-                lines[insert_at:insert_at] = new_block
-                return "\n".join(lines) + (
-                    "\n" if changelog_text.endswith("\n") else ""
-                )
-    raise RuntimeError("CHANGELOG.md header row not found")
+
+    # Oldest first, so repeated top-insertion leaves the newest row on
+    # top.
+    for date_str, row in sorted(new_rows, key=lambda e: e[0]):
+        heading = month_heading(date_str)
+        try:
+            at = lines.index(heading)
+        except ValueError:
+            # New month — goes above the newest existing month heading,
+            # or at the end if there are none yet.
+            first = next(
+                (i for i, ln in enumerate(lines)
+                 if MONTH_HEADING_RE.match(ln)),
+                len(lines),
+            )
+            lines[first:first] = [
+                heading, "", TABLE_HEADER, TABLE_SEP, row, "",
+            ]
+            continue
+        # Existing month — insert directly under that table's separator.
+        for i in range(at, len(lines)):
+            if lines[i].startswith("| Date |") and re.match(
+                r"^\|\s*---", lines[i + 1] if i + 1 < len(lines) else ""
+            ):
+                lines[i + 2:i + 2] = [row]
+                break
+        else:
+            raise RuntimeError(
+                f"CHANGELOG.md: no table found under '{heading}'"
+            )
+    return "\n".join(lines) + ("\n" if trailing_nl else "")
 
 
 README_MARK_BEGIN = "<!-- BEGIN:RECENTLY-ADDED -->"
@@ -298,24 +339,27 @@ README_MARK_END = "<!-- END:RECENTLY-ADDED -->"
 def parse_changelog_top(
     changelog_text: str, n: int
 ) -> list[dict[str, str]]:
-    """Extract the first n data rows from the CHANGELOG table."""
-    lines = changelog_text.splitlines()
+    """Extract the first n data rows, across all month tables."""
+    text = re.sub(r"<!--.*?-->", "", changelog_text, flags=re.DOTALL)
     rows: list[list[str]] = []
     in_table = False
-    for line in lines:
+    for line in text.splitlines():
         if line.startswith("| Date |"):
             in_table = True
             continue
-        if in_table and re.match(r"^\|\s*---", line):
+        if not in_table:
             continue
-        if in_table:
-            if not line.strip().startswith("|"):
-                break
-            cells = [c.strip() for c in line.strip().strip("|").split("|")]
-            if len(cells) >= 6:
-                rows.append(cells)
-            if len(rows) >= n:
-                break
+        if re.match(r"^\|\s*---", line):
+            continue
+        if not line.strip().startswith("|"):
+            # End of this month's table; the next one may follow.
+            in_table = False
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 6:
+            rows.append(cells)
+        if len(rows) >= n:
+            break
     keys = [
         "date", "family", "model", "capabilities",
         "pricing", "capsule",
@@ -325,8 +369,8 @@ def parse_changelog_top(
 
 def render_readme_block(rows: list[dict[str, str]]) -> str:
     header = (
-        "| Release date | Model | Description | Expires |\n"
-        "|---|---|---|---|"
+        "| Release date | Model | Description |\n"
+        "|---|---|---|"
     )
     body_lines: list[str] = []
     for r in rows:
@@ -336,7 +380,7 @@ def render_readme_block(rows: list[dict[str, str]]) -> str:
         # written a real description yet.
         description = r.get("capabilities", "").strip() or "_review_"
         body_lines.append(
-            f"| {r.get('date', '_review_')} | **{model}** | {description} | — |"
+            f"| {r.get('date', '_review_')} | **{model}** | {description} |"
         )
     caption = (
         "\n\n_Top 3 most recent — see [`CHANGELOG.md`](CHANGELOG.md) "
@@ -426,7 +470,14 @@ def main(argv: list[str]) -> int:
         print("[scan] nothing new to add.")
         return 0
 
-    new_rows = [draft_row(p) for p in candidates]
+    new_rows = [
+        (
+            p.published.isoformat() if p.published
+            else date.today().isoformat(),
+            draft_row(p),
+        )
+        for p in candidates
+    ]
     updated_changelog = insert_rows_into_changelog(
         changelog_text, new_rows
     )
@@ -436,8 +487,8 @@ def main(argv: list[str]) -> int:
     )
 
     if args.dry_run:
-        print("\n[dry-run] would prepend these CHANGELOG rows:")
-        for r in new_rows:
+        print("\n[dry-run] would add these CHANGELOG rows:")
+        for _, r in new_rows:
             print(f"  {r}")
         print("\n[dry-run] would update README Recently added block.")
         return 0

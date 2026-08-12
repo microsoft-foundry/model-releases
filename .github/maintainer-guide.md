@@ -410,7 +410,7 @@ That leaves you to eyeball the things machines can't check:
   AI Foundry").
 - **Grounding.** Learner-facing links point to `learn.microsoft.com`
   when a canonical Learn page exists; provider docs are a fallback.
-- **Pricing verifiability.** The Pricing cell in the CHANGELOG row
+- **Pricing verifiability.** The Pricing cell in a CHANGELOG row
   links to an official pricing page when one exists, otherwise to the
   blog post the figure came from.
 
