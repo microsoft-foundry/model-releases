@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/microsoft-foundry/model-releases/schemas/scenario.schema.json",
   "title": "Scenario",
-  "description": "Frontmatter contract for a multi-model scenario README. A scenario combines two or more model releases in one walkthrough, so it cannot live in a single capsule. Publisher-scoped scenarios live at models/<publisher>/multi-model-scenarios/<slug>/; cross-publisher scenarios live at models/multi-model-scenarios/<slug>/.",
+  "description": "Frontmatter contract for a multi-model scenario README. A scenario combines two or more model releases in one walkthrough, so it cannot live in a single capsule. It need not be a comparison — a publisher-scoped scenario is often a deeper technical dive that uses several of that publisher's models together. Publisher-scoped scenarios live at models/<publisher>/multi-model-scenarios/<slug>/; cross-publisher scenarios live at models/multi-model-scenarios/<slug>/.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -43,7 +43,7 @@
         "publisher",
         "cross-publisher"
       ],
-      "description": "'publisher' when every model comes from one publisher (models/<publisher>/multi-model-scenarios/<slug>/); 'cross-publisher' when the scenario spans publishers (models/multi-model-scenarios/<slug>/)."
+      "description": "'publisher' when every model comes from one publisher, going deeper on that publisher's lineup (models/<publisher>/multi-model-scenarios/<slug>/); 'cross-publisher' when the scenario spans publishers (models/multi-model-scenarios/<slug>/). The scope must match the folder the scenario lives in."
     },
     "publisher": {
       "type": [

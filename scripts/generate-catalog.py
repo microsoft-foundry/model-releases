@@ -331,9 +331,14 @@ def render_capsule_toc(cat: dict) -> str:
         ]
         blocks.append(
             "## Multi-model scenarios\n\n"
-            "A scenario spans more than one release, comparing models side "
-            "by side in a single notebook - so it can't live in any one "
-            "capsule.\n\n"
+            "A scenario covers more than one release in a single "
+            "notebook, so it can't live in any one capsule. It sits in a "
+            "`multi-model-scenarios/` folder in one of two places. Under a "
+            "publisher (`models/<publisher>/multi-model-scenarios/`) it goes "
+            "deeper on models from that publisher - often a technical dive "
+            "that uses several together, not necessarily a comparison. At "
+            "the top level (`models/multi-model-scenarios/`) it spans "
+            "publishers.\n\n"
             + _rows(["Scenario", "Publisher", "Last updated", "Description"],
                     rows)
         )

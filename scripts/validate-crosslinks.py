@@ -281,6 +281,33 @@ def check_publisher_matches_folder(
     return errs
 
 
+def check_scenario_scope_matches_location(scenarios: list[Path]) -> list[str]:
+    """A scenario's `scope` must agree with where the folder lives.
+
+    Both locations use a `multi-model-scenarios/` folder, so the path is
+    the only thing distinguishing a publisher-scoped dive from a
+    cross-publisher one. If they disagree the scenario is filed under a
+    publisher it does not belong to, or vice versa.
+    """
+    errs: list[str] = []
+    for path in scenarios:
+        rel = path.relative_to(REPO_ROOT)
+        fm = read_frontmatter(path)
+        if fm is None:
+            continue
+        scope = str(fm.get("scope") or "").strip()
+        # models/multi-model-scenarios/<slug>/ -> cross-publisher
+        # models/<publisher>/multi-model-scenarios/<slug>/ -> publisher
+        at_top_level = rel.parts[1] == "multi-model-scenarios"
+        expected = "cross-publisher" if at_top_level else "publisher"
+        if scope and scope != expected:
+            errs.append(
+                f"[crosslink] scenario {rel} — scope {scope!r} but its "
+                f"location implies {expected!r}"
+            )
+    return errs
+
+
 def check_capsule_in_publisher_readme(capsules: list[Path]) -> list[str]:
     errs: list[str] = []
     for cap in capsules:
@@ -475,6 +502,7 @@ def main() -> int:
     all_errs += check_capsule_in_changelog(capsules, changelog)
     all_errs += check_capsule_in_publisher_readme(capsules)
     all_errs += check_publisher_matches_folder(capsules, scenarios)
+    all_errs += check_scenario_scope_matches_location(scenarios)
     all_errs += check_capabilities_have_primers(capsules)
     all_errs += check_capabilities_have_primers(scenarios)
     all_errs += check_scenario_models_exist(scenarios)

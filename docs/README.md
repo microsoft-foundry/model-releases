@@ -21,7 +21,9 @@ Here is a visual representation of the repository structure for reference:
 - the `docs/` folder has a glossary and primers to build familiarity with terminology
 - the `models/` folder contains the model release capsules, organized by publisher.
 - the `models/quickstart` folder contains guidance to get started with development.
-- a `multi-model-scenarios/` folder under a publisher holds walkthroughs that span two or more releases.
+- a `multi-model-scenarios/` folder holds walkthroughs that span two or more releases, and its location says which:
+  - **under a publisher** (`models/<publisher>/multi-model-scenarios/`) — several models from that one publisher in a single notebook. This is often a deeper technical dive that uses them together, not just a side-by-side comparison.
+  - **at the top level** (`models/multi-model-scenarios/`) — models from different publishers in a single notebook.
 
 ```mermaid
 flowchart LR
@@ -29,7 +31,8 @@ flowchart LR
     R --> Q[models/quickstart/<br/>shared setup]
     R --> F[models/&lt;publisher&gt;/<br/>publisher README]
     F --> C[models/&lt;publisher&gt;/&lt;release&gt;/<br/>capsule: README + notebook]
-    F --> S[models/&lt;publisher&gt;/multi-model-scenarios/&lt;slug&gt;/<br/>scenario: README + notebook]
+    F --> S[models/&lt;publisher&gt;/multi-model-scenarios/&lt;slug&gt;/<br/>scenario: models from one publisher]
+    R --> X[models/multi-model-scenarios/&lt;slug&gt;/<br/>scenario: models across publishers]
     Q -.env precheck.-> C
 ```
 

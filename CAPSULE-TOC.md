@@ -22,7 +22,7 @@ Providers without a capsule yet are listed in the [publishers reference](./docs/
 
 ## Multi-model scenarios
 
-A scenario spans more than one release, comparing models side by side in a single notebook - so it can't live in any one capsule.
+A scenario covers more than one release in a single notebook, so it can't live in any one capsule. It sits in a `multi-model-scenarios/` folder in one of two places. Under a publisher (`models/<publisher>/multi-model-scenarios/`) it goes deeper on models from that publisher - often a technical dive that uses several together, not necessarily a comparison. At the top level (`models/multi-model-scenarios/`) it spans publishers.
 
 | Scenario | Publisher | Last updated | Description |
 | --- | --- | --- | --- |
