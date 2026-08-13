@@ -9,8 +9,7 @@
 
 <p align="center">
   <a href="https://ai.azure.com/catalog/models"><img src="https://img.shields.io/badge/Microsoft_Foundry-catalog-0078D4?style=flat-square" alt="Microsoft Foundry catalog" /></a>
-  <a href="./CHANGELOG.md"><img src="https://img.shields.io/badge/Changelog-what%27s_new-1f2937?style=flat-square" alt="Changelog - what's new" /></a>
-  <a href="./CAPSULE-TOC.md"><img src="https://img.shields.io/badge/Capsules-try_it_out-16a34a?style=flat-square" alt="Capsules - try it out" /></a>
+  <a href="https://learn.microsoft.com/en-us/azure/foundry/"><img src="https://img.shields.io/badge/Microsoft_Foundry-docs-5E5E5E?style=flat-square" alt="Microsoft Foundry docs" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="License: MIT" /></a>
 </p>
 
