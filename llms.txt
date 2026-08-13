@@ -30,7 +30,7 @@ Announcements are tracked in CHANGELOG.md, newest first, grouped by month. Capsu
 
 ## Optional
 
-- [CHANGELOG](https://github.com/microsoft-foundry/model-releases/blob/main/CHANGELOG.md): every Foundry model release announcement with pricing
+- [CHANGELOG](https://github.com/microsoft-foundry/model-releases/blob/main/CHANGELOG.md): every Foundry model release announcement
 - [CAPSULE-TOC](https://github.com/microsoft-foundry/model-releases/blob/main/CAPSULE-TOC.md): capsule index grouped by provider
 - [Glossary](https://github.com/microsoft-foundry/model-releases/blob/main/docs/GLOSSARY.md): terminology used across capsules
 - [Quickstart](https://github.com/microsoft-foundry/model-releases/tree/main/models/quickstart): one-time Foundry project and .env setup

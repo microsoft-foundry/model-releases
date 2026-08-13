@@ -12,7 +12,7 @@ That's what this repo is for:
 
 ## Changelog: What's New In Foundry Models?
 
-Every new model release announcement gets a row here, with a link back to the original post plus the publisher, capabilities, and pricing at a glance. The three most recent:
+Every new model release announcement gets a row here, with a link back to the original post plus the publisher and capabilities at a glance. The three most recent:
 
 <!-- BEGIN:RECENTLY-ADDED -->
 | Model | Release date | Capabilities |

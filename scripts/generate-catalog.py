@@ -269,7 +269,7 @@ def render_llms_txt(cat: dict) -> str:
         )
     L += ["", "## Optional", "",
           f"- [CHANGELOG]({REPO_URL}/blob/main/CHANGELOG.md): "
-          "every Foundry model release announcement with pricing",
+          "every Foundry model release announcement",
           f"- [CAPSULE-TOC]({REPO_URL}/blob/main/CAPSULE-TOC.md): "
           "capsule index grouped by provider",
           f"- [Glossary]({REPO_URL}/blob/main/docs/GLOSSARY.md): "

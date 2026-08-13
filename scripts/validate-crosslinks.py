@@ -133,7 +133,7 @@ def parse_changelog_rows() -> list[dict[str, str]]:
             in_table = False
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) < 5:
+        if len(cells) < 4:
             continue
         # Date cell may be `[YYYY-MM-DD](url)` or plain.
         m = re.search(r"\d{4}-\d{2}-\d{2}", cells[0])
