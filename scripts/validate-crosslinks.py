@@ -145,14 +145,41 @@ def parse_changelog_rows() -> list[dict[str, str]]:
         # Model cell may be `[Model](url)` or plain, and may carry a
         # trailing availability note like `_(public preview)_`.
         model_cell = strip_availability(cells[2])
-        m = re.match(r"\[([^\]]+)\]", model_cell)
+        m = re.match(r"\[([^\]]+)\]\(([^)]+)\)", model_cell)
         model = m.group(1) if m else model_cell
         rows.append({
             "date": date,
             "publisher": publisher.strip(),
             "model": model.strip(),
+            "model_url": m.group(2).strip() if m else "",
         })
     return rows
+
+
+CATALOG_MODEL_RE = re.compile(
+    r"^https://ai\.azure\.com/catalog/models/[A-Za-z0-9._-]+$"
+)
+
+
+def check_model_card_urls(changelog: list[dict[str, str]]) -> list[str]:
+    """Model-card links must be clean canonical catalog URLs.
+
+    The catalog's search is client-side, so a slug is usually found via
+    `?publisher=<x>&search=<y>` — and it is easy to paste that browsing
+    URL in. Those parameters describe how someone searched, not the
+    model, so store the canonical form instead.
+    """
+    errs: list[str] = []
+    for row in changelog:
+        url = row.get("model_url") or ""
+        if "ai.azure.com" not in url:
+            continue  # no link, or a deliberate non-catalog link
+        if not CATALOG_MODEL_RE.match(url):
+            errs.append(
+                f"[crosslink] CHANGELOG {row['model']!r} — model card URL "
+                f"is not a canonical catalog link: {url}"
+            )
+    return errs
 
 
 def parse_readme_recent() -> list[dict[str, str]]:
@@ -456,6 +483,7 @@ def main() -> int:
         capsules + scenarios + quickstart
     )
     all_errs += check_readme_matches_changelog(readme_rows, changelog)
+    all_errs += check_model_card_urls(changelog)
     all_errs += check_no_placeholders()
 
     if all_errs:
