@@ -8,9 +8,10 @@
 </p>
 
 <p align="center">
-  <a href="https://ai.azure.com/catalog/models"><img src="https://img.shields.io/badge/Microsoft_Foundry-catalog-0078D4?style=flat-square" alt="Microsoft Foundry catalog" /></a>
-  <a href="https://learn.microsoft.com/en-us/azure/foundry/"><img src="https://img.shields.io/badge/Microsoft_Foundry-docs-5E5E5E?style=flat-square" alt="Microsoft Foundry docs" /></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="License: MIT" /></a>
+  <a href="https://ai.azure.com/catalog/models"><img src="https://img.shields.io/badge/Microsoft_Foundry-catalog-00A4EF?style=flat-square" alt="Microsoft Foundry catalog" /></a>
+  <a href="https://aka.ms/model-mondays"><img src="https://img.shields.io/badge/Model_Mondays-livestream-F25022?style=flat-square" alt="Model Mondays livestream" /></a>
+  <a href="https://aka.ms/model-mastery"><img src="https://img.shields.io/badge/Model_Mastery-workshops-7FBA00?style=flat-square" alt="Model Mastery workshops" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-FFB900?style=flat-square" alt="License: MIT" /></a>
 </p>
 
 <p align="center">
