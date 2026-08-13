@@ -13,9 +13,12 @@ purpose per script.
 - **Grounded in [Microsoft Learn](https://learn.microsoft.com/) docs**
   and the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/)
   where possible; link the underlying doc from the script's header.
-- **Spec-driven** — every script ships with a sidecar
-  `<name>.spec.md` whose YAML frontmatter is validated against
+- **Spec-driven** — a script that authors or learners invoke as part
+  of the workflow ships a sidecar `<name>.spec.md`, whose YAML
+  frontmatter is validated against
   [`.github/specs/schemas/script.schema.json`](../.github/specs/schemas/script.schema.json).
+  The validators and generators are self-describing and don't carry
+  one — their contract is the `--help` output and this table.
 - **Called out from wherever they're needed** (typically
   [`models/quickstart/`](../models/quickstart/) or a capsule README).
 
@@ -23,17 +26,39 @@ purpose per script.
 
 | Script | Spec | Purpose |
 |---|---|---|
+| [`validate.py`](./validate.py) | [`validate.spec.md`](./validate.spec.md) | **Start here.** Run every check at once; `--watch` re-runs on each save |
 | [`setenv.sh`](./setenv.sh) | [`setenv.spec.md`](./setenv.spec.md) | Copy `sample.env` → `.env` and populate Foundry connection via Azure CLI |
+| [`generate-catalog.py`](./generate-catalog.py) | [`generate-catalog.spec.md`](./generate-catalog.spec.md) | Regenerate `catalog.json`, `llms.txt`, `CAPSULE-TOC.md`, and the README blocks |
 | [`validate-specs.py`](./validate-specs.py) | _(self-describing)_ | Validate every artifact's YAML frontmatter against its JSON Schema |
+| [`validate-crosslinks.py`](./validate-crosslinks.py) | _(self-describing)_ | Check CHANGELOG ↔ README ↔ capsule ↔ primer wiring |
+| [`scan_foundry_blog.py`](./scan_foundry_blog.py) | _(self-describing)_ | Diff the Foundry blog against the CHANGELOG and draft rows for new posts |
 | [`sample.env`](./sample.env) | _(template)_ | Reference env vars for every capsule |
 
-## Validating specs
+## Validating your changes
+
+CI validates once per pull request, not on every push, so this is the
+check that catches things first — and the pre-commit hook runs it for
+you.
 
 ```bash
-pip install pyyaml jsonschema
-python scripts/validate-specs.py
+pip install -r requirements-dev.txt
+python scripts/validate.py
 ```
 
-Prints one line per artifact and exits non-zero if any frontmatter drifts
-from its schema.
+It runs the schema validator, the crosslink validator, and the
+generated-file check, and exits non-zero if any of them fails.
+
+While drafting, leave it running in a second terminal so every save
+re-checks:
+
+```bash
+python scripts/validate.py --watch
+```
+
+If the generated files are stale, rebuild them rather than editing by
+hand:
+
+```bash
+python scripts/validate.py --fix
+```
 

@@ -1,19 +1,20 @@
 name: Scan Foundry blog for new model releases
 
-# Runs weekly (Mondays 14:00 UTC) or on demand. Fetches the Microsoft
-# Foundry blog index, diffs post URLs against CHANGELOG.md, and opens
-# a pull request with draft rows for any new model-announcement posts.
-# The PR also refreshes the README Recently added top 3.
+# On demand only. Fetches the Microsoft Foundry blog index, diffs post
+# URLs against CHANGELOG.md, and opens a pull request with draft rows
+# for any new model-announcement posts. The PR also refreshes the
+# README Recently added top 3.
 #
 # Draft rows use `_review_` placeholders for Publisher / Model /
-# Capabilities / Model card / Pricing so the maintainer can complete
-# the details before merging. The Date cell is a working link to the
-# blog post.
+# Capabilities so the maintainer can complete the details before
+# merging. The Date cell is a working link to the blog post.
+#
+# Run it whenever you want to sweep for releases. To put it back on a
+# weekly cadence, restore the `schedule:` trigger below:
+#   schedule:
+#     - cron: "0 14 * * 1"   # Mondays 14:00 UTC
 
 on:
-  schedule:
-    # Every Monday at 14:00 UTC
-    - cron: "0 14 * * 1"
   workflow_dispatch:
     inputs:
       max_pages:
@@ -94,11 +95,12 @@ jobs:
             **Before merging**
 
             Every new row is a draft with `_review_` placeholders for Publisher,
-            Model, Capabilities, Model card, and Pricing. Please complete those
-            cells from the linked blog post (the Date cell is already a working
-            link) so the row is verifiable. Pricing cells should link to an
-            official pricing page when one exists, otherwise to the blog post
-            the figure was extracted from.
+            Model, and Capabilities. Please complete those cells from the linked
+            blog post (the Date cell is already a working link) so the row is
+            verifiable. Link the Model cell to its Foundry catalog model card
+            when the model has one. Rows are four cells wide — Date, Publisher,
+            Model, Capabilities — and `scripts/validate.py` fails any row that
+            isn't.
 
             See the workflow run summary for the full scanner output.
           labels: |

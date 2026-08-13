@@ -6,7 +6,7 @@ prereqs:
   - "pyyaml (`pip install -r requirements-dev.txt`)"
 usage:
   - "python scripts/generate-catalog.py           # write all generated files"
-  - "python scripts/generate-catalog.py --check   # CI: fail if any is stale"
+  - "python scripts/generate-catalog.py --check   # fail if any is stale"
 learn_ref: https://llmstxt.org/
 idempotent: true
 ---
@@ -63,8 +63,11 @@ primer serves several tags — `multimodal-models.md` covers both
 `multimodal` and `vision`. This is the single source of truth for the
 taxonomy table, so a tag is usable exactly when a primer declares it.
 
-## CI
+## Checking for drift
 
-[`validate.yml`](../.github/workflows/validate.yml) runs `--check` on
-every PR. If you change frontmatter and forget to regenerate, the build
-fails with the list of stale files.
+`--check` is one of the three checks in
+[`scripts/validate.py`](./validate.py), which runs from the pre-commit
+hook and from the
+[`validate.yml`](../.github/workflows/validate.yml) workflow. If you
+change frontmatter and forget to regenerate, it fails with the list of
+stale files; `python scripts/validate.py --fix` regenerates them.

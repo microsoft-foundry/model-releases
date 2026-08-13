@@ -41,7 +41,8 @@ context-free. Instead,
 [`scripts/generate-catalog.py`](../../../scripts/generate-catalog.py)
 derives the central index (`catalog.json`, `llms.txt`) *from* these
 per-file fields, so you get one-fetch discovery without giving up
-self-describing pages. CI fails if the generated files drift.
+self-describing pages. `scripts/validate.py` fails if the generated
+files drift.
 
 `summary` is the field to get right: it is the meta description reused
 in `catalog.json`, `llms.txt`, `CAPSULE-TOC.md`, and the repo README.

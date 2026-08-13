@@ -1,18 +1,26 @@
 name: Validate contribution
 
-# Runs on every PR and push to main. Blocks merge when either the
-# schema validator or the crosslink validator finds a problem — so
-# manual contributions can't accidentally miss the CHANGELOG row,
-# forget a primer, leave a `_review_` placeholder, or drift README
-# out of sync with CHANGELOG.
+# Runs on pull requests, and on demand. Deliberately **not** on push:
+# authors validate locally while they work — `python scripts/validate.py
+# --watch` re-runs the same three checks on every save — so CI stays off
+# each individual commit and runs once per PR instead.
+#
+# This job is the merge gate. Mark `validate` as a required status check
+# in branch protection so a red run blocks the merge; without that, a
+# failure here is only advisory.
+#
+# Dispatch it manually to check a branch before opening a PR, or when a
+# reviewer wants an independent result in a clean 3.12 environment.
 
 on:
   pull_request:
     branches: ["**"]
-  push:
-    branches:
-      - main
-      - "nitya-*"
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Branch, tag, or SHA to validate (defaults to the branch you dispatch from)"
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -21,7 +29,11 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
+      # Empty on a pull_request event, which makes checkout use its
+      # default (the PR merge ref); set only when dispatched by hand.
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || '' }}
 
       - uses: actions/setup-python@v5
         with:
@@ -32,11 +44,7 @@ jobs:
       - name: Install dev deps
         run: pip install -r requirements-dev.txt
 
-      - name: Schemas
-        run: python scripts/validate-specs.py
-
-      - name: Crosslinks
-        run: python scripts/validate-crosslinks.py
-
-      - name: Generated catalog is current
-        run: python scripts/generate-catalog.py --check
+      # Same entrypoint authors run locally, so a green local run and a
+      # green CI run mean the same thing. --no-color keeps the log plain.
+      - name: Validate
+        run: python scripts/validate.py --no-color
