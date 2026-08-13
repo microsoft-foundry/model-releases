@@ -1,4 +1,28 @@
-# Microsoft Foundry Model Releases
+<!-- prettier-ignore -->
+<p align="center">
+  <img src="./docs/images/logo.png" alt="Model Releases from Microsoft Foundry" width="320" />
+</p>
+
+<h1 align="center">Model Releases</h1>
+
+<p align="center">
+  <b><i>Meet The Models — Then Put Them To Work.</i></b><br/>
+  <i>Every release on Microsoft Foundry, what actually changed,<br/>and a notebook to try it yourself.</i>
+</p>
+
+<p align="center">
+  <a href="https://ai.azure.com/catalog/models"><img src="https://img.shields.io/badge/Microsoft_Foundry-catalog-0078D4?style=flat-square" alt="Microsoft Foundry catalog" /></a>
+  <a href="./CHANGELOG.md"><img src="https://img.shields.io/badge/Changelog-every_release-1f2937?style=flat-square" alt="Changelog" /></a>
+  <a href="./CAPSULE-TOC.md"><img src="https://img.shields.io/badge/Capsules-run_a_notebook-16a34a?style=flat-square" alt="Capsules" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="License: MIT" /></a>
+</p>
+
+<p align="center">
+  <a href="#changelog-whats-new-in-foundry-models">Changelog</a> &nbsp;•&nbsp;
+  <a href="#capsule-what-can-i-do-with-this-release">Capsules</a> &nbsp;•&nbsp;
+  <a href="#quickstart-explore-model-releases-hands-on">Quickstart</a> &nbsp;•&nbsp;
+  <a href="#reference-where-do-i-learn-more">Reference</a>
+</p>
 
 The [Microsoft Foundry catalog](https://ai.azure.com/catalog) has thousands of models from Anthropic, Microsoft, OpenAI, xAI, Hugging Face, Meta, Mistral, Cohere, and NVIDIA - and new releases land almost daily. Keeping up is one thing. Knowing what a release actually does *differently*, and whether it's the right pick for your agent, is another.
 
