@@ -169,7 +169,7 @@ def parse_readme_recent() -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     in_body = False
     for line in m.group(1).splitlines():
-        if line.startswith("| Release date"):
+        if line.startswith("| Model"):
             in_body = True
             continue
         if in_body and re.match(r"^\|\s*---", line):
@@ -180,10 +180,10 @@ def parse_readme_recent() -> list[dict[str, str]]:
             cells = [c.strip() for c in line.strip().strip("|").split("|")]
             if len(cells) < 3:
                 continue
-            date_cell = cells[0]
+            date_cell = cells[1]
             m2 = re.search(r"\d{4}-\d{2}-\d{2}", date_cell)
             date = m2.group(0) if m2 else date_cell
-            model_cell = cells[1]
+            model_cell = cells[0]
             m2 = re.match(r"\*\*([^*]+)\*\*", model_cell)
             model = (m2.group(1) if m2 else model_cell).strip()
             rows.append({"date": date, "model": model})

@@ -1,7 +1,7 @@
 ---
 kind: skill
 name: refresh-recent-activity
-description: Regenerate the repo README's Recently added table from the top 3 CHANGELOG rows.
+description: Regenerate the repo README's Recently added table (Model / Release date / Capabilities) from the top 3 CHANGELOG rows.
 inputs: []
 produces:
   - README.md
@@ -23,9 +23,14 @@ capsule frontmatter `release_date`):
 
 | Column | Source | Link target |
 |---|---|---|
-| Release date | Capsule frontmatter `release_date` | Capsule frontmatter `announcement` (blog post) — falls back to `model_card` if `announcement` is empty |
-| Model | Capsule frontmatter `model` | Capsule README |
-| Description | Capsule frontmatter `summary` (or first sentence of capsule README) | plain text — no link |
+| Model | CHANGELOG Model cell, minus any link markup and availability note | plain bold text — no link |
+| Release date | CHANGELOG Date cell | the announcement (carried over from the CHANGELOG cell) |
+| Capabilities | CHANGELOG Capabilities cell, verbatim | plain text — no link |
+
+Column order mirrors `CAPSULE-TOC.md`: what it is first, when it
+landed second. Every cell is copied from the CHANGELOG row rather than
+written by hand, so the table can be regenerated at any time without
+losing prose.
 
 Neither pricing nor expiry is shown in the README. Pricing lives in
 `CHANGELOG.md` (with a verifiable source link) and expiry lives in the

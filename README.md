@@ -15,11 +15,11 @@ That's what this repo is for:
 Every new model release announcement gets a row here, with a link back to the original post plus the family, capabilities, and pricing at a glance. The three most recent:
 
 <!-- BEGIN:RECENTLY-ADDED -->
-| Release date | Model | Description |
+| Model | Release date | Capabilities |
 | --- | --- | --- |
-| [2026-08-12](https://microsoft.ai/news/introducing-mai-thinking-1) | **MAI-Thinking-1** | Cost-efficient reasoning with a 256k context window, in public preview on Microsoft Foundry |
-| [2026-08-11](https://microsoft.ai/news/mai-code-1-1-flash-br-better-faster-at-a-quarter-of-the-cost) | **MAI-Code-1.1-Flash** | Coding model at a quarter the cost of 1.0, shipping in GitHub Copilot and VS Code |
-| [2026-08-10](https://microsoft.ai/news/mai-image-2-6-launches-at-no-2-on-arena-ahead-of-google-meta-and-xai) | **MAI-Image-2.6** | Text-to-image generation, rolling out to Microsoft Foundry soon |
+| **MAI-Thinking-1** | [2026-08-12](https://microsoft.ai/news/introducing-mai-thinking-1) | Reasoning · Chat Completion · Function Calling · Long Context |
+| **MAI-Code-1.1-Flash** | [2026-08-11](https://microsoft.ai/news/mai-code-1-1-flash-br-better-faster-at-a-quarter-of-the-cost) | Chat Completion |
+| **MAI-Image-2.6** | [2026-08-10](https://microsoft.ai/news/mai-image-2-6-launches-at-no-2-on-arena-ahead-of-google-meta-and-xai) | Image Generation |
 <!-- END:RECENTLY-ADDED -->
 
 *See the full* [*CHANGELOG*](./CHANGELOG.md) *for everything else.*

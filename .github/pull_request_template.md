@@ -40,7 +40,8 @@
 - [ ] `CHANGELOG.md` has a row with matching Date + Model, with links
       on Date (announcement) and Pricing (source page or blog)
 - [ ] Family README lists this model in its members table
-- [ ] `README.md` **Recently added** block reflects the top 3
+- [ ] `README.md` **Recently added** block (Model / Release date /
+      Capabilities) reflects the top 3
 - [ ] No hype language ("revolutionary", "game-changing", "cutting-edge",
       "state-of-the-art" as a standalone claim, …)
 

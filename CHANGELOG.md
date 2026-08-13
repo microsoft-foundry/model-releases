@@ -22,7 +22,7 @@ Each row links out to what you need: the date to the announcement, the model to 
 | [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | Azure OpenAI | GPT-transcribe | Audio / Speech | [$0.27 / audio hour _(Global Standard)_](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) |
 | [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | Azure OpenAI | GPT-live-transcribe | Audio / Speech | [$1.02 / audio hour _(Global Standard)_](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) |
 | [2026-07-28](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-kimi-k3-through-fireworks-ai-on-microsoft-foundry/4540187) | Fireworks | Kimi K3 | Chat Completion · Long Context | [$3.30 / 1M in · $16.50 / 1M out · $0.33 / 1M cached _(Data Zone)_](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-kimi-k3-through-fireworks-ai-on-microsoft-foundry/4540187) |
-| [2026-07-24](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/claude-opus-5-is-available-today-in-microsoft-foundry/4535068) | Anthropic | Claude Opus 5 | Chat Completion · Reasoning · Multimodal · Function Calling | _—_ |
+| [2026-07-24](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/claude-opus-5-is-available-today-in-microsoft-foundry/4535068) | Anthropic | [Claude Opus 5](https://ai.azure.com/catalog/models/claude-opus-5) | Chat Completion · Reasoning · Multimodal · Function Calling | _—_ |
 | [2026-07-23](https://microsoft.ai/news/introducing-mai-image-2-5-pro-and-mai-voice-2-flash/) | Microsoft AI | [MAI-Image-2.5-Pro](https://ai.azure.com/catalog/models/MAI-Image-2.5-Pro) | Image Generation | [$5 / 1M text-in · $106 / 1M image-out](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-image-2-5-pro-and-mai-voice-2-flash-in-microsoft-foundry/4539446) |
 | [2026-07-23](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-image-2-5-pro-and-mai-voice-2-flash-in-microsoft-foundry/4539446) | Microsoft AI | MAI-Voice-2 Flash | Audio / Speech | [$15 / 1M characters](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-image-2-5-pro-and-mai-voice-2-flash-in-microsoft-foundry/4539446) |
 
@@ -37,8 +37,12 @@ Each row links out to what you need: the date to the announcement, the model to 
 <!-- Row template (prepended by add-capsule, or added manually for
 announcement-only entries). Rows live under a `## <Month> <Year>`
 heading, newest month first; add a new heading + table header when the
-month changes. The Model cell links to the model card when known
-(plain text otherwise). Both Date and Pricing cells link to the source
+month changes. The Model cell must link to the model's catalog page at
+`https://ai.azure.com/catalog/models/<slug>`, using the exact slug the
+catalog uses — it is not always the marketing name (`Claude Opus 5` is
+`claude-opus-5`). Leave the cell as plain text only when the model has
+no catalog entry yet, which is the case for releases announced before
+they reach Foundry. Both Date and Pricing cells link to the source
 of that fact — an official pricing page when one exists, otherwise the
 blog post the price was extracted from — so every pricing figure is
 verifiable. Record the price as stated at scan time and do not revise

@@ -411,38 +411,9 @@ def parse_changelog_top(
     return [dict(zip(keys, r)) for r in rows]
 
 
-def existing_readme_descriptions(readme_text: str) -> dict[str, str]:
-    """Map model name -> description already written in the README.
-
-    The Recently added descriptions are hand-written prose. Without
-    this, every scan would overwrite them with the Capabilities cell,
-    silently degrading curated text into a tag list.
-    """
-    m = re.search(
-        re.escape(README_MARK_BEGIN) + r"(.*?)" + re.escape(README_MARK_END),
-        readme_text,
-        re.DOTALL,
-    )
-    if not m:
-        return {}
-    out: dict[str, str] = {}
-    for line in m.group(1).splitlines():
-        if not line.strip().startswith("|"):
-            continue
-        cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) < 3 or cells[0].startswith("---"):
-            continue
-        name = cells[1].strip().strip("*").strip()
-        if name and name.lower() not in ("model",) and cells[2]:
-            out[name.lower()] = cells[2]
-    return out
-
-
-def render_readme_block(
-    rows: list[dict[str, str]], existing: dict[str, str] | None = None
-) -> str:
+def render_readme_block(rows: list[dict[str, str]]) -> str:
     header = (
-        "| Release date | Model | Description |\n"
+        "| Model | Release date | Capabilities |\n"
         "| --- | --- | --- |"
     )
     body_lines: list[str] = []
@@ -456,13 +427,10 @@ def render_readme_block(
         m = re.match(r"\[([^\]]+)\]", model)
         if m:
             model = m.group(1)
-        # Prefer a description the maintainer already wrote; fall back
-        # to the Capabilities cell only for rows we've never seen.
-        description = (existing or {}).get(model.lower(), "").strip()
-        if not description:
-            description = r.get("capabilities", "").strip() or "_review_"
+        capabilities = r.get("capabilities", "").strip() or "_review_"
         body_lines.append(
-            f"| {r.get('date', '_review_')} | **{model}** | {description} |"
+            f"| **{model}** | {r.get('date', '_review_')} "
+            f"| {capabilities} |"
         )
     # No caption here — the "See the full CHANGELOG" line lives outside
     # the markers in README.md so regeneration doesn't duplicate it.
@@ -562,10 +530,7 @@ def main(argv: list[str]) -> int:
     )
     top3 = parse_changelog_top(updated_changelog, 3)
     updated_readme = update_readme_recent(
-        readme_text,
-        render_readme_block(
-            top3, existing_readme_descriptions(readme_text)
-        ),
+        readme_text, render_readme_block(top3)
     )
 
     if args.dry_run:

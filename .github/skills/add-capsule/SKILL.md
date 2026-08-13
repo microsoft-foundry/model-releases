@@ -134,5 +134,5 @@ Produces a complete release capsule:
    its family's `## <Provider>` heading automatically; the generator
    creates that heading when the family has no capsules yet.
 7. Invokes [`refresh-recent-activity`](../refresh-recent-activity/) so the
-   repo README's **Recently added** table (Release date / Model /
-   Description) stays current.
+   repo README's **Recently added** table (Model / Release date /
+   Capabilities) stays current.
