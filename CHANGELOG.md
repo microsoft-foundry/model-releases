@@ -41,9 +41,14 @@ month changes. The Model cell must link to the model's catalog page at
 `https://ai.azure.com/catalog/models/<slug>`, using the exact slug the
 catalog uses — it is not always the marketing name (`Claude Opus 5` is
 `claude-opus-5`, `Kimi K3` is `FW-Kimi-K3`). The announcement post is
-the best source for it: these posts link the model card directly. Note
-a publisher-filtered catalog page shows at most 51 models, so a model
-missing from that list has not been ruled out. Leave the cell as plain text only when the model has
+the best source for it: these posts link the model card directly. To
+hunt for one, browse `?publisher=<slug>&search=<term>` in a browser —
+the catalog's own search — but record the clean
+`/catalog/models/<slug>` URL here, never the one carrying the
+`?publisher=&search=` parameters you found it with. Note a
+publisher-filtered page shows at most 51 models and its search runs in
+the browser, so a model missing from a fetched page has not been ruled
+out. Leave the cell as plain text only when the model has
 no catalog entry yet, which is the case for releases announced before
 they reach Foundry. Both Date and Pricing cells link to the source
 of that fact — an official pricing page when one exists, otherwise the
