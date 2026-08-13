@@ -29,9 +29,9 @@
     },
     "summary": {
       "type": "string",
-      "minLength": 20,
+      "minLength": 15,
       "maxLength": 160,
-      "description": "One-sentence description of what this release lets you do. Doubles as the SEO/AIO meta description: it is the text used in the repo README table, CAPSULE-TOC.md, catalog.json, and llms.txt, so write it to stand alone out of context."
+      "description": "Short phrase describing what this release lets you do, e.g. \"Generate and edit images from text prompts\". Used verbatim in the repo README table, CAPSULE-TOC.md, catalog.json, and llms.txt - every one of which shows the scenario title right next to it, so do not repeat the title or \"on Microsoft Foundry\" here. No trailing period; llms.txt adds one where it needs a full sentence."
     },
     "last_updated": {
       "type": "string",

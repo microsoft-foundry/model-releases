@@ -6,14 +6,14 @@ Announcements are tracked in CHANGELOG.md, newest first, grouped by month. Capsu
 
 ## Capsules
 
-- [MAI-Image-2.5-Pro](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-image-2.5-pro): Render portraits, in-image text, and complex scenes with MAI-Image-2.5-Pro on Microsoft Foundry. Family: microsoft-ai. Capabilities: image-generation. Released 2026-07-23.
-- [MAI-Transcribe-1.5](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-transcribe-1.5): Transcribe multilingual audio with keyword biasing using MAI-Transcribe-1.5 on Microsoft Foundry. Family: microsoft-ai. Capabilities: audio-speech. Released 2026-06-02.
-- [MAI-Image-2.5-Flash](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-image-2.5-flash): Generate images faster and cheaper with MAI-Image-2.5-Flash on Microsoft Foundry. Family: microsoft-ai. Capabilities: image-generation. Released 2026-06-02.
-- [MAI-Image-2.5](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-image-2.5): Generate and edit images from text prompts with MAI-Image-2.5 on Microsoft Foundry. Family: microsoft-ai. Capabilities: image-generation. Released 2026-06-02.
+- [MAI-Image-2.5-Pro](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-image-2.5-pro): Render portraits, in-image text, and complex scenes. Family: microsoft-ai. Capabilities: image-generation. Released 2026-07-23.
+- [MAI-Transcribe-1.5](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-transcribe-1.5): Transcribe multilingual audio with keyword biasing. Family: microsoft-ai. Capabilities: audio-speech. Released 2026-06-02.
+- [MAI-Image-2.5-Flash](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-image-2.5-flash): Generate images faster and at lower cost. Family: microsoft-ai. Capabilities: image-generation. Released 2026-06-02.
+- [MAI-Image-2.5](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-image-2.5): Generate and edit images from text prompts. Family: microsoft-ai. Capabilities: image-generation. Released 2026-06-02.
 
 ## Multi-model scenarios
 
-- [MAI-Image-2.5 family walkthrough](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough): Compare MAI-Image-2.5, Flash, and Pro on identical prompts to pick the right variant. Compares: mai-image-2.5-flash, mai-image-2.5, mai-image-2.5-pro.
+- [MAI-Image-2.5 family walkthrough](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough): Compare MAI-Image-2.5, Flash, and Pro on identical prompts. Compares: mai-image-2.5-flash, mai-image-2.5, mai-image-2.5-pro.
 
 ## Capability primers
 

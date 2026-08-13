@@ -2,7 +2,7 @@
 kind: capsule
 family: microsoft-ai
 model: mai-image-2.5-flash
-summary: "Generate images faster and cheaper with MAI-Image-2.5-Flash on Microsoft Foundry."
+summary: "Generate images faster and at lower cost"
 release_date: "2026-06-02"
 last_updated: "2026-08-04"
 capabilities: [image-generation]

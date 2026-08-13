@@ -411,18 +411,56 @@ def parse_changelog_top(
     return [dict(zip(keys, r)) for r in rows]
 
 
-def render_readme_block(rows: list[dict[str, str]]) -> str:
+def existing_readme_descriptions(readme_text: str) -> dict[str, str]:
+    """Map model name -> description already written in the README.
+
+    The Recently added descriptions are hand-written prose. Without
+    this, every scan would overwrite them with the Capabilities cell,
+    silently degrading curated text into a tag list.
+    """
+    m = re.search(
+        re.escape(README_MARK_BEGIN) + r"(.*?)" + re.escape(README_MARK_END),
+        readme_text,
+        re.DOTALL,
+    )
+    if not m:
+        return {}
+    out: dict[str, str] = {}
+    for line in m.group(1).splitlines():
+        if not line.strip().startswith("|"):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 3 or cells[0].startswith("---"):
+            continue
+        name = cells[1].strip().strip("*").strip()
+        if name and name.lower() not in ("model",) and cells[2]:
+            out[name.lower()] = cells[2]
+    return out
+
+
+def render_readme_block(
+    rows: list[dict[str, str]], existing: dict[str, str] | None = None
+) -> str:
     header = (
         "| Release date | Model | Description |\n"
         "| --- | --- | --- |"
     )
     body_lines: list[str] = []
     for r in rows:
-        model = r.get("model", "_review_")
-        # Description falls back to the blog title captured in the
-        # draft row's Capabilities cell if the maintainer hasn't
-        # written a real description yet.
-        description = r.get("capabilities", "").strip() or "_review_"
+        # README shows a plain bold model name; the CHANGELOG cell may
+        # carry link markup and an availability note, so strip both
+        # rather than nesting a link inside bold.
+        model = re.sub(
+            r"\s*_\([^)]*\)_\s*$", "", r.get("model", "_review_").strip()
+        )
+        m = re.match(r"\[([^\]]+)\]", model)
+        if m:
+            model = m.group(1)
+        # Prefer a description the maintainer already wrote; fall back
+        # to the Capabilities cell only for rows we've never seen.
+        description = (existing or {}).get(model.lower(), "").strip()
+        if not description:
+            description = r.get("capabilities", "").strip() or "_review_"
         body_lines.append(
             f"| {r.get('date', '_review_')} | **{model}** | {description} |"
         )
@@ -524,7 +562,10 @@ def main(argv: list[str]) -> int:
     )
     top3 = parse_changelog_top(updated_changelog, 3)
     updated_readme = update_readme_recent(
-        readme_text, render_readme_block(top3)
+        readme_text,
+        render_readme_block(
+            top3, existing_readme_descriptions(readme_text)
+        ),
     )
 
     if args.dry_run:

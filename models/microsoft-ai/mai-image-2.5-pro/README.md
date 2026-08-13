@@ -2,7 +2,7 @@
 kind: capsule
 family: microsoft-ai
 model: mai-image-2.5-pro
-summary: "Render portraits, in-image text, and complex scenes with MAI-Image-2.5-Pro on Microsoft Foundry."
+summary: "Render portraits, in-image text, and complex scenes"
 release_date: "2026-07-23"
 last_updated: "2026-08-04"
 capabilities: [image-generation]

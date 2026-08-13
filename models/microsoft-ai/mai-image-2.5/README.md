@@ -2,7 +2,7 @@
 kind: capsule
 family: microsoft-ai
 model: mai-image-2.5
-summary: "Generate and edit images from text prompts with MAI-Image-2.5 on Microsoft Foundry."
+summary: "Generate and edit images from text prompts"
 release_date: "2026-06-02"
 last_updated: "2026-08-11"
 capabilities: [image-generation]

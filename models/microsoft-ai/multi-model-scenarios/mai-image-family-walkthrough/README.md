@@ -2,7 +2,7 @@
 kind: scenario
 slug: mai-image-family-walkthrough
 title: "MAI-Image-2.5 family walkthrough"
-summary: "Compare MAI-Image-2.5, Flash, and Pro on identical prompts to pick the right variant."
+summary: "Compare MAI-Image-2.5, Flash, and Pro on identical prompts"
 last_updated: "2026-08-12"
 scope: family
 family: microsoft-ai

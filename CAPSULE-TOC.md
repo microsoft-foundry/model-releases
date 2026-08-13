@@ -13,10 +13,10 @@ Providers without a capsule yet are listed in the [model families reference](./d
 
 | Capsule | Capability | Last updated | Description |
 | --- | --- | --- | --- |
-| [MAI-Image-2.5](models/microsoft-ai/mai-image-2.5/) | Image Generation | 2026-08-11 | Generate and edit images from text prompts with MAI-Image-2.5 on Microsoft Foundry. |
-| [MAI-Transcribe-1.5](models/microsoft-ai/mai-transcribe-1.5/) | Audio / Speech | 2026-08-07 | Transcribe multilingual audio with keyword biasing using MAI-Transcribe-1.5 on Microsoft Foundry. |
-| [MAI-Image-2.5-Pro](models/microsoft-ai/mai-image-2.5-pro/) | Image Generation | 2026-08-04 | Render portraits, in-image text, and complex scenes with MAI-Image-2.5-Pro on Microsoft Foundry. |
-| [MAI-Image-2.5-Flash](models/microsoft-ai/mai-image-2.5-flash/) | Image Generation | 2026-08-04 | Generate images faster and cheaper with MAI-Image-2.5-Flash on Microsoft Foundry. |
+| [MAI-Image-2.5](models/microsoft-ai/mai-image-2.5/) | Image Generation | 2026-08-11 | Generate and edit images from text prompts |
+| [MAI-Transcribe-1.5](models/microsoft-ai/mai-transcribe-1.5/) | Audio / Speech | 2026-08-07 | Transcribe multilingual audio with keyword biasing |
+| [MAI-Image-2.5-Pro](models/microsoft-ai/mai-image-2.5-pro/) | Image Generation | 2026-08-04 | Render portraits, in-image text, and complex scenes |
+| [MAI-Image-2.5-Flash](models/microsoft-ai/mai-image-2.5-flash/) | Image Generation | 2026-08-04 | Generate images faster and at lower cost |
 
 <br/>
 
@@ -26,7 +26,7 @@ A scenario spans more than one release, comparing models side by side in a singl
 
 | Scenario | Family | Last updated | Description |
 | --- | --- | --- | --- |
-| [MAI-Image-2.5 family walkthrough](models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough/) | Microsoft AI | 2026-08-12 | Compare MAI-Image-2.5, Flash, and Pro on identical prompts to pick the right variant. |
+| [MAI-Image-2.5 family walkthrough](models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough/) | Microsoft AI | 2026-08-12 | Compare MAI-Image-2.5, Flash, and Pro on identical prompts |
 <!-- END:CAPSULE-TABLES -->
 
 <br/>

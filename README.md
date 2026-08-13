@@ -17,9 +17,9 @@ Every new model release announcement gets a row here, with a link back to the or
 <!-- BEGIN:RECENTLY-ADDED -->
 | Release date | Model | Description |
 | --- | --- | --- |
-| [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | **GPT-transcribe** | Real-time speech-to-text transcription via Azure OpenAI |
-| [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | **GPT-live-transcribe** | Live streaming speech-to-text transcription via Azure OpenAI |
-| [2026-07-28](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-kimi-k3-through-fireworks-ai-on-microsoft-foundry/4540187) | **Kimi K3** | Chat completion and long-context model from Fireworks |
+| [2026-08-12](https://microsoft.ai/news/introducing-mai-thinking-1) | **MAI-Thinking-1** | Cost-efficient reasoning with a 256k context window, in public preview on Microsoft Foundry |
+| [2026-08-11](https://microsoft.ai/news/mai-code-1-1-flash-br-better-faster-at-a-quarter-of-the-cost) | **MAI-Code-1.1-Flash** | Coding model at a quarter the cost of 1.0, shipping in GitHub Copilot and VS Code |
+| [2026-08-10](https://microsoft.ai/news/mai-image-2-6-launches-at-no-2-on-arena-ahead-of-google-meta-and-xai) | **MAI-Image-2.6** | Text-to-image generation, rolling out to Microsoft Foundry soon |
 <!-- END:RECENTLY-ADDED -->
 
 *See the full* [*CHANGELOG*](./CHANGELOG.md) *for everything else.*
@@ -38,9 +38,9 @@ Start with the [Quickstart](#quickstart-explore-model-releases-hands-on), then p
 <!-- BEGIN:RECENT-CAPSULES -->
 | Capsule | Last updated | Description |
 | --- | --- | --- |
-| [MAI-Image-2.5](models/microsoft-ai/mai-image-2.5/) | 2026-08-11 | Generate and edit images from text prompts with MAI-Image-2.5 on Microsoft Foundry. |
-| [MAI-Transcribe-1.5](models/microsoft-ai/mai-transcribe-1.5/) | 2026-08-07 | Transcribe multilingual audio with keyword biasing using MAI-Transcribe-1.5 on Microsoft Foundry. |
-| [MAI-Image-2.5-Pro](models/microsoft-ai/mai-image-2.5-pro/) | 2026-08-04 | Render portraits, in-image text, and complex scenes with MAI-Image-2.5-Pro on Microsoft Foundry. |
+| [MAI-Image-2.5](models/microsoft-ai/mai-image-2.5/) | 2026-08-11 | Generate and edit images from text prompts |
+| [MAI-Transcribe-1.5](models/microsoft-ai/mai-transcribe-1.5/) | 2026-08-07 | Transcribe multilingual audio with keyword biasing |
+| [MAI-Image-2.5-Pro](models/microsoft-ai/mai-image-2.5-pro/) | 2026-08-04 | Render portraits, in-image text, and complex scenes |
 <!-- END:RECENT-CAPSULES -->
 
 *See the full* [*CAPSULE-TOC*](./CAPSULE-TOC.md) *for everything else.*

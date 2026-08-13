@@ -216,6 +216,17 @@ def collect() -> dict:
     }
 
 
+def _sentence(text: str) -> str:
+    """Terminate a summary fragment.
+
+    Summaries are written as phrases so they read cleanly in table
+    cells next to the model name; llms.txt runs them together with
+    further sentences, so it adds the period back here.
+    """
+    text = (text or "").strip()
+    return text if text.endswith((".", "!", "?")) else text + "."
+
+
 def render_llms_txt(cat: dict) -> str:
     L: list[str] = [
         "# Microsoft Foundry Model Releases",
@@ -235,7 +246,7 @@ def render_llms_txt(cat: dict) -> str:
     for c in cat["capsules"]:
         caps = ", ".join(c["capabilities"])
         L.append(
-            f"- [{c['name']}]({c['url']}): {c['summary']} "
+            f"- [{c['name']}]({c['url']}): {_sentence(c['summary'])} "
             f"Family: {c['family']}. Capabilities: {caps}. "
             f"Released {c['release_date']}."
         )
@@ -247,7 +258,7 @@ def render_llms_txt(cat: dict) -> str:
                 if isinstance(m, dict)
             )
             L.append(
-                f"- [{s['title']}]({s['url']}): {s['summary']} "
+                f"- [{s['title']}]({s['url']}): {_sentence(s['summary'])} "
                 f"Compares: {models}."
             )
     L += ["", "## Capability primers", ""]

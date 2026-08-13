@@ -96,6 +96,15 @@ def find_scenarios() -> list[Path]:
     return sorted(set(scen))
 
 
+def strip_availability(cell: str) -> str:
+    """Drop a trailing `_(public preview)_`-style availability note.
+
+    The annotation documents where a release can be used; it is not
+    part of the model name, so no row-matching should see it.
+    """
+    return re.sub(r"\s*_\([^)]*\)_\s*$", "", cell.strip())
+
+
 def parse_changelog_rows() -> list[dict[str, str]]:
     """Parse CHANGELOG rows, newest first.
 
@@ -133,9 +142,11 @@ def parse_changelog_rows() -> list[dict[str, str]]:
         # ever added.
         m = re.match(r"\[([^\]]+)\]", cells[1])
         family = m.group(1) if m else cells[1]
-        # Model cell may be `[Model](url)` or plain.
-        m = re.match(r"\[([^\]]+)\]", cells[2])
-        model = m.group(1) if m else cells[2]
+        # Model cell may be `[Model](url)` or plain, and may carry a
+        # trailing availability note like `_(public preview)_`.
+        model_cell = strip_availability(cells[2])
+        m = re.match(r"\[([^\]]+)\]", model_cell)
+        model = m.group(1) if m else model_cell
         rows.append({
             "date": date,
             "family": family.strip(),

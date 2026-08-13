@@ -92,7 +92,7 @@
       "model": "mai-image-2.5-pro",
       "name": "MAI-Image-2.5-Pro",
       "family": "microsoft-ai",
-      "summary": "Render portraits, in-image text, and complex scenes with MAI-Image-2.5-Pro on Microsoft Foundry.",
+      "summary": "Render portraits, in-image text, and complex scenes",
       "release_date": "2026-07-23",
       "last_updated": "2026-08-04",
       "capabilities": [
@@ -127,7 +127,7 @@
       "model": "mai-transcribe-1.5",
       "name": "MAI-Transcribe-1.5",
       "family": "microsoft-ai",
-      "summary": "Transcribe multilingual audio with keyword biasing using MAI-Transcribe-1.5 on Microsoft Foundry.",
+      "summary": "Transcribe multilingual audio with keyword biasing",
       "release_date": "2026-06-02",
       "last_updated": "2026-08-07",
       "capabilities": [
@@ -172,7 +172,7 @@
       "model": "mai-image-2.5-flash",
       "name": "MAI-Image-2.5-Flash",
       "family": "microsoft-ai",
-      "summary": "Generate images faster and cheaper with MAI-Image-2.5-Flash on Microsoft Foundry.",
+      "summary": "Generate images faster and at lower cost",
       "release_date": "2026-06-02",
       "last_updated": "2026-08-04",
       "capabilities": [
@@ -207,7 +207,7 @@
       "model": "mai-image-2.5",
       "name": "MAI-Image-2.5",
       "family": "microsoft-ai",
-      "summary": "Generate and edit images from text prompts with MAI-Image-2.5 on Microsoft Foundry.",
+      "summary": "Generate and edit images from text prompts",
       "release_date": "2026-06-02",
       "last_updated": "2026-08-11",
       "capabilities": [
@@ -243,7 +243,7 @@
     {
       "slug": "mai-image-family-walkthrough",
       "title": "MAI-Image-2.5 family walkthrough",
-      "summary": "Compare MAI-Image-2.5, Flash, and Pro on identical prompts to pick the right variant.",
+      "summary": "Compare MAI-Image-2.5, Flash, and Pro on identical prompts",
       "last_updated": "2026-08-12",
       "scope": "family",
       "family": "microsoft-ai",

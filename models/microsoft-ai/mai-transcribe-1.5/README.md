@@ -2,7 +2,7 @@
 kind: capsule
 family: microsoft-ai
 model: mai-transcribe-1.5
-summary: "Transcribe multilingual audio with keyword biasing using MAI-Transcribe-1.5 on Microsoft Foundry."
+summary: "Transcribe multilingual audio with keyword biasing"
 release_date: "2026-06-02"
 last_updated: "2026-08-07"
 capabilities: [audio-speech]
