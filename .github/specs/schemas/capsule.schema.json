@@ -44,14 +44,6 @@
       "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
       "description": "Date this artifact was added or last meaningfully revised (ISO). Drives the ordering and the 'Last updated' column in CAPSULE-TOC.md. Defaults to release_date for capsules when omitted. Kept in frontmatter rather than read from git so a shallow CI checkout produces identical output."
     },
-    "expires": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "format": "date",
-      "description": "Retirement date if known; feeds the Expiring Soon section."
-    },
     "capabilities": {
       "type": "array",
       "minItems": 1,

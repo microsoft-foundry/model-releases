@@ -114,10 +114,14 @@ Top-to-bottom outline of `README.md`:
 
    | Column | Source | Link target |
    |---|---|---|
-   | Model | Capsule frontmatter `model` | Capsule README |
-   | Release date | Capsule folder date | Capsule frontmatter `announcement` (blog) — fallback to `model_card` |
-   | Expires | Capsule frontmatter `expires` | Bolded with ⚠️ when within `window_days` (default 60); em-dash when unknown |
-   | Pricing | Capsule frontmatter `pricing.url` (or `pricing.notes` when there is no URL) | Official pricing page; em-dash when unknown |
+   | Model | CHANGELOG Model cell, stripped of link markup and any availability note | plain bold text — no link |
+   | Release date | CHANGELOG Date cell, verbatim | the announcement, carried over from that cell |
+   | Capabilities | CHANGELOG Capabilities cell, verbatim | plain text — no link |
+
+   Every cell is copied from a CHANGELOG row rather than written by
+   hand, so the block can be regenerated at any time. Rows are the top
+   3 of the CHANGELOG, which may include announcements that have no
+   capsule yet. Neither pricing nor expiry appears here.
 7. **CHANGELOG** — link out.
 8. **Contribute a capsule** — link to `CapsuleCreatorAgent` + skills.
 
@@ -127,7 +131,7 @@ Top-to-bottom outline of `README.md`:
 
 One row per release, newest first, grouped into a table per month.
 **Rows may be added before a capsule exists** — the announcement and
-any known pricing/card links are enough. Capsules are tracked
+any known model-card link are enough. Capsules are tracked
 separately in `CAPSULE-TOC.md`.
 
 Rows are grouped into one table per month, newest month first:
@@ -135,10 +139,14 @@ Rows are grouped into one table per month, newest month first:
 ```markdown
 ## July 2026
 
-| Date | Publisher | Model | Capabilities | Pricing |
-|---|---|---|---|---|
-| [YYYY-MM-DD](announcement URL) | Publisher | [Model](model-card URL) (or plain text) | Tag · Tag | pricing summary (or "—") |
+| Date | Publisher | Model | Capabilities |
+|---|---|---|---|
+| [YYYY-MM-DD](announcement URL) | [Publisher](catalog publisher-filter URL) | [Model](model-card URL) (or plain text) | Tag · Tag |
 ```
+
+Exactly four cells per row. A row with a fifth cell renders under a
+four-column header and is silently wrong, so `validate-crosslinks.py`
+rejects any row that is not exactly four wide.
 
 Add a new `## <Month> <Year>` heading and table header when a release
 opens a new month. Grouping keeps the list scannable as it grows.
@@ -148,17 +156,11 @@ separate Announcement column (saves horizontal space). The **Model
 cell links to the model card** when known — no separate Model card
 column either.
 
-**Verifiable pricing rule.** The Pricing cell is also a markdown link
-whenever a price is stated. The link target is the source the reader
-can use to verify that figure:
-
-- If an **official pricing page** (Azure pricing calculator, provider
-  pricing page, Foundry pricing docs) states the price → link to it.
-- Otherwise, if the price was extracted from the **announcement blog
-  post**, link to that blog post.
-- If pricing is unknown, the cell is `_—_` (no link).
-
-The same rule applies to the README Recently added table.
+**Pricing is deliberately not a column.** Rates change and vary by
+region, tier, and deployment type, so a figure frozen into a changelog
+row goes stale silently and no validator can catch it. The model card
+is the source of truth for price; a capsule links to it from its
+**Before You Begin** section.
 
 `add-capsule` skill prepends a row automatically, or updates an
 existing announcement-only row in place when the Date + Model match.
@@ -331,7 +333,7 @@ Behavior:
 
 **Status: v1 scaffolding complete (2026-08-03).** All 11 build tasks
 below are `done` in the session `todos` table; `python
-scripts/validate-specs.py` reports 30/30 artifacts valid.
+scripts/validate.py` reports every artifact valid.
 
 Tracked in the session `todos` table with dependencies. High-level order:
 
@@ -540,5 +542,3 @@ sub-steps within a section can use `###`.
   or plain markdown pills? Assume plain markdown for v1.
 - Notebook runtime language: assume Python only for v1
   (matches `requirements-dev.txt`).
-- Where does pricing data come from — manual entry per capsule, or a
-  shared `docs/pricing.md`? Assume manual entry, linked from Before You Begin.

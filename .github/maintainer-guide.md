@@ -134,17 +134,11 @@ upgrade path to GitHub Spec Kit later.
 
 ### 3.2 A model is retiring
 
-Nothing manual — the `expires` field in the publisher README's members
-table + the capsule frontmatter drives the ⚠️ marker in the
-**Recently added** table.
-Just make sure `expires:` is populated. Run:
-
-```bash
-# Agent invocation or:
-# The skill lives at .github/skills/refresh-recent-activity/
-```
-
-The section warns when anything expires in the next 60 days.
+Add the date to the **Expires** column of that model's row in the
+publisher README members table (`add-model` takes an `expires` input
+for this). That table is the single place a retirement date is
+tracked — the repo README and the CHANGELOG deliberately don't carry
+one, so there is nothing to regenerate.
 
 ### 3.3 Monthly refresh
 
@@ -290,36 +284,32 @@ Do **not** run these in CI by default (cost + secrets). Instead:
   notebooks against a shared test project, with credentials injected
   from GitHub Actions secrets.
 
-### Layer 5 — CI wiring (recommended)
+### Layer 5 — validation wiring
 
-Minimum viable `.github/workflows/validate.yml`:
+The real workflow is
+[`.github/workflows/validate.yml`](./workflows/validate.yml). It runs
+on **pull requests** and on demand, but not on push — so CI stays off
+every individual commit and the `validate` job is the merge gate. Mark
+it as a required status check in branch protection, or a red run is
+only advisory.
 
-```yaml
-name: Validate specs
-on:
-  pull_request:
-  push: { branches: [main] }
-jobs:
-  specs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: { python-version: '3.12' }
-      - run: pip install pyyaml jsonschema
-      - run: python scripts/validate-specs.py
-      - name: No banned marketing phrases
-        run: |
-          ! rg -qi -e 'revolutionary|game-changing|unlocks?|supercharge' \
-            -e 'seamless|cutting-edge|best-in-class|state-of-the-art' \
-            README.md CHANGELOG.md docs/ models/
-      - name: Brand rule
-        run: |
-          ! rg -q 'Azure AI Foundry' README.md CHANGELOG.md docs/ models/ .github/ scripts/
+Locally, the pre-commit hook
+([`.pre-commit-config.yaml`](../.pre-commit-config.yaml)) is what
+catches problems before they reach the PR. Both run the same
+entrypoint:
+
+```bash
+python scripts/validate.py           # schemas + crosslinks + generated files
+python scripts/validate.py --watch   # interactive: re-run on every save
+python scripts/validate.py --fix     # regenerate stale generated files
 ```
 
-This is the **testing floor**. Add Layer 2/3 checks as their own steps
-when the repo grows enough that grep-by-hand stops scaling.
+Voice rules — no hype words, always **Microsoft Foundry** — are **not**
+automated. They are reviewer-enforced through the checklist in
+[`pull_request_template.md`](./pull_request_template.md). A naive
+grep would flag legitimate strings such as the
+`azure-ai-foundry-blog` URL path, so treat any future automation as a
+Layer 2/3 check that has to exclude link targets.
 
 ---
 
@@ -384,16 +374,20 @@ frontmatter.
 Contributors can hand-author capsules and CHANGELOG entries without
 going through the agent. Two safety nets catch most mistakes for you:
 
-- **CI** — the `Validate contribution` workflow runs
-  [`validate-specs.py`](../scripts/validate-specs.py) (JSON-Schema
-  frontmatter) **and**
-  [`validate-crosslinks.py`](../scripts/validate-crosslinks.py) on
-  every PR. Between them they enforce:
+- **`scripts/validate.py`** — one command that runs the schema
+  validator, the crosslink validator, and the generated-file check.
+  Run it before committing, or leave `--watch` running while you
+  edit. The pre-commit hook runs the same command, and the
+  `Validate contribution` workflow runs it on every pull request,
+  where it gates the merge. Between them they enforce:
   - Frontmatter matches the schema for its kind
   - Every capsule has a matching `CHANGELOG.md` row (date + model)
+  - Every CHANGELOG row is exactly four cells wide
   - Every capsule is listed in its publisher README
   - Every capability tag has a matching `docs/primers/<slug>.md`
+  - Every `related_primers` entry names a real primer slug
   - `README.md` Recently added top 3 = `CHANGELOG.md` top 3
+  - Generated files (`catalog.json`, `llms.txt`, `CAPSULE-TOC.md`) are current
   - No `_review_` placeholders remain in learner-facing files
 - **PR template** — [`.github/pull_request_template.md`](./pull_request_template.md)
   gives contributors a checklist per change type (capsule, publisher,
@@ -410,18 +404,23 @@ That leaves you to eyeball the things machines can't check:
   AI Foundry").
 - **Grounding.** Learner-facing links point to `learn.microsoft.com`
   when a canonical Learn page exists; provider docs are a fallback.
-- **Pricing verifiability.** The Pricing cell in a CHANGELOG row
-  links to an official pricing page when one exists, otherwise to the
-  blog post the figure came from.
+- **Pricing.** Not tracked in the CHANGELOG or the README. Rates
+  change by region, tier, and deployment type, so a frozen figure goes
+  stale silently. A capsule points at the model card for price.
 
-Contributors can run both validators locally before pushing:
+Run every check with one command before pushing:
 
 ```bash
-python scripts/validate-specs.py
-python scripts/validate-crosslinks.py
+python scripts/validate.py
 ```
 
-or install the pre-commit hooks to have them run on every commit:
+Leave it running while you draft, so each save re-checks:
+
+```bash
+python scripts/validate.py --watch
+```
+
+or install the pre-commit hooks to have it run on every commit:
 
 ```bash
 pip install pre-commit && pre-commit install

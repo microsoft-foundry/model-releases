@@ -105,22 +105,32 @@ def strip_availability(cell: str) -> str:
     return re.sub(r"\s*_\([^)]*\)_\s*$", "", cell.strip())
 
 
-def parse_changelog_rows() -> list[dict[str, str]]:
-    """Parse CHANGELOG rows, newest first.
+CHANGELOG_COLUMNS = 4
+
+
+def iter_changelog_row_cells() -> "list[tuple[int, str, list[str]]]":
+    """Walk every CHANGELOG release row as (line number, raw, cells).
 
     Rows live in one table per `## <Month> <Year>` section, so this
     walks every table in the file rather than stopping at the first
-    blank line after the header.
+    blank line after the header. Both the parser and the row-shape
+    check read this, so a row can never be shape-checked under one set
+    of rules and parsed under another.
     """
     if not CHANGELOG.exists():
         return []
     text = CHANGELOG.read_text(encoding="utf-8")
-    # Drop the trailing HTML-comment template so its placeholder row
-    # is never parsed as a real release.
-    text = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)
-    rows: list[dict[str, str]] = []
+    # Blank the trailing HTML-comment template rather than deleting it,
+    # so reported line numbers still match the real file.
+    text = re.sub(
+        r"<!--.*?-->",
+        lambda m: "\n" * m.group(0).count("\n"),
+        text,
+        flags=re.DOTALL,
+    )
+    out: list[tuple[int, str, list[str]]] = []
     in_table = False
-    for line in text.splitlines():
+    for lineno, line in enumerate(text.splitlines(), start=1):
         if line.startswith("| Date |"):
             in_table = True
             continue
@@ -133,7 +143,37 @@ def parse_changelog_rows() -> list[dict[str, str]]:
             in_table = False
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) < 4:
+        out.append((lineno, line.strip(), cells))
+    return out
+
+
+def check_changelog_row_shape() -> list[str]:
+    """Every release row must be exactly CHANGELOG_COLUMNS cells wide.
+
+    A row with an extra cell renders under a narrower header and is
+    silently wrong; a short row loses a field the parser then reads as
+    empty. Neither shows up in any other check, so the width is
+    asserted directly.
+    """
+    errs: list[str] = []
+    for lineno, raw, cells in iter_changelog_row_cells():
+        if len(cells) != CHANGELOG_COLUMNS:
+            errs.append(
+                f"[crosslink] CHANGELOG.md:{lineno} has {len(cells)} "
+                f"cells, expected {CHANGELOG_COLUMNS} "
+                f"(Date | Publisher | Model | Capabilities):\n"
+                f"    {raw}"
+            )
+    return errs
+
+
+def parse_changelog_rows() -> list[dict[str, str]]:
+    """Parse CHANGELOG rows, newest first."""
+    rows: list[dict[str, str]] = []
+    for _lineno, _raw, cells in iter_changelog_row_cells():
+        if len(cells) < CHANGELOG_COLUMNS:
+            # Reported by check_changelog_row_shape; skip so this
+            # parser doesn't raise before that error is printed.
             continue
         # Date cell may be `[YYYY-MM-DD](url)` or plain.
         m = re.search(r"\d{4}-\d{2}-\d{2}", cells[0])
@@ -367,6 +407,37 @@ def check_capabilities_have_primers(capsules: list[Path]) -> list[str]:
     return errs
 
 
+def check_related_primers_exist() -> list[str]:
+    """A publisher's `related_primers` must name real primer slugs.
+
+    These are resolved by the primer's `slug:` field, which is what the
+    generated docs link to. A typo here is invisible otherwise: nothing
+    else reads the field, so a dangling slug would sit in frontmatter
+    indefinitely.
+    """
+    errs: list[str] = []
+    slugs: set[str] = set()
+    if PRIMERS_DIR.exists():
+        for p in PRIMERS_DIR.glob("*.md"):
+            fm = read_frontmatter(p)
+            if fm.get("slug"):
+                slugs.add(str(fm["slug"]).strip().lower())
+    for readme in sorted(PUBLISHER_ROOT.glob("*/README.md")):
+        fm = read_frontmatter(readme)
+        if str(fm.get("kind", "")).strip() != "publisher":
+            continue
+        for ref in fm.get("related_primers") or []:
+            slug = str(ref).strip().lower()
+            if slug and slug not in slugs:
+                errs.append(
+                    f"[crosslink] publisher "
+                    f"{readme.relative_to(REPO_ROOT)} lists "
+                    f"related_primers entry {slug!r}, but no primer in "
+                    f"docs/primers/ declares that `slug:`"
+                )
+    return errs
+
+
 def check_readme_matches_changelog(
     readme_rows: list[dict[str, str]],
     changelog: list[dict[str, str]],
@@ -505,6 +576,7 @@ def main() -> int:
     all_errs += check_scenario_scope_matches_location(scenarios)
     all_errs += check_capabilities_have_primers(capsules)
     all_errs += check_capabilities_have_primers(scenarios)
+    all_errs += check_related_primers_exist()
     all_errs += check_scenario_models_exist(scenarios)
     all_errs += check_notebooks_exist(capsules + scenarios + quickstart)
     all_errs += check_no_orphan_notebooks(
@@ -512,6 +584,7 @@ def main() -> int:
     )
     all_errs += check_readme_matches_changelog(readme_rows, changelog)
     all_errs += check_model_card_urls(changelog)
+    all_errs += check_changelog_row_shape()
     all_errs += check_no_placeholders()
 
     if all_errs:

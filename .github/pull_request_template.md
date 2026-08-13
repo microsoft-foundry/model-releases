@@ -5,9 +5,11 @@
   the boxes as you go. Any unchecked box in a section you're touching
   is a signal for the reviewer to look closer.
 
-  The `Validate contribution` CI job automatically enforces the
-  mechanical items (schemas, cross-links, no `_review_` placeholders).
-  These checklists cover what CI can't see (pedagogy, tone, links).
+  The `Validate contribution` job runs `python scripts/validate.py` on
+  this PR and gates the merge. It covers the mechanical items (schemas,
+  cross-links, generated files, no `_review_` placeholders) — run the
+  same command locally first so CI isn't where you find out.
+  These checklists cover what it can't see (pedagogy, tone, links).
 -->
 
 ## Summary
@@ -27,7 +29,7 @@
 ## Capsule checklist (fill in for new capsules)
 
 - [ ] Folder is `models/<publisher>/<model>/<YYYY-MM-DD>/`
-- [ ] `README.md` frontmatter validates (`python scripts/validate-specs.py`)
+- [ ] `python scripts/validate.py` passes
 - [ ] `references` array in frontmatter has at least one model card
       and one docs link, all pointing at `learn.microsoft.com` when a
       canonical Learn page exists
@@ -37,8 +39,8 @@
       and **References** cells
 - [ ] Notebook starts by verifying `.env` (points learner back to
       `models/quickstart/` if unset)
-- [ ] `CHANGELOG.md` has a row with matching Date + Model, with links
-      on Date (announcement) and Pricing (source page or blog)
+- [ ] `CHANGELOG.md` has a row with matching Date + Model, exactly four
+      cells wide, with the Date cell linked to the announcement
 - [ ] Publisher README lists this model in its members table
 - [ ] `README.md` **Recently added** block (Model / Release date /
       Capabilities) reflects the top 3
