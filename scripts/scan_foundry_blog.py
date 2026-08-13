@@ -6,7 +6,8 @@ announcements and stage draft CHANGELOG + README updates.
 Behavior:
 
 1. Fetch the Foundry blog index page and follow "next page" links up
-   to --max-pages (default 3).
+   to --max-pages (default 3, though paging is currently
+   client-side so one page is all the site serves).
 2. Extract candidate posts (URL, title, publish date).
 3. Filter to plausible model announcements (title heuristic: mentions
    a model family, "introducing", "available", "now in Foundry", etc).
@@ -49,15 +50,19 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Iterable
 
-BLOG_INDEX = (
-    "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/"
-)
+SITE_ROOT = "https://techcommunity.microsoft.com"
 
-# Post URLs on the community look like
+# Tech Community reorganized blogs under /category/<topic>/blog/<name>.
+# The old /blog/azure-ai-foundry-blog/ index now 404s.
+BLOG_INDEX = f"{SITE_ROOT}/category/ai/blog/azure-ai-foundry-blog"
+
+# Individual posts keep their canonical /blog/... path:
 #   https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/<slug>/<numeric-id>
+# The index links to them with *relative* hrefs, so the origin is
+# optional here and resolved against SITE_ROOT.
 POST_URL_RE = re.compile(
-    r"https://techcommunity\.microsoft\.com/blog/azure-ai-foundry-blog/"
-    r"([a-z0-9\-]+)/(\d+)",
+    r"(?:https://techcommunity\.microsoft\.com)?"
+    r"/blog/azure-ai-foundry-blog/([a-z0-9\-]+)/(\d+)",
     re.IGNORECASE,
 )
 
@@ -128,7 +133,7 @@ def http_get(url: str, timeout: int = 30) -> str:
 def extract_post_urls(page_html: str) -> list[str]:
     seen: dict[str, None] = {}
     for m in POST_URL_RE.finditer(page_html):
-        url = m.group(0)
+        url = urllib.parse.urljoin(SITE_ROOT, m.group(0))
         # Strip query/fragment defensively.
         p = urllib.parse.urlsplit(url)
         url = urllib.parse.urlunsplit(
@@ -139,6 +144,40 @@ def extract_post_urls(page_html: str) -> list[str]:
     return list(seen)
 
 
+def _strip_site_suffix(title: str) -> str:
+    """Drop the trailing " | Microsoft Community Hub" site branding.
+
+    og:title carries it, and it would otherwise land in the drafted
+    CHANGELOG row.
+    """
+    return re.sub(
+        r"\s*[|\-–]\s*Microsoft Community Hub\s*$", "", title.strip(),
+        flags=re.IGNORECASE,
+    ).strip()
+
+
+def _parse_date(value: str) -> date | None:
+    """Parse the date formats the community has used.
+
+    JSON-LD here carries a US-locale string ("8/5/2026, 6:00:00 PM"),
+    not ISO, so `fromisoformat` alone silently yields no date and the
+    drafted row gets a YYYY-MM-DD placeholder.
+    """
+    value = value.strip()
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00")).date()
+    except ValueError:
+        pass
+    m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", value)
+    if m:
+        month, day, year = (int(g) for g in m.groups())
+        try:
+            return date(year, month, day)
+        except ValueError:
+            return None
+    return None
+
+
 def extract_title(post_html: str, fallback: str = "") -> str:
     # <meta property="og:title" content="..."> is the most reliable.
     m = re.search(
@@ -147,12 +186,11 @@ def extract_title(post_html: str, fallback: str = "") -> str:
         re.IGNORECASE,
     )
     if m:
-        return html.unescape(m.group(1)).strip()
+        return _strip_site_suffix(html.unescape(m.group(1)))
     m = re.search(
         r"<title[^>]*>(.*?)</title>", post_html, re.IGNORECASE | re.DOTALL
     )
     if m:
-        # Strip trailing " - Microsoft Community Hub" etc.
         title = html.unescape(m.group(1)).strip()
         title = re.split(r"\s+[|\-–]\s+", title, maxsplit=1)[0]
         return title.strip()
@@ -177,12 +215,9 @@ def extract_published(post_html: str) -> date | None:
             for key in ("datePublished", "dateCreated", "dateModified"):
                 v = item.get(key)
                 if isinstance(v, str):
-                    try:
-                        return datetime.fromisoformat(
-                            v.replace("Z", "+00:00")
-                        ).date()
-                    except ValueError:
-                        pass
+                    parsed = _parse_date(v)
+                    if parsed:
+                        return parsed
     # Fallback: <meta property="article:published_time" ...>
     m = re.search(
         r'<meta[^>]+property=["\']article:published_time["\'][^>]+'
@@ -191,12 +226,7 @@ def extract_published(post_html: str) -> date | None:
         re.IGNORECASE,
     )
     if m:
-        try:
-            return datetime.fromisoformat(
-                m.group(1).replace("Z", "+00:00")
-            ).date()
-        except ValueError:
-            pass
+        return _parse_date(m.group(1))
     return None
 
 
@@ -220,9 +250,24 @@ def crawl_index(max_pages: int) -> list[BlogPost]:
         except Exception as e:
             print(f"[warn] failed to fetch {page_url}: {e}", file=sys.stderr)
             continue
-        for u in extract_post_urls(page_html):
-            if u not in urls:
-                urls.append(u)
+        new = [u for u in extract_post_urls(page_html) if u not in urls]
+        urls.extend(new)
+        # Paging is client-side now: ?page=2 serves the same posts as
+        # page 1. Stop as soon as a page adds nothing rather than
+        # refetching the first page max_pages times. If server-side
+        # paging returns, this loop picks it back up automatically.
+        if not new:
+            break
+
+    if not urls:
+        # Discovery breaking silently is how this script rotted before:
+        # the index moved, every fetch 404'd, and a run that found
+        # nothing looked exactly like a quiet week. Fail loudly instead.
+        raise SystemExit(
+            f"[scan] no post links found at {BLOG_INDEX}\n"
+            "  The blog index has probably moved or changed markup "
+            "again. Check BLOG_INDEX and POST_URL_RE."
+        )
 
     posts: list[BlogPost] = []
     for url in urls:
