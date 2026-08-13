@@ -419,10 +419,11 @@ def render_readme_block(rows: list[dict[str, str]]) -> str:
     body_lines: list[str] = []
     for r in rows:
         # README shows a plain bold model name; the CHANGELOG cell may
-        # carry link markup and an availability note, so strip both
-        # rather than nesting a link inside bold.
+        # carry link markup and an availability note on a second line,
+        # so strip all three rather than nesting a link inside bold.
         model = re.sub(
-            r"\s*_\([^)]*\)_\s*$", "", r.get("model", "_review_").strip()
+            r"\s*(?:<br\s*/?>)?\s*_\([^)]*\)_\s*$",
+            "", r.get("model", "_review_").strip()
         )
         m = re.match(r"\[([^\]]+)\]", model)
         if m:

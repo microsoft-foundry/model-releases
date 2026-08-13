@@ -8,9 +8,9 @@ Each row links out to what you need: the date to the announcement, the model to 
 
 | Date | Publisher | Model | Capabilities |
 |---|---|---|---|
-| [2026-08-12](https://microsoft.ai/news/introducing-mai-thinking-1) | [Microsoft AI](https://ai.azure.com/catalog/models?publisher=microsoft) | [MAI-Thinking-1](https://ai.azure.com/catalog/models/MAI-Thinking-1) _(public preview)_ | Reasoning · Chat Completion · Function Calling · Long Context |
-| [2026-08-11](https://microsoft.ai/news/mai-code-1-1-flash-br-better-faster-at-a-quarter-of-the-cost) | [Microsoft AI](https://ai.azure.com/catalog/models?publisher=microsoft) | [MAI-Code-1.1-Flash](https://microsoft.ai/models/mai-code-1-flash/) _(GitHub Copilot and VS Code)_ | Chat Completion |
-| [2026-08-10](https://microsoft.ai/news/mai-image-2-6-launches-at-no-2-on-arena-ahead-of-google-meta-and-xai) | [Microsoft AI](https://ai.azure.com/catalog/models?publisher=microsoft) | MAI-Image-2.6 _(not yet in Foundry)_ | Image Generation |
+| [2026-08-12](https://microsoft.ai/news/introducing-mai-thinking-1) | [Microsoft AI](https://ai.azure.com/catalog/models?publisher=microsoft) | [MAI-Thinking-1](https://ai.azure.com/catalog/models/MAI-Thinking-1)<br>_(public preview)_ | Reasoning · Chat Completion · Function Calling · Long Context |
+| [2026-08-11](https://microsoft.ai/news/mai-code-1-1-flash-br-better-faster-at-a-quarter-of-the-cost) | [Microsoft AI](https://ai.azure.com/catalog/models?publisher=microsoft) | [MAI-Code-1.1-Flash](https://microsoft.ai/models/mai-code-1-flash/)<br>_(GitHub Copilot and VS Code)_ | Chat Completion |
+| [2026-08-10](https://microsoft.ai/news/mai-image-2-6-launches-at-no-2-on-arena-ahead-of-google-meta-and-xai) | [Microsoft AI](https://ai.azure.com/catalog/models?publisher=microsoft) | MAI-Image-2.6<br>_(not yet in Foundry)_ | Image Generation |
 
 ## July 2026
 
@@ -53,9 +53,13 @@ by region, tier, and deployment type, so a frozen figure in a
 changelog goes stale silently. The model card is the source of truth
 for price; capsules link to it.
 When the announcement states an availability stage, append it to the
-Model cell in italic parentheses — `_(public preview)_`,
-`_(not yet in Foundry)_` — and leave it off when the post doesn't say.
-Parsers strip that annotation, so it never becomes part of the model
+Model cell in italic parentheses after a `<br>`, so it sits on its own
+line — `[Model](url)<br>_(public preview)_`,
+`Model<br>_(not yet in Foundry)_` — and leave it off when the post
+doesn't say. The `<br>` is not decoration: without it the annotation
+widens the Model column by its full length, which squeezes Date and
+Publisher until they wrap mid-value. Parsers strip the `<br>` and the
+annotation together, so neither becomes part of the model
 name. The Publisher cell links to that publisher's filtered catalog
 view at `https://ai.azure.com/catalog/models?publisher=<slug>`. The
 slug is the catalog's display name, not our folder name — it can carry

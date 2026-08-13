@@ -100,9 +100,12 @@ def strip_availability(cell: str) -> str:
     """Drop a trailing `_(public preview)_`-style availability note.
 
     The annotation documents where a release can be used; it is not
-    part of the model name, so no row-matching should see it.
+    part of the model name, so no row-matching should see it. The note
+    sits on its own line after a `<br>`, which has to come off with it —
+    otherwise an unlinked model keeps the tag and stops matching its
+    capsule.
     """
-    return re.sub(r"\s*_\([^)]*\)_\s*$", "", cell.strip())
+    return re.sub(r"\s*(?:<br\s*/?>)?\s*_\([^)]*\)_\s*$", "", cell.strip())
 
 
 CHANGELOG_COLUMNS = 4
@@ -163,6 +166,33 @@ def check_changelog_row_shape() -> list[str]:
                 f"cells, expected {CHANGELOG_COLUMNS} "
                 f"(Date | Publisher | Model | Capabilities):\n"
                 f"    {raw}"
+            )
+    return errs
+
+
+def check_annotation_on_own_line() -> list[str]:
+    """An availability note must sit after a `<br>`, on its own line.
+
+    Kept inline, the note adds its full length to the Model column's
+    natural width. A markdown table sizes columns to their content, so
+    a long note steals width from Date and Publisher until those wrap
+    mid-value and the rows go ragged. Nothing else notices, because the
+    parser strips the note either way — so the layout rule is asserted
+    here.
+    """
+    errs: list[str] = []
+    for lineno, raw, cells in iter_changelog_row_cells():
+        if len(cells) != CHANGELOG_COLUMNS:
+            continue  # reported by check_changelog_row_shape
+        model = cells[2].strip()
+        if not re.search(r"_\([^)]*\)_\s*$", model):
+            continue
+        if not re.search(r"<br\s*/?>\s*_\([^)]*\)_\s*$", model):
+            errs.append(
+                f"[crosslink] CHANGELOG.md:{lineno} — availability note "
+                f"is inline; put it on its own line with `<br>` so it "
+                f"doesn't widen the Model column:\n"
+                f"    {model}"
             )
     return errs
 
@@ -585,6 +615,7 @@ def main() -> int:
     all_errs += check_readme_matches_changelog(readme_rows, changelog)
     all_errs += check_model_card_urls(changelog)
     all_errs += check_changelog_row_shape()
+    all_errs += check_annotation_on_own_line()
     all_errs += check_no_placeholders()
 
     if all_errs:
