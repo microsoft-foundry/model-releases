@@ -4,7 +4,7 @@ Every release capsule in this repo, grouped by model provider.
 
 A capsule pairs a model release with a runnable notebook. The name links to the capsule folder, where you'll find the notebook, its setup steps, and links back to the model card, announcement, and pricing. **Last updated** tells you how fresh a capsule is - notebooks get revised as APIs and pricing move. For the announcements themselves, including releases we haven't built a capsule for yet, see the [CHANGELOG](./CHANGELOG.md).
 
-Providers without a capsule yet are listed in the [model families reference](./docs/README.md#learn-about-model-families).
+Providers without a capsule yet are listed in the [publishers reference](./docs/README.md#learn-about-publishers).
 
 <br/>
 
@@ -24,7 +24,7 @@ Providers without a capsule yet are listed in the [model families reference](./d
 
 A scenario spans more than one release, comparing models side by side in a single notebook - so it can't live in any one capsule.
 
-| Scenario | Family | Last updated | Description |
+| Scenario | Publisher | Last updated | Description |
 | --- | --- | --- | --- |
 | [MAI-Image-2.5 family walkthrough](models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough/) | Microsoft AI | 2026-08-12 | Compare MAI-Image-2.5, Flash, and Pro on identical prompts |
 <!-- END:CAPSULE-TABLES -->

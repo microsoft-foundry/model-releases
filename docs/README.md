@@ -1,9 +1,9 @@
 # Microsoft Foundry Model Releases — Reference Guide
 
-Background material for the [Microsoft Foundry Model Releases](../README.md) repo — how it's organized, what the model families and capability tags mean, and how to add content of your own.
+Background material for the [Microsoft Foundry Model Releases](../README.md) repo — how it's organized, what the publishers and capability tags mean, and how to add content of your own.
 
 - [Repository: What resources can I find here?](#repository-what-resources-can-i-find-here)
-- [Learn About: Model families](#learn-about-model-families)
+- [Learn About: Publishers](#learn-about-publishers)
 - [Learn About: Model capabilities](#learn-about-model-capabilities)
 - [Contributing: How can I add new content?](#contributing-how-can-i-add-new-content)
 - [Using this repo from an agent](#using-this-repo-from-an-agent)
@@ -19,27 +19,27 @@ The repository is meant to be a self-contained resource where you can:
 
 Here is a visual representation of the repository structure for reference:
 - the `docs/` folder has a glossary and primers to build familiarity with terminology
-- the `models/` folder contains the model release capsules, organized by provider/family.
+- the `models/` folder contains the model release capsules, organized by publisher.
 - the `models/quickstart` folder contains guidance to get started with development.
-- a `multi-model-scenarios/` folder under a family holds walkthroughs that span two or more releases.
+- a `multi-model-scenarios/` folder under a publisher holds walkthroughs that span two or more releases.
 
 ```mermaid
 flowchart LR
     R[Repo README<br/>index + taxonomy] --> D[docs/<br/>GLOSSARY + primers]
     R --> Q[models/quickstart/<br/>shared setup]
-    R --> F[models/&lt;family&gt;/<br/>family README]
-    F --> C[models/&lt;family&gt;/&lt;release&gt;/<br/>capsule: README + notebook]
-    F --> S[models/&lt;family&gt;/multi-model-scenarios/&lt;slug&gt;/<br/>scenario: README + notebook]
+    R --> F[models/&lt;publisher&gt;/<br/>publisher README]
+    F --> C[models/&lt;publisher&gt;/&lt;release&gt;/<br/>capsule: README + notebook]
+    F --> S[models/&lt;publisher&gt;/multi-model-scenarios/&lt;slug&gt;/<br/>scenario: README + notebook]
     Q -.env precheck.-> C
 ```
 
 <br/>
 
-## Learn About: Model families
+## Learn About: Publishers
 
-Models are typically associated with a provider (the organization that created and maintains the model) and belong to a specific _family_ within that scope. Each new release in that family can now describe the advances made (e.g., new features, improved costs or performance) that can help you make a model selection or migration decision. Here are the main model families we will track:
+A **publisher** is the organization that created and maintains a model — the same grouping the [Foundry catalog](https://ai.azure.com/catalog/models) filters on, so a publisher here matches a `?publisher=` view there. Within a publisher, related releases form a **family** (MAI-Image-2.5 and its Flash and Pro variants, or the Claude family), and each new release records what changed — new capabilities, better costs, stronger benchmarks — to inform a selection or migration decision. We organize `models/` by publisher because that is the axis the catalog, pricing, and access controls all share. Here are the publishers we track:
 
-| Family | What it's for | README |
+| Publisher | What it's for | README |
 |---|---|---|
 | Azure OpenAI | GPT-family models via Foundry | [`models/azure-openai/`](../models/azure-openai/) |
 | Microsoft AI | Microsoft-built models (Phi, MAI, …) | [`models/microsoft-ai/`](../models/microsoft-ai/) |
@@ -61,7 +61,7 @@ Models are typically associated with a provider (the organization that created a
 Every capsule is tagged with one or more of these. The table below is
 generated from the `label` and `aliases` fields in `docs/primers/`, so
 each primer defines its own display name once and every other surface
-(family READMEs, capsule badges, CHANGELOG, `CAPSULE-TOC.md`,
+(publisher READMEs, capsule badges, CHANGELOG, `CAPSULE-TOC.md`,
 `catalog.json`) reuses it. A tag is only valid if some primer declares
 it - as its `capability` or in its `aliases` - which is what
 `validate-crosslinks.py` enforces.
@@ -88,11 +88,11 @@ Unsure what a term means? Check the [glossary](GLOSSARY.md).
 
 ## Contributing: How can I add new content?
 
-Want to add a new capsule, or model family, or model capability or glossary term? The repo is spec-driven - so the easiest way is to use GitHub Copilot and activate the relevant skills with a prompt. This ensures content is validated against the schema and referenced consistently across documents.
+Want to add a new capsule, or publisher, or model capability or glossary term? The repo is spec-driven - so the easiest way is to use GitHub Copilot and activate the relevant skills with a prompt. This ensures content is validated against the schema and referenced consistently across documents.
 
 ```mermaid
 flowchart LR
-    A[CapsuleCreatorAgent<br/>Copilot custom agent] --> S[6 skills<br/>add-family, add-model,<br/>add-capsule, add-to-glossary,<br/>add-capability-doc,<br/>refresh-recent-activity]
+    A[CapsuleCreatorAgent<br/>Copilot custom agent] --> S[6 skills<br/>add-publisher, add-model,<br/>add-capsule, add-to-glossary,<br/>add-capability-doc,<br/>refresh-recent-activity]
     S --> M[Markdown + YAML<br/>frontmatter artifacts]
     M --> V[scripts/validate-specs.py]
     V --> X[.github/specs/schemas/<br/>8 JSON Schemas]
@@ -103,7 +103,7 @@ flowchart LR
 Schemas live centrally in [`.github/specs/schemas/`](../.github/specs/schemas/); each artifact carries only its own data. The rule for what goes where: **frontmatter holds facts a machine needs to index the page, everything a human reads goes in the body.** If a field would only be rendered back out as prose, write the prose instead - that's why references are markdown bullets in `## References` rather than a YAML array.
 
 1. **Start with the [maintainer guide](../.github/maintainer-guide.md)** — it
-covers setup validation, how to add your first capsule/family/term, and
+covers setup validation, how to add your first capsule/publisher/term, and
 the testing strategy.
 1. **Activate the CapsuleCreatorAgent** to get a guided experience for content creation. Try this prompt with GitHub Copilot (or switch to the custom agent in GitHub Copilot Chat)
 
@@ -119,7 +119,7 @@ Two generated files let a tool understand the whole catalog in one request, inst
 
 | File | Use it for |
 |---|---|
-| [`catalog.json`](../catalog.json) | Every capsule, scenario, family, and primer as structured data - models, capabilities, pricing, notebook paths |
+| [`catalog.json`](../catalog.json) | Every capsule, scenario, publisher, and primer as structured data - models, capabilities, pricing, notebook paths |
 | [`llms.txt`](../llms.txt) | A link-dense markdown map of the repo, per the [/llms.txt convention](https://llmstxt.org/) |
 
 Both are generated by [`scripts/generate-catalog.py`](../scripts/generate-catalog.py) from artifact frontmatter, and CI fails if they drift. Never edit them by hand - change the frontmatter and regenerate:

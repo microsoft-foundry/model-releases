@@ -1,5 +1,5 @@
 ---
-kind: family
+kind: publisher
 name: DeepSeek
 slug: deepseek
 one_line: DeepSeek reasoning + chat models

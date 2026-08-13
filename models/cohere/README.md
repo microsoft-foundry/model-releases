@@ -1,5 +1,5 @@
 ---
-kind: family
+kind: publisher
 name: Cohere
 slug: cohere
 one_line: Command chat + Embed embedding models

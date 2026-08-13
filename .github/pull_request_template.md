@@ -16,8 +16,8 @@
 
 ## Type of change
 
-- [ ] New capsule (`models/<family>/<model>/<YYYY-MM-DD>/`)
-- [ ] New family (`models/<family>/`)
+- [ ] New capsule (`models/<publisher>/<model>/<YYYY-MM-DD>/`)
+- [ ] New publisher (`models/<publisher>/`)
 - [ ] New capability primer (`docs/primers/<slug>.md`)
 - [ ] New glossary term (`docs/GLOSSARY.md`)
 - [ ] CHANGELOG-only entry (announcement without capsule yet)
@@ -26,7 +26,7 @@
 
 ## Capsule checklist (fill in for new capsules)
 
-- [ ] Folder is `models/<family>/<model>/<YYYY-MM-DD>/`
+- [ ] Folder is `models/<publisher>/<model>/<YYYY-MM-DD>/`
 - [ ] `README.md` frontmatter validates (`python scripts/validate-specs.py`)
 - [ ] `references` array in frontmatter has at least one model card
       and one docs link, all pointing at `learn.microsoft.com` when a
@@ -39,13 +39,13 @@
       `models/quickstart/` if unset)
 - [ ] `CHANGELOG.md` has a row with matching Date + Model, with links
       on Date (announcement) and Pricing (source page or blog)
-- [ ] Family README lists this model in its members table
+- [ ] Publisher README lists this model in its members table
 - [ ] `README.md` **Recently added** block (Model / Release date /
       Capabilities) reflects the top 3
 - [ ] No hype language ("revolutionary", "game-changing", "cutting-edge",
       "state-of-the-art" as a standalone claim, …)
 
-## Family / primer / glossary checklist
+## Publisher / primer / glossary checklist
 
 - [ ] Frontmatter validates
 - [ ] Cross-links back to repo README and quickstart

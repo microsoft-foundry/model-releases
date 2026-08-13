@@ -4,16 +4,16 @@ slug: mai-image-family-walkthrough
 title: "MAI-Image-2.5 family walkthrough"
 summary: "Compare MAI-Image-2.5, Flash, and Pro on identical prompts"
 last_updated: "2026-08-12"
-scope: family
-family: microsoft-ai
+scope: publisher
+publisher: microsoft-ai
 models:
-  - family: microsoft-ai
+  - publisher: microsoft-ai
     model: mai-image-2.5-flash
     role: "Fast concurrent generation — resale listing backgrounds and mood boards"
-  - family: microsoft-ai
+  - publisher: microsoft-ai
     model: mai-image-2.5
     role: "Image editing and before/after comparisons"
-  - family: microsoft-ai
+  - publisher: microsoft-ai
     model: mai-image-2.5-pro
     role: "Text-to-image and character-consistency evaluation"
 capabilities: [image-generation]
@@ -28,9 +28,9 @@ notebooks:
       - editing and character consistency
 ---
 
-# MAI-Image-2.5 Family — Scenario
+# MAI-Image-2.5 Publisher — Scenario
 
-**Family:** [Microsoft AI](../../README.md) · **Capability:** Image Generation
+**Publisher:** [Microsoft AI](../../README.md) · **Capability:** Image Generation
 
 The three MAI-Image-2.5 variants overlap enough that picking one is a real decision. This scenario runs all three against realistic tasks in a single notebook, so you can see where the differences actually show up.
 

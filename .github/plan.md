@@ -37,7 +37,7 @@ model-releases/
 │   ├── agents/
 │   │   └── CapsuleCreatorAgent.md  # Copilot custom agent
 │   └── skills/
-│       ├── add-family/
+│       ├── add-publisher/
 │       ├── add-model/
 │       ├── add-capsule/
 │       ├── add-to-glossary/
@@ -58,7 +58,7 @@ model-releases/
     │   ├── README.md               # Foundry project · deployments · .env · verify
     │   └── .env.example
     ├── azure-openai/
-    │   └── README.md               # family overview + members table
+    │   └── README.md               # publisher overview + members table
     ├── microsoft-ai/
     │   └── README.md
     ├── anthropic/
@@ -84,7 +84,7 @@ model-releases/
 Capsule path convention (added on demand, not up-front):
 
 ```
-models/<family-slug>/<model-slug>/<YYYY-MM-DD>/
+models/<publisher-slug>/<model-slug>/<YYYY-MM-DD>/
     ├── README.md            # blog-style promo + Before You Begin
     ├── notebooks/
     │   └── 01-<topic>.ipynb # env precheck → content
@@ -100,7 +100,7 @@ Top-to-bottom outline of `README.md`:
 1. **Title + one-line pitch** — "Content capsules for every Foundry model release."
 2. **How this repo is organized** — 3–4 lines + mermaid tree.
 3. **Start here** — link to `models/quickstart/`.
-4. **Model families** — table: family · one-line purpose · README link.
+4. **Model publishers** — table: publisher · one-line purpose · README link.
 5. **Capability taxonomy** — canonical names + short explainers (see §5).
    Each capability links to its `docs/*.md` primer.
 6. **Recently added** — single table of the latest releases with
@@ -135,9 +135,9 @@ Rows are grouped into one table per month, newest month first:
 ```markdown
 ## July 2026
 
-| Date | Family | Model | Capabilities | Pricing |
+| Date | Publisher | Model | Capabilities | Pricing |
 |---|---|---|---|---|
-| [YYYY-MM-DD](announcement URL) | Family | [Model](model-card URL) (or plain text) | Tag · Tag | pricing summary (or "—") |
+| [YYYY-MM-DD](announcement URL) | Publisher | [Model](model-card URL) (or plain text) | Tag · Tag | pricing summary (or "—") |
 ```
 
 Add a new `## <Month> <Year>` heading and table header when a release
@@ -183,7 +183,7 @@ Each has a short explainer and links to its `docs/*.md` primer.
 - **Long Context** — 200k+ context window.
 
 Every capsule is tagged with 1–N of these. Tags surface in:
-family README table, capsule README badges, repo Recent Activity,
+publisher README table, capsule README badges, repo Recent Activity,
 CHANGELOG (optional column).
 
 ---
@@ -210,11 +210,11 @@ required vars and, if any are missing, prints:
 
 ---
 
-## 7. Family README template — `models/<family>/README.md`
+## 7. Publisher README template — `models/<publisher>/README.md`
 
 Sections:
 
-1. **What this family does** — 2–3 sentences.
+1. **What this publisher does** — 2–3 sentences.
 2. **Why it matters** — when to reach for it vs. alternatives.
 3. **Members** — table:
 
@@ -227,7 +227,7 @@ Sections:
 
 ## 8. Content capsule anatomy
 
-Every capsule at `models/<family>/<model>/<YYYY-MM-DD>/` contains:
+Every capsule at `models/<publisher>/<model>/<YYYY-MM-DD>/` contains:
 
 1. **`README.md`** — blog-style promo:
    - Hook / TL;DR.
@@ -291,9 +291,9 @@ Location: `.github/agents/` and `.github/skills/` (GitHub Copilot conventions).
 ### `CapsuleCreatorAgent`
 Purpose: guide an advocate from "a model released" to "capsule merged."
 Behavior:
-1. Ask for family, model, release date, announcement URL, model card URL,
+1. Ask for publisher, model, release date, announcement URL, model card URL,
    pricing, expiry, capability tags, target domain(s) for use cases.
-2. Confirm family/model folder exists; if not, invoke `add-family` /
+2. Confirm publisher/model folder exists; if not, invoke `add-publisher` /
    `add-model` first.
 3. Invoke `add-capsule` to scaffold the folder, README, notebook skeleton
    with Before You Begin + env precheck.
@@ -307,13 +307,13 @@ Behavior:
 
 ### Skills (each = `.github/skills/<name>/SKILL.md` + optional helpers)
 
-- **`add-family`** — create `models/<family>/README.md` from template
-  (overview + empty members table). Fails if family already exists.
-- **`add-model`** — add a row to a family's members table; create
-  `models/<family>/<model>/` if needed. No capsule yet.
-- **`add-capsule`** — scaffold `models/<family>/<model>/<YYYY-MM-DD>/`
+- **`add-publisher`** — create `models/<publisher>/README.md` from template
+  (overview + empty members table). Fails if publisher already exists.
+- **`add-model`** — add a row to a publisher's members table; create
+  `models/<publisher>/<model>/` if needed. No capsule yet.
+- **`add-capsule`** — scaffold `models/<publisher>/<model>/<YYYY-MM-DD>/`
   with README, notebook (Before You Begin + env precheck), update
-  family table, prepend CHANGELOG row, append deps.
+  publisher table, prepend CHANGELOG row, append deps.
 - **`add-to-glossary`** — insert/update a term in `docs/GLOSSARY.md`
   (kebab-case anchor, alphabetized, consistent format).
 - **`add-capability-doc`** — scaffold `docs/primers/<capability>.md` primer
@@ -346,12 +346,12 @@ Tracked in the session `todos` table with dependencies. High-level order:
    resources.
 6. ✅ Create `models/quickstart/` (README pointing to
    `scripts/sample.env` + `scripts/setenv.sh`).
-7. ✅ Create the 11 family folders each with a `README.md` stub.
+7. ✅ Create the 11 publisher folders each with a `README.md` stub.
 8. ✅ Confirm `requirements-dev.txt` "Capsule dependencies" placeholder +
    `.devcontainer/post-create.sh` installs it.
 9. ✅ Author `.github/agents/CapsuleCreatorAgent.md` with pedagogy +
    references guardrails.
-10. ✅ Author `.github/skills/*` — six skills (`add-family`, `add-model`,
+10. ✅ Author `.github/skills/*` — six skills (`add-publisher`, `add-model`,
     `add-capsule`, `add-to-glossary`, `add-capability-doc`,
     `refresh-recent-activity`).
 11. ✅ Wire up the **Recently added** marker block
@@ -359,12 +359,12 @@ Tracked in the session `todos` table with dependencies. High-level order:
 12. ✅ Create `scripts/` (README, `sample.env`, `setenv.sh` +
     `setenv.spec.md` sidecar, `validate-specs.py`).
 13. ✅ Author 7 JSON Schemas under `.github/specs/schemas/` (capsule,
-    family, primer, quickstart, skill, agent, script) + README.
+    publisher, primer, quickstart, skill, agent, script) + README.
 14. ✅ Author [`.github/maintainer-guide.md`](./maintainer-guide.md) —
     quickstart + routine tasks + 5-layer testing strategy.
 
 Not in v1: authoring actual release capsules, adding subfolders under
-families. Those happen on demand via the agent/skills.
+publishers. Those happen on demand via the agent/skills.
 
 ### Recommended next steps (v1.1)
 
@@ -387,7 +387,7 @@ Learn page exists for the topic. Prefer, in order:
 
 1. Foundry conceptual docs under `learn.microsoft.com/en-us/azure/foundry/...`
 2. Foundry how-to / tutorials
-3. Foundry model-catalog / model-family reference pages
+3. Foundry model-catalog / model-publisher reference pages
 4. Architecture reference (`learn.microsoft.com/en-us/azure/architecture/...`)
 
 Only fall back to provider blogs / model cards when Microsoft Learn does not
@@ -427,9 +427,9 @@ without rewriting existing artifacts.
 
 | `kind` | Location | Purpose |
 |---|---|---|
-| `capsule` | `models/<family>/<release>/README.md` | A single release capsule |
-| `scenario` | `models/<family>/multi-model-scenarios/<slug>/README.md` | A walkthrough spanning 2+ releases |
-| `family` | `models/<family>/README.md` | Model-family overview |
+| `capsule` | `models/<publisher>/<release>/README.md` | A single release capsule |
+| `scenario` | `models/<publisher>/multi-model-scenarios/<slug>/README.md` | A walkthrough spanning 2+ releases |
+| `publisher` | `models/<publisher>/README.md` | Model-publisher overview |
 | `primer` | `docs/primers/<slug>.md` | Capability primer |
 | `quickstart` | `models/quickstart/README.md` | Shared Foundry setup |
 | `skill` | `.github/skills/<name>/SKILL.md` | Copilot custom skill |
@@ -441,7 +441,7 @@ without rewriting existing artifacts.
 1. Author edits (or the agent scaffolds) the artifact's frontmatter.
 2. Skill / agent validates it against `.github/specs/schemas/<kind>.schema.json`.
 3. Skill renders / updates the human-facing artifact and any
-   cross-references (family tables, CHANGELOG, Recent Activity).
+   cross-references (publisher tables, CHANGELOG, Recent Activity).
 4. `scripts/validate-specs.py` re-runs the schema check across the
    whole repo to catch drift (on-demand or in CI).
 
@@ -534,7 +534,7 @@ sub-steps within a section can use `###`.
 
 ## 16. Open questions to resolve as we build
 
-- Preferred slug casing for families (`azure-openai` vs `azure_openai`)?
+- Preferred slug casing for publishers (`azure-openai` vs `azure_openai`)?
   Assumed **kebab-case** throughout — confirm on first build.
 - Do we want a badge system (shields.io) for capability tags in READMEs,
   or plain markdown pills? Assume plain markdown for v1.

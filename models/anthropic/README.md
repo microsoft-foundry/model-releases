@@ -1,5 +1,5 @@
 ---
-kind: family
+kind: publisher
 name: Anthropic
 slug: anthropic
 one_line: Claude family

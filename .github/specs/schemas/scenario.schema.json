@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/microsoft-foundry/model-releases/schemas/scenario.schema.json",
   "title": "Scenario",
-  "description": "Frontmatter contract for a multi-model scenario README. A scenario combines two or more model releases in one walkthrough, so it cannot live in a single capsule. Family-scoped scenarios live at models/<family>/multi-model-scenarios/<slug>/; cross-family scenarios live at models/multi-model-scenarios/<slug>/.",
+  "description": "Frontmatter contract for a multi-model scenario README. A scenario combines two or more model releases in one walkthrough, so it cannot live in a single capsule. Publisher-scoped scenarios live at models/<publisher>/multi-model-scenarios/<slug>/; cross-publisher scenarios live at models/multi-model-scenarios/<slug>/.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -40,18 +40,18 @@
     },
     "scope": {
       "enum": [
-        "family",
-        "cross-family"
+        "publisher",
+        "cross-publisher"
       ],
-      "description": "'family' when every model belongs to one family (models/<family>/multi-model-scenarios/<slug>/); 'cross-family' when the scenario spans families (models/multi-model-scenarios/<slug>/)."
+      "description": "'publisher' when every model comes from one publisher (models/<publisher>/multi-model-scenarios/<slug>/); 'cross-publisher' when the scenario spans publishers (models/multi-model-scenarios/<slug>/)."
     },
-    "family": {
+    "publisher": {
       "type": [
         "string",
         "null"
       ],
       "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
-      "description": "Family slug. Required when scope is 'family'; omit for cross-family scenarios."
+      "description": "Publisher slug. Required when scope is 'publisher'; omit for cross-publisher scenarios."
     },
     "models": {
       "type": "array",
@@ -60,20 +60,20 @@
       "items": {
         "type": "object",
         "required": [
-          "family",
+          "publisher",
           "model"
         ],
         "additionalProperties": false,
         "properties": {
-          "family": {
+          "publisher": {
             "type": "string",
             "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
-            "description": "Family slug \u2014 must match a folder under models/."
+            "description": "Publisher slug \u2014 must match a folder under models/."
           },
           "model": {
             "type": "string",
             "pattern": "^[a-z0-9]+([-.][a-z0-9]+)*$",
-            "description": "Model slug \u2014 must match a capsule folder under models/<family>/."
+            "description": "Model slug \u2014 must match a capsule folder under models/<publisher>/."
           },
           "role": {
             "type": "string",
@@ -154,7 +154,7 @@
       "if": {
         "properties": {
           "scope": {
-            "const": "family"
+            "const": "publisher"
           }
         },
         "required": [
@@ -163,7 +163,7 @@
       },
       "then": {
         "required": [
-          "family"
+          "publisher"
         ]
       }
     }

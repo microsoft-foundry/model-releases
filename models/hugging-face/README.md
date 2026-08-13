@@ -1,5 +1,5 @@
 ---
-kind: family
+kind: publisher
 name: Hugging Face
 slug: hugging-face
 one_line: Open-source model catalog on Foundry

@@ -1,16 +1,16 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/microsoft-foundry/model-releases/schemas/family.schema.json",
-  "title": "Family",
-  "description": "Frontmatter contract for a model-family README.",
+  "$id": "https://github.com/microsoft-foundry/model-releases/schemas/publisher.schema.json",
+  "title": "Publisher",
+  "description": "Frontmatter contract for a publisher README.",
   "type": "object",
   "additionalProperties": false,
   "required": ["kind", "name", "slug", "one_line"],
   "properties": {
-    "kind": { "const": "family" },
+    "kind": { "const": "publisher" },
     "name": {
       "type": "string",
-      "description": "Human-readable family name (e.g. 'Azure OpenAI')."
+      "description": "Human-readable publisher name, matching the catalog's publisher facet where one exists (e.g. 'Azure OpenAI')."
     },
     "slug": {
       "type": "string",
@@ -19,7 +19,7 @@
     },
     "one_line": {
       "type": "string",
-      "description": "Short pitch used in the repo README family table."
+      "description": "Short pitch used in the repo README publisher table."
     },
     "provider": {
       "type": ["string", "null"],
@@ -28,7 +28,7 @@
     "related_primers": {
       "type": "array",
       "items": { "type": "string" },
-      "description": "Slugs of primers most relevant to this family (docs/primers/<slug>.md)."
+      "description": "Slugs of primers most relevant to this publisher (docs/primers/<slug>.md)."
     }
   }
 }

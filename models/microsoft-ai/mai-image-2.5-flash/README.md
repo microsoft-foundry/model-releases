@@ -1,6 +1,6 @@
 ---
 kind: capsule
-family: microsoft-ai
+publisher: microsoft-ai
 model: mai-image-2.5-flash
 summary: "Generate images faster and at lower cost"
 release_date: "2026-06-02"
@@ -24,7 +24,7 @@ notebooks:
 
 # MAI-Image-2.5-Flash — Release Capsule
 
-**Released:** 2026-06-02 · **Family:** [Microsoft AI](../README.md) · **Capability:** Image Generation
+**Released:** 2026-06-02 · **Publisher:** [Microsoft AI](../README.md) · **Capability:** Image Generation
 
 ## Before You Begin
 

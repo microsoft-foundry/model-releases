@@ -60,8 +60,8 @@ Pick the smallest thing that exercises the flow, then work up:
 | Want to add | Use | Produces |
 |---|---|---|
 | A **glossary term** you noticed missing | [`add-to-glossary`](./skills/add-to-glossary/SKILL.md) | Entry in `docs/GLOSSARY.md` under the right letter section |
-| A **new model family** | [`add-family`](./skills/add-family/SKILL.md) | `models/<slug>/README.md` |
-| A **model** in an existing family (no capsule yet) | [`add-model`](./skills/add-model/SKILL.md) | Row in `models/<family>/README.md` |
+| A **new model publisher** | [`add-publisher`](./skills/add-publisher/SKILL.md) | `models/<slug>/README.md` |
+| A **model** in an existing publisher (no capsule yet) | [`add-model`](./skills/add-model/SKILL.md) | Row in `models/<publisher>/README.md` |
 | A **full release capsule** | [`CapsuleCreatorAgent`](./agents/CapsuleCreatorAgent.md) → [`add-capsule`](./skills/add-capsule/SKILL.md) | Capsule folder + 1–N notebooks + CHANGELOG row + Recently added refresh |
 | A **new capability** in the taxonomy | [`add-capability-doc`](./skills/add-capability-doc/SKILL.md) | Primer under `docs/primers/` + row in repo README taxonomy |
 
@@ -89,7 +89,7 @@ Still all green? The setup is working.
                                   │ orchestrates
        ┌──────────┬──────────┬────┴─────┬──────────────┬──────────────────┐
        ▼          ▼          ▼          ▼              ▼                  ▼
-  add-family  add-model  add-capsule  add-to-  add-capability-  refresh-recent-
+  add-publisher  add-model  add-capsule  add-to-  add-capability-  refresh-recent-
                                       glossary       doc              activity
        │          │          │          │              │                  │
        └──────────┴────┬─────┴──────────┴──────────────┴──────────────────┘
@@ -121,11 +121,11 @@ upgrade path to GitHub Spec Kit later.
 ### 3.1 A new release drops
 
 1. Open a session with the `CapsuleCreatorAgent`.
-2. The agent asks for family, model, release date, capability tags,
+2. The agent asks for publisher, model, release date, capability tags,
    pricing, expiry, model card + docs + sample references
    (**required**), 1–3 target domains, and a list of teaching concepts
    (each notebook covers 1–3 concepts).
-3. The agent invokes `add-family` / `add-model` / `add-capsule` /
+3. The agent invokes `add-publisher` / `add-model` / `add-capsule` /
    `refresh-recent-activity` in order.
 4. Run `python scripts/validate-specs.py` — must be all green.
 5. Skim the generated capsule README + notebooks for the voice/hype
@@ -134,7 +134,7 @@ upgrade path to GitHub Spec Kit later.
 
 ### 3.2 A model is retiring
 
-Nothing manual — the `expires` field in the family README's members
+Nothing manual — the `expires` field in the publisher README's members
 table + the capsule frontmatter drives the ⚠️ marker in the
 **Recently added** table.
 Just make sure `expires:` is populated. Run:
@@ -171,9 +171,9 @@ Use `add-capability-doc`. This:
   capsules can tag themselves with it — confirm this schema change in
   review.
 
-### 3.6 Renaming a family or model
+### 3.6 Renaming a publisher or model
 
-Slugs appear in three places: the folder path, `family:`/`model:`
+Slugs appear in three places: the folder path, `publisher:`/`model:`
 frontmatter fields, and cross-references in the repo README + CHANGELOG.
 Do the rename in a single PR, then run the validator and grep for the
 old slug:
@@ -353,7 +353,7 @@ frontmatter.
 - **`.env` in git.** `*.env` is gitignored. If you see one staged, stop
   and unstage it — the sample template is `scripts/sample.env`.
 - **Slugs with underscores or spaces.** Everything is kebab-case. The
-  family/model regex in `capsule.schema.json` will reject anything else.
+  publisher/model regex in `capsule.schema.json` will reject anything else.
 - **Notebook that grew past 3 concepts.** Split it. The schema
   (`notebooks[].concepts` has `maxItems: 3`) will reject it, but it's
   cheaper to split during authoring than after review.
@@ -391,12 +391,12 @@ going through the agent. Two safety nets catch most mistakes for you:
   every PR. Between them they enforce:
   - Frontmatter matches the schema for its kind
   - Every capsule has a matching `CHANGELOG.md` row (date + model)
-  - Every capsule is listed in its family README
+  - Every capsule is listed in its publisher README
   - Every capability tag has a matching `docs/primers/<slug>.md`
   - `README.md` Recently added top 3 = `CHANGELOG.md` top 3
   - No `_review_` placeholders remain in learner-facing files
 - **PR template** — [`.github/pull_request_template.md`](./pull_request_template.md)
-  gives contributors a checklist per change type (capsule, family,
+  gives contributors a checklist per change type (capsule, publisher,
   primer, glossary, CHANGELOG-only). Anything unchecked in a section
   the PR touches is a signal for the reviewer.
 

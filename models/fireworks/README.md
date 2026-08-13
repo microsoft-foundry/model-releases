@@ -1,5 +1,5 @@
 ---
-kind: family
+kind: publisher
 name: Fireworks
 slug: fireworks
 one_line: Fast OSS-model inference

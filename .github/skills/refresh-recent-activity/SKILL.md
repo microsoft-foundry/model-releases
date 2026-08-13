@@ -34,7 +34,7 @@ losing prose.
 
 Neither pricing nor expiry is shown in the README. Pricing lives in
 `CHANGELOG.md` (with a verifiable source link) and expiry lives in the
-family README members table, which is the single place a retirement
+publisher README members table, which is the single place a retirement
 date is tracked. The caption under the README table points readers to
 the CHANGELOG for the full history.
 

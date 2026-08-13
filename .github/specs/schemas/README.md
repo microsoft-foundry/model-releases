@@ -5,9 +5,9 @@ this repo. One schema per `kind:` value.
 
 | `kind` | Schema | Applies to |
 |---|---|---|
-| `capsule` | [`capsule.schema.json`](./capsule.schema.json) | `models/<family>/<release>/README.md` |
-| `scenario` | [`scenario.schema.json`](./scenario.schema.json) | `models/<family>/multi-model-scenarios/<slug>/README.md`, `models/multi-model-scenarios/<slug>/README.md` |
-| `family` | [`family.schema.json`](./family.schema.json) | `models/<family>/README.md` |
+| `capsule` | [`capsule.schema.json`](./capsule.schema.json) | `models/<publisher>/<release>/README.md` |
+| `scenario` | [`scenario.schema.json`](./scenario.schema.json) | `models/<publisher>/multi-model-scenarios/<slug>/README.md`, `models/multi-model-scenarios/<slug>/README.md` |
+| `publisher` | [`publisher.schema.json`](./publisher.schema.json) | `models/<publisher>/README.md` |
 | `primer` | [`primer.schema.json`](./primer.schema.json) | `docs/primers/*.md` |
 | `quickstart` | [`quickstart.schema.json`](./quickstart.schema.json) | `models/quickstart/README.md` |
 | `skill` | [`skill.schema.json`](./skill.schema.json) | `.github/skills/<name>/SKILL.md` |

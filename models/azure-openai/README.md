@@ -1,5 +1,5 @@
 ---
-kind: family
+kind: publisher
 name: Azure OpenAI
 slug: azure-openai
 one_line: GPT-family models on Microsoft Foundry

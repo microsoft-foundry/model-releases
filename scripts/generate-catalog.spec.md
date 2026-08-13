@@ -18,7 +18,7 @@ All of these are **generated** — edit the frontmatter, never the output.
 
 | File | Audience | What it holds |
 |---|---|---|
-| `catalog.json` | Agents, scripts | Every capsule, scenario, family, primer, and capability tag with models, capabilities, pricing, and notebook paths |
+| `catalog.json` | Agents, scripts | Every capsule, scenario, publisher, primer, and capability tag with models, capabilities, pricing, and notebook paths |
 | `llms.txt` | LLM consumers | A short, link-dense markdown map of the repo, per the [/llms.txt convention](https://llmstxt.org/) |
 | `CAPSULE-TOC.md` | Humans | Capsule tables grouped by provider, plus the multi-model scenario table |
 | `README.md` | Humans | The three most recently updated capsules |

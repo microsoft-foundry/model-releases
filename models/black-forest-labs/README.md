@@ -1,5 +1,5 @@
 ---
-kind: family
+kind: publisher
 name: Black Forest Labs
 slug: black-forest-labs
 one_line: FLUX image-generation models

@@ -12,7 +12,7 @@ That's what this repo is for:
 
 ## Changelog: What's New In Foundry Models?
 
-Every new model release announcement gets a row here, with a link back to the original post plus the family, capabilities, and pricing at a glance. The three most recent:
+Every new model release announcement gets a row here, with a link back to the original post plus the publisher, capabilities, and pricing at a glance. The three most recent:
 
 <!-- BEGIN:RECENTLY-ADDED -->
 | Model | Release date | Capabilities |
@@ -29,7 +29,7 @@ Every new model release announcement gets a row here, with a link back to the or
 ## Capsule: What Can I Do With This Release?
 
 An announcement tells you a model exists. It doesn't tell you what it's like to use. So each capsule pairs the release with a notebook you can run - practical use cases, code-first - to show you:
-- What *tasks* the family is good at
+- What *tasks* the publisher's models are good at
 - What *new features* this release brings
 - What *tradeoffs* it makes on cost, quality, and latency
 
@@ -62,14 +62,14 @@ Each notebook is yours to break - change the prompts, swap the inputs, and try i
 
 ## Reference: Where do I learn more?
 
-Want the background - how this repo is organized, what the model families and capability tags mean, or how to contribute a capsule of your own? It's all in the [reference guide](./docs/README.md).
+Want the background - how this repo is organized, what the publishers and capability tags mean, or how to contribute a capsule of your own? It's all in the [reference guide](./docs/README.md).
 
 | Topic | What you'll find |
 | --- | --- |
 | [Repository structure](./docs/README.md#repository-what-resources-can-i-find-here) | How `docs/`, `models/`, and the capsules fit together |
-| [Model families](./docs/README.md#learn-about-model-families) | Every provider and family we track, with links |
+| [Publishers](./docs/README.md#learn-about-publishers) | Every publisher we track, with links |
 | [Model capabilities](./docs/README.md#learn-about-model-capabilities) | What each capability tag means, plus a primer for each |
-| [Contributing](./docs/README.md#contributing-how-can-i-add-new-content) | Add a capsule, family, capability, or glossary term |
+| [Contributing](./docs/README.md#contributing-how-can-i-add-new-content) | Add a capsule, publisher, capability, or glossary term |
 | [Using this repo from an agent](./docs/README.md#using-this-repo-from-an-agent) | `catalog.json` and `llms.txt` — the whole catalog in one fetch |
 
 New to the terminology? Start with the [glossary](./docs/GLOSSARY.md).

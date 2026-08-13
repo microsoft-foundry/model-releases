@@ -1,6 +1,6 @@
 ---
 kind: capsule
-family: microsoft-ai
+publisher: microsoft-ai
 model: mai-image-2.5
 summary: "Generate and edit images from text prompts"
 release_date: "2026-06-02"
@@ -24,7 +24,7 @@ notebooks:
 
 # MAI-Image-2.5 — Release Capsule
 
-**Released:** 2026-06-02 · **Family:** [Microsoft AI](../README.md) · **Capability:** Image Generation
+**Released:** 2026-06-02 · **Publisher:** [Microsoft AI](../README.md) · **Capability:** Image Generation
 
 ## Before You Begin
 

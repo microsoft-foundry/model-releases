@@ -1,6 +1,6 @@
 ---
 kind: capsule
-family: microsoft-ai
+publisher: microsoft-ai
 model: mai-transcribe-1.5
 summary: "Transcribe multilingual audio with keyword biasing"
 release_date: "2026-06-02"
@@ -30,7 +30,7 @@ notebooks:
 
 # MAI-Transcribe-1.5 — Release Capsule
 
-**Released:** 2026-06-02 · **Family:** [Microsoft AI](../README.md) · **Capability:** Audio / Speech
+**Released:** 2026-06-02 · **Publisher:** [Microsoft AI](../README.md) · **Capability:** Audio / Speech
 
 > **Public preview.** MAI-Transcribe runs on the LLM Speech API, which is in public preview — no SLA, not recommended for production workloads.
 

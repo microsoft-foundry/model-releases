@@ -1,5 +1,5 @@
 ---
-kind: family
+kind: publisher
 name: NVIDIA
 slug: nvidia
 one_line: NIM microservices for language, vision, biology, and earth science

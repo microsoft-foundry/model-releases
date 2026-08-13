@@ -5,7 +5,7 @@ name: Scan Foundry blog for new model releases
 # a pull request with draft rows for any new model-announcement posts.
 # The PR also refreshes the README Recently added top 3.
 #
-# Draft rows use `_review_` placeholders for Family / Model /
+# Draft rows use `_review_` placeholders for Publisher / Model /
 # Capabilities / Model card / Pricing so the maintainer can complete
 # the details before merging. The Date cell is a working link to the
 # blog post.
@@ -93,7 +93,7 @@ jobs:
 
             **Before merging**
 
-            Every new row is a draft with `_review_` placeholders for Family,
+            Every new row is a draft with `_review_` placeholders for Publisher,
             Model, Capabilities, Model card, and Pricing. Please complete those
             cells from the linked blog post (the Date cell is already a working
             link) so the row is verifiable. Pricing cells should link to an

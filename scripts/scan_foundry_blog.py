@@ -15,7 +15,7 @@ Behavior:
 5. For each new post, add a draft row to CHANGELOG.md under its
    `## <Month> <Year>` heading (creating the heading and table header
    if the month is new), with the Date linking to the blog post.
-   Family / Model / Capabilities / Pricing cells are filled with
+   Publisher / Model / Capabilities / Pricing cells are filled with
    `_review_` / `_—_` placeholders so the maintainer knows what to
    complete before merging.
 6. Regenerate the README `<!-- BEGIN:RECENTLY-ADDED -->` block from
@@ -313,7 +313,7 @@ def existing_changelog_urls(changelog_text: str) -> set[str]:
 
 def draft_row(post: BlogPost) -> str:
     dstr = post.published.isoformat() if post.published else "YYYY-MM-DD"
-    # Draft row — maintainer completes Family / Model / Capabilities /
+    # Draft row — maintainer completes Publisher / Model / Capabilities /
     # Model card / Pricing before merging.
     return (
         f"| [{dstr}]({post.url}) | _review_ | _review_ (blog title: "
@@ -322,7 +322,7 @@ def draft_row(post: BlogPost) -> str:
 
 
 MONTH_HEADING_RE = re.compile(r"^## \w+ \d{4}\s*$")
-TABLE_HEADER = "| Date | Family | Model | Capabilities | Pricing |"
+TABLE_HEADER = "| Date | Publisher | Model | Capabilities | Pricing |"
 TABLE_SEP = "|---|---|---|---|---|"
 
 
@@ -406,7 +406,7 @@ def parse_changelog_top(
         if len(rows) >= n:
             break
     keys = [
-        "date", "family", "model", "capabilities", "pricing",
+        "date", "publisher", "model", "capabilities", "pricing",
     ]
     return [dict(zip(keys, r)) for r in rows]
 

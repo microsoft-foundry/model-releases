@@ -1,6 +1,6 @@
 ---
 kind: capsule
-family: microsoft-ai
+publisher: microsoft-ai
 model: mai-image-2.5-pro
 summary: "Render portraits, in-image text, and complex scenes"
 release_date: "2026-07-23"
@@ -24,7 +24,7 @@ notebooks:
 
 # MAI-Image-2.5-Pro — Release Capsule
 
-**Released:** 2026-07-23 · **Family:** [Microsoft AI](../README.md) · **Capability:** Image Generation
+**Released:** 2026-07-23 · **Publisher:** [Microsoft AI](../README.md) · **Capability:** Image Generation
 
 ## Before You Begin
 

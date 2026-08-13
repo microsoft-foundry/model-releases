@@ -1,5 +1,5 @@
 ---
-kind: family
+kind: publisher
 name: Mistral
 slug: mistral
 one_line: Mistral / Mixtral / Ministral (incl. MoE)

@@ -6,10 +6,10 @@ manual (non-agent) contribution together.
 Schema validity is checked by `validate-specs.py`; this script covers
 what a human reviewer would otherwise have to eyeball:
 
-1. Every capsule folder `models/<family>/<model>/` has a matching
+1. Every capsule folder `models/<publisher>/<model>/` has a matching
    row in `CHANGELOG.md`.
-2. Every capsule appears in its family README's members list (loose
-   grep — the model slug must be mentioned somewhere in the family
+2. Every capsule appears in its publisher README's members list (loose
+   grep — the model slug must be mentioned somewhere in the publisher
    README).
 3. Every capability tag used by a capsule or scenario has a matching
    primer file in `docs/primers/<slug>.md`.
@@ -42,7 +42,7 @@ except ImportError:
 REPO_ROOT = Path(__file__).resolve().parents[1]
 CHANGELOG = REPO_ROOT / "CHANGELOG.md"
 README = REPO_ROOT / "README.md"
-FAMILY_ROOT = REPO_ROOT / "models"
+PUBLISHER_ROOT = REPO_ROOT / "models"
 PRIMERS_DIR = REPO_ROOT / "docs" / "primers"
 
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
@@ -68,16 +68,16 @@ def read_frontmatter(path: Path) -> dict:
 
 
 def find_capsules() -> list[Path]:
-    """Capsule READMEs at models/<family>/<model>/README.md.
+    """Capsule READMEs at models/<publisher>/<model>/README.md.
 
     The release date lives in frontmatter, not the path, so a folder is
-    a capsule when it sits one level under a family and is not one of
+    a capsule when it sits one level under a publisher and is not one of
     the reserved folder names.
     """
     caps: list[Path] = []
     for p in REPO_ROOT.glob(CAPSULE_GLOB):
         parts = p.relative_to(REPO_ROOT).parts
-        # Expect ["models", family, model, "README.md"]
+        # Expect ["models", publisher, model, "README.md"]
         if len(parts) == 4 and parts[2] not in RESERVED_DIRS \
                 and parts[1] not in RESERVED_DIRS:
             caps.append(p)
@@ -87,8 +87,8 @@ def find_capsules() -> list[Path]:
 def find_scenarios() -> list[Path]:
     """Scenario READMEs — multi-model walkthroughs.
 
-    Family-scoped: models/<family>/multi-model-scenarios/<slug>/README.md
-    Cross-family:  models/multi-model-scenarios/<slug>/README.md
+    Publisher-scoped: models/<publisher>/multi-model-scenarios/<slug>/README.md
+    Cross-publisher:  models/multi-model-scenarios/<slug>/README.md
     """
     scen: list[Path] = []
     for glob in SCENARIO_GLOBS:
@@ -138,10 +138,10 @@ def parse_changelog_rows() -> list[dict[str, str]]:
         # Date cell may be `[YYYY-MM-DD](url)` or plain.
         m = re.search(r"\d{4}-\d{2}-\d{2}", cells[0])
         date = m.group(0) if m else cells[0]
-        # Family cell is plain text, but tolerate a link if one is
+        # Publisher cell is plain text, but tolerate a link if one is
         # ever added.
         m = re.match(r"\[([^\]]+)\]", cells[1])
-        family = m.group(1) if m else cells[1]
+        publisher = m.group(1) if m else cells[1]
         # Model cell may be `[Model](url)` or plain, and may carry a
         # trailing availability note like `_(public preview)_`.
         model_cell = strip_availability(cells[2])
@@ -149,7 +149,7 @@ def parse_changelog_rows() -> list[dict[str, str]]:
         model = m.group(1) if m else model_cell
         rows.append({
             "date": date,
-            "family": family.strip(),
+            "publisher": publisher.strip(),
             "model": model.strip(),
         })
     return rows
@@ -197,7 +197,7 @@ def check_capsule_in_changelog(
     idx = {(r["date"], r["model"].lower()) for r in changelog}
     for cap in capsules:
         rel = cap.relative_to(REPO_ROOT)
-        _, family, model_slug, _ = rel.parts
+        _, publisher, model_slug, _ = rel.parts
         fm = read_frontmatter(cap)
         date = str(fm.get("release_date") or "").strip()
         if not date:
@@ -227,22 +227,49 @@ def check_capsule_in_changelog(
     return errs
 
 
-def check_capsule_in_family_readme(capsules: list[Path]) -> list[str]:
+def check_publisher_matches_folder(
+    capsules: list[Path], scenarios: list[Path]
+) -> list[str]:
+    """The `publisher:` in frontmatter must equal the folder it lives in.
+
+    Without this, a typo'd or stale publisher slug still passes schema
+    validation (it is just a string) and silently mislabels the model
+    everywhere the catalog is consumed.
+    """
+    errs: list[str] = []
+    for path in capsules + scenarios:
+        rel = path.relative_to(REPO_ROOT)
+        fm = read_frontmatter(path)
+        if fm is None:
+            continue
+        declared = str(fm.get("publisher") or "").strip()
+        if not declared:
+            continue  # cross-publisher scenarios legitimately omit it
+        folder = rel.parts[1]
+        if declared != folder:
+            errs.append(
+                f"[crosslink] {rel} — publisher {declared!r} does not match "
+                f"its folder models/{folder}/"
+            )
+    return errs
+
+
+def check_capsule_in_publisher_readme(capsules: list[Path]) -> list[str]:
     errs: list[str] = []
     for cap in capsules:
         rel = cap.relative_to(REPO_ROOT)
-        _, family, model_slug, _ = rel.parts
-        family_readme = FAMILY_ROOT / family / "README.md"
-        if not family_readme.exists():
+        _, publisher, model_slug, _ = rel.parts
+        publisher_readme = PUBLISHER_ROOT / publisher / "README.md"
+        if not publisher_readme.exists():
             errs.append(
-                f"[crosslink] capsule {rel} — family README "
-                f"{family_readme.relative_to(REPO_ROOT)} does not exist"
+                f"[crosslink] capsule {rel} — publisher README "
+                f"{publisher_readme.relative_to(REPO_ROOT)} does not exist"
             )
             continue
-        content = family_readme.read_text(encoding="utf-8").lower()
+        content = publisher_readme.read_text(encoding="utf-8").lower()
         if model_slug.lower() not in content:
             errs.append(
-                f"[crosslink] family README models/{family}/README.md "
+                f"[crosslink] publisher README models/{publisher}/README.md "
                 f"does not mention model slug {model_slug!r} "
                 f"(capsule {rel})"
             )
@@ -375,7 +402,7 @@ def check_no_orphan_notebooks(artifacts: list[Path]) -> list[str]:
             if isinstance(nb, dict) and nb.get("path"):
                 declared.add((art.parent / str(nb["path"])).resolve())
     errs: list[str] = []
-    for nb_path in FAMILY_ROOT.rglob("*.ipynb"):
+    for nb_path in PUBLISHER_ROOT.rglob("*.ipynb"):
         if ".ipynb_checkpoints" in nb_path.parts:
             continue
         if nb_path.resolve() not in declared:
@@ -397,14 +424,14 @@ def check_scenario_models_exist(scenarios: list[Path]) -> list[str]:
         for entry in fm.get("models") or []:
             if not isinstance(entry, dict):
                 continue
-            family = str(entry.get("family") or "").strip()
+            publisher = str(entry.get("publisher") or "").strip()
             model = str(entry.get("model") or "").strip()
-            target = FAMILY_ROOT / family / model / "README.md"
+            target = PUBLISHER_ROOT / publisher / model / "README.md"
             if not target.exists():
                 errs.append(
                     f"[crosslink] scenario {rel} references "
-                    f"{family}/{model} but no capsule exists at "
-                    f"models/{family}/{model}/README.md"
+                    f"{publisher}/{model} but no capsule exists at "
+                    f"models/{publisher}/{model}/README.md"
                 )
     return errs
 
@@ -412,14 +439,15 @@ def check_scenario_models_exist(scenarios: list[Path]) -> list[str]:
 def main() -> int:
     capsules = find_capsules()
     scenarios = find_scenarios()
-    quickstart = [p for p in [FAMILY_ROOT / "quickstart" / "README.md"]
+    quickstart = [p for p in [PUBLISHER_ROOT / "quickstart" / "README.md"]
                   if p.exists()]
     changelog = parse_changelog_rows()
     readme_rows = parse_readme_recent()
 
     all_errs: list[str] = []
     all_errs += check_capsule_in_changelog(capsules, changelog)
-    all_errs += check_capsule_in_family_readme(capsules)
+    all_errs += check_capsule_in_publisher_readme(capsules)
+    all_errs += check_publisher_matches_folder(capsules, scenarios)
     all_errs += check_capabilities_have_primers(capsules)
     all_errs += check_capabilities_have_primers(scenarios)
     all_errs += check_scenario_models_exist(scenarios)

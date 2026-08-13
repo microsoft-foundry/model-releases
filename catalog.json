@@ -84,14 +84,14 @@
   "counts": {
     "capsules": 4,
     "scenarios": 1,
-    "families": 12,
+    "publishers": 12,
     "primers": 10
   },
   "capsules": [
     {
       "model": "mai-image-2.5-pro",
       "name": "MAI-Image-2.5-Pro",
-      "family": "microsoft-ai",
+      "publisher": "microsoft-ai",
       "summary": "Render portraits, in-image text, and complex scenes",
       "release_date": "2026-07-23",
       "last_updated": "2026-08-04",
@@ -126,7 +126,7 @@
     {
       "model": "mai-transcribe-1.5",
       "name": "MAI-Transcribe-1.5",
-      "family": "microsoft-ai",
+      "publisher": "microsoft-ai",
       "summary": "Transcribe multilingual audio with keyword biasing",
       "release_date": "2026-06-02",
       "last_updated": "2026-08-07",
@@ -171,7 +171,7 @@
     {
       "model": "mai-image-2.5-flash",
       "name": "MAI-Image-2.5-Flash",
-      "family": "microsoft-ai",
+      "publisher": "microsoft-ai",
       "summary": "Generate images faster and at lower cost",
       "release_date": "2026-06-02",
       "last_updated": "2026-08-04",
@@ -206,7 +206,7 @@
     {
       "model": "mai-image-2.5",
       "name": "MAI-Image-2.5",
-      "family": "microsoft-ai",
+      "publisher": "microsoft-ai",
       "summary": "Generate and edit images from text prompts",
       "release_date": "2026-06-02",
       "last_updated": "2026-08-11",
@@ -245,21 +245,21 @@
       "title": "MAI-Image-2.5 family walkthrough",
       "summary": "Compare MAI-Image-2.5, Flash, and Pro on identical prompts",
       "last_updated": "2026-08-12",
-      "scope": "family",
-      "family": "microsoft-ai",
+      "scope": "publisher",
+      "publisher": "microsoft-ai",
       "models": [
         {
-          "family": "microsoft-ai",
+          "publisher": "microsoft-ai",
           "model": "mai-image-2.5-flash",
           "role": "Fast concurrent generation — resale listing backgrounds and mood boards"
         },
         {
-          "family": "microsoft-ai",
+          "publisher": "microsoft-ai",
           "model": "mai-image-2.5",
           "role": "Image editing and before/after comparisons"
         },
         {
-          "family": "microsoft-ai",
+          "publisher": "microsoft-ai",
           "model": "mai-image-2.5-pro",
           "role": "Text-to-image and character-consistency evaluation"
         }
@@ -282,7 +282,7 @@
       ]
     }
   ],
-  "families": [
+  "publishers": [
     {
       "slug": "anthropic",
       "name": "Anthropic",

@@ -1,5 +1,5 @@
 ---
-kind: family
+kind: publisher
 name: Microsoft AI
 slug: microsoft-ai
 one_line: MAI model family — image, voice, transcription, reasoning, and coding.

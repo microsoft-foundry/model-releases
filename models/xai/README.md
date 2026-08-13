@@ -1,5 +1,5 @@
 ---
-kind: family
+kind: publisher
 name: xAI
 slug: xai
 one_line: Grok family

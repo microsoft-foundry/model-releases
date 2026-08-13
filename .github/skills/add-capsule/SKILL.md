@@ -3,9 +3,9 @@ kind: skill
 name: add-capsule
 description: Scaffold a full release capsule — folder, spec-driven README, notebook skeleton, deps, CHANGELOG row.
 inputs:
-  - name: family
+  - name: publisher
     type: string
-    description: Family slug (kebab-case) matching a folder under models/.
+    description: Publisher slug (kebab-case) matching a folder under models/.
     required: true
   - name: model
     type: string
@@ -56,18 +56,18 @@ inputs:
     description: Ordered list of teaching concepts for this release. Each concept becomes its own notebook (1–3 concepts per notebook max). Provide {slug, title, concepts_covered[]} so the skill can name and scaffold each notebook file.
     required: true
 produces:
-  - models/<family>/<release>/README.md
-  - models/<family>/<release>/<release>.ipynb
+  - models/<publisher>/<release>/README.md
+  - models/<publisher>/<release>/<release>.ipynb
   - CHANGELOG.md
   - CAPSULE-TOC.md
   - catalog.json
   - llms.txt
-  - models/<family>/README.md
+  - models/<publisher>/README.md
   - requirements-dev.txt
 validates_against:
   - .github/specs/schemas/capsule.schema.json
 depends_on:
-  - add-family
+  - add-publisher
   - add-model
   - refresh-recent-activity
 ---
@@ -76,7 +76,7 @@ depends_on:
 
 Produces a complete release capsule:
 
-1. Creates `models/<family>/<model>/<release_date>/` with a README whose
+1. Creates `models/<publisher>/<model>/<release_date>/` with a README whose
    frontmatter matches [`capsule.schema.json`](../../specs/schemas/capsule.schema.json)
    — including a **Before You Begin** section with pricing, release /
    expiry dates, model-card link, and a link to
@@ -113,7 +113,7 @@ Produces a complete release capsule:
 4. Prepends (or updates in place) a row in `CHANGELOG.md`, in the
    table under the `## <Month> <Year>` heading for its release date —
    creating that heading and a table header when the month is new.
-   Column shape: `Date | Family | Model | Capabilities | Pricing`.
+   Column shape: `Date | Publisher | Model | Capabilities | Pricing`.
    The Date cell is a markdown link to the announcement URL
    (there is no separate Announcement column). The Model cell is a
    markdown link to the model card when known — no separate Model card
@@ -121,18 +121,18 @@ Produces a complete release capsule:
    price is stated** — target it at an official pricing page if one
    exists, otherwise at the blog post the figure was extracted from,
    so every price is verifiable. Use `_—_` when pricing is unknown.
-   The Family cell is plain text — capsules are tracked separately in
+   The Publisher cell is plain text — capsules are tracked separately in
    `CAPSULE-TOC.md`.
    If an announcement-only row already exists for the same Date +
    Model, the skill updates it in place — adding any newly known
    fields — instead of duplicating.
-5. Adds a members-table row to `models/<family>/README.md`.
+5. Adds a members-table row to `models/<publisher>/README.md`.
 6. Regenerates `CAPSULE-TOC.md`, `catalog.json`, `llms.txt`, and the
    repo README capsule block by running
    `python scripts/generate-catalog.py`. These are generated from
    frontmatter - never hand-edit them. The capsule's row appears under
-   its family's `## <Provider>` heading automatically; the generator
-   creates that heading when the family has no capsules yet.
+   its publisher's `## <Provider>` heading automatically; the generator
+   creates that heading when the publisher has no capsules yet.
 7. Invokes [`refresh-recent-activity`](../refresh-recent-activity/) so the
    repo README's **Recently added** table (Model / Release date /
    Capabilities) stays current.

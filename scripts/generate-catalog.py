@@ -6,7 +6,7 @@ Writes two artifacts, both generated from artifact frontmatter so they
 can never drift from the content:
 
 1. `catalog.json` — the full structured catalog. One fetch gives an
-   agent every capsule, scenario, family, and primer with its models,
+   agent every capsule, scenario, publisher, and primer with its models,
    capabilities, pricing, and notebook paths. Retrieval systems chunk
    per-file, so this exists to spare an agent from crawling the tree.
 
@@ -97,7 +97,7 @@ def notebooks_of(fm: dict, folder: Path) -> list[dict]:
 
 
 def collect() -> dict:
-    capsules, scenarios, families, primers = [], [], [], []
+    capsules, scenarios, publishers, primers = [], [], [], []
 
     for p in sorted(REPO_ROOT.glob("models/*/*/README.md")):
         parts = p.relative_to(REPO_ROOT).parts
@@ -110,7 +110,7 @@ def collect() -> dict:
         capsules.append({
             "model": fm.get("model"),
             "name": display_title(p, str(fm.get("model") or "")),
-            "family": fm.get("family"),
+            "publisher": fm.get("publisher"),
             "summary": fm.get("summary"),
             "release_date": str(fm.get("release_date") or ""),
             "last_updated": str(fm.get("last_updated")
@@ -141,7 +141,7 @@ def collect() -> dict:
                 "summary": fm.get("summary"),
                 "last_updated": str(fm.get("last_updated") or ""),
                 "scope": fm.get("scope"),
-                "family": fm.get("family"),
+                "publisher": fm.get("publisher"),
                 "models": fm.get("models") or [],
                 "capabilities": fm.get("capabilities") or [],
                 "path": rel(p.parent),
@@ -151,9 +151,9 @@ def collect() -> dict:
 
     for p in sorted(REPO_ROOT.glob("models/*/README.md")):
         fm = read_frontmatter(p)
-        if fm.get("kind") != "family":
+        if fm.get("kind") != "publisher":
             continue
-        families.append({
+        publishers.append({
             "slug": fm.get("slug"),
             "name": fm.get("name"),
             "provider": fm.get("provider"),
@@ -206,12 +206,12 @@ def collect() -> dict:
         "counts": {
             "capsules": len(capsules),
             "scenarios": len(scenarios),
-            "families": len(families),
+            "publishers": len(publishers),
             "primers": len(primers),
         },
         "capsules": capsules,
         "scenarios": scenarios,
-        "families": families,
+        "publishers": publishers,
         "primers": primers,
     }
 
@@ -247,7 +247,7 @@ def render_llms_txt(cat: dict) -> str:
         caps = ", ".join(c["capabilities"])
         L.append(
             f"- [{c['name']}]({c['url']}): {_sentence(c['summary'])} "
-            f"Family: {c['family']}. Capabilities: {caps}. "
+            f"Publisher: {c['publisher']}. Capabilities: {caps}. "
             f"Released {c['release_date']}."
         )
     if cat["scenarios"]:
@@ -300,23 +300,23 @@ def _by_recency(items: list[dict]) -> list[dict]:
 def render_capsule_toc(cat: dict) -> str:
     """Provider-grouped capsule tables, plus the scenario table."""
     labels = {c["capability"]: c["label"] for c in cat["capabilities"]}
-    fam_names = {f["slug"]: f["name"] for f in cat["families"]}
+    pub_names = {f["slug"]: f["name"] for f in cat["publishers"]}
     blocks: list[str] = []
 
-    by_family: dict[str, list[dict]] = {}
+    by_publisher: dict[str, list[dict]] = {}
     for c in cat["capsules"]:
-        by_family.setdefault(c["family"], []).append(c)
+        by_publisher.setdefault(c["publisher"], []).append(c)
 
-    for slug in sorted(by_family, key=lambda s: fam_names.get(s, s)):
+    for slug in sorted(by_publisher, key=lambda s: pub_names.get(s, s)):
         rows = [
             [f"[{c['name']}]({c['path']}/)",
              ", ".join(labels.get(t, t) for t in c["capabilities"]),
              _recency(c),
              c["summary"]]
-            for c in _by_recency(by_family[slug])
+            for c in _by_recency(by_publisher[slug])
         ]
         blocks.append(
-            f"## {fam_names.get(slug, slug)}\n\n"
+            f"## {pub_names.get(slug, slug)}\n\n"
             + _rows(["Capsule", "Capability", "Last updated",
                      "Description"], rows)
         )
@@ -324,7 +324,7 @@ def render_capsule_toc(cat: dict) -> str:
     if cat["scenarios"]:
         rows = [
             [f"[{s['title']}]({s['path']}/)",
-             fam_names.get(s.get("family"), s.get("family") or "—"),
+             pub_names.get(s.get("publisher"), s.get("publisher") or "—"),
              _recency(s),
              s["summary"]]
             for s in _by_recency(cat["scenarios"])
@@ -334,7 +334,7 @@ def render_capsule_toc(cat: dict) -> str:
             "A scenario spans more than one release, comparing models side "
             "by side in a single notebook - so it can't live in any one "
             "capsule.\n\n"
-            + _rows(["Scenario", "Family", "Last updated", "Description"],
+            + _rows(["Scenario", "Publisher", "Last updated", "Description"],
                     rows)
         )
     return "\n\n<br/>\n\n".join(blocks)
@@ -407,7 +407,7 @@ def main() -> int:
     print(
         "Wrote " + ", ".join(rel(p) for p, _ in targets)
         + f" — {c['capsules']} capsule(s), "
-        f"{c['scenarios']} scenario(s), {c['families']} family(ies), "
+        f"{c['scenarios']} scenario(s), {c['publishers']} publisher(s), "
         f"{c['primers']} primer(s)."
     )
     return 0

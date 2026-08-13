@@ -7,7 +7,7 @@
   "additionalProperties": false,
   "required": [
     "kind",
-    "family",
+    "publisher",
     "model",
     "release_date",
     "capabilities",
@@ -18,9 +18,9 @@
     "kind": {
       "const": "capsule"
     },
-    "family": {
+    "publisher": {
       "type": "string",
-      "description": "Family slug (kebab-case) matching a folder under models/.",
+      "description": "Publisher slug (kebab-case) matching a folder under models/.",
       "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
     },
     "model": {

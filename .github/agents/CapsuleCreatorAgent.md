@@ -3,7 +3,7 @@ kind: agent
 name: CapsuleCreatorAgent
 description: Guides an advocate from "a Microsoft Foundry model just released" to a merged content capsule, by orchestrating spec-driven skills.
 orchestrates:
-  - add-family
+  - add-publisher
   - add-model
   - add-capsule
   - add-to-glossary
@@ -15,7 +15,7 @@ persona_target: [capsule-creator]
 # CapsuleCreatorAgent
 
 > **Job:** turn a Microsoft Foundry model release into a full content
-> capsule — folder, README, notebook skeleton, family table row,
+> capsule — folder, README, notebook skeleton, publisher table row,
 > CHANGELOG row, and Recently added refresh — by walking the author
 > through a spec-driven flow.
 
@@ -24,11 +24,11 @@ persona_target: [capsule-creator]
 Say something like:
 
 > _"Use the **CapsuleCreatorAgent** to add a capsule for
-> `<family>` / `<model>` released on `<YYYY-MM-DD>`."_
+> `<publisher>` / `<model>` released on `<YYYY-MM-DD>`."_
 
 ## What it does
 
-1. **Gather the spec** — asks for family slug, model slug, release date,
+1. **Gather the spec** — asks for publisher slug, model slug, release date,
    announcement URL, model card URL (must resolve to `learn.microsoft.com`
    when a Learn page exists), pricing, expiry date, capability tags (from
    the taxonomy), and 1–3 domains for the "interesting use cases".
@@ -39,14 +39,14 @@ Say something like:
    an optional note. These are written as markdown bullets in the final
    **References** section of the notebook and capsule README — body
    content, not frontmatter.
-3. **Ensure the family exists** — if not, invokes
-   [`add-family`](../skills/add-family/).
+3. **Ensure the publisher exists** — if not, invokes
+   [`add-publisher`](../skills/add-publisher/).
 3. **Register the model** — invokes [`add-model`](../skills/add-model/)
-   to append a row to the family README's members table.
+   to append a row to the publisher README's members table.
 4. **Scaffold the capsule** — asks the creator to break the release into
    an ordered list of **concepts (1–3 per notebook)**, then invokes
    [`add-capsule`](../skills/add-capsule/) which writes:
-   - `models/<family>/<model>/<YYYY-MM-DD>/README.md` with frontmatter
+   - `models/<publisher>/<model>/<YYYY-MM-DD>/README.md` with frontmatter
      validated by [`capsule.schema.json`](../specs/schemas/capsule.schema.json).
    - One notebook per concept group under `notebooks/`
      (`01-<slug>.ipynb`, `02-<slug>.ipynb`, …) — each covers at most
