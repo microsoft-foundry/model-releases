@@ -19,8 +19,8 @@ Each row links out to what you need: the date to the announcement, the model to 
 
 | Date | Publisher | Model | Capabilities | Pricing |
 |---|---|---|---|---|
-| [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | [Azure OpenAI](https://ai.azure.com/catalog/models?publisher=openai) | GPT-transcribe | Audio / Speech | [$0.27 / audio hour _(Global Standard)_](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) |
-| [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | [Azure OpenAI](https://ai.azure.com/catalog/models?publisher=openai) | GPT-live-transcribe | Audio / Speech | [$1.02 / audio hour _(Global Standard)_](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) |
+| [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | [Azure OpenAI](https://ai.azure.com/catalog/models?publisher=openai) | [GPT-transcribe](https://ai.azure.com/catalog/models/gpt-transcribe) | Audio / Speech | [$0.27 / audio hour _(Global Standard)_](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) |
+| [2026-07-29](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) | [Azure OpenAI](https://ai.azure.com/catalog/models?publisher=openai) | [GPT-live-transcribe](https://ai.azure.com/catalog/models/gpt-live-transcribe) | Audio / Speech | [$1.02 / audio hour _(Global Standard)_](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-gpt-transcribe-and-gpt-live-transcribe-in-microsoft-foundry/4541740) |
 | [2026-07-28](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-kimi-k3-through-fireworks-ai-on-microsoft-foundry/4540187) | [Fireworks](https://ai.azure.com/catalog/models?publisher=fireworks) | [Kimi K3](https://ai.azure.com/catalog/models/FW-Kimi-K3) | Chat Completion · Long Context | [$3.30 / 1M in · $16.50 / 1M out · $0.33 / 1M cached _(Data Zone)_](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-kimi-k3-through-fireworks-ai-on-microsoft-foundry/4540187) |
 | [2026-07-24](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/claude-opus-5-is-available-today-in-microsoft-foundry/4535068) | [Anthropic](https://ai.azure.com/catalog/models?publisher=anthropic) | [Claude Opus 5](https://ai.azure.com/catalog/models/claude-opus-5) | Chat Completion · Reasoning · Multimodal · Function Calling | _—_ |
 | [2026-07-23](https://microsoft.ai/news/introducing-mai-image-2-5-pro-and-mai-voice-2-flash/) | [Microsoft AI](https://ai.azure.com/catalog/models?publisher=microsoft) | [MAI-Image-2.5-Pro](https://ai.azure.com/catalog/models/MAI-Image-2.5-Pro) | Image Generation | [$5 / 1M text-in · $106 / 1M image-out](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-image-2-5-pro-and-mai-voice-2-flash-in-microsoft-foundry/4539446) |
@@ -40,7 +40,10 @@ heading, newest month first; add a new heading + table header when the
 month changes. The Model cell must link to the model's catalog page at
 `https://ai.azure.com/catalog/models/<slug>`, using the exact slug the
 catalog uses — it is not always the marketing name (`Claude Opus 5` is
-`claude-opus-5`). Leave the cell as plain text only when the model has
+`claude-opus-5`, `Kimi K3` is `FW-Kimi-K3`). The announcement post is
+the best source for it: these posts link the model card directly. Note
+a publisher-filtered catalog page shows at most 51 models, so a model
+missing from that list has not been ruled out. Leave the cell as plain text only when the model has
 no catalog entry yet, which is the case for releases announced before
 they reach Foundry. Both Date and Pricing cells link to the source
 of that fact — an official pricing page when one exists, otherwise the
@@ -53,9 +56,13 @@ Model cell in italic parentheses — `_(public preview)_`,
 `_(not yet in Foundry)_` — and leave it off when the post doesn't say.
 Parsers strip that annotation, so it never becomes part of the model
 name. The Publisher cell links to that publisher's filtered catalog
-view at `https://ai.azure.com/catalog/models?publisher=<slug>`, using
-the catalog's publisher slug rather than the repo folder name
-(`microsoft-ai` is `microsoft`, `azure-openai` is `openai`). Capsules
+view at `https://ai.azure.com/catalog/models?publisher=<slug>`. The
+slug is the catalog's display name, not our folder name — it can carry
+a space (`mistral ai`, `hugging face`, url-encoded as `%20`) and drops
+qualifiers we keep (`microsoft-ai` is `microsoft`, `azure-openai` is
+`openai`). An unrecognized value silently returns the unfiltered
+catalog rather than erroring, so confirm the filter actually applied.
+`docs/README.md` lists the mapping for every publisher we track. Capsules
 are tracked in `CAPSULE-TOC.md`, not linked per row:
 
 ## <Month> <Year>

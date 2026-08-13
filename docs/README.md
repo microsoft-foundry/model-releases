@@ -37,22 +37,23 @@ flowchart LR
 
 ## Learn About: Publishers
 
-A **publisher** is the organization that created and maintains a model — the same grouping the [Foundry catalog](https://ai.azure.com/catalog/models) filters on, so a publisher here matches a `?publisher=` view there. Within a publisher, related releases form a **family** (MAI-Image-2.5 and its Flash and Pro variants, or the Claude family), and each new release records what changed — new capabilities, better costs, stronger benchmarks — to inform a selection or migration decision. We organize `models/` by publisher because that is the axis the catalog, pricing, and access controls all share. Here are the publishers we track:
+A **publisher** is the organization that created and maintains a model — the same grouping the [Foundry catalog](https://ai.azure.com/catalog/models) filters on, so a publisher here matches a `?publisher=` view there. Within a publisher, related releases form a **family** (MAI-Image-2.5 and its Flash and Pro variants, or the Claude family), and each new release records what changed — new capabilities, better costs, stronger benchmarks — to inform a selection or migration decision. We organize `models/` by publisher because that is the axis the catalog, pricing, and access controls all share. Here are the publishers we track. **Catalog** opens that publisher's filtered view in the Foundry catalog; **Capsules** is our folder for it, which only exists once a release has a capsule:
 
-| Publisher | What it's for | README |
-|---|---|---|
-| Azure OpenAI | GPT-family models via Foundry | [`models/azure-openai/`](../models/azure-openai/) |
-| Microsoft AI | Microsoft-built models (Phi, MAI, …) | [`models/microsoft-ai/`](../models/microsoft-ai/) |
-| Anthropic | Claude family | [`models/anthropic/`](../models/anthropic/) |
-| Cohere | Command + Embed models | [`models/cohere/`](../models/cohere/) |
-| Mistral | Mistral / Mixtral / Ministral | [`models/mistral/`](../models/mistral/) |
-| Model Router | One endpoint, routed to best-fit model | [`models/model-router/`](../models/model-router/) |
-| Hugging Face | Open-source model catalog | [`models/hugging-face/`](../models/hugging-face/) |
-| Fireworks | Fast OSS-model inference | [`models/fireworks/`](../models/fireworks/) |
-| DeepSeek | DeepSeek reasoning + chat models | [`models/deepseek/`](../models/deepseek/) |
-| xAI | Grok family | [`models/xai/`](../models/xai/) |
-| Black Forest Labs | FLUX image-generation models | [`models/black-forest-labs/`](../models/black-forest-labs/) |
-| NVIDIA | NIM microservices for language, vision, biology, and earth science | [`models/nvidia/`](../models/nvidia/) |
+| Publisher | What it's for | Catalog | Capsules |
+|---|---|---|---|
+| Azure OpenAI | GPT-family models via Foundry | [Browse](https://ai.azure.com/catalog/models?publisher=openai) | [`models/azure-openai/`](../models/azure-openai/) |
+| Microsoft AI | Microsoft-built models (Phi, MAI, …) | [Browse](https://ai.azure.com/catalog/models?publisher=microsoft) | [`models/microsoft-ai/`](../models/microsoft-ai/) |
+| Anthropic | Claude family | [Browse](https://ai.azure.com/catalog/models?publisher=anthropic) | [`models/anthropic/`](../models/anthropic/) |
+| Meta | Llama and Code Llama models | [Browse](https://ai.azure.com/catalog/models?publisher=meta) | _—_ |
+| Cohere | Command + Embed models | [Browse](https://ai.azure.com/catalog/models?publisher=cohere) | [`models/cohere/`](../models/cohere/) |
+| Mistral | Mistral / Mixtral / Ministral | [Browse](https://ai.azure.com/catalog/models?publisher=mistral%20ai) | [`models/mistral/`](../models/mistral/) |
+| Model Router | One endpoint, routed to best-fit model | [Model card](https://ai.azure.com/catalog/models/model-router) | [`models/model-router/`](../models/model-router/) |
+| Hugging Face | Open-source model catalog | [Browse](https://ai.azure.com/catalog/models?publisher=hugging%20face) | [`models/hugging-face/`](../models/hugging-face/) |
+| Fireworks | Fast OSS-model inference | [Browse](https://ai.azure.com/catalog/models?publisher=fireworks) | [`models/fireworks/`](../models/fireworks/) |
+| DeepSeek | DeepSeek reasoning + chat models | [Browse](https://ai.azure.com/catalog/models?publisher=deepseek) | [`models/deepseek/`](../models/deepseek/) |
+| xAI | Grok family | [Browse](https://ai.azure.com/catalog/models?publisher=xai) | [`models/xai/`](../models/xai/) |
+| Black Forest Labs | FLUX image-generation models | [Browse](https://ai.azure.com/catalog/models?publisher=black%20forest%20labs) | [`models/black-forest-labs/`](../models/black-forest-labs/) |
+| NVIDIA | NIM microservices for language, vision, biology, and earth science | [Browse](https://ai.azure.com/catalog/models?publisher=nvidia) | [`models/nvidia/`](../models/nvidia/) |
 
 <br/>
 
