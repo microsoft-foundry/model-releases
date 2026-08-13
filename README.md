@@ -3,10 +3,8 @@
   <img src="./docs/images/logo.png" alt="Model Releases from Microsoft Foundry" width="320" />
 </p>
 
-<h1 align="center">Model Releases</h1>
-
 <p align="center">
-  <b><i>Meet The Models — Then Put Them To Work.</i></b><br/>
+  <b><i>Find the right model for your next agentic task.</i></b><br/>
   <i>Every release on Microsoft Foundry, what actually changed,<br/>and a notebook to try it yourself.</i>
 </p>
 
@@ -76,7 +74,7 @@ Start with the [Quickstart](#quickstart-explore-model-releases-hands-on), then p
 Want to run a capsule notebook? Four steps, and the first two are one-time setup:
 
 1. **Open in GitHub Codespaces** - you get a ready-to-run environment, no local install.
-2. **Do the [quickstart](./models/quickstart/)** once, to set up a Foundry project and your `.env`.
+2. **Do the** [**quickstart**](./models/quickstart/) once, to set up a Foundry project and your `.env`.
 3. **Pick a capsule** - `models/` is organized by provider, then release. Ex: `models/microsoft-ai/mai-image-2.5/`.
 4. **Open its notebook in VS Code**, select the kernel, and run.
 
