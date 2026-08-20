@@ -16,11 +16,6 @@ on:
   pull_request:
     branches: ["**"]
   workflow_dispatch:
-    inputs:
-      ref:
-        description: "Branch, tag, or SHA to validate (defaults to the branch you dispatch from)"
-        required: false
-        default: ""
 
 permissions:
   contents: read
@@ -29,11 +24,9 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      # Empty on a pull_request event, which makes checkout use its
-      # default (the PR merge ref); set only when dispatched by hand.
       - uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.ref || '' }}
+          ref: ${{ github.ref }}
 
       - uses: actions/setup-python@v5
         with:
