@@ -4,7 +4,7 @@ repos:
     hooks:
       - id: check
         name: Check layout, links, and notebooks
-        entry: python scripts/check.py
+        entry: python 1-scripts/check.py
         language: system
         pass_filenames: false
         always_run: true

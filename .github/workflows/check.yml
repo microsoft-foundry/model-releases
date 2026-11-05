@@ -1,6 +1,6 @@
 name: Check content
 
-# Same check authors run locally (and the pre-commit hook runs): python scripts/check.py
+# Same check authors run locally (and the pre-commit hook runs): python 1-scripts/check.py
 
 on:
   pull_request:
@@ -21,4 +21,4 @@ jobs:
           python-version: "3.12"
 
       - name: Check
-        run: python scripts/check.py
+        run: python 1-scripts/check.py

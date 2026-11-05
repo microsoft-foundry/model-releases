@@ -11,16 +11,16 @@
 *.sln.docstates
 *.env
 venv
-!scripts/sample.env
-!capsules/model-router/sample.env
+!1-scripts/sample.env
+!4-models/model-router/sample.env
 
 # Local planning/scratch folder - do not commit
 .do-not-commit/
 
 # Capsule notebook artifacts (generated audio, plots, CSVs)
-capsules/**/output/
-multi-model/**/output/
-archive/**/output/
+4-models/**/output/
+5-multi-model/**/output/
+0-archive/**/output/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

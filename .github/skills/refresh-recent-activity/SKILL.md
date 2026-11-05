@@ -9,8 +9,8 @@ Rewrite the table between `<!-- BEGIN:LATEST -->` and `<!-- END:LATEST -->` in `
 
 | README column | From CHANGELOG |
 |---|---|
-| Capsule | Model cell text, linked to the Capsule cell's target: `[Model](capsules/<model>/)` |
+| Capsule | Model cell text, linked to the Capsule cell's target: `[Model](4-models/<model>/)` |
 | Date | Date cell |
 | What it does | What's new cell, release-post link removed |
 
-Keep the header row `| Capsule | Date | What it does |`. Then run `python scripts/check.py` — it fails if the two drift.
+Keep the header row `| Capsule | Date | What it does |`. Then run `python 1-scripts/check.py` — it fails if the two drift.

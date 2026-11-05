@@ -1,6 +1,6 @@
 ---
 name: check-content
-description: The content rules for this repo — layout, notebook structure, voice, brand, CHANGELOG and README formats. Use when writing or reviewing any capsule, multi-model notebook, primer, or dataset, and before every commit.
+description: The content rules for this repo — layout, notebook structure, voice, brand, CHANGELOG and README formats. Use when writing or reviewing any capsule, multi-model notebook, primer, or scenario, and before every commit.
 ---
 
 # check-content
@@ -10,23 +10,26 @@ follow these rules; reviewers check against them.
 
 ## How to run it
 
-1. Run `python scripts/check.py`. It enforces the mechanical rules marked
+1. Run `python 1-scripts/check.py`. It enforces the mechanical rules marked
    **(auto)** below and must print `OK`.
 2. Read each changed file against the rules not marked **(auto)** and fix
    what doesn't match. Report anything you couldn't fix.
 
 ## Layout
 
+A **release capsule** is the hands-on content we create for a release. The folder it lives in says its scope.
+
 | Path | Holds |
 |---|---|
-| `capsules/<model>/` | One model release. Notebook(s) plus any input assets (`images/`, `data/`). |
-| `multi-model/<scenario>/` | A scenario that compares or combines two or more models. |
-| `archive/<model>/` | A capsule whose model is retired. |
-| `primers/<slug>.md` | A beginner explainer for one model category or capability. |
-| `datasets/<name>/` | A shared, fictitious business scenario (data, instructions, benchmark). |
+| `0-archive/<model>/` | A release capsule whose model is retired. |
+| `1-scripts/` | Setup (`setenv.sh`, `sample.env`), `make_banner.py`, and `check.py`. |
+| `2-scenarios/<name>/` | A shared, fictitious business scenario (data, instructions, benchmark). |
+| `3-primers/<slug>.md` | A beginner explainer for one model category or capability. |
+| `4-models/<model>/` | A single-model release capsule: notebook(s) plus any input assets (`images/`, `data/`). |
+| `5-multi-model/<scenario>/` | A multi-model release capsule that compares or combines two or more models. |
 | `setup.ipynb` | One-time Foundry project and `.env` setup. |
 
-- **(auto)** Capsule, multi-model, and archive folders are notebook-only — no `README.md`.
+- **(auto)** Folders under `0-archive/`, `4-models/`, and `5-multi-model/` are notebook-only — no `README.md`.
 - **(auto)** Every notebook name starts with its folder name: `mai-voice-2/mai-voice-2-01-<topic>.ipynb`.
 - Folder names are the model's lowercase catalog name (`mai-image-2.5-pro`). A model updated by date (like model router) keeps one folder and adds dated notebooks: `model-router-<mmm-yyyy>-NN-<topic>.ipynb`.
 - Generated files go in a git-ignored `output/` folder inside the capsule.
@@ -49,7 +52,7 @@ Also:
 
 ## Multi-model notebooks
 
-Same structure, but frame the header around a **practical scenario** (a business task) and list the models compared, each linked to its capsule. Use a dataset from `datasets/` when one fits.
+Same structure, but frame the header around a **practical scenario** (a business task) and list the models compared, each linked to its capsule. Use a scenario from `2-scenarios/` when one fits.
 
 ## Primers
 
@@ -60,11 +63,11 @@ Same structure, but frame the header around a **practical scenario** (a business
 One table, newest first. One row per capsule (and per multi-model notebook):
 
 ```
-| YYYY-MM-DD | [Model](model-card-url) | Publisher | One-line what's new — [release post](url) | [Open](capsules/<model>/) |
+| YYYY-MM-DD | [Model](model-card-url) | Publisher | One-line what's new — [release post](url) | [Open](4-models/<model>/) |
 ```
 
 - **(auto)** The README **What's new** table equals the top 3 CHANGELOG rows (capsule name, link, and date). Use `refresh-recent-activity` to update it.
-- Archived capsules keep their row; append ` _(archived)_` to the Model cell and point the link at `archive/<model>/`.
+- Archived capsules keep their row; append ` _(archived)_` to the Model cell and point the link at `0-archive/<model>/`.
 - Releases we haven't built a capsule for go in `.github/planning.md`, not here.
 
 ## Voice

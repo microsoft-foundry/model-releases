@@ -1,6 +1,6 @@
 ---
 name: add-capsule
-description: Create a capsule for a new model release — notebook(s) under capsules/<model>/, a CHANGELOG row, and the README What's new table. Use when a model is released on Microsoft Foundry and we want a hands-on notebook for it.
+description: Create a capsule for a new model release — notebook(s) under 4-models/<model>/, a CHANGELOG row, and the README What's new table. Use when a model is released on Microsoft Foundry and we want a hands-on notebook for it.
 ---
 
 # add-capsule
@@ -12,7 +12,7 @@ Ask for anything missing — don't invent URLs or prices:
 - Model name, publisher, release date
 - Model card URL (`https://ai.azure.com/catalog/models/<slug>`)
 - Release post URL, pricing and its source
-- Capabilities (match a primer in `primers/`)
+- Capabilities (match a primer in `3-primers/`)
 - 1–3 key features to teach per notebook, and references (Microsoft Learn first)
 - Deployments and environment variables the notebook needs
 
@@ -20,10 +20,10 @@ If the release is in `.github/planning.md`, start from that row.
 
 ## 2. Scaffold the capsule
 
-1. Create `capsules/<model>/<model>.ipynb` (or `<model>-01-<topic>.ipynb`, `<model>-02-<topic>.ipynb` for several notebooks) following the notebook structure in [check-content](../check-content/SKILL.md).
+1. Create `4-models/<model>/<model>.ipynb` (or `<model>-01-<topic>.ipynb`, `<model>-02-<topic>.ipynb` for several notebooks) following the notebook structure in [check-content](../check-content/SKILL.md).
 2. Focus on what is **new or different** in this release — the features that would make us pick it.
-3. Put input files in `capsules/<model>/images/` or `data/`; write generated files to `output/`.
-4. Add new variables to `scripts/sample.env` with a comment naming the capsule, and new packages to `requirements-dev.txt` under **Capsule dependencies**.
+3. Put input files in `4-models/<model>/images/` or `data/`; write generated files to `output/`.
+4. Add new variables to `1-scripts/sample.env` with a comment naming the capsule, and new packages to `requirements-dev.txt` under **Capsule dependencies**.
 
 ## 3. Record it
 
@@ -34,4 +34,4 @@ If the release is in `.github/planning.md`, start from that row.
 
 ## 4. Validate
 
-Run [check-content](../check-content/SKILL.md) — `python scripts/check.py` must print `OK`.
+Run [check-content](../check-content/SKILL.md) — `python 1-scripts/check.py` must print `OK`.

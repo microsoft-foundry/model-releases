@@ -1,5 +1,5 @@
 <!--
-  `python scripts/check.py` runs on this PR and gates the merge.
+  `python 1-scripts/check.py` runs on this PR and gates the merge.
   The checklist covers what it can't see.
 -->
 
@@ -9,7 +9,7 @@
 
 ## Checklist
 
-- [ ] `python scripts/check.py` prints `OK`
+- [ ] `python 1-scripts/check.py` prints `OK`
 - [ ] Follows [check-content](../.github/skills/check-content/SKILL.md): notebook structure, voice ("we", no hype), "Microsoft Foundry" naming
 - [ ] New capsule: focuses on what's new in this release; CHANGELOG row, primer **Try it** list, and README **What's new?** table updated
 - [ ] Notebooks were run end to end against a Foundry project, and large outputs cleared

@@ -18,7 +18,7 @@ matplotlib
 # MAI-Voice-2 — expressive and multilingual text-to-speech synthesis
 azure-cognitiveservices-speech
 
-# model router (capsules/model-router/) — project client, Entra ID auth, agent
+# model router (4-models/model-router/) — project client, Entra ID auth, agent
 azure-ai-projects
 openai
 python-dotenv

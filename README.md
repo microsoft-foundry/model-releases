@@ -33,9 +33,9 @@ Model Releases is the first step up that hill. Every new release we cover gets a
 <!-- BEGIN:LATEST -->
 | Capsule | Date | What it does |
 |---|---|---|
-| [MAI-Transcribe-2](capsules/mai-transcribe-2/) | 2026-09-03 | Speaker diarization, word timestamps, and domain biasing for noisy multilingual audio |
-| [Model Router — August 2026](capsules/model-router/) | 2026-08-19 | Routing modes, model subsets, deployment types, failover, and agentic routing as optimization levers |
-| [MAI-Image-2.5 family](multi-model/mai-image-family-walkthrough/) | 2026-08-12 | Multi-model: compare MAI-Image-2.5, Flash, and Pro on identical prompts |
+| [MAI-Transcribe-2](4-models/mai-transcribe-2/) | 2026-09-03 | Speaker diarization, word timestamps, and domain biasing for noisy multilingual audio |
+| [Model Router — August 2026](4-models/model-router/) | 2026-08-19 | Routing modes, model subsets, deployment types, failover, and agentic routing as optimization levers |
+| [MAI-Image-2.5 family](5-multi-model/mai-image-family-walkthrough/) | 2026-08-12 | Multi-model: compare MAI-Image-2.5, Flash, and Pro on identical prompts |
 <!-- END:LATEST -->
 
 Looking for an older release? Every capsule is in the [CHANGELOG](CHANGELOG.md). Don't see the model we need? [Open an issue](https://github.com/microsoft-foundry/model-releases/issues/new) — requests shape what we build next.
@@ -77,19 +77,19 @@ Each primer explains one model category in plain language — what it is, when t
 
 | Primer | Read it when we want to… |
 |---|---|
-| [Chat Completion](primers/chat-completion.md) | Understand how instruction-following and dialogue models work |
-| [Reasoning](primers/reasoning-models.md) | Know when an extended-thinking model is worth the extra cost |
-| [Function Calling](primers/function-calling.md) | Let a model call our tools and APIs |
-| [Multimodal](primers/multimodal-models.md) | Send images or audio alongside text |
-| [Long Context](primers/long-context.md) | Fit whole documents or codebases into one prompt |
-| [Embeddings](primers/embeddings.md) | Search and compare text by meaning |
-| [Image Generation](primers/image-generation.md) | Create or edit images from a prompt |
-| [Audio / Speech](primers/audio-speech.md) | Transcribe speech or generate a voice |
-| [Decision Models](primers/decision-models.md) | Classify, route, gate, or score inputs with typed answers instead of prose |
-| [Robotics (VLA)](primers/robotics.md) | See how vision-language-action models turn instructions into robot motion |
-| [Fine-tuning](primers/fine-tuning.md) | Customize a model for our domain |
-| [Model Router](primers/model-router.md) | Let one endpoint pick the right model for each request |
-| [Optimization](primers/optimization.md) | Lower cost and latency without losing quality |
+| [Chat Completion](3-primers/chat-completion.md) | Understand how instruction-following and dialogue models work |
+| [Reasoning](3-primers/reasoning-models.md) | Know when an extended-thinking model is worth the extra cost |
+| [Function Calling](3-primers/function-calling.md) | Let a model call our tools and APIs |
+| [Multimodal](3-primers/multimodal-models.md) | Send images or audio alongside text |
+| [Long Context](3-primers/long-context.md) | Fit whole documents or codebases into one prompt |
+| [Embeddings](3-primers/embeddings.md) | Search and compare text by meaning |
+| [Image Generation](3-primers/image-generation.md) | Create or edit images from a prompt |
+| [Audio / Speech](3-primers/audio-speech.md) | Transcribe speech or generate a voice |
+| [Decision Models](3-primers/decision-models.md) | Classify, route, gate, or score inputs with typed answers instead of prose |
+| [Robotics (VLA)](3-primers/robotics.md) | See how vision-language-action models turn instructions into robot motion |
+| [Fine-tuning](3-primers/fine-tuning.md) | Customize a model for our domain |
+| [Model Router](3-primers/model-router.md) | Let one endpoint pick the right model for each request |
+| [Optimization](3-primers/optimization.md) | Lower cost and latency without losing quality |
 
 <br/>
 
@@ -108,21 +108,25 @@ flowchart LR
     K -.once it holds.-> A["Scale<br/>automate the loop"]
 ```
 
-- **Measure on shared data.** [Contoso Travel](datasets/contoso-travel/) gives us a fixed workload and benchmark, so comparisons are fair.
-- **See the full loop in action.** The [Model Router capsule](capsules/model-router/) optimizes instructions first, then routes each request to a right-sized model.
-- **Learn the vocabulary of the climb** — tokenomics, right-sizing, hill climbing — in the [Optimization primer](primers/optimization.md).
+- **Measure on shared data.** [Contoso Travel](2-scenarios/contoso-travel/) gives us a fixed workload and benchmark, so comparisons are fair.
+- **See the full loop in action.** The [Model Router capsule](4-models/model-router/) optimizes instructions first, then routes each request to a right-sized model.
+- **Learn the vocabulary of the climb** — tokenomics, right-sizing, hill climbing — in the [Optimization primer](3-primers/optimization.md).
 
 <br/>
 
 ## What else is in this repo?
 
+Folders are numbered in the order we build on them: tools and data first, then explainers, then release capsules from single models to multi-model scenarios.
+
 | Folder | What we'll find |
 |---|---|
-| [`capsules/`](capsules/) | One folder per model release |
-| [`multi-model/`](multi-model/) | Scenarios that compare or combine several models on a real task |
-| [`primers/`](primers/) | Beginner-friendly explainers for each model category |
-| [`datasets/`](datasets/) | Fictitious business scenarios that samples share, so results are reproducible |
-| [`archive/`](archive/) | Capsules for models that have been retired |
+| [`0-archive/`](0-archive/) | Release capsules for models that have been retired |
+| [`1-scripts/`](1-scripts/) | Setup, banner, and content-check scripts |
+| [`2-scenarios/`](2-scenarios/) | Fictitious business scenarios that capsules share, so results are reproducible |
+| [`3-primers/`](3-primers/) | Beginner-friendly explainers for each model category |
+| [`4-models/`](4-models/) | Release capsules for **one model** — one folder per release |
+| [`5-multi-model/`](5-multi-model/) | Release capsules that compare or combine **several models** on a real task |
+| [`setup.ipynb`](setup.ipynb) | One-time setup every capsule relies on |
 
 <br/>
 
@@ -130,7 +134,7 @@ flowchart LR
 
 - **[Model Mondays](https://aka.ms/model-mondays)** — a weekly livestream on new models in Microsoft Foundry.
 - **[Model Mastery](https://aka.ms/model-mastery)** — hands-on workshops that go deeper.
-- **Want to add a capsule, primer, or dataset?** [CONTRIBUTING.md](CONTRIBUTING.md) walks through it, and the GitHub Copilot skills in this repo handle most of the scaffolding.
+- **Want to add a capsule, primer, or scenario?** [CONTRIBUTING.md](CONTRIBUTING.md) walks through it, and the GitHub Copilot skills in this repo handle most of the scaffolding.
 
 <br/>
 
@@ -140,10 +144,10 @@ We reorganized the repo in November 2026 so capsules are faster to find:
 
 | Old path | New path |
 |---|---|
-| `models/<publisher>/<model>/` | [`capsules/<model>/`](capsules/) |
-| `models/model-router/aug-2026/` | [`capsules/model-router/`](capsules/model-router/) |
-| `models/<publisher>/multi-model-scenarios/<name>/` | [`multi-model/<name>/`](multi-model/) |
+| `models/<publisher>/<model>/` | [`4-models/<model>/`](4-models/) |
+| `models/model-router/aug-2026/` | [`4-models/model-router/`](4-models/model-router/) |
+| `models/<publisher>/multi-model-scenarios/<name>/` | [`5-multi-model/<name>/`](5-multi-model/) |
 | `models/quickstart/` | [`setup.ipynb`](setup.ipynb) |
-| `docs/primers/` and `docs/GLOSSARY.md` | [`primers/`](primers/) |
-| `demos/` | [`datasets/`](datasets/) |
+| `docs/primers/` and `docs/GLOSSARY.md` | [`3-primers/`](3-primers/) |
+| `demos/` | [`2-scenarios/`](2-scenarios/) |
 | `CAPSULE-TOC.md`, publisher READMEs | [`CHANGELOG.md`](CHANGELOG.md) |

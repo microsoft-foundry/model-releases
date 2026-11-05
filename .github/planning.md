@@ -20,9 +20,9 @@ Maintainer backlog. Pick an item, build its capsule with the `add-capsule` skill
 - **Model Router** — planned notebooks, each named `model-router-<mmm-yyyy>-NN-<topic>.ipynb`:
   routing modes (Cost vs. Quality), custom model subset, deployment types and Data Zone,
   automatic failover, agentic routing across providers, and per-agent routers with the refreshed model pool.
-- **datasets/contoso-outdoors** — a second shared dataset for reproducible samples.
-- **Microsoft-Decision-1** — decision model for gates, routing, and scoring; a good fit for the Contoso Travel dataset (route requests, flag policy breaches). See the [announcement](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-microsoft-decision-1-in-microsoft-foundry-for-decision-and-classific/4562742), [model card](https://ai.azure.com/catalog/models/Microsoft-Decision-1), and [Learn how-to](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-microsoft-decision). Primer: [decision-models](../primers/decision-models.md).
-- **Rho-alpha (ρα)** — Microsoft Research VLA robotics model; build a capsule once it's available in Microsoft Foundry. See the [announcement](https://www.microsoft.com/en-us/research/story/advancing-ai-for-the-physical-world/). Primer: [robotics](../primers/robotics.md).
+- **2-scenarios/contoso-outdoors** — a second shared scenario for reproducible samples.
+- **Microsoft-Decision-1** — decision model for gates, routing, and scoring; a good fit for the Contoso Travel scenario (route requests, flag policy breaches). See the [announcement](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-microsoft-decision-1-in-microsoft-foundry-for-decision-and-classific/4562742), [model card](https://ai.azure.com/catalog/models/Microsoft-Decision-1), and [Learn how-to](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-microsoft-decision). Primer: [decision-models](../3-primers/decision-models.md).
+- **Rho-alpha (ρα)** — Microsoft Research VLA robotics model; build a capsule once it's available in Microsoft Foundry. See the [announcement](https://www.microsoft.com/en-us/research/story/advancing-ai-for-the-physical-world/). Primer: [robotics](../3-primers/robotics.md).
 
 ## Publishers with no capsule yet
 
