@@ -36,16 +36,19 @@ A **release capsule** is the hands-on content we create for a release. The folde
 
 ## Notebook structure
 
-1. **(auto)** **Cell 1 — header (markdown).** `# <Model>`, a one-sentence summary, then a table with Released, Publisher, Capability (linked to the primer), Model card, Announcement, and Pricing (with source). Multi-notebook capsules list every notebook. Ends with: *First time here? Run `[setup.ipynb](../../setup.ipynb)` once…*
-2. **Cell 2 — About this release (markdown).** What's new, the deployments and environment variables this notebook needs, and known limits.
-3. **(auto)** **Env check (code), within the first few cells.** Calls `load_dotenv()`, checks every variable the notebook needs, and raises an error naming the missing variables and pointing to `setup.ipynb`.
-4. **Numbered sections** — `## 1. <Verb phrase>`, alternating markdown and code. Section titles are actions ("Send a chat request").
-5. **Your Turn to Explore** — markdown with 2–3 concrete directions, plus an empty code cell.
-6. **Summary** — what we covered, when to reach for this model, links to primers.
-7. **References** — markdown links: model card, Microsoft Learn docs, release post.
+[setup.ipynb](../../../setup.ipynb) is the reference. Every notebook — setup, single-model, and multi-model — follows this order:
+
+1. **Opening cell (markdown).** Banner image (made with `1-scripts/make_banner.py`), `# <Title>`, the guiding question as a `>` quote, one or two plain sentences on what we'll do, then **`## What We Will Do`** (2–4 bullets), then the tip: *Run each cell with Shift + Enter; guess first.*
+2. **At a glance (capsules only).** Released, Publisher, Capability (linked to the primer), Model card, Announcement, Pricing (with source), the deployments and env vars needed, and a link to `setup.ipynb` for first-timers.
+3. **(auto)** **Env check (code), within the first few cells.** Calls `load_dotenv()`, checks every variable the notebook needs, and names the missing ones.
+4. **Numbered question sections.** Each starts with the divider image, then `## N. <Question>?`, 1–2 sentences, an optional `> 🔮 **Guess first:**` prompt, then code. Keep prose short — get to the code.
+5. **One `### 🔧 Break it on purpose`** cell somewhere it teaches how to read a failure.
+6. **Your Turn to Explore (capsules).** 2–3 concrete directions plus an empty code cell.
+7. **Closing cell — `## What We Did`.** ✅ bullets that mirror What We Will Do, then ➡️ **Next**, a "Stuck?" link, and up to 3 references.
 
 Also:
 
+- Prefer short sentences and bullets over tables; put troubleshooting hints in the error messages themselves.
 - 1–3 concepts per notebook. More concepts → more notebooks with a shared prefix.
 - Each notebook runs on its own; don't depend on another notebook's kernel state.
 - Clear large outputs before committing; keep one representative result per section so the notebook renders quickly on GitHub.

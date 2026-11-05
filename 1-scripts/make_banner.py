@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Render a Model Releases banner: hill-climb mark, gradient title, and chips or a subtitle.
+"""Render Model Releases banners: dark notebook banners, or the light README banner with the logo.
 
 Usage:
-  python 1-scripts/make_banner.py --title "Model Releases" --chips Select Optimize Scale --out .github/images/banner.png
-  python 1-scripts/make_banner.py --title "MAI-Transcribe-2" --subtitle "Speaker-aware transcription" --out .github/images/banners/mai-transcribe-2.png
+  python 1-scripts/make_banner.py --title "Setup Foundry Project" --subtitle "One-time setup before running release capsules" --out .github/images/banners/setup.png
+  python 1-scripts/make_banner.py --theme light --title "Model Releases" --chips Select Optimize Scale --out .github/images/banner.png
 """
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ LOGO = ROOT / ".github/images/logo.png"
 FONTS = ROOT / "1-scripts/fonts"
 S = 2  # supersample factor for smooth edges
 NAVY, INDIGO, BLUE, PURPLE = (32, 24, 91), (79, 70, 229), (33, 150, 243), (124, 58, 237)
+CYAN, VIOLET, PINK = (56, 214, 255), (167, 139, 250), (244, 114, 208)
 
 
 def white_to_alpha(img: Image.Image) -> Image.Image:
@@ -140,18 +141,71 @@ def render(title: str, chips: list[str], subtitle: str, height: int) -> Image.Im
     return banner.resize((W // S, H // S), Image.LANCZOS)
 
 
+def render_dark(title: str, subtitle: str, height: int) -> Image.Image:
+    """Notebook banner: dark background, bright gradient title, one-line subtitle, no logo."""
+    W, H = 1600 * S, height * S
+    yy, xx = np.mgrid[0:H, 0:W]
+    t = np.clip((xx / W) * 0.8 + (yy / H) * 0.2, 0, 1)[..., None]
+    bg = np.array([11, 13, 38]) * (1 - t) + np.array([38, 22, 84]) * t
+    banner = Image.fromarray(bg.astype("uint8"), "RGB").convert("RGBA")
+
+    layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(layer)
+    for k in range(9):
+        pts = [
+            (x, H * (1.10 - 0.09 * k) - H * 0.55 * ((x / W) ** 1.6) + 16 * S * math.sin(x / W * 7 + k * 0.6))
+            for x in range(0, W + 1, 8 * S)
+        ]
+        d.line(pts, fill=lerp(CYAN, PINK, k / 8) + (38,), width=2 * S)
+    steps = [(0.875, 0.82), (0.900, 0.70), (0.920, 0.73), (0.940, 0.56), (0.958, 0.47), (0.972, 0.31), (0.985, 0.18)]
+    pts = [(u * W, v * H) for u, v in steps]
+    d.line(pts, fill=PINK + (120,), width=4 * S, joint="curve")
+    for i, (px, py) in enumerate(pts):
+        r = (7 if i == len(pts) - 1 else 5) * S
+        d.ellipse((px - r, py - r, px + r, py + r), fill=lerp(CYAN, PINK, i / (len(pts) - 1)) + (230,))
+    banner.alpha_composite(layer)
+
+    d = ImageDraw.Draw(banner)
+    text_x = 88 * S
+    max_w = int(0.82 * W) - text_x
+    title_font = fit_font(d, title, "Poppins-Bold.ttf", 96 * S, max_w)
+    tb = d.textbbox((0, 0), title, font=title_font)
+    tw, th = tb[2] - tb[0], tb[3] - tb[1]
+    sub_font = fit_font(d, subtitle, "Poppins-Medium.ttf", 40 * S, max_w) if subtitle else None
+    sb = d.textbbox((0, 0), subtitle, font=sub_font) if subtitle else (0, 0, 0, 0)
+    gap = 30 * S
+    top = (H - th - (gap + sb[3] - sb[1] if subtitle else 0)) // 2
+    tmask = Image.new("L", (tw, th), 0)
+    ImageDraw.Draw(tmask).text((-tb[0], -tb[1]), title, font=title_font, fill=255)
+    banner.paste(gradient(tw, th, [(0, CYAN), (0.5, VIOLET), (1, PINK)]), (text_x, top), tmask)
+    if subtitle:
+        d.text((text_x - sb[0], top + th + gap - sb[1]), subtitle, font=sub_font, fill=(214, 210, 245))
+
+    bar_h = 8 * S
+    banner.paste(gradient(W, bar_h, [(0, CYAN), (0.5, VIOLET), (1, PINK)]), (0, H - bar_h))
+    mask = Image.new("L", (W, H), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, W - 1, H - 1), 28 * S, fill=255)
+    banner.putalpha(mask)
+    return banner.resize((W // S, H // S), Image.LANCZOS)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--title", required=True)
     ap.add_argument("--chips", nargs="*", default=[], help="Short words shown as linked chips")
     ap.add_argument("--subtitle", default="", help="One line under the title (ignored when --chips is set)")
-    ap.add_argument("--height", type=int, default=300, help="360 for the README, 300 for notebooks")
+    ap.add_argument("--theme", choices=["dark", "light"], default="dark", help="dark for notebooks, light (with logo) for the README")
+    ap.add_argument("--height", type=int, default=None, help="Defaults: 240 dark, 360 light")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
     out = ROOT / args.out
     out.parent.mkdir(parents=True, exist_ok=True)
-    render(args.title, args.chips, args.subtitle, args.height).save(out, optimize=True)
-    print(out.relative_to(ROOT))
+    if args.theme == "dark":
+        img = render_dark(args.title, args.subtitle, args.height or 240)
+    else:
+        img = render(args.title, args.chips, args.subtitle, args.height or 360)
+    img.save(out, optimize=True)
+    print(out)
 
 
 if __name__ == "__main__":
