@@ -3,10 +3,6 @@ numpy
 pandas
 ipykernel
 
-# ............. Spec validation (used by scripts/validate-specs.py)
-pyyaml
-jsonschema>=4.18
-
 # ............. Capsule dependencies
 # MAI-Image-2.5 / Flash / Pro — REST calls to /mai/v1/images/* endpoints
 requests
@@ -22,7 +18,7 @@ matplotlib
 # MAI-Voice-2 — expressive and multilingual text-to-speech synthesis
 azure-cognitiveservices-speech
 
-# model router (models/model-router/*/) — project client, Entra ID auth, agent
+# model router (capsules/model-router/) — project client, Entra ID auth, agent
 azure-ai-projects
 openai
 python-dotenv
