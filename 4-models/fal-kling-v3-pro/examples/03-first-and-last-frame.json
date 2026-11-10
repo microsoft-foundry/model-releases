@@ -1,0 +1,32 @@
+{
+  "deployment": "Fal-Kling-V3-Pro",
+  "route": "kling/v3/pro/image-to-video",
+  "params": {
+    "prompt": "A gust of wind ripples across the lake; as it passes the tent, its rainfly changes to the new color.\nEverything else stays the same. Static camera. Audio: wind gust, water lapping.",
+    "duration": "5",
+    "start_image_url": "<image/jpeg data, 560 KB>",
+    "end_image_url": "<image/jpeg data, 411 KB>"
+  },
+  "seconds": 256.4,
+  "queued_seconds": 7.5,
+  "request_id": "14a433ad-b382-412b-b162-077fbe0f3180",
+  "response": {
+    "video": {}
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 16.29,
+    "seconds": 5.04,
+    "width": 1764,
+    "height": 1176,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.4,
+    "seconds": 5.04,
+    "width": 720,
+    "height": 480,
+    "fps": 24.0
+  }
+}

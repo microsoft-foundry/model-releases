@@ -33,9 +33,9 @@ Model Releases is the first step up that hill. Every new release we cover gets a
 <!-- BEGIN:LATEST -->
 | Capsule | Date | What it does |
 |---|---|---|
+| [fal video family](5-multi-model/fal-video-family-walkthrough/) | 2026-11-10 | Multi-model: five fal video models on one launch campaign, each on its specialty, cut into one reel |
 | [Fal-Kling-V3-Pro](4-models/fal-kling-v3-pro/) | 2026-11-06 | Cinematic text- and image-to-video with multi-shot storyboards, locked elements, and native audio (preview) |
 | [Fal-MiniMax-H3-Max](4-models/fal-minimax-h3-max/) | 2026-11-06 | Reference-to-video with up to 12 images, clips, and audio; first, middle, and last frames (preview) |
-| [Fal-LTX-2.5-Pro](4-models/fal-ltx-2.5-pro/) | 2026-11-06 | High-fidelity video with camera presets, legible text, and frame-rate control (preview) |
 <!-- END:LATEST -->
 
 Looking for an older release? Every capsule is in the [CHANGELOG](CHANGELOG.md). Don't see the model we need? [Open an issue](https://github.com/microsoft-foundry/model-releases/issues/new) — requests shape what we build next.
@@ -91,6 +91,17 @@ Each primer explains one model category in plain language — what it is, when t
 | [Fine-tuning](3-primers/fine-tuning.md) | Customize a model for our domain |
 | [Model Router](3-primers/model-router.md) | Let one endpoint pick the right model for each request |
 | [Optimization](3-primers/optimization.md) | Lower cost and latency without losing quality |
+
+<br/>
+
+## Which scenarios do the labs share?
+
+Most capsules work on one of two fictitious businesses, so we learn the data once and can compare models on the same inputs:
+
+- **[Contoso Outdoors](2-scenarios/contoso-retail/)** — an online camping and hiking retailer with a product catalog, manuals, and photos. We use it for content and multimodal work: images, video, and speech about real products.
+- **[Contoso Travel](2-scenarios/contoso-travel/)** — an enterprise travel concierge with flights, hotels, a travel policy, and a benchmark. We use it to measure and optimize an agent's cost, speed, and quality.
+
+Each scenario's README describes its data and which capsules use it. See [2-scenarios/](2-scenarios/) for the full list.
 
 <br/>
 

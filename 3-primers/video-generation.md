@@ -401,6 +401,7 @@ with the customer before any production use.
 - [LTX 2.5 Fast](../4-models/fal-ltx-2.5-fast/)
 - [MiniMax H3 Max](../4-models/fal-minimax-h3-max/)
 - [MiniMax H3 Max Turbo](../4-models/fal-minimax-h3-max-turbo/)
+- [fal video family walkthrough](../5-multi-model/fal-video-family-walkthrough/) — multi-model
 
 ## Learn more
 

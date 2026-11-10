@@ -5,7 +5,7 @@ Each MP4 is re-encoded to a short side of 480 px (H.264 + AAC, web-ready). The J
 frame strip are copied alongside. The record keeps the original "probe" and gains a "preview" probe.
 
 Usage:
-  python 1-scripts/fal_examples.py                          # every 4-models/fal-*/ capsule
+  python 1-scripts/fal_examples.py                          # every 4-models/fal-*/ and 5-multi-model/fal-*/ capsule
   python 1-scripts/fal_examples.py 4-models/fal-kling-v3-pro --dry-run
   python 1-scripts/fal_examples.py --height 360 --crf 30 --force
 """
@@ -72,14 +72,14 @@ def export(capsule: Path, height: int, crf: int, force: bool, dry_run: bool) -> 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("capsules", nargs="*", type=Path, help="capsule folders (default: 4-models/fal-*)")
+    parser.add_argument("capsules", nargs="*", type=Path, help="capsule folders (default: 4-models/fal-* and 5-multi-model/fal-*)")
     parser.add_argument("--height", type=int, default=480, help="short side in pixels (default 480)")
     parser.add_argument("--crf", type=int, default=28, help="H.264 quality, higher is smaller (default 28)")
     parser.add_argument("--force", action="store_true", help="redo clips that are already up to date")
     parser.add_argument("--dry-run", action="store_true", help="list what would change, write nothing")
     args = parser.parse_args()
 
-    capsules = [c.resolve() for c in args.capsules] or sorted((ROOT / "4-models").glob("fal-*"))
+    capsules = [c.resolve() for c in args.capsules] or sorted([*(ROOT / "4-models").glob("fal-*"), *(ROOT / "5-multi-model").glob("fal-*")])
     total_in = total_out = 0.0
     for capsule in capsules:
         size_in, size_out = export(capsule, args.height, args.crf, args.force, args.dry_run)

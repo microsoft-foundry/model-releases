@@ -1,0 +1,46 @@
+{
+  "deployment": "Fal-Kling-V3-Pro",
+  "route": "kling/v3/pro/text-to-video",
+  "params": {
+    "prompt": "A hiker arrives at a lakeside clearing at dusk with the TrailMaster X4, a four-person dome tent with a forest-green body under a burnt-orange rainfly, pitches it in seconds,\nand by night it glows warm from inside while rain falls. Audio: footsteps, pole clicks, rain on fabric.",
+    "multi_prompt": [
+      {
+        "prompt": "Wide shot: a hiker reaches a lakeside clearing at dusk carrying the TrailMaster X4, a four-person dome tent with a forest-green body under a burnt-orange rainfly in its bag. Audio: footsteps on gravel.",
+        "duration": "4"
+      },
+      {
+        "prompt": "Close-up: hands snap the aluminum poles together and the tent rises in seconds. Audio: pole clicks, fabric rustle.",
+        "duration": "4"
+      },
+      {
+        "prompt": "Wide shot: night, rain falls, the tent glows warm from inside on the shore. Audio: rain on fabric, soft wind.",
+        "duration": "4"
+      }
+    ],
+    "shot_type": "customize",
+    "duration": "12",
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 353.0,
+  "queued_seconds": 6.9,
+  "request_id": "d535eccc-f0ef-44d7-b74b-146ff266b7db",
+  "response": {
+    "video": {}
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 41.76,
+    "seconds": 12.05,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.81,
+    "seconds": 12.05,
+    "width": 854,
+    "height": 480,
+    "fps": 24.0
+  }
+}

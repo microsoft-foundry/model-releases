@@ -238,8 +238,11 @@ class FalVideo:
 
     # -- look -----------------------------------------------------------------------------
     def show(self, *clips: Clip, frames: int = 5) -> None:
-        """Frame strip for each clip (renders on GitHub), plus a player when play_inline is on."""
-        from IPython.display import Image, Video, display
+        """Link and frame strip for each clip (renders on GitHub), plus a player when play_inline is on."""
+        import os
+        from urllib.parse import quote
+
+        from IPython.display import Image, Markdown, Video, display
 
         for clip in clips:
             info, rec = clip.info, clip.record
@@ -250,6 +253,9 @@ class FalVideo:
                      f"made in {rec['seconds']:.0f} s" if "seconds" in rec else None,
                      f"({clip.source})"]
             print(f"{clip.name}: " + " | ".join(f for f in facts if f))
+            # Relative to the notebook's folder, so the link opens the file in VS Code and Jupyter.
+            link = Path(os.path.relpath(clip.path, Path.cwd())).as_posix()
+            display(Markdown(f"▶️ [{clip.path.name}]({quote(link)})"))
             display(Image(filename=str(frame_strip(clip.path, frames))))
             if not self.play_inline:
                 continue
@@ -258,7 +264,7 @@ class FalVideo:
             if size_mb <= MAX_INLINE_MB:
                 display(Video(str(clip.path), embed=True, width=480))
             else:
-                print(f"   {size_mb} MB is too big to embed. Open it here: {clip.path}")
+                print(f"   {size_mb} MB is too big to embed. Use the link above.")
 
 
 def scoreboard(clips: list[Clip]) -> None:

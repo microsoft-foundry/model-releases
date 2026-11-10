@@ -1,0 +1,31 @@
+{
+  "deployment": "Fal-Kling-V3-Pro",
+  "route": "kling/v3/pro/image-to-video",
+  "params": {
+    "prompt": "The hiker unzips the backpack and pulls out a mug, steam rising from the stove beside the tent.\nA light breeze moves the tent fabric. Camera holds still, then slowly pushes in.\nAudio: crackle of the stove, wind in the trees, a zipper.",
+    "duration": "5",
+    "start_image_url": "<image/jpeg data, 346 KB>"
+  },
+  "seconds": 205.0,
+  "queued_seconds": 10.0,
+  "request_id": "aec89bd4-66f9-4e8d-a53d-312cf0611887",
+  "response": {
+    "video": {}
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 21.96,
+    "seconds": 5.04,
+    "width": 1440,
+    "height": 1440,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.29,
+    "seconds": 5.04,
+    "width": 480,
+    "height": 480,
+    "fps": 24.0
+  }
+}
