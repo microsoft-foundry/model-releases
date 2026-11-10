@@ -33,9 +33,9 @@ Model Releases is the first step up that hill. Every new release we cover gets a
 <!-- BEGIN:LATEST -->
 | Capsule | Date | What it does |
 |---|---|---|
-| [MAI-Transcribe-2](4-models/mai-transcribe-2/) | 2026-09-03 | Speaker diarization, word timestamps, and domain biasing for noisy multilingual audio |
-| [Model Router — August 2026](4-models/model-router/) | 2026-08-19 | Routing modes, model subsets, deployment types, failover, and agentic routing as optimization levers |
-| [MAI-Image-2.5 family](5-multi-model/mai-image-family-walkthrough/) | 2026-08-12 | Multi-model: compare MAI-Image-2.5, Flash, and Pro on identical prompts |
+| [Fal-Kling-V3-Pro](4-models/fal-kling-v3-pro/) | 2026-11-06 | Cinematic text- and image-to-video with multi-shot storyboards, locked elements, and native audio (preview) |
+| [Fal-MiniMax-H3-Max](4-models/fal-minimax-h3-max/) | 2026-11-06 | Reference-to-video with up to 12 images, clips, and audio; first, middle, and last frames (preview) |
+| [Fal-LTX-2.5-Pro](4-models/fal-ltx-2.5-pro/) | 2026-11-06 | High-fidelity video with camera presets, legible text, and frame-rate control (preview) |
 <!-- END:LATEST -->
 
 Looking for an older release? Every capsule is in the [CHANGELOG](CHANGELOG.md). Don't see the model we need? [Open an issue](https://github.com/microsoft-foundry/model-releases/issues/new) — requests shape what we build next.
@@ -84,6 +84,7 @@ Each primer explains one model category in plain language — what it is, when t
 | [Long Context](3-primers/long-context.md) | Fit whole documents or codebases into one prompt |
 | [Embeddings](3-primers/embeddings.md) | Search and compare text by meaning |
 | [Image Generation](3-primers/image-generation.md) | Create or edit images from a prompt |
+| [Video Generation](3-primers/video-generation.md) | Turn a prompt, image, or references into a short clip with sound |
 | [Audio / Speech](3-primers/audio-speech.md) | Transcribe speech or generate a voice |
 | [Decision Models](3-primers/decision-models.md) | Classify, route, gate, or score inputs with typed answers instead of prose |
 | [Robotics (VLA)](3-primers/robotics.md) | See how vision-language-action models turn instructions into robot motion |

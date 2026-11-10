@@ -22,3 +22,7 @@ azure-cognitiveservices-speech
 azure-ai-projects
 openai
 python-dotenv
+
+# fal video capsules (4-models/fal-*/) — bundled ffmpeg for clip facts and frame strips; images
+imageio-ffmpeg
+pillow

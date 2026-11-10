@@ -25,7 +25,7 @@ A **release capsule** is the hands-on content we create for a release. The folde
 | `1-scripts/` | Setup (`setenv.sh`, `sample.env`), `make_banner.py`, and `check.py`. |
 | `2-scenarios/<name>/` | A shared, fictitious business scenario (data, instructions, benchmark). |
 | `3-primers/<slug>.md` | A beginner explainer for one model category or capability. |
-| `4-models/<model>/` | A single-model release capsule: notebook(s) plus any input assets (`images/`, `data/`). |
+| `4-models/<model>/` | A single-model release capsule: notebook(s) plus any input assets (`images/`, `data/`) and optional replay clips (`examples/`). |
 | `5-multi-model/<scenario>/` | A multi-model release capsule that compares or combines two or more models. |
 | `setup.ipynb` | One-time Foundry project and `.env` setup. |
 
@@ -33,6 +33,7 @@ A **release capsule** is the hands-on content we create for a release. The folde
 - **(auto)** Every notebook name starts with its folder name: `mai-voice-2/mai-voice-2-01-<topic>.ipynb`.
 - Folder names are the model's lowercase catalog name (`mai-image-2.5-pro`). A model updated by date (like model router) keeps one folder and adds dated notebooks: `model-router-<mmm-yyyy>-NN-<topic>.ipynb`.
 - Generated files go in a git-ignored `output/` folder inside the capsule.
+- Slow or costly capsules may commit a few small sample results to `examples/` and offer a **replay mode**: a `DEMO_MODE` setting (`replay` or `live`, read from `.env`, overridable in the notebook) that shows `output/` first, then `examples/`, and never calls the model in replay.
 
 ## Notebook structure
 
@@ -52,6 +53,15 @@ Also:
 - 1–3 concepts per notebook. More concepts → more notebooks with a shared prefix.
 - Each notebook runs on its own; don't depend on another notebook's kernel state.
 - Clear large outputs before committing; keep one representative result per section so the notebook renders quickly on GitHub.
+
+### Optional sections
+
+Use these when a capsule doubles as a field enablement guide:
+
+- **What to look for:** a bold line after an output with 2–4 concrete checks (what should be true, what usually goes wrong).
+- **`### Scoreboard`:** a table of what we measured across the notebook's calls (latency, output size, requested vs delivered). Never estimate cost from unpublished prices; link the pricing source instead.
+- **`## Teach it to a customer`:** before Your Turn to Explore. What it does and why it matters, a prompt recipe, honest answers to common questions (preview status, data handling, limits), and a symptom → cause → fix list.
+- **Primer pointer:** when a capability has its own vocabulary, the opening cell tells readers to read the primer first.
 
 ## Multi-model notebooks
 

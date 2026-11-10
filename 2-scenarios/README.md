@@ -11,5 +11,6 @@ on the same inputs.
 | Scenario | What it is | Used by |
 |---|---|---|
 | [contoso-travel](contoso-travel/) | An enterprise travel concierge that books policy-compliant flights, hotels, and cars | [Model Router](../4-models/model-router/) |
+| [contoso-retail](contoso-retail/) | Contoso Outdoors, an online camping and hiking retailer with a 20-product catalog, manuals, and photos | [Kling V3 Pro](../4-models/fal-kling-v3-pro/) · [LTX 2.5 Pro](../4-models/fal-ltx-2.5-pro/) · [LTX 2.5 Fast](../4-models/fal-ltx-2.5-fast/) · [MiniMax H3 Max](../4-models/fal-minimax-h3-max/) · [MiniMax H3 Max Turbo](../4-models/fal-minimax-h3-max-turbo/) |
 
 To add a scenario, follow the steps in [CONTRIBUTING.md](../CONTRIBUTING.md#add-a-scenario).
