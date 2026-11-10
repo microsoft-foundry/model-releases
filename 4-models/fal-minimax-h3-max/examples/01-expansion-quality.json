@@ -1,0 +1,42 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max",
+  "route": "minimax/h3-max/text-to-video",
+  "params": {
+    "prompt": "A hiker sets up a green and orange tent by a lake at sunset.",
+    "prompt_expansion_mode": "quality",
+    "seed": 2026,
+    "duration": 5,
+    "resolution": "768P",
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 13.4,
+  "queued_seconds": 6.8,
+  "request_id": "0747520c-724d-440a-823f-581ea9f40c45",
+  "response": {
+    "expanded_prompt": "integrated_multimodal_description: [Shot 1] Cinematic, live-action, wide shot of a tranquil mountain lake at sunset. The sky is a gradient of vibrant orange, soft magenta, and deep indigo, with the last rays of sun reflecting on the glassy, dark water. On the pebbled shoreline, a solo hiker in a rugged brown windbreaker and dark trousers is in the process of setting up a lightweight tent with bright green side panels and a contrasting orange rainfly. The camera pans right at a slow speed, tracking the hiker\u2019s steady movements as they connect a flexible, high-tensile pole into the tent's grommet. The surrounding landscape is a mix of jagged gray rocks and sparse alpine grass, all bathed in the warm, diffused glow of the golden hour. [Shot 2] At 00:03.000, the camera cuts to a close-up and pushes in with small amplitude at slow speed toward the tent entrance. The hiker\u2019s hands, steady and experienced, pull a nylon guyline taut, securing the vibrant orange fabric to a metal stake driven into the earth. As the material pulls tight, it catches the fading light, and the tent takes its final, stable form against the serene, darkening backdrop of the wilderness.\n\noverall_soundscape: The soundscape features the rhythmic, gentle lapping of small waves against the rocky lake shore and the soft, dry rustle of mountain grass swaying in a light evening breeze. Precise, hollow metallic clicks of the tent poles being assembled and the distinct, crisp tension of fabric being pulled taut are clearly audible, accompanied by the subtle crunch of pebbles under the hiker's boots.\n\nnon_diegetic_music: A gentle, melodic acoustic guitar track with a slow, contemplative tempo and warm, resonant harmonic strums, building a sense of peaceful isolation.",
+    "timings": {
+      "inference": 2.796553281998058
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "hofkVw21C2bpCyB7fMHOt_minimax-h3.mp4",
+      "file_size": 5110633
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 5.11,
+    "seconds": 5.18,
+    "width": 1344,
+    "height": 768,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.26,
+    "seconds": 5.18,
+    "width": 840,
+    "height": 480,
+    "fps": 24.0
+  }
+}

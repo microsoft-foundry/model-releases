@@ -1,0 +1,42 @@
+{
+  "deployment": "Fal-LTX-2.5-Pro",
+  "route": "lightricks/ltx-2.5/text-to-video/pro",
+  "params": {
+    "prompt": "Trail race start at dawn: about fifty runners in bright jackets burst from a start arch onto a muddy forest trail,\nmud splashing, bib numbers flapping, breath visible in the cold air. Low tracking shot alongside the leaders.\nAudio: a starting horn, the crowd cheering, footsteps in mud.",
+    "duration": 6,
+    "resolution": "1080p",
+    "fps": 50,
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 360.3,
+  "queued_seconds": 132.0,
+  "request_id": "29f4bd5e-58bd-4c15-9c09-42acc797b3ce",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 6.0,
+      "file_name": "QPU8n86A1G0wOEccoUIW7_kAVY14D5.mp4",
+      "file_size": 21626840,
+      "fps": 50.0,
+      "height": 1080,
+      "num_frames": 300,
+      "width": 1920
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 21.63,
+    "seconds": 6.0,
+    "width": 1920,
+    "height": 1080,
+    "fps": 50.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 1.35,
+    "seconds": 6.0,
+    "width": 854,
+    "height": 480,
+    "fps": 50.0
+  }
+}

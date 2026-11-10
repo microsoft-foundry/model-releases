@@ -27,10 +27,10 @@ flowchart LR
 
 ## Try it
 
-- [MAI-Image-2.5](../4-models/mai-image-2.5/)
-- [MAI-Image-2.5-Flash](../4-models/mai-image-2.5-flash/)
-- [MAI-Image-2.5-Pro](../4-models/mai-image-2.5-pro/)
-- [MAI-Image-2.5 family walkthrough](../5-multi-model/mai-image-family-walkthrough/) — multi-model
+- [MAI-Image-2.6](../4-models/mai-image-2.6/)
+- [MAI-Image-2.6-Flash](../4-models/mai-image-2.6-flash/)
+- [MAI-Image family walkthrough](../5-multi-model/mai-image-family-walkthrough/) — multi-model
+- Earlier versions: [MAI-Image-2.5](../0-archive/mai-image-2.5/), [Flash](../0-archive/mai-image-2.5-flash/), and [Pro](../0-archive/mai-image-2.5-pro/) (archived)
 
 ## Learn more
 

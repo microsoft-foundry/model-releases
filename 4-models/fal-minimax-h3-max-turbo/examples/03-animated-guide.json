@@ -1,0 +1,41 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max-Turbo",
+  "route": "minimax/h3-max-turbo/image-to-video",
+  "params": {
+    "image_url": "<image/jpeg data, 280 KB>",
+    "prompt_expansion_mode": "disabled",
+    "prompt": "Each panel animates in turn from left to right: the parts slide into place and a small checkmark appears. Flat vector style, no new text. Audio: soft clicks.",
+    "seed": 2026,
+    "duration": 8,
+    "resolution": "768P"
+  },
+  "seconds": 18.8,
+  "queued_seconds": 6.9,
+  "request_id": "57c308c5-d6a3-4c34-af0f-768e9756774d",
+  "response": {
+    "timings": {
+      "inference": 2.271971690002829
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "3s4nHswv6fs_tyZ0wUd5s_minimax-h3.mp4",
+      "file_size": 6939357
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 6.94,
+    "seconds": 8.0,
+    "width": 1152,
+    "height": 768,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.24,
+    "seconds": 8.0,
+    "width": 720,
+    "height": 480,
+    "fps": 24.0
+  }
+}

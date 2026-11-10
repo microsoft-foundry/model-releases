@@ -1,0 +1,43 @@
+{
+  "deployment": "Fal-LTX-2.5-Pro",
+  "route": "lightricks/ltx-2.5/image-to-video/pro",
+  "params": {
+    "image_url": "<image/jpeg data, 155 KB>",
+    "prompt": "The tent stands in a quiet studio; the fabric shifts slightly as if in a light breeze.",
+    "camera_motion": "focus_shift",
+    "duration": 6,
+    "resolution": "720p",
+    "generate_audio": false
+  },
+  "seconds": 47.8,
+  "queued_seconds": 6.9,
+  "request_id": "aa2cecf9-e16f-448c-a8a3-4579a5c07cd4",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 6.0,
+      "file_name": "tRVj4ojgdES6D09w5slNp_SC5w697W.mp4",
+      "file_size": 2094003,
+      "fps": 25.0,
+      "height": 720,
+      "num_frames": 150,
+      "width": 1280
+    }
+  },
+  "probe": {
+    "has_audio": false,
+    "size_mb": 2.09,
+    "seconds": 6.0,
+    "width": 1280,
+    "height": 720,
+    "fps": 25.0
+  },
+  "preview": {
+    "has_audio": false,
+    "size_mb": 0.29,
+    "seconds": 6.0,
+    "width": 854,
+    "height": 480,
+    "fps": 25.0
+  }
+}

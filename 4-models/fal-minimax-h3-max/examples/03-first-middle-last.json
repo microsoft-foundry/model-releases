@@ -1,0 +1,50 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max",
+  "route": "minimax/h3-max/reference-to-video",
+  "params": {
+    "image_url": "<image/jpeg data, 560 KB>",
+    "middle_image_url": "<image/jpeg data, 346 KB>",
+    "middle_frame_time": 3.0,
+    "end_image_url": "<image/jpeg data, 411 KB>",
+    "prompt_expansion_mode": "disabled",
+    "reference_image_urls": [
+      "<image/jpeg data, 197 KB>",
+      "<image/jpeg data, 106 KB>"
+    ],
+    "prompt": "Morning at the lakeside camp; the camera moves in to the hiker from Image 1 unpacking by the stove from Image 2, then pulls back to the tent in its new color.",
+    "seed": 2026,
+    "duration": 6,
+    "resolution": "768P"
+  },
+  "seconds": 20.9,
+  "queued_seconds": 7.7,
+  "request_id": "3c96d938-56fe-408e-8d79-658bcfb21556",
+  "response": {
+    "reference_tokens": 4640,
+    "seed": 2026,
+    "timings": {
+      "inference": 3.760426606000692
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "8b30qnHdUtEjOS0VPu9Ab_minimax-h3.mp4",
+      "file_size": 15915371
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 15.92,
+    "seconds": 6.59,
+    "width": 1152,
+    "height": 768,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.66,
+    "seconds": 6.59,
+    "width": 720,
+    "height": 480,
+    "fps": 24.0
+  }
+}

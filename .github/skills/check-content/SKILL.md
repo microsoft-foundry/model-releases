@@ -21,7 +21,7 @@ A **release capsule** is the hands-on content we create for a release. The folde
 
 | Path | Holds |
 |---|---|
-| `0-archive/<model>/` | A release capsule whose model is retired. |
+| `0-archive/<model>/` | A release capsule whose model is retired or replaced by a newer version (still linked from the CHANGELOG). |
 | `1-scripts/` | Setup (`setenv.sh`, `sample.env`), `make_banner.py`, and `check.py`. |
 | `2-scenarios/<name>/` | A shared, fictitious business scenario (data, instructions, benchmark). |
 | `3-primers/<slug>.md` | A beginner explainer for one model category or capability. |
@@ -65,7 +65,7 @@ Use these when a capsule doubles as a field enablement guide:
 
 ## Multi-model notebooks
 
-Same structure, but frame the header around a **practical scenario** (a business task) and list the models compared, each linked to its capsule. Use a scenario from `2-scenarios/` when one fits.
+Same structure, but frame the header around a **practical scenario** (a business task) and list the models compared, each linked to its capsule. Use a scenario from `2-scenarios/` when one fits. Multi-model notebooks are kept current: when newer models ship, update the notebook in place and archive the previous version as `0-archive/<old-name>/`.
 
 ## Primers
 
@@ -81,6 +81,11 @@ One table, newest first. One row per capsule (and per multi-model notebook):
 
 - **(auto)** The README **What's new** table equals the top 3 CHANGELOG rows (capsule name, link, and date). Use `refresh-recent-activity` to update it.
 - Archived capsules keep their row; append ` _(archived)_` to the Model cell and point the link at `0-archive/<model>/`.
+
+## sample.env
+
+- Every env var a notebook reads is listed in [1-scripts/sample.env](../../../1-scripts/sample.env), in a block headed with the capsule folders that use it. Update it in the same change that adds a capsule.
+- Current capsules' blocks go above the **ARCHIVE** section at the bottom. When a capsule moves to `0-archive/`, move any variables only it uses into that section.
 - Releases we haven't built a capsule for go in `.github/planning.md`, not here.
 
 ## Voice

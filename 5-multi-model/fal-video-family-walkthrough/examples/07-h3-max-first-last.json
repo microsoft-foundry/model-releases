@@ -1,0 +1,42 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max",
+  "route": "minimax/h3-max/image-to-video",
+  "params": {
+    "image_url": "<image/jpeg data, 560 KB>",
+    "end_image_url": "<image/jpeg data, 411 KB>",
+    "prompt_expansion_mode": "disabled",
+    "prompt": "A gust of wind crosses the lake; as it passes, the tent's rainfly changes to its new color. Static camera. Audio: wind, water lapping.",
+    "seed": 2026,
+    "duration": 5,
+    "resolution": "768P"
+  },
+  "seconds": 13.5,
+  "queued_seconds": 7.0,
+  "request_id": "908df883-a6b0-4d56-aa6e-f953119c5bf5",
+  "response": {
+    "timings": {
+      "inference": 2.4957690259998344
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "oMOli_zq1UVUs_pr3LDmn_minimax-h3.mp4",
+      "file_size": 7870975
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 7.87,
+    "seconds": 5.18,
+    "width": 1152,
+    "height": 768,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.3,
+    "seconds": 5.18,
+    "width": 720,
+    "height": 480,
+    "fps": 24.0
+  }
+}

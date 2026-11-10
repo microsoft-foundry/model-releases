@@ -1,0 +1,40 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max-Turbo",
+  "route": "minimax/h3-max-turbo/text-to-video",
+  "params": {
+    "prompt": "the TrailMaster X4, a four-person dome tent with a forest-green body and a burnt-orange rainfly pitched in a meadow during a violent thunderstorm with sideways rain; inside, a family stays perfectly dry. Audio: thunder, heavy rain.",
+    "prompt_expansion_mode": "disabled",
+    "seed": 2026,
+    "duration": 5,
+    "resolution": "480P"
+  },
+  "seconds": 7.4,
+  "queued_seconds": null,
+  "request_id": "da47bd95-ff2b-4b78-98a6-aa7d5c73b913",
+  "response": {
+    "timings": {
+      "inference": 0.7678582980006468
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "Am2ozCv8nmKXI0UTHGGIZ_minimax-h3.mp4",
+      "file_size": 2635974
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 2.64,
+    "seconds": 5.18,
+    "width": 832,
+    "height": 480,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.21,
+    "seconds": 5.18,
+    "width": 832,
+    "height": 480,
+    "fps": 24.0
+  }
+}

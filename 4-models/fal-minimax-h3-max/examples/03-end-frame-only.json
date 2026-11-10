@@ -1,0 +1,41 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max",
+  "route": "minimax/h3-max/image-to-video",
+  "params": {
+    "end_image_url": "<image/jpeg data, 445 KB>",
+    "prompt_expansion_mode": "disabled",
+    "prompt": "Fog clears over an alpine lake at dawn, revealing the tent on a granite ledge; the scene settles into the final poster.",
+    "seed": 2026,
+    "duration": 5,
+    "resolution": "768P"
+  },
+  "seconds": 22.6,
+  "queued_seconds": 7.7,
+  "request_id": "b9c2987a-bbc1-4bef-82c6-caa908838283",
+  "response": {
+    "timings": {
+      "inference": 2.3531132119996983
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "tLzjqyRBI9ppDTH-CpePK_minimax-h3.mp4",
+      "file_size": 6535915
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 6.54,
+    "seconds": 5.18,
+    "width": 768,
+    "height": 1152,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.33,
+    "seconds": 5.18,
+    "width": 480,
+    "height": 720,
+    "fps": 24.0
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "01-launch-poster": {
+    "model": "MAI-Image-2.6",
+    "seconds": 34.1,
+    "size": "1024×1536",
+    "file": "../../../2-scenarios/contoso-retail/data/generated/images/launch-poster.webp"
+  },
+  "02-brief-short": {
+    "model": "MAI-Image-2.6",
+    "seconds": 26.5,
+    "size": "1024×1280"
+  },
+  "02-brief-medium": {
+    "model": "MAI-Image-2.6",
+    "seconds": 27.1,
+    "size": "1024×1280"
+  },
+  "02-brief-long": {
+    "model": "MAI-Image-2.6",
+    "seconds": 44.6,
+    "size": "1024×1280"
+  },
+  "03-ad-english": {
+    "model": "MAI-Image-2.6",
+    "seconds": 22.7,
+    "size": "1024×1024"
+  },
+  "03-ad-spanish": {
+    "model": "MAI-Image-2.6",
+    "seconds": 70.5,
+    "size": "1024×1024"
+  },
+  "03-ad-japanese": {
+    "model": "MAI-Image-2.6",
+    "seconds": 23.3,
+    "size": "1024×1024"
+  },
+  "04-four-seasons": {
+    "model": "MAI-Image-2.6",
+    "seconds": 40.9,
+    "size": "1536×1536",
+    "file": "../../../2-scenarios/contoso-retail/data/generated/images/four-seasons.webp"
+  },
+  "05-touch-texture": {
+    "model": "MAI-Image-2.6",
+    "seconds": 22.6,
+    "size": "1024×1024"
+  },
+  "05-touch-reflection": {
+    "model": "MAI-Image-2.6",
+    "seconds": 22.7,
+    "size": "1024×1024"
+  },
+  "05-touch-transparency": {
+    "model": "MAI-Image-2.6",
+    "seconds": 24.6,
+    "size": "1024×1024"
+  },
+  "05-touch-deformation": {
+    "model": "MAI-Image-2.6",
+    "seconds": 23.9,
+    "size": "1024×1024"
+  },
+  "06-clockwork": {
+    "model": "MAI-Image-2.6",
+    "seconds": 28.7,
+    "size": "1536×1024"
+  },
+  "07-setup-guide": {
+    "model": "MAI-Image-2.6",
+    "seconds": 32.0,
+    "size": "1536×1024",
+    "file": "../../../2-scenarios/contoso-retail/data/generated/images/setup-guide.webp"
+  },
+  "e1-campsite-before": {
+    "model": "MAI-Image-2.6",
+    "seconds": 30.2,
+    "size": "1536×1024",
+    "file": "../../../2-scenarios/contoso-retail/data/generated/images/campsite-before.webp"
+  },
+  "e1-edit-1-remove-stranger": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.6,
+    "size": "1248×832"
+  },
+  "e1-edit-2-new-price": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.5,
+    "size": "1248×832"
+  },
+  "e1-edit-3-new-color": {
+    "model": "MAI-Image-2.6",
+    "seconds": 32.1,
+    "size": "1248×832",
+    "file": "../../../2-scenarios/contoso-retail/data/generated/images/campsite-after.webp"
+  },
+  "e2-photoshoot": {
+    "model": "MAI-Image-2.6",
+    "seconds": 43.3,
+    "size": "1024×1024",
+    "file": "../../../2-scenarios/contoso-retail/data/generated/images/lifestyle-all-products.webp"
+  },
+  "e4-auto-panorama": {
+    "model": "MAI-Image-2.6",
+    "seconds": 35.8,
+    "size": "1536×1536"
+  },
+  "e4-auto-waterfall": {
+    "model": "MAI-Image-2.6",
+    "seconds": 34.8,
+    "size": "1536×1536"
+  },
+  "e4-auto-packshot": {
+    "model": "MAI-Image-2.6",
+    "seconds": 35.0,
+    "size": "1536×1536"
+  },
+  "e4-web-banner": {
+    "model": "MAI-Image-2.6",
+    "seconds": 37.6,
+    "size": "2304×1024"
+  },
+  "e4-phone-story": {
+    "model": "MAI-Image-2.6",
+    "seconds": 39.8,
+    "size": "1152×2048",
+    "file": "../../../2-scenarios/contoso-retail/data/generated/images/phone-story.webp"
+  },
+  "e4-just-right": {
+    "model": "MAI-Image-2.6",
+    "seconds": 36.1,
+    "size": "1536×1536"
+  },
+  "e3-window-grounded-20261110": {
+    "model": "MAI-Image-2.6",
+    "seconds": 38.8,
+    "size": "1024×1280"
+  },
+  "e3-window-no-grounding-20261110": {
+    "model": "MAI-Image-2.6",
+    "seconds": 28.6,
+    "size": "1024×1280"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "01-prop-tent": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 12.5,
+    "size": "1024×1024",
+    "file": "../../../2-scenarios/contoso-retail/data/generated/images/prop-tent.webp"
+  },
+  "01-prop-backpack": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 23.1,
+    "size": "1024×1024",
+    "file": "../../../2-scenarios/contoso-retail/data/generated/images/prop-backpack.webp"
+  },
+  "01-prop-stove": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 13.0,
+    "size": "1024×1024",
+    "file": "../../../2-scenarios/contoso-retail/data/generated/images/prop-stove.webp"
+  },
+  "01-prop-sleeping-bag": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 13.8,
+    "size": "1024×1024",
+    "file": "../../../2-scenarios/contoso-retail/data/generated/images/prop-sleeping-bag.webp"
+  },
+  "01-prop-hiker": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 11.7,
+    "size": "1024×1024",
+    "file": "../../../2-scenarios/contoso-retail/data/generated/images/prop-hiker.webp"
+  },
+  "02-taste-text-hero": {
+    "model": "MAI-Image-2.6",
+    "seconds": 23.2,
+    "size": "1024×1024"
+  },
+  "02-taste-text-flash": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 10.0,
+    "size": "1024×1024"
+  },
+  "02-taste-materials-hero": {
+    "model": "MAI-Image-2.6",
+    "seconds": 23.6,
+    "size": "1024×1024"
+  },
+  "02-taste-materials-flash": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 10.2,
+    "size": "1024×1024"
+  },
+  "02-taste-instructions-hero": {
+    "model": "MAI-Image-2.6",
+    "seconds": 26.1,
+    "size": "1024×1024"
+  },
+  "02-taste-instructions-flash": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 10.2,
+    "size": "1024×1024"
+  },
+  "02-taste-portrait-hero": {
+    "model": "MAI-Image-2.6",
+    "seconds": 24.7,
+    "size": "1024×1024"
+  },
+  "02-taste-portrait-flash": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 9.9,
+    "size": "1024×1024"
+  },
+  "03-draft-1": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 10.9,
+    "size": "1024×1024"
+  },
+  "03-draft-2": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 10.3,
+    "size": "1024×1024"
+  },
+  "03-draft-3": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 10.1,
+    "size": "1024×1024"
+  },
+  "03-draft-4": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 11.3,
+    "size": "1024×1024"
+  },
+  "03-draft-5": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 10.8,
+    "size": "1024×1024"
+  },
+  "03-draft-6": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 9.5,
+    "size": "1024×1024"
+  },
+  "03-final-from-draft-1": {
+    "model": "MAI-Image-2.6",
+    "seconds": 23.2,
+    "size": "1024×1024"
+  }
+}

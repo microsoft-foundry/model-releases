@@ -1,0 +1,42 @@
+{
+  "deployment": "Fal-LTX-2.5-Fast",
+  "route": "lightricks/ltx-2.5/text-to-video/fast",
+  "params": {
+    "prompt": "Vertical social clip: the CozyNights Sleeping Bag by CozyNights in use on a sunny trail weekend. Quick, energetic handheld moves, bright natural light, upbeat outdoor-brand feel. Audio: nature sounds and a light upbeat rhythm.",
+    "duration": 6,
+    "resolution": "720p",
+    "fps": 25,
+    "aspect_ratio": "9:16"
+  },
+  "seconds": 47.4,
+  "queued_seconds": 6.8,
+  "request_id": "348c5092-c560-400a-a5ce-b49a25bdd224",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 6.0,
+      "file_name": "A8_nPAMxH0f5FjI8N2Ade_XdY73xeW.mp4",
+      "file_size": 6445169,
+      "fps": 25.0,
+      "height": 1280,
+      "num_frames": 150,
+      "width": 720
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 6.45,
+    "seconds": 6.0,
+    "width": 720,
+    "height": 1280,
+    "fps": 25.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 1.05,
+    "seconds": 6.0,
+    "width": 480,
+    "height": 854,
+    "fps": 25.0
+  }
+}

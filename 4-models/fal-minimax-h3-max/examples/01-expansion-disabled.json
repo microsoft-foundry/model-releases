@@ -1,0 +1,41 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max",
+  "route": "minimax/h3-max/text-to-video",
+  "params": {
+    "prompt": "A hiker sets up a green and orange tent by a lake at sunset.",
+    "prompt_expansion_mode": "disabled",
+    "seed": 2026,
+    "duration": 5,
+    "resolution": "768P",
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 19.3,
+  "queued_seconds": 6.9,
+  "request_id": "5cee39f1-4aef-4202-a7c8-e7456fc99150",
+  "response": {
+    "timings": {
+      "inference": 2.6732536210038234
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "z4bkhZ1HYoXe3lx4cyM_P_minimax-h3.mp4",
+      "file_size": 3299121
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 3.3,
+    "seconds": 5.18,
+    "width": 1344,
+    "height": 768,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.21,
+    "seconds": 5.18,
+    "width": 840,
+    "height": 480,
+    "fps": 24.0
+  }
+}

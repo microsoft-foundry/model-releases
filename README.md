@@ -33,9 +33,9 @@ Model Releases is the first step up that hill. Every new release we cover gets a
 <!-- BEGIN:LATEST -->
 | Capsule | Date | What it does |
 |---|---|---|
+| [MAI-Image family](5-multi-model/mai-image-family-walkthrough/) | 2026-11-10 | Multi-model: MAI-Image-2.6 and Flash on listing backgrounds, mood boards, careful edits, and a 27-case character-consistency matrix |
 | [fal video family](5-multi-model/fal-video-family-walkthrough/) | 2026-11-10 | Multi-model: five fal video models on one launch campaign, each on its specialty, cut into one reel |
 | [Fal-Kling-V3-Pro](4-models/fal-kling-v3-pro/) | 2026-11-06 | Cinematic text- and image-to-video with multi-shot storyboards, locked elements, and native audio (preview) |
-| [Fal-MiniMax-H3-Max](4-models/fal-minimax-h3-max/) | 2026-11-06 | Reference-to-video with up to 12 images, clips, and audio; first, middle, and last frames (preview) |
 <!-- END:LATEST -->
 
 Looking for an older release? Every capsule is in the [CHANGELOG](CHANGELOG.md). Don't see the model we need? [Open an issue](https://github.com/microsoft-foundry/model-releases/issues/new) — requests shape what we build next.
@@ -132,12 +132,12 @@ Folders are numbered in the order we build on them: tools and data first, then e
 
 | Folder | What we'll find |
 |---|---|
-| [`0-archive/`](0-archive/) | Release capsules for models that have been retired |
+| [`0-archive/`](0-archive/) | Capsules for models that were retired or replaced by a newer version. They still run while the model is deployed, and the [CHANGELOG](CHANGELOG.md) keeps linking them, so we can compare versions |
 | [`1-scripts/`](1-scripts/) | Setup, banner, and content-check scripts |
 | [`2-scenarios/`](2-scenarios/) | Fictitious business scenarios that capsules share, so results are reproducible |
 | [`3-primers/`](3-primers/) | Beginner-friendly explainers for each model category |
 | [`4-models/`](4-models/) | Release capsules for **one model** — one folder per release |
-| [`5-multi-model/`](5-multi-model/) | Release capsules that compare or combine **several models** on a real task |
+| [`5-multi-model/`](5-multi-model/) | Capsules that compare or combine **several models** on a real task, kept current: when a newer model ships, we update the walkthrough and archive the old version |
 | [`setup.ipynb`](setup.ipynb) | One-time setup every capsule relies on |
 
 <br/>

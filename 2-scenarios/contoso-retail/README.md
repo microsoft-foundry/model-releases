@@ -148,8 +148,8 @@ synthetic: logos, labels, and on-screen text may not match the catalog exactly.
 | `generated/images/launch-poster.webp` | "HOME, ANYWHERE." poster with a $250 price badge, 1024×1536 | Does on-screen text survive animation? |
 | `generated/images/four-seasons.webp` | 2×2 grid of the tent in four seasons, 1536×1536 | Multi-shot storyboard |
 
-All images were made with MAI-Image-2.6 (the five `prop-` images with
-MAI-Image-2.6-Flash) and are copied unchanged as WebP.
+All images were made with [MAI-Image-2.6](../../4-models/mai-image-2.6/) (the five `prop-` images with
+[MAI-Image-2.6-Flash](../../4-models/mai-image-2.6-flash/)) and are copied unchanged as WebP.
 
 <br/>
 

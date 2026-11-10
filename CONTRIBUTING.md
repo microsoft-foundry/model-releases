@@ -39,13 +39,17 @@ Use the [add-primer](.github/skills/add-primer/SKILL.md) skill.
 
 ## Archive a capsule
 
-When a model is retired:
+When a model is retired, or a newer version replaces it (MAI-Image-2.5 → 2.6, MAI-Transcribe-1.5 → 2):
 
 1. `git mv 4-models/<model> 0-archive/<model>`
-2. Add a banner at the top of each notebook's first cell, leaving the code as-is:
-   `> **Retired YYYY-MM-DD.** This model is no longer available. Try [<replacement>](../../4-models/<replacement>/) instead.`
-3. In `CHANGELOG.md`, append ` _(archived)_` to the Model cell and point the Capsule link at `0-archive/<model>/`.
-4. Run [refresh-recent-activity](.github/skills/refresh-recent-activity/SKILL.md) if the row is in the top 3.
+2. Add a banner under the title of each notebook's first cell, leaving the code as-is:
+   - Retired: `> **Retired YYYY-MM-DD.** This model is no longer available. Try [<replacement>](../../4-models/<replacement>/) instead.`
+   - Replaced: `> **Archived YYYY-MM-DD: superseded by [<replacement>](../../4-models/<replacement>/).** The notebook still runs while <model> is deployed.`
+3. In `CHANGELOG.md`, append ` _(archived)_` to the Model cell and point the Capsule link at `0-archive/<model>/`. Archived capsules stay discoverable from there.
+4. In [1-scripts/sample.env](1-scripts/sample.env), move the capsule's variables to the **ARCHIVE** section at the bottom, so current capsules' settings stay at the top.
+5. Run [refresh-recent-activity](.github/skills/refresh-recent-activity/SKILL.md) if the row is in the top 3.
+
+Multi-model walkthroughs in `5-multi-model/` work differently: they stay in place and move to the newest models. Copy the old version to `0-archive/<old-name>/` (for example `mai-image-2.5-family-walkthrough`), banner it, and point its CHANGELOG row there.
 
 ## Check your work
 

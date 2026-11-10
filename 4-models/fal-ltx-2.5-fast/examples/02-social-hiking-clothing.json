@@ -1,0 +1,42 @@
+{
+  "deployment": "Fal-LTX-2.5-Fast",
+  "route": "lightricks/ltx-2.5/text-to-video/fast",
+  "params": {
+    "prompt": "Vertical social clip: the Summit Breeze Jacket by MountainStyle in use on a sunny trail weekend. Quick, energetic handheld moves, bright natural light, upbeat outdoor-brand feel. Audio: nature sounds and a light upbeat rhythm.",
+    "duration": 6,
+    "resolution": "720p",
+    "fps": 25,
+    "aspect_ratio": "9:16"
+  },
+  "seconds": 47.7,
+  "queued_seconds": 6.8,
+  "request_id": "fdba62cf-b989-44a0-bf89-afa037439db0",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 6.0,
+      "file_name": "91I0rEhdWZrra1IvN6pnb_V66F4iAu.mp4",
+      "file_size": 5551134,
+      "fps": 25.0,
+      "height": 1280,
+      "num_frames": 150,
+      "width": 720
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 5.55,
+    "seconds": 6.0,
+    "width": 720,
+    "height": 1280,
+    "fps": 25.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 1.18,
+    "seconds": 6.0,
+    "width": 480,
+    "height": 854,
+    "fps": 25.0
+  }
+}

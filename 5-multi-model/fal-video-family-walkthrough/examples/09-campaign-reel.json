@@ -1,0 +1,18 @@
+{
+  "probe": {
+    "has_audio": true,
+    "size_mb": 5.2,
+    "seconds": 31.02,
+    "width": 1280,
+    "height": 720,
+    "fps": 25.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 1.75,
+    "seconds": 31.04,
+    "width": 854,
+    "height": 480,
+    "fps": 25.0
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "deployment": "Fal-LTX-2.5-Fast",
+  "route": "lightricks/ltx-2.5/text-to-video/fast",
+  "params": {
+    "prompt": "Vertical social clip: the EcoFire Camping Stove by EcoFire in use on a sunny trail weekend. Quick, energetic handheld moves, bright natural light, upbeat outdoor-brand feel. Audio: nature sounds and a light upbeat rhythm.",
+    "duration": 6,
+    "resolution": "720p",
+    "fps": 25,
+    "aspect_ratio": "9:16"
+  },
+  "seconds": 43.2,
+  "queued_seconds": 7.0,
+  "request_id": "566f5b74-70d8-4958-bbcd-6c49086dc283",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 6.0,
+      "file_name": "wA648f8kTMdsy-CmgJ4Ng_0a5n3iBA.mp4",
+      "file_size": 6007155,
+      "fps": 25.0,
+      "height": 1280,
+      "num_frames": 150,
+      "width": 720
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 6.01,
+    "seconds": 6.0,
+    "width": 720,
+    "height": 1280,
+    "fps": 25.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 1.11,
+    "seconds": 6.0,
+    "width": 480,
+    "height": 854,
+    "fps": 25.0
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "deployment": "Fal-Kling-V3-Pro",
+  "route": "kling/v3/pro/text-to-video",
+  "params": {
+    "prompt": "Two hikers share dinner at a lakeside camp at dusk. Maya, in a red jacket, speaks English. Luc\u00eda, in a yellow beanie, answers in Spanish. Audio: stove hiss, crickets, their voices.",
+    "multi_prompt": [
+      {
+        "prompt": "Wide shot at eye level: two hikers sit by a camping stove outside a green tent at dusk, the lake behind them. Audio: stove hiss, crickets.",
+        "duration": "4"
+      },
+      {
+        "prompt": "Medium close-up over Luc\u00eda's shoulder on Maya, in a red jacket. She says: \"the forecast says rain tonight.\" Slow push in.",
+        "duration": "4"
+      },
+      {
+        "prompt": "Medium close-up on Luc\u00eda, in a yellow beanie, smiling. She answers in Spanish: \"mejor. me encanta la lluvia en la tienda.\" Rack focus to the lake behind her.",
+        "duration": "4"
+      }
+    ],
+    "shot_type": "customize",
+    "duration": "12",
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 348.5,
+  "queued_seconds": 7.0,
+  "request_id": "f88a3c5e-2072-4ba7-86da-700afee23a74",
+  "response": {
+    "video": {}
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 33.98,
+    "seconds": 12.05,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.43,
+    "seconds": 12.05,
+    "width": 854,
+    "height": 480,
+    "fps": 24.0
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max-Turbo",
+  "route": "minimax/h3-max-turbo/text-to-video",
+  "params": {
+    "prompt": "the TrailMaster X4, a four-person dome tent with a forest-green body and a burnt-orange rainfly pitched in a meadow during a light drizzle; drops bead on the rainfly and roll off. Static wide shot. Audio: soft rain.",
+    "prompt_expansion_mode": "disabled",
+    "seed": 2026,
+    "duration": 5,
+    "resolution": "480P"
+  },
+  "seconds": 7.6,
+  "queued_seconds": null,
+  "request_id": "2bb4b103-d834-4142-a78c-357381de96f6",
+  "response": {
+    "timings": {
+      "inference": 0.7493481040000916
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "nMR6ws0k-jRzhP-yqkr6u_minimax-h3.mp4",
+      "file_size": 2362831
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 2.36,
+    "seconds": 5.18,
+    "width": 832,
+    "height": 480,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.14,
+    "seconds": 5.18,
+    "width": 832,
+    "height": 480,
+    "fps": 24.0
+  }
+}

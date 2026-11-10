@@ -1,0 +1,31 @@
+{
+  "deployment": "Fal-Kling-V3-Pro",
+  "route": "kling/v3/pro/text-to-video",
+  "params": {
+    "prompt": "Close-up in light rain and gusty wind: a hiker pours steaming coffee from a small pot on a camping stove into an enamel mug.\nThe stream of coffee bends in the wind, steam whips sideways, rain beads on her jacket, loose hair blows across her face.\nRack focus from the mug to her face, then a slow dolly zoom. Audio: rain on fabric, wind gusts, coffee pouring.",
+    "duration": "5",
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 182.8,
+  "queued_seconds": 6.7,
+  "request_id": "2c85f2f1-8d0b-4f3c-9101-869c2eccef01",
+  "response": {
+    "video": {}
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 15.4,
+    "seconds": 5.04,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.3,
+    "seconds": 5.04,
+    "width": 854,
+    "height": 480,
+    "fps": 24.0
+  }
+}

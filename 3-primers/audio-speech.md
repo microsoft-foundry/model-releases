@@ -26,7 +26,7 @@ flowchart LR
 
 - [MAI-Transcribe-2](../4-models/mai-transcribe-2/)
 - [MAI-Voice-2](../4-models/mai-voice-2/)
-- [MAI-Transcribe-1.5](../4-models/mai-transcribe-1.5/)
+- Earlier version: [MAI-Transcribe-1.5](../0-archive/mai-transcribe-1.5/) (archived)
 
 ## Learn more
 

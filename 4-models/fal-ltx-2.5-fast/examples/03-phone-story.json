@@ -1,0 +1,43 @@
+{
+  "deployment": "Fal-LTX-2.5-Fast",
+  "route": "lightricks/ltx-2.5/image-to-video/fast",
+  "params": {
+    "image_url": "<image/jpeg data, 425 KB>",
+    "prompt": "Stars wheel slowly overhead; a warm light flickers on inside the tent. Static camera. Audio: crickets, soft wind.",
+    "aspect_ratio": "auto",
+    "duration": 6,
+    "resolution": "720p",
+    "fps": 25
+  },
+  "seconds": 49.3,
+  "queued_seconds": 8.3,
+  "request_id": "57270e08-b433-4d12-a2aa-5a2fbce56c15",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 6.0,
+      "file_name": "axEF2NwDm_-RwlL-he4be_nmCVlsnz.mp4",
+      "file_size": 3429144,
+      "fps": 25.0,
+      "height": 1280,
+      "num_frames": 150,
+      "width": 720
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 3.43,
+    "seconds": 6.0,
+    "width": 720,
+    "height": 1280,
+    "fps": 25.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.39,
+    "seconds": 6.0,
+    "width": 480,
+    "height": 854,
+    "fps": 25.0
+  }
+}
