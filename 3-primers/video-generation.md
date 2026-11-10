@@ -148,9 +148,24 @@ the first thing to check in any clip.
 
 *"Can we direct the camera?"*
 
-Camera motion describes how the virtual camera moves: dolly in or out, track
-left or right, jib up or down, orbit, rack focus. Some models take it as a
-setting; all of them respond to it in the prompt.
+Camera motion describes how the virtual camera moves. Some models take it as a
+setting; all of them respond to it in the prompt. Video models learned from real
+footage, so film-crew vocabulary works better than "zoom" or "move closer":
+
+| Term | What the camera does | Use it to |
+| --- | --- | --- |
+| **Dolly in / out** | Moves physically toward or away from the subject, as if on a cart on rails | Draw attention in, or reveal the setting |
+| **Track (truck) left / right** | Moves sideways, alongside the subject | Follow someone walking, show a product line-up |
+| **Jib (crane) up / down** | Rises or lowers, often tilting to keep the subject in frame | Open a scene from above, end on a wide view |
+| **Orbit** | Circles around the subject | Show a product from every side |
+| **Pan / tilt** | Turns left or right / up or down from a fixed spot | Scan a landscape, look up at something tall |
+| **Zoom** | Stays put; the lens magnifies | A flatter, more mechanical look than a dolly |
+| **Rack focus (focus shift)** | Moves the sharp focus from one object to another | Move attention from foreground to background |
+| **Static** | Doesn't move | Let the subject's motion carry the shot |
+
+Shot size says how much of the frame the subject fills: a **wide** (or long)
+shot shows the whole scene, a **medium** shot shows the subject and some
+surroundings, and a **close-up** fills the frame with one detail.
 
 ### Prompt expansion
 
@@ -229,6 +244,94 @@ More tips:
 - **Avoid contradictions** between the prompt and the input image, such as a prompt
   for night with a midday start frame.
 - **Check the expanded prompt** when the model offers one.
+
+<br/>
+
+## What does one prompt look like on five models?
+
+We sent the same prompt, unchanged, to all five fal video models in the Foundry
+playground, each set to about **6 seconds**, text-to-video, with default settings
+otherwise:
+
+> *Medium shot of an orange-and-green camping tent on a granite ledge at sunrise.
+> Rain starts; drops bead and run off the rainfly while the tent stays taut. Slow
+> dolly in toward the door. Soft golden light, light mist over the lake below.
+> Audio: steady rain on fabric, distant birds, no music.*
+
+The prompt follows the six-part recipe above. Each phrase tells the model
+something specific:
+
+| Phrase | Recipe part | What it asks for |
+| --- | --- | --- |
+| *Medium shot* | Camera | Frame the tent with some of the ledge around it: not a close-up of the fabric, not a wide landscape |
+| *an orange-and-green camping tent* | Subject | The fixed detail we can check in every frame: two specific colors |
+| *on a granite ledge at sunrise* | Setting | Place (bare grey rock) and time of day (low, warm light) |
+| *Rain starts* | Action | A change *during* the clip: dry at the start, raining by the end |
+| *drops bead and run off the rainfly* | Action | Physics: water forms round drops on the waterproof outer layer (the **rainfly**) and slides off instead of soaking in |
+| *while the tent stays taut* | Subject | The fabric stays tight and the tent keeps its shape, which shows quality |
+| *Slow dolly in toward the door* | Camera | The camera itself moves closer to the tent's entrance, slowly (see [Camera motion](#camera-motion)) |
+| *Soft golden light* | Light | Warm, low-contrast sunrise light ("golden hour") |
+| *light mist over the lake below* | Setting | Atmosphere, and a lake below the ledge, which also implies height |
+| *Audio: steady rain on fabric, distant birds* | Audio | Sounds that match what we see: the rain close, the birds far away |
+| *no music* | Audio | A negative instruction. Models often add a soundtrack anyway |
+
+Every row is something we can check in the result. A prompt with checkable
+phrases is easier to evaluate, and to fix, than one with vague words like
+"beautiful" or "cinematic".
+
+Each row below shows five evenly spaced frames from the clip. Select the file name to
+play it, with the sound on.
+
+| Model | Five frames from the clip | What we got |
+| --- | --- | --- |
+| Kling V3 Pro<br/>[fal-kling-v3-pro.mp4](examples/video-generation/fal-kling-v3-pro.mp4) | ![Five frames from the Kling V3 Pro clip](examples/video-generation/fal-kling-v3-pro-strip.webp) | 1920×1080 · 24 fps · 6.04 s · 21.4 MB |
+| LTX 2.5 Pro<br/>[fal-ltx-2.5-pro.mp4](examples/video-generation/fal-ltx-2.5-pro.mp4) | ![Five frames from the LTX 2.5 Pro clip](examples/video-generation/fal-ltx-2.5-pro-strip.webp) | 1280×720 · 25 fps · 6.00 s · 2.6 MB |
+| LTX 2.5 Fast<br/>[fal-ltx-2.5-fast.mp4](examples/video-generation/fal-ltx-2.5-fast.mp4) | ![Five frames from the LTX 2.5 Fast clip](examples/video-generation/fal-ltx-2.5-fast-strip.webp) | 1280×720 · 25 fps · 6.00 s · 3.9 MB |
+| MiniMax H3 Max<br/>[fal-minimax-h3-max.mp4](examples/video-generation/fal-minimax-h3-max.mp4) | ![Five frames from the MiniMax H3 Max clip](examples/video-generation/fal-minimax-h3-max-strip.webp) | 1344×768 · 24 fps · 6.59 s · 6.3 MB |
+| MiniMax H3 Max Turbo<br/>[fal-minimax-h3-max-turbo.mp4](examples/video-generation/fal-minimax-h3-max-turbo.mp4) | ![Five frames from the MiniMax H3 Max Turbo clip](examples/video-generation/fal-minimax-h3-max-turbo-strip.webp) | 1344×768 · 24 fps · 6.59 s · 7.2 MB |
+
+All five clips include audio.
+
+### What stands out
+
+- **Did they follow the brief's colors?** The two LTX clips render an orange tent
+  with a green base. Both MiniMax clips render a tan, mustard-colored tent with no
+  green. Color is a fixed detail in the prompt, so this is a prompt-adherence miss.
+  When a product's color must be exact, start from a product image (image-to-video)
+  instead of describing it.
+- **Who moved the camera?** We asked for a slow dolly in toward the door. In the
+  strips, MiniMax H3 Max pushes in from a side angle until the open door fills the
+  frame, and LTX 2.5 Pro creeps closer head-on. LTX 2.5 Fast changes angle between
+  frames, and Turbo barely moves. Play each clip to judge the speed and smoothness
+  of the move, which a strip can't show.
+- **Is the rain there?** A strip can't show falling drops. In the MiniMax clips the
+  ledge is wet and reflective and mist rises off the lake, which hints at weather;
+  in the LTX clips the ledge looks dry and frosty. Watch for drops *running off*
+  the fabric, the hardest physical detail in the prompt.
+- **What did "6 seconds" mean?** Kling and both LTX clips delivered 6.0 s. Both
+  MiniMax clips delivered 6.59 s, in line with the documented "up to about 0.7 s
+  longer". Plan to trim if a slot is exact.
+- **Why is Kling's file 8× bigger?** It came back at **1080p**; the others are 720p
+  or 768p. Defaults differ by model, so "same prompt, default settings" isn't the
+  same output size. Compare quality at matched resolutions before drawing
+  conclusions.
+- **What did speed cost?** Pair each quality tier with its fast sibling: LTX Pro vs
+  Fast, H3 Max vs Turbo. Here the Fast and Turbo clips are larger files, not
+  smaller: file size tracks motion and detail, not quality tier. Judge them on the
+  checklist below, not on megabytes.
+
+**What to look for** when you play them:
+
+- **Subject:** is the tent orange *and* green, and does it keep its shape while it rains?
+- **Action:** does the rain *start* during the clip, and do drops bead and run **off** the fabric?
+- **Camera:** is there a slow dolly in toward the door, or a static shot or a different move?
+- **Light and setting:** sunrise light, a granite ledge, mist over a lake below.
+- **Audio:** rain on fabric and distant birds, and **no music**. Negative instructions
+  are the easiest ones for a model to miss.
+
+Every run is different, so treat these as one sample each, not a benchmark. To
+compare fairly in code, fix the seed where the model supports it, match the
+resolution, and change one setting at a time.
 
 <br/>
 
