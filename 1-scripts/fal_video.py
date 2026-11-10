@@ -24,7 +24,7 @@ from urllib.parse import urlparse
 
 import requests
 
-# The Learn page lists routes without /v1, but its working samples use it. Change here if that's fixed.
+# The Learn page lists routes without /v1; the /v1 form is the one that works (verified 2026-11-10).
 API_PREFIX = "/providers/falai/v1"
 SCOPE = "https://cognitiveservices.azure.com/.default"
 

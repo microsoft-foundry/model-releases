@@ -122,6 +122,22 @@ ambience, effects, music, and sometimes lip-synced dialogue. It's usually on by
 default. Turn it off when the clip will get its own soundtrack. Some models can
 also **pin** a soundtrack we supply.
 
+Native audio has limits to plan for:
+
+- **It can't always be turned off.** Kling and LTX have a `generate_audio` switch;
+  MiniMax H3 Max and Max Turbo always return a soundtrack.
+- **Babble.** When people are on screen, models often add speech-like sounds with
+  no real words, even when the prompt says "no speech". Negative instructions are
+  the easiest ones to miss.
+- **Mismatched timing.** A zipper or a click can land before or after the action
+  that makes it.
+
+To check a soundtrack, listen with the picture, then run the audio through a
+speech-to-text model: for a clip that should have no speech, the transcript should
+be empty. To fix one, describe the sounds we want ("only wind and birds") rather
+than the ones we don't, pin our own audio where the model allows it, or strip the
+track and add sound in editing.
+
 ### Duration, resolution, frame rate, aspect ratio
 
 *"What shape of clip can we ask for?"*
