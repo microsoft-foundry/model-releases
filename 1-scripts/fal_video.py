@@ -27,6 +27,7 @@ import requests
 # The Learn page lists routes without /v1; the /v1 form is the one that works (verified 2026-11-10).
 API_PREFIX = "/providers/falai/v1"
 SCOPE = "https://cognitiveservices.azure.com/.default"
+MAX_INLINE_MB = 8
 
 HINTS = {
     400: "The service rejected a setting. The message below names it; compare it with the model's limits in the At a glance table.",
@@ -176,6 +177,13 @@ class FalVideo:
         if not self.base:
             raise RuntimeError("MICROSOFT_FOUNDRY_ENDPOINT isn't set. Fill in .env (see setup.ipynb), then rerun the env check.")
 
+        # Same request already made: reuse it. Delete the clip from output/ to make it again.
+        mine = self.saved(name)
+        if mine and mine.source == "yours" and mine.record.get("route") == f"{self.family}/{route}" \
+                and mine.record.get("params") == _redact(params):
+            print(f"   Reusing {name} from output/ (same request).")
+            return mine
+
         body = {"model": self.deployment, **params}
         for attempt in range(4):
             self._wait_turn()
@@ -243,8 +251,14 @@ class FalVideo:
                      f"({clip.source})"]
             print(f"{clip.name}: " + " | ".join(f for f in facts if f))
             display(Image(filename=str(frame_strip(clip.path, frames))))
-            if self.play_inline:
+            if not self.play_inline:
+                continue
+            # Embedded clips are stored in the .ipynb; big ones make the notebook too large to save.
+            size_mb = round(clip.path.stat().st_size / 1e6, 2)
+            if size_mb <= MAX_INLINE_MB:
                 display(Video(str(clip.path), embed=True, width=480))
+            else:
+                print(f"   {size_mb} MB is too big to embed. Open it here: {clip.path}")
 
 
 def scoreboard(clips: list[Clip]) -> None:
