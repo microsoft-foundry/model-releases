@@ -6,7 +6,7 @@ Concierge against a Foundry prompt agent or a Model Router deployment.
 For each query it records the underlying model the router selected
 (`response.model`), latency, and token usage, then applies a deterministic,
 reproducible grade from the `expected` fields in queries.json. Use it to set a
-baseline before hill climbing; use the Foundry custom rubric evaluator
+baseline before continuous improvement; use the Foundry custom rubric evaluator
 (evaluators/policy-rubric.md) for the nuanced, optimizer-driven scoring.
 
 Auth: `az login` (DefaultAzureCredential). No API key is read here.

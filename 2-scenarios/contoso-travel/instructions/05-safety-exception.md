@@ -1,5 +1,5 @@
 <!--
-Hill-climb step: 05 — SAFETY & EXCEPTIONS
+Improvement step: 05 — SAFETY & EXCEPTIONS
 New lever: deterministic safety boundary (hard limits enforced outside the model;
   exceptions routed to an approver; never auto-book)
 Flaw this fixes: the structured agent may imply it can book or approve over-cap

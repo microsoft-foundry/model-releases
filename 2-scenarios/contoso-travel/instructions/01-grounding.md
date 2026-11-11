@@ -1,5 +1,5 @@
 <!--
-Hill-climb step: 01 — GROUNDING
+Improvement step: 01 — GROUNDING
 New lever: grounding (attach and require the data files)
 Flaw this fixes: the base agent invents flights, hotels, and prices. Grounding
   forces every option to come from the attached catalogs.

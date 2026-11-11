@@ -122,7 +122,7 @@ flowchart LR
 
 - **Measure on shared data.** [Contoso Travel](2-scenarios/contoso-travel/) gives us a fixed workload and benchmark, so comparisons are fair.
 - **See the full loop in action.** The [Model Router capsule](4-models/model-router/) optimizes instructions first, then routes each request to a right-sized model.
-- **Learn the vocabulary of the climb** — tokenomics, right-sizing, hill climbing — in the [Optimization primer](3-primers/optimization.md).
+- **Learn the vocabulary of the climb** — tokenomics, right-sizing, continuous improvement — in the [Optimization primer](3-primers/optimization.md).
 
 <br/>
 

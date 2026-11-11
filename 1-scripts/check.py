@@ -66,6 +66,24 @@ def check_links():
                 errors.append(f"{rel(path)}: missing anchor -> {target}")
         if BRAND_RE.search(re.sub(r"\([^)]*\)", "", md)):
             errors.append(f"{rel(path)}: use 'Microsoft Foundry', not 'Azure AI Foundry'")
+        if path.suffix == ".ipynb":
+            check_output_links(path)
+
+
+def check_output_links(nb: Path):
+    """Links saved in cell outputs must point at committed files, not the gitignored output/ folders."""
+    for cell in json.loads(nb.read_text())["cells"]:
+        for out in cell.get("outputs", []):
+            for mime, value in out.get("data", {}).items():
+                if mime not in ("text/markdown", "text/html"):
+                    continue
+                for groups in LINK_RE.findall("".join(value)):
+                    target = next(g for g in groups if g)
+                    if re.match(r"^(https?:|mailto:|data:|#)", target):
+                        continue
+                    dest = (nb.parent / unquote(target.partition("#")[0])).resolve()
+                    if not dest.exists() or "output" in dest.relative_to(ROOT).parts:
+                        errors.append(f"{rel(nb)}: output links to an uncommitted file -> {target}")
 
 
 def check_layout():
