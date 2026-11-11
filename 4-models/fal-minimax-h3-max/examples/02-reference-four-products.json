@@ -1,0 +1,49 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max",
+  "route": "minimax/h3-max/reference-to-video",
+  "params": {
+    "prompt": "The hiker from Image 1, wearing the backpack from Image 2, arrives at a lakeside campsite in late afternoon.\nThe hiker sets down the pack beside the tent from Image 3, already pitched, and lights the stove from Image 4; a small pot starts to steam.\nMedium tracking shot that ends on a close-up of the stove. Warm light.\nAudio: footsteps on gravel, the click and hiss of the stove, birds.",
+    "prompt_expansion_mode": "disabled",
+    "reference_image_urls": [
+      "<image/jpeg data, 197 KB>",
+      "<image/jpeg data, 238 KB>",
+      "<image/jpeg data, 155 KB>",
+      "<image/jpeg data, 106 KB>"
+    ],
+    "seed": 2026,
+    "duration": 8,
+    "resolution": "768P",
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 22.9,
+  "queued_seconds": 7.7,
+  "request_id": "ac7808d0-13fc-45a1-bd05-36a9299488bd",
+  "response": {
+    "reference_tokens": 4096,
+    "seed": 2026,
+    "timings": {
+      "inference": 6.386273166999672
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "lEGeA5TpGlNoWizeB6teC_minimax-h3.mp4",
+      "file_size": 13075629
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 13.08,
+    "seconds": 8.0,
+    "width": 1344,
+    "height": 768,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.64,
+    "seconds": 8.0,
+    "width": 840,
+    "height": 480,
+    "fps": 24.0
+  }
+}

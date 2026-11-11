@@ -1,0 +1,41 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max-Turbo",
+  "route": "minimax/h3-max-turbo/text-to-video",
+  "params": {
+    "prompt": "Stop-motion claymation, visible fingerprints in the clay. In this order: a clay hiker pitches a green tent with an orange rainfly beside a lake;\nthe hiker lights a small stove; the sky turns to night and stars appear; the words \"HOME, ANYWHERE.\" appear in white letters above the tent.\nStatic camera. Audio: a gentle music box melody, crickets.",
+    "prompt_expansion_mode": "disabled",
+    "seed": 2026,
+    "duration": 6,
+    "resolution": "768P",
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 19.2,
+  "queued_seconds": 7.0,
+  "request_id": "d4143c26-dd32-4d9c-adce-518a496dd5cc",
+  "response": {
+    "timings": {
+      "inference": 2.1986516140000276
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "QVssWq5YBNec0mcMlIPFk_minimax-h3.mp4",
+      "file_size": 5127565
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 5.13,
+    "seconds": 6.59,
+    "width": 1344,
+    "height": 768,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.29,
+    "seconds": 6.59,
+    "width": 840,
+    "height": 480,
+    "fps": 24.0
+  }
+}

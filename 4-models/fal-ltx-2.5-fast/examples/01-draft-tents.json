@@ -1,0 +1,42 @@
+{
+  "deployment": "Fal-LTX-2.5-Fast",
+  "route": "lightricks/ltx-2.5/text-to-video/fast",
+  "params": {
+    "prompt": "Vertical social clip: the TrailMaster X4 Tent by OutdoorLiving in use on a sunny trail weekend. Quick, energetic handheld moves, bright natural light, upbeat outdoor-brand feel. Audio: nature sounds and a light upbeat rhythm.",
+    "duration": 6,
+    "resolution": "720p",
+    "fps": 25,
+    "aspect_ratio": "9:16"
+  },
+  "seconds": 75.4,
+  "queued_seconds": 8.1,
+  "request_id": "89600796-49a1-42ce-8e44-7194336d9192",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 6.0,
+      "file_name": "0BJqXJLrFTx9C-U-rScdw_eSxWjrnl.mp4",
+      "file_size": 9041602,
+      "fps": 25.0,
+      "height": 1280,
+      "num_frames": 150,
+      "width": 720
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 9.04,
+    "seconds": 6.0,
+    "width": 720,
+    "height": 1280,
+    "fps": 25.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 1.48,
+    "seconds": 6.0,
+    "width": 480,
+    "height": 854,
+    "fps": 25.0
+  }
+}

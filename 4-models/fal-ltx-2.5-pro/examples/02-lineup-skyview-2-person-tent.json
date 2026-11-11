@@ -1,0 +1,42 @@
+{
+  "deployment": "Fal-LTX-2.5-Pro",
+  "route": "lightricks/ltx-2.5/text-to-video/pro",
+  "params": {
+    "prompt": "Product video of the SkyView 2-Person Tent by OutdoorLiving, a 2-person blue tent, pitched on a grassy meadow at golden hour. A gentle breeze moves the fabric; the tent stays taut. Clean, calm, premium outdoor-brand look. No people, no text.",
+    "duration": 6,
+    "resolution": "720p",
+    "aspect_ratio": "16:9",
+    "generate_audio": false
+  },
+  "seconds": 48.3,
+  "queued_seconds": 7.8,
+  "request_id": "8b233a23-6b63-4360-9f33-35204d62ded4",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 6.0,
+      "file_name": "CH-pPkjQtV_azCUlwkmOi_jtpGCqx2.mp4",
+      "file_size": 4014454,
+      "fps": 25.0,
+      "height": 720,
+      "num_frames": 150,
+      "width": 1280
+    }
+  },
+  "probe": {
+    "has_audio": false,
+    "size_mb": 4.01,
+    "seconds": 6.0,
+    "width": 1280,
+    "height": 720,
+    "fps": 25.0
+  },
+  "preview": {
+    "has_audio": false,
+    "size_mb": 0.34,
+    "seconds": 6.0,
+    "width": 854,
+    "height": 480,
+    "fps": 25.0
+  }
+}

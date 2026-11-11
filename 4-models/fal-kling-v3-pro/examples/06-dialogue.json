@@ -1,0 +1,31 @@
+{
+  "deployment": "Fal-Kling-V3-Pro",
+  "route": "kling/v3/pro/text-to-video",
+  "params": {
+    "prompt": "Close-up of a smiling hiker sitting in the open door of the TrailMaster X4, a four-person dome tent with a forest-green body under a burnt-orange rainfly as rain falls outside.\nShe says: \"rain in the forecast? we're staying out.\" Then she zips the door closed.\nAudio: rain on fabric, her voice close and warm, the zipper.",
+    "duration": "5",
+    "generate_audio": true
+  },
+  "seconds": 162.5,
+  "queued_seconds": 6.9,
+  "request_id": "748aa22f-4f2f-433f-becb-332b879ffb98",
+  "response": {
+    "video": {}
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 17.94,
+    "seconds": 5.04,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.34,
+    "seconds": 5.04,
+    "width": 854,
+    "height": 480,
+    "fps": 24.0
+  }
+}

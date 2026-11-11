@@ -1,0 +1,41 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max-Turbo",
+  "route": "minimax/h3-max-turbo/text-to-video",
+  "params": {
+    "prompt": "Instructional how-to video about the TrailMaster X4, a four-person dome tent with a forest-green body and a burnt-orange rainfly. Clear, well-lit meadow in daylight, eye-level camera, hands and tent always in frame. Action: Find a level and clear area for pitching the tent. Remove any sharp objects or debris that could damage the tent floor. Audio: quiet outdoor ambience, no music, no speech.",
+    "prompt_expansion_mode": "disabled",
+    "seed": 2026,
+    "duration": 5,
+    "resolution": "480P",
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 19.0,
+  "queued_seconds": 6.9,
+  "request_id": "50da3484-047f-40cb-bc42-ab211a2edfbf",
+  "response": {
+    "timings": {
+      "inference": 0.8309839169960469
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "i60HXsWGA8fLk3KIljVEz_minimax-h3.mp4",
+      "file_size": 2896455
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 2.9,
+    "seconds": 5.18,
+    "width": 832,
+    "height": 480,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.32,
+    "seconds": 5.18,
+    "width": 832,
+    "height": 480,
+    "fps": 24.0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "deployment": "Fal-Kling-V3-Pro",
+  "route": "kling/v3/pro/text-to-video",
+  "params": {
+    "prompt": "A hiker arrives at a lakeside clearing at dusk with the TrailMaster X4, a four-person dome tent with a forest-green body under a burnt-orange rainfly, pitches it in seconds,\nand by night it glows warm from inside while rain falls. Audio: footsteps, pole clicks, rain on fabric.",
+    "shot_type": "intelligent",
+    "duration": "12",
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 352.2,
+  "queued_seconds": 12.6,
+  "request_id": "dccf2dcb-9ded-4a6c-a6e8-e18e71cc8d01",
+  "response": {
+    "video": {}
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 41.71,
+    "seconds": 12.05,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.9,
+    "seconds": 12.05,
+    "width": 854,
+    "height": 480,
+    "fps": 24.0
+  }
+}

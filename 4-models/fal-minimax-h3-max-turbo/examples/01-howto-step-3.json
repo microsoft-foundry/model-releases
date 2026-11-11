@@ -1,0 +1,41 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max-Turbo",
+  "route": "minimax/h3-max-turbo/text-to-video",
+  "params": {
+    "prompt": "Instructional how-to video about the TrailMaster X4, a four-person dome tent with a forest-green body and a burnt-orange rainfly. Clear, well-lit meadow in daylight, eye-level camera, hands and tent always in frame. Action: Connect the tent poles according to their designated color codes or numbering. Slide the connected poles through the pole sleeves or attach them to the tent body clips. Audio: quiet outdoor ambience, no music, no speech.",
+    "prompt_expansion_mode": "disabled",
+    "seed": 2026,
+    "duration": 5,
+    "resolution": "480P",
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 12.9,
+  "queued_seconds": 6.7,
+  "request_id": "e04cdd37-488b-467b-8381-04f738d03d3f",
+  "response": {
+    "timings": {
+      "inference": 0.7689942310025799
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "hHr4UtZISYINXgP1yYImJ_minimax-h3.mp4",
+      "file_size": 2425844
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 2.43,
+    "seconds": 5.18,
+    "width": 832,
+    "height": 480,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.29,
+    "seconds": 5.18,
+    "width": 832,
+    "height": 480,
+    "fps": 24.0
+  }
+}

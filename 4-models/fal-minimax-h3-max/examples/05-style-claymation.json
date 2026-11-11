@@ -1,0 +1,41 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max",
+  "route": "minimax/h3-max/text-to-video",
+  "params": {
+    "prompt": "Stop-motion claymation, visible fingerprints in the clay. A hiker pitches a green tent with an orange rainfly beside a lake, lights a small stove, and watches the stars come out. Slow pan from left to right. Audio: gentle music box melody, crickets.",
+    "prompt_expansion_mode": "disabled",
+    "seed": 2026,
+    "duration": 5,
+    "resolution": "768P",
+    "aspect_ratio": "21:9"
+  },
+  "seconds": 19.1,
+  "queued_seconds": 7.1,
+  "request_id": "a5d9442e-80be-446b-bc7a-6714d76f8534",
+  "response": {
+    "timings": {
+      "inference": 2.6384205060021486
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "JZw6yxHdoui0as6LFu8O9_minimax-h3.mp4",
+      "file_size": 5219109
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 5.22,
+    "seconds": 5.18,
+    "width": 1536,
+    "height": 672,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.33,
+    "seconds": 5.18,
+    "width": 1098,
+    "height": 480,
+    "fps": 24.0
+  }
+}

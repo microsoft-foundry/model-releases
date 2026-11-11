@@ -1,0 +1,41 @@
+{
+  "deployment": "Fal-LTX-2.5-Pro",
+  "route": "lightricks/ltx-2.5/text-to-video/pro",
+  "params": {
+    "prompt": "Close-up of the EcoFire Camping Stove, a silver single-burner camping stove, lighting with a whoosh; blue flames flicker and a pot of water starts to steam. Static camera, shallow depth of field. Audio: the click of the igniter, the hiss of the flame, bubbling water.",
+    "fps": 50,
+    "duration": 6,
+    "resolution": "720p"
+  },
+  "seconds": 81.6,
+  "queued_seconds": 6.9,
+  "request_id": "5e88cb32-a8b2-4a04-895c-ae858d984223",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 6.0,
+      "file_name": "hoG3tztGldi1BsAkwgMiJ_n4ma1Kd1.mp4",
+      "file_size": 2089876,
+      "fps": 50.0,
+      "height": 720,
+      "num_frames": 300,
+      "width": 1280
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 2.09,
+    "seconds": 6.0,
+    "width": 1280,
+    "height": 720,
+    "fps": 50.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.3,
+    "seconds": 6.0,
+    "width": 854,
+    "height": 480,
+    "fps": 50.0
+  }
+}

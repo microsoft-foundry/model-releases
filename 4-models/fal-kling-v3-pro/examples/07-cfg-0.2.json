@@ -1,0 +1,31 @@
+{
+  "deployment": "Fal-Kling-V3-Pro",
+  "route": "kling/v3/pro/text-to-video",
+  "params": {
+    "prompt": "the TrailMaster X4, a four-person dome tent with a forest-green body under a burnt-orange rainfly stands alone on a snowy ridge. Exactly three orange guy lines, a small silver logo on the door,\nand a red lantern hanging inside. Slow orbit around the tent. Audio: wind only.",
+    "duration": "5",
+    "cfg_scale": 0.2
+  },
+  "seconds": 268.6,
+  "queued_seconds": 7.1,
+  "request_id": "dad5fe28-1c1e-4ac0-b4a8-7b679ddebe8a",
+  "response": {
+    "video": {}
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 14.24,
+    "seconds": 5.04,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.18,
+    "seconds": 5.04,
+    "width": 854,
+    "height": 480,
+    "fps": 24.0
+  }
+}

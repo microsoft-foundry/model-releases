@@ -1,0 +1,41 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max",
+  "route": "minimax/h3-max/text-to-video",
+  "params": {
+    "prompt": "16-bit pixel art, limited palette, crisp pixels. A hiker pitches a green tent with an orange rainfly beside a lake, lights a small stove, and watches the stars come out. Slow pan from left to right. Audio: gentle music box melody, crickets.",
+    "prompt_expansion_mode": "disabled",
+    "seed": 2026,
+    "duration": 5,
+    "resolution": "768P",
+    "aspect_ratio": "21:9"
+  },
+  "seconds": 18.5,
+  "queued_seconds": 6.6,
+  "request_id": "a514a403-465b-4639-9714-83ac127c9a4e",
+  "response": {
+    "timings": {
+      "inference": 2.7004110449997825
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "RgotZKMYwVpikghyhqOFq_minimax-h3.mp4",
+      "file_size": 5510936
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 5.51,
+    "seconds": 5.18,
+    "width": 1536,
+    "height": 672,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.3,
+    "seconds": 5.18,
+    "width": 1098,
+    "height": 480,
+    "fps": 24.0
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "deployment": "Fal-LTX-2.5-Fast",
+  "route": "lightricks/ltx-2.5/text-to-video/fast",
+  "params": {
+    "prompt": "One continuous take: the TrailMaster X4 tent beside a lake, from bright afternoon through sunset to a starry night. Shadows lengthen, the sky turns orange then deep blue, a lantern glows inside the tent. Very slow dolly in. Audio: birds fading into crickets, gentle water.",
+    "duration": 20,
+    "resolution": "720p",
+    "fps": 24,
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 95.7,
+  "queued_seconds": 9.3,
+  "request_id": "182d0ecd-ce21-47cd-8ea9-6545d63c7596",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 20.0,
+      "file_name": "uzKUTyfS-r7ICRKl5KcT7_fspbERLW.mp4",
+      "file_size": 13988940,
+      "fps": 24.0,
+      "height": 720,
+      "num_frames": 480,
+      "width": 1280
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 13.99,
+    "seconds": 20.0,
+    "width": 1280,
+    "height": 720,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 1.96,
+    "seconds": 20.0,
+    "width": 854,
+    "height": 480,
+    "fps": 24.0
+  }
+}

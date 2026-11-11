@@ -1,0 +1,43 @@
+{
+  "deployment": "Fal-LTX-2.5-Fast",
+  "route": "lightricks/ltx-2.5/image-to-video/fast",
+  "params": {
+    "image_url": "<image/jpeg data, 560 KB>",
+    "prompt": "Gentle ripples cross the lake; leaves sway; the tent fabric breathes in the breeze. Static camera.",
+    "duration": 6,
+    "resolution": "2160p",
+    "fps": 25,
+    "generate_audio": false
+  },
+  "seconds": 249.0,
+  "queued_seconds": 7.9,
+  "request_id": "2e2d8f8f-226d-4324-a5f7-44aa909617fe",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 6.0,
+      "file_name": "8cMQuvp3yDr7-AsqdMPoZ_X4JGyIZD.mp4",
+      "file_size": 15600694,
+      "fps": 25.0,
+      "height": 2160,
+      "num_frames": 150,
+      "width": 3840
+    }
+  },
+  "probe": {
+    "has_audio": false,
+    "size_mb": 15.6,
+    "seconds": 6.0,
+    "width": 3840,
+    "height": 2160,
+    "fps": 25.0
+  },
+  "preview": {
+    "has_audio": false,
+    "size_mb": 0.43,
+    "seconds": 6.0,
+    "width": 854,
+    "height": 480,
+    "fps": 25.0
+  }
+}

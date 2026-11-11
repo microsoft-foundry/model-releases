@@ -1,0 +1,31 @@
+{
+  "deployment": "Fal-Kling-V3-Pro",
+  "route": "kling/v3/pro/text-to-video",
+  "params": {
+    "prompt": "Medium shot of the TrailMaster X4, a four-person dome tent with a forest-green body under a burnt-orange rainfly, pitched on a granite ledge above a misty alpine lake at sunrise.\nA hiker unzips the door, steps out, and stretches. Slow dolly in. Soft golden light.\nAudio: birds, the zipper, wind in the pines, no music.",
+    "duration": "6",
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 257.6,
+  "queued_seconds": 6.9,
+  "request_id": "71874219-bb9e-414b-8bab-832412b4b31a",
+  "response": {
+    "video": {}
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 24.18,
+    "seconds": 6.04,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.37,
+    "seconds": 6.04,
+    "width": 854,
+    "height": 480,
+    "fps": 24.0
+  }
+}

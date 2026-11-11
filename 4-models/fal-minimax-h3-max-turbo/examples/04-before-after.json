@@ -1,0 +1,42 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max-Turbo",
+  "route": "minimax/h3-max-turbo/image-to-video",
+  "params": {
+    "image_url": "<image/jpeg data, 560 KB>",
+    "end_image_url": "<image/jpeg data, 411 KB>",
+    "prompt_expansion_mode": "disabled",
+    "prompt": "A camper drapes a new rainfly over the tent and clips it to each corner, then steps out of frame. Static camera. Audio: fabric rustle, clips snapping.",
+    "seed": 2026,
+    "duration": 6,
+    "resolution": "768P"
+  },
+  "seconds": 19.0,
+  "queued_seconds": 6.8,
+  "request_id": "a451271f-b133-48e7-970d-c60c0eb7149c",
+  "response": {
+    "timings": {
+      "inference": 1.890184895004495
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "t-fXTUkNxU1qhYSFKE2mN_minimax-h3.mp4",
+      "file_size": 11056437
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 11.06,
+    "seconds": 6.59,
+    "width": 1152,
+    "height": 768,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.55,
+    "seconds": 6.59,
+    "width": 720,
+    "height": 480,
+    "fps": 24.0
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max",
+  "route": "minimax/h3-max/text-to-video",
+  "params": {
+    "prompt": "A hiker sets up a green and orange tent by a lake at sunset.",
+    "prompt_expansion_mode": "balanced",
+    "seed": 2026,
+    "duration": 5,
+    "resolution": "768P",
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 12.9,
+  "queued_seconds": 6.6,
+  "request_id": "d1de69d9-e326-4478-a711-ef78ca11fc55",
+  "response": {
+    "expanded_prompt": "integrated_multimodal_description: [Shot 1] Cinematic, live-action wide shot of a hiker (S1), a man in his 30s wearing a weathered windbreaker and a backpack, standing on the grassy shore of a crystalline alpine lake at sunset. The sky is a vibrant gradient of orange and deep purple, reflected perfectly in the still water surface. S1 is kneeling, unfurling a vibrant green and orange dome-style tent. The camera pushes in with small amplitude at slow speed toward the hiker as he slides metallic poles through the fabric sleeves, creating tension. The warm golden hour light catches the texture of the nylon fabric and casts long shadows across the uneven grass. As he works efficiently, he secures a stake into the ground, the tent finally taking its shape while the mountains in the background begin to silhouette against the fading light.\n\noverall_soundscape: The soft rustle of nylon fabric flapping in a light breeze is accompanied by the metallic clink of fiberglass poles being assembled. Distant, faint sounds of wind whistling through mountain grass are punctuated by the gentle, rhythmic lapping of lake water against the rocky shore.\n\nnon_diegetic_music: A warm, minimalist acoustic guitar melody with a slow tempo and soft fingerpicking, creating a sense of peaceful solitude and accomplishment.",
+    "timings": {
+      "inference": 2.7982008369981486
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "nE_4hg8C0JGCKPL5hr2ZB_minimax-h3.mp4",
+      "file_size": 3801933
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 3.8,
+    "seconds": 5.18,
+    "width": 1344,
+    "height": 768,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.21,
+    "seconds": 5.18,
+    "width": 840,
+    "height": 480,
+    "fps": 24.0
+  }
+}

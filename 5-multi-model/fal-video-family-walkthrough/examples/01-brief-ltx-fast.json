@@ -1,0 +1,42 @@
+{
+  "deployment": "Fal-LTX-2.5-Fast",
+  "route": "lightricks/ltx-2.5/text-to-video/fast",
+  "params": {
+    "prompt": "Medium shot of the TrailMaster X4, a four-person dome tent with a forest-green body under a burnt-orange rainfly, pitched on a granite ledge above a misty alpine lake at sunrise.\nA hiker unzips the door, steps out, and stretches. Slow dolly in. Soft golden light.\nAudio: birds, the zipper, wind in the pines, no music.",
+    "duration": 6,
+    "resolution": "720p",
+    "fps": 25,
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 87.2,
+  "queued_seconds": 7.1,
+  "request_id": "50231b6a-b1ed-49b9-af1e-782a4c745327",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 6.0,
+      "file_name": "YVt47iDYbvrqwJ8eeJn1b_52Sg7blq.mp4",
+      "file_size": 2999873,
+      "fps": 25.0,
+      "height": 720,
+      "num_frames": 150,
+      "width": 1280
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 3.0,
+    "seconds": 6.0,
+    "width": 1280,
+    "height": 720,
+    "fps": 25.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.47,
+    "seconds": 6.0,
+    "width": 854,
+    "height": 480,
+    "fps": 25.0
+  }
+}

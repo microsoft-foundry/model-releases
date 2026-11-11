@@ -1,42 +1,10 @@
-# Local pre-commit hook for model-releases.
-#
-# Install once with:
-#     pip install pre-commit && pre-commit install
-#
-# CI validates once per pull request, not on every push, so this hook
-# is what catches a problem while you still have the commit in hand.
-# It runs the same entrypoint CI runs, `scripts/validate.py`, which
-# covers all three checks: frontmatter schemas, cross-links, and
-# whether the generated files (catalog.json, llms.txt, CAPSULE-TOC.md,
-# the README blocks) are current.
-#
-# While drafting, run the interactive version in a second terminal:
-#     python scripts/validate.py --watch
-#
-# To skip the hook for a work-in-progress commit:
-#     git commit --no-verify
-
+# Install once: pip install pre-commit && pre-commit install
 repos:
   - repo: local
     hooks:
-      - id: validate
-        name: Validate specs, cross-links, and generated files
-        entry: python scripts/validate.py --no-color
+      - id: check
+        name: Check layout, links, and notebooks
+        entry: python 1-scripts/check.py
         language: system
-        # The checks read the whole repo, not just staged files, so
-        # there is nothing useful to pass through.
         pass_filenames: false
-        # Any of these can change a result. Generated files are listed
-        # too: editing one by hand is exactly the drift --check catches.
-        files: |
-          (?x)^(
-            CHANGELOG\.md|
-            README\.md|
-            CAPSULE-TOC\.md|
-            catalog\.json|
-            llms\.txt|
-            \.github/(specs|skills|agents)/.*\.(md|json)|
-            models/.*|
-            docs/.*|
-            scripts/.*\.(py|spec\.md)
-          )$
+        always_run: true

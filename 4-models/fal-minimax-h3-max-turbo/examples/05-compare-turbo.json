@@ -1,0 +1,41 @@
+{
+  "deployment": "Fal-MiniMax-H3-Max-Turbo",
+  "route": "minimax/h3-max-turbo/text-to-video",
+  "params": {
+    "prompt": "Instructional how-to video about the TrailMaster X4, a four-person dome tent with a forest-green body and a burnt-orange rainfly. Clear, well-lit meadow in daylight, eye-level camera, hands and tent always in frame. Action: Begin at one end and raise the tent body by pushing up the poles. Ensure that the tent body is evenly stretched and centered. Secure the tent body to the ground using stakes and guy lines as needed. Audio: quiet outdoor ambience, no music, no speech.",
+    "prompt_expansion_mode": "disabled",
+    "seed": 2026,
+    "duration": 5,
+    "resolution": "768P",
+    "aspect_ratio": "16:9"
+  },
+  "seconds": 12.8,
+  "queued_seconds": 6.5,
+  "request_id": "f0edf3ab-bf5e-4df6-930e-643ffcb89af3",
+  "response": {
+    "timings": {
+      "inference": 1.4905108809980447
+    },
+    "video": {
+      "content_type": "video/mp4",
+      "file_name": "bWUnkquFP2bV1zJMqwBs3_minimax-h3.mp4",
+      "file_size": 8751397
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 8.75,
+    "seconds": 5.18,
+    "width": 1344,
+    "height": 768,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.36,
+    "seconds": 5.18,
+    "width": 840,
+    "height": 480,
+    "fps": 24.0
+  }
+}

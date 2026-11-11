@@ -1,0 +1,45 @@
+{
+  "deployment": "Fal-Kling-V3-Pro",
+  "route": "kling/v3/pro/image-to-video",
+  "params": {
+    "prompt": "@Element1 walks into frame, kneels beside @Element2, and tightens a guy line, then looks out at the lake and smiles.\nCamera tracks right with the hiker. Audio: footsteps on grass, the guy line creaking.",
+    "duration": "6",
+    "elements": [
+      {
+        "frontal_image_url": "<image/jpeg data, 197 KB>",
+        "reference_image_urls": [
+          "<image/jpeg data, 346 KB>"
+        ]
+      },
+      {
+        "frontal_image_url": "<image/jpeg data, 155 KB>",
+        "reference_image_urls": [
+          "<image/jpeg data, 560 KB>"
+        ]
+      }
+    ],
+    "start_image_url": "<image/jpeg data, 560 KB>"
+  },
+  "seconds": 178.8,
+  "queued_seconds": 7.0,
+  "request_id": "1ddf31ea-bcc3-4088-8ed2-1c38d1b24a7a",
+  "response": {
+    "video": {}
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 25.07,
+    "seconds": 6.04,
+    "width": 1764,
+    "height": 1176,
+    "fps": 24.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 0.57,
+    "seconds": 6.04,
+    "width": 720,
+    "height": 480,
+    "fps": 24.0
+  }
+}

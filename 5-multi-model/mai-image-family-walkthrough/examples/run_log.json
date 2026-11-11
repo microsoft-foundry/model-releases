@@ -1,0 +1,217 @@
+{
+  "01-listing-fashion-boutique": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 16.1,
+    "size": "880×1184"
+  },
+  "01-listing-hotel-suite": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 16.3,
+    "size": "880×1184"
+  },
+  "01-listing-luxury-wardrobe": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 16.7,
+    "size": "880×1184"
+  },
+  "01-listing-minimal-studio": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 16.2,
+    "size": "880×1184"
+  },
+  "01-listing-paris-apartment": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 16.4,
+    "size": "880×1184"
+  },
+  "01-listing-stone-townhouse": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 16.1,
+    "size": "880×1184"
+  },
+  "02-mood-analog-feminine": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 11.4,
+    "size": "1024×1024"
+  },
+  "02-mood-calm-feminine": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 12.3,
+    "size": "1024×1024"
+  },
+  "02-mood-luxury-comfortable": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 11.3,
+    "size": "1024×1024"
+  },
+  "02-mood-midnight-comfortable": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 11.4,
+    "size": "1024×1024"
+  },
+  "02-mood-precision-plants": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 11.6,
+    "size": "1024×1024"
+  },
+  "02-mood-warm-plants": {
+    "model": "MAI-Image-2.6-Flash",
+    "seconds": 11.2,
+    "size": "1024×1024"
+  },
+  "03-car-smudge-removed": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.6,
+    "size": "768×1360"
+  },
+  "04-bit-conference-booth": {
+    "model": "MAI-Image-2.6",
+    "seconds": 19.8,
+    "size": "880×1184"
+  },
+  "04-bit-conference-stage": {
+    "model": "MAI-Image-2.6",
+    "seconds": 19.9,
+    "size": "880×1184"
+  },
+  "04-bit-hackathon": {
+    "model": "MAI-Image-2.6",
+    "seconds": 22.5,
+    "size": "880×1184"
+  },
+  "05-matrix-angle-front": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.6,
+    "size": "880×1184"
+  },
+  "05-matrix-angle-rear-three-quarter": {
+    "model": "MAI-Image-2.6",
+    "seconds": 17.4,
+    "size": "880×1184"
+  },
+  "05-matrix-angle-side-profile": {
+    "model": "MAI-Image-2.6",
+    "seconds": 19.6,
+    "size": "880×1184"
+  },
+  "05-matrix-lens-24mm-wide": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.5,
+    "size": "880×1184"
+  },
+  "05-matrix-lens-50mm-normal": {
+    "model": "MAI-Image-2.6",
+    "seconds": 20.0,
+    "size": "880×1184"
+  },
+  "05-matrix-lens-85mm-telephoto": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.5,
+    "size": "880×1184"
+  },
+  "05-matrix-light-conference-stage": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.6,
+    "size": "880×1184"
+  },
+  "05-matrix-light-daylight": {
+    "model": "MAI-Image-2.6",
+    "seconds": 19.2,
+    "size": "880×1184"
+  },
+  "05-matrix-light-warm-low": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.8,
+    "size": "880×1184"
+  },
+  "05-matrix-object-laptop": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.8,
+    "size": "880×1184"
+  },
+  "05-matrix-object-microphone": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.1,
+    "size": "880×1184"
+  },
+  "05-matrix-object-mug": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.0,
+    "size": "880×1184"
+  },
+  "05-matrix-pose-standing": {
+    "model": "MAI-Image-2.6",
+    "seconds": 19.3,
+    "size": "880×1184"
+  },
+  "05-matrix-pose-walking": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.8,
+    "size": "880×1184"
+  },
+  "05-matrix-pose-waving": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.8,
+    "size": "880×1184"
+  },
+  "05-matrix-prompt-full-identity": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.6,
+    "size": "880×1184"
+  },
+  "05-matrix-prompt-reference-only": {
+    "model": "MAI-Image-2.6",
+    "seconds": 19.0,
+    "size": "880×1184"
+  },
+  "05-matrix-prompt-short-identity": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.2,
+    "size": "880×1184"
+  },
+  "05-matrix-repeatability-1": {
+    "model": "MAI-Image-2.6",
+    "seconds": 17.0,
+    "size": "880×1184"
+  },
+  "05-matrix-repeatability-2": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.6,
+    "size": "880×1184"
+  },
+  "05-matrix-repeatability-3": {
+    "model": "MAI-Image-2.6",
+    "seconds": 19.1,
+    "size": "880×1184"
+  },
+  "05-matrix-scale-behind-desk": {
+    "model": "MAI-Image-2.6",
+    "seconds": 19.4,
+    "size": "880×1184"
+  },
+  "05-matrix-scale-close-up": {
+    "model": "MAI-Image-2.6",
+    "seconds": 19.4,
+    "size": "880×1184"
+  },
+  "05-matrix-scale-distant-crowd": {
+    "model": "MAI-Image-2.6",
+    "seconds": 21.0,
+    "size": "880×1184"
+  },
+  "05-matrix-wardrobe-backpack": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.6,
+    "size": "880×1184"
+  },
+  "05-matrix-wardrobe-lanyard": {
+    "model": "MAI-Image-2.6",
+    "seconds": 20.3,
+    "size": "880×1184"
+  },
+  "05-matrix-wardrobe-open-jacket": {
+    "model": "MAI-Image-2.6",
+    "seconds": 18.2,
+    "size": "880×1184"
+  }
+}

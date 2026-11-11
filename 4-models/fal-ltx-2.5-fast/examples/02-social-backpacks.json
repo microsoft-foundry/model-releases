@@ -1,0 +1,42 @@
+{
+  "deployment": "Fal-LTX-2.5-Fast",
+  "route": "lightricks/ltx-2.5/text-to-video/fast",
+  "params": {
+    "prompt": "Vertical social clip: the Adventurer Pro Backpack by HikeMate in use on a sunny trail weekend. Quick, energetic handheld moves, bright natural light, upbeat outdoor-brand feel. Audio: nature sounds and a light upbeat rhythm.",
+    "duration": 6,
+    "resolution": "720p",
+    "fps": 25,
+    "aspect_ratio": "9:16"
+  },
+  "seconds": 48.6,
+  "queued_seconds": 7.1,
+  "request_id": "8c11f2e2-075b-40ba-b676-30cc76da0e33",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 6.0,
+      "file_name": "hnphSbBqh9gfAV_uFL153_5VVpih7O.mp4",
+      "file_size": 9023620,
+      "fps": 25.0,
+      "height": 1280,
+      "num_frames": 150,
+      "width": 720
+    }
+  },
+  "probe": {
+    "has_audio": true,
+    "size_mb": 9.02,
+    "seconds": 6.0,
+    "width": 720,
+    "height": 1280,
+    "fps": 25.0
+  },
+  "preview": {
+    "has_audio": true,
+    "size_mb": 1.73,
+    "seconds": 6.0,
+    "width": 480,
+    "height": 854,
+    "fps": 25.0
+  }
+}

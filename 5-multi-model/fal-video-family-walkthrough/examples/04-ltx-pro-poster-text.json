@@ -1,0 +1,44 @@
+{
+  "deployment": "Fal-LTX-2.5-Pro",
+  "route": "lightricks/ltx-2.5/image-to-video/pro",
+  "params": {
+    "image_url": "<image/jpeg data, 445 KB>",
+    "prompt": "Mist drifts slowly across the lake behind the tent; the sunrise light brightens. All text stays exactly as it is.",
+    "camera_motion": "static",
+    "duration": 6,
+    "resolution": "1080p",
+    "aspect_ratio": "9:16",
+    "generate_audio": false
+  },
+  "seconds": 92.5,
+  "queued_seconds": 7.0,
+  "request_id": "973c8479-40e7-4d47-b39d-6e797ebaa785",
+  "response": {
+    "video": {
+      "content_type": "video/mp4",
+      "duration": 6.0,
+      "file_name": "15-WbH40NK4Xc30PLcvFU_9o4AJzUS.mp4",
+      "file_size": 4063270,
+      "fps": 25.0,
+      "height": 1920,
+      "num_frames": 150,
+      "width": 1080
+    }
+  },
+  "probe": {
+    "has_audio": false,
+    "size_mb": 4.06,
+    "seconds": 6.0,
+    "width": 1080,
+    "height": 1920,
+    "fps": 25.0
+  },
+  "preview": {
+    "has_audio": false,
+    "size_mb": 0.26,
+    "seconds": 6.0,
+    "width": 480,
+    "height": 854,
+    "fps": 25.0
+  }
+}
