@@ -1,5 +1,5 @@
 <!--
-Hill-climb step: 03 — PREFERENCES
+Improvement step: 03 — PREFERENCES
 New lever: preference adherence (attach employees.json, honor the profile)
 Flaw this fixes: the compliant agent ignores the traveler's profile — loyalty
   program, cabin preference, nonstop, preferred area — so recommendations are

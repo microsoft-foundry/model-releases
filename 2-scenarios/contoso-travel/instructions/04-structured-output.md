@@ -1,5 +1,5 @@
 <!--
-Hill-climb step: 04 — STRUCTURED OUTPUT
+Improvement step: 04 — STRUCTURED OUTPUT
 New lever: output contract (require JSON with citations and a compliance verdict)
 Flaw this fixes: the personalized agent replies in free text, so recommendations
   are hard to evaluate, cite, or hand to a booking step.

@@ -1,5 +1,5 @@
 {
-  "$comment": "Benchmark / load-test query set for the Contoso Travel Concierge demo. A seed set spanning the workload classes and difficulty levels; extend toward 100+ for production-like runs. Each case tags the 'gate' (lever) it exercises so failures map to a hill-climb step. 'expected' fields support deterministic, reproducible grading; the Foundry custom rubric evaluator (see evaluators/policy-rubric.md) scores the same cases qualitatively. Dates assume as_of 2026-08-21.",
+  "$comment": "Benchmark / load-test query set for the Contoso Travel Concierge demo. A seed set spanning the workload classes and difficulty levels; extend toward 100+ for production-like runs. Each case tags the 'gate' (lever) it exercises so failures map to an improvement step. 'expected' fields support deterministic, reproducible grading; the Foundry custom rubric evaluator (see evaluators/policy-rubric.md) scores the same cases qualitatively. Dates assume as_of 2026-08-21.",
   "as_of_date": "2026-08-21",
   "queries": [
     { "id": "Q01", "category": "faq", "difficulty": "easy", "gate": "policy-knowledge", "query": "What is the maximum international business-class airfare I can expense?", "expected": { "answer_contains": ["6,000"] } },

@@ -8,7 +8,8 @@ the change only when the scorecard improves.
 The workload is a **Contoso Travel Concierge** — an enterprise agent that helps
 employees book **policy-compliant** flights, hotels, and car rentals. It is rich
 enough to exercise grounding, policy reasoning, preferences, safety, and structured
-output, which makes it a good surface for hill climbing.
+output, which makes it a good place to practice continuous improvement: climbing
+from a weak baseline to a target agent, one measured step at a time.
 
 > This is a shared scenario, not a release capsule. The
 > [Model Router capsule](../../4-models/model-router/) builds on it.
@@ -28,7 +29,7 @@ output, which makes it a good surface for hill climbing.
   All dates are future (late 2026–2028). Some options deliberately breach policy so
   the concierge has something to catch.
 - **[instructions/](instructions/)** — copy one file into the agent's instructions
-  to move up or down the quality ladder (see the hill-climb map below).
+  to move up or down the quality ladder (see the improvement steps below).
 - **[benchmark/](benchmark/)** — [queries.json](benchmark/queries.json),
   [run_benchmark.py](benchmark/run_benchmark.py), and the
   [custom rubric evaluator](benchmark/evaluators/policy-rubric.md).
@@ -41,7 +42,7 @@ output, which makes it a good surface for hill climbing.
    az login
    export MICROSOFT_FOUNDRY_ENDPOINT="https://<resource>.services.ai.azure.com/api/projects/<project>"
    ```
-2. **Deploy models.** For the hill climb you want:
+2. **Deploy models.** For continuous improvement you want:
    - a **`model-router`** deployment (the workload's main endpoint), and
    - optionally two baselines — one inexpensive model and one strong model — to
      anchor the frontier.
@@ -58,10 +59,11 @@ output, which makes it a good surface for hill climbing.
 5. **Baseline it.** Run [benchmark/](benchmark/) to get a scorecard before you
    change anything.
 
-## The hill-climb map
+## The improvement steps
 
-Each instruction rung adds exactly one lever and fixes one class of failure. Copy
-the file into the agent, re-run the benchmark, and watch the matching gate improve.
+We climb from the baseline (`00-base`) to the target (`10-reference-gold`). Each
+step adds exactly one change and fixes one kind of failure. Copy the file into the
+agent, re-run the benchmark, and check that the matching score goes up.
 
 | Rung | Lever added | Failure it fixes |
 |---|---|---|

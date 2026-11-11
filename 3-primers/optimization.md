@@ -38,15 +38,17 @@ model-layer moves are [model optimization](#model-optimization); our practical
 starting point is a scorecard — cost, latency, and quality — that tells us
 whether each change is actually an improvement.
 
-### Hill Climbing
+### Continuous Improvement
 
 *"Do I improve this with one big rewrite, or lots of small steps?"*
 
-Hill Climbing is an iterative strategy that starts from a working solution and
-repeatedly makes small changes, keeping each one only when it improves a
-measured objective. Progress comes from many evidence-backed steps rather than
-one large redesign. We compare models, prompts, and routing settings this way to
-find a better balance of quality, cost, and latency.
+Continuous improvement is a climb from a baseline to a target, one step at a
+time. The baseline is how well our app does today, measured on a fixed set of
+test requests. The target is the score we want to reach. Each step changes one
+thing — the model, the prompt, or a setting — and we measure again. If the score
+goes up, we keep the change and take the next step from there. If it doesn't,
+we undo it and try something else. Many small, measured steps get us further
+than one big rewrite, because we always know which change helped.
 
 ### Model Optimization
 

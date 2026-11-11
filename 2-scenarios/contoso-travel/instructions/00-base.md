@@ -1,5 +1,5 @@
 <!--
-Hill-climb step: 00 — BASELINE
+Improvement step: 00 — BASELINE
 New lever: none (this is the starting point)
 Flaw(s) this exposes: hallucinated options, ignores policy, ignores employee
   preferences, unstructured output, unsafe auto-booking. Use this to establish a

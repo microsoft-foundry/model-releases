@@ -1,6 +1,7 @@
 # Benchmark & optimization
 
-Two complementary ways to score the Contoso Travel Concierge and drive a hill climb.
+Two complementary ways to score the Contoso Travel Concierge as we improve it step
+by step, from a baseline to a target.
 
 ## What's here
 
@@ -26,7 +27,8 @@ python run_benchmark.py
 
 It prints a scorecard (quality, policy accuracy, p50/p95 latency, token totals,
 and the selected-model distribution) and writes `results.json`. Re-run it after
-each lever change and compare — that comparison *is* the hill climb.
+each change and compare. Keep the change if the score goes up; undo it if not.
+That loop is continuous improvement.
 
 The deterministic grader is intentionally strict and fails closed, so a weak
 instruction set (for example `instructions/00-base.md`) scores low on grounding,

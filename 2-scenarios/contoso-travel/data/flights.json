@@ -1,5 +1,5 @@
 {
-  "$comment": "Sample flight inventory for the Contoso Travel Concierge demo. All dates are future-dated (late 2026-2027). Prices in USD. total_usd = base_fare_usd + taxes_fees_usd. Some options intentionally breach policy to drive hill-climbing stories (over-cap fares, wrong cabin, non-refundable, inside the advance-purchase window).",
+  "$comment": "Sample flight inventory for the Contoso Travel Concierge demo. All dates are future-dated (late 2026-2027). Prices in USD. total_usd = base_fare_usd + taxes_fees_usd. Some options intentionally breach policy to give each improvement step something to fix (over-cap fares, wrong cabin, non-refundable, inside the advance-purchase window).",
   "as_of_date": "2026-08-21",
   "flights": [
     { "id": "F001", "carrier": "ANA", "flight_number": "NH9", "origin": "BOS", "destination": "NRT", "origin_city": "Boston", "destination_city": "Tokyo", "international": true, "depart": "2026-11-12T10:30:00", "arrive": "2026-11-13T14:00:00", "duration_hours": 13.5, "cabin": "business", "nonstop": true, "stops": 0, "base_fare_usd": 5450, "taxes_fees_usd": 380, "total_usd": 5830, "refundable": true },

@@ -1,9 +1,9 @@
 <!--
-Hill-climb step: 10 — REFERENCE GOLD (target)
+Improvement step: 10 — REFERENCE GOLD (target)
 New lever: none new — this consolidates every lever (grounding, policy,
   preferences, output contract, deterministic safety/exceptions) into one clean,
   production-shaped instruction.
-Use as: the target the optimizer/hill-climb is trying to reach, and the
+Use as: the target each improvement step (or the optimizer) is climbing toward, and the
   "good" answer key when scoring candidates.
 -->
 

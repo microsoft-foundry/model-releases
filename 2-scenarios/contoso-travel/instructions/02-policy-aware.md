@@ -1,5 +1,5 @@
 <!--
-Hill-climb step: 02 — POLICY AWARENESS
+Improvement step: 02 — POLICY AWARENESS
 New lever: policy enforcement (attach travel-policy.json and check every option)
 Flaw this fixes: the grounded agent still recommends non-compliant options
   (over-cap fares, wrong cabin, non-refundable, unapproved car vendor, bookings

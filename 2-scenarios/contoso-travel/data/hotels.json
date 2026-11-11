@@ -1,5 +1,5 @@
 {
-  "$comment": "Sample hotel inventory for the Contoso Travel Concierge demo. Nightly rates in USD. Policy caps vary by city (see travel-policy.json). preferred_chains are a soft preference, not a hard cap. Some options intentionally breach policy (over nightly cap, non-refundable) or are simply non-preferred, to drive hill-climbing stories.",
+  "$comment": "Sample hotel inventory for the Contoso Travel Concierge demo. Nightly rates in USD. Policy caps vary by city (see travel-policy.json). preferred_chains are a soft preference, not a hard cap. Some options intentionally breach policy (over nightly cap, non-refundable) or are simply non-preferred, to give each improvement step something to fix.",
   "as_of_date": "2026-08-21",
   "hotels": [
     { "id": "H001", "name": "Tokyo Marriott Shinjuku", "chain": "Marriott", "city": "Tokyo", "area": "Shinjuku", "city_center": true, "nightly_rate_usd": 360, "rating": 4.5, "refundable": true },
