@@ -31,6 +31,18 @@ Use the [add-multi-model-capsule](.github/skills/add-multi-model-capsule/SKILL.m
 
 Use the [add-primer](.github/skills/add-primer/SKILL.md) skill.
 
+## Create an MAI-themed banner prompt
+
+Use the [create-mai-banners](.github/skills/create-mai-banners/SKILL.md) skill
+to apply the shared warm palette, editorial typography, and illustration style:
+
+```text
+Use create-mai-banners: landscape, 1920 x 1080 pixels. Show a tent beside a
+mountain river. Title: "One tent, one launch". No other text.
+```
+
+The skill returns a copy-ready image prompt and settings, not a generated image.
+
 ## Add a scenario
 
 1. Create `2-scenarios/<name>/` with `data/` and a `README.md` describing the fictitious scenario and each file.
