@@ -70,3 +70,10 @@ python 1-scripts/check.py
 ```
 
 It must print `OK`. CI runs the same check on every pull request.
+
+For changes to the MAI-Transcribe-2 request configuration, also run the offline
+SDK serialization checks (no Azure credentials or service calls):
+
+```bash
+python -m unittest discover -s 1-scripts -p test_mai_transcribe.py -v
+```
