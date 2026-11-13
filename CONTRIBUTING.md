@@ -31,6 +31,18 @@ Use the [add-multi-model-capsule](.github/skills/add-multi-model-capsule/SKILL.m
 
 Use the [add-primer](.github/skills/add-primer/SKILL.md) skill.
 
+## Create an MAI-themed banner prompt
+
+Use the [create-mai-banners](.github/skills/create-mai-banners/SKILL.md) skill
+to apply the shared warm palette, editorial typography, and illustration style:
+
+```text
+Use create-mai-banners: landscape, 1920 x 1080 pixels. Show a tent beside a
+mountain river. Title: "One tent, one launch". No other text.
+```
+
+The skill returns a copy-ready image prompt and settings, not a generated image.
+
 ## Add a scenario
 
 1. Create `2-scenarios/<name>/` with `data/` and a `README.md` describing the fictitious scenario and each file.
@@ -58,3 +70,10 @@ python 1-scripts/check.py
 ```
 
 It must print `OK`. CI runs the same check on every pull request.
+
+For changes to the MAI-Transcribe-2 request configuration, also run the offline
+SDK serialization checks (no Azure credentials or service calls):
+
+```bash
+python -m unittest discover -s 1-scripts -p test_mai_transcribe.py -v
+```
